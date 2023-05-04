@@ -22,3 +22,6 @@ response = await chatCore.getNextMessage({
   }]
 })
 ````
+
+## Documentation
+See **[our documentation](./docs/chat-core.md)** for a more details on supported API calls and interfaces.
