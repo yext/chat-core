@@ -2,7 +2,7 @@ import { Message } from './Message';
 import { MessageNotes } from './MessageNotes';
 
 /**
- * A response from Chat API
+ * A response from Chat API.
  *
  * @public
  */

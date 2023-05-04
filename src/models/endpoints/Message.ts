@@ -1,5 +1,5 @@
 /**
- * Represents a message within a conversation
+ * Represents a message within a conversation.
  *
  * @public
  */
@@ -18,6 +18,8 @@ export interface Message {
  * @public
  */
 export enum MessageSource {
+  /** From a user. */
   USER = 'USER',
+  /** From Chat API server. */
   BOT = 'BOT'
 }

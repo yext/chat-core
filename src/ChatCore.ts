@@ -33,9 +33,9 @@ export class ChatCore {
    * Make a request to Chat API to generate the next message.
    *
    * @remarks
-   * If rejected, an {@link Error} is returned.
+   * If rejected, an Error is returned.
    *
-   * @param request - message request
+   * @param request - request to get next message
    */
   async getNextMessage(request: MessageRequest): Promise<MessageResponse> {
     const queryParams: QueryParams = { v: defaultApiVersion };

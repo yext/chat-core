@@ -2,7 +2,7 @@ import { Message } from './Message';
 import { MessageNotes } from './MessageNotes';
 
 /**
- * A request to Chat API
+ * A request to Chat API.
  *
  * @public
  */
@@ -12,7 +12,7 @@ export interface MessageRequest {
    *
    * @remarks
    * The most recent message is the last message in the array,
-   * in which Chat API will generate a reply for
+   * in which Chat API will generate a reply for.
    */
   messages: Message[],
   /** {@inheritDoc MessageNotes} */
@@ -20,7 +20,7 @@ export interface MessageRequest {
 }
 
 /**
- * Represents the internal request format that Chat API expects
+ * Represents the internal request format that Chat API expects.
  *
  * @internal
  */
