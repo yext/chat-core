@@ -2,7 +2,9 @@
 
 This package contains setup to test browser and esm compatibility of chat-core.
 
-To test, first make sure there is a build constructed for @yext/chat-core. If not, run `npm run build` in  the **root directory**
+To test, make sure you have the following:
+- a .env file setup following the .sample.env file.
+- a build for @yext/chat-core (run `npm run build` in the **root directory**)
 
 Then, run the following command to test:
 ```bash
