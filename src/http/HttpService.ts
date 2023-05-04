@@ -1,4 +1,3 @@
-import { ChatConfig } from '../models';
 import { ApiResponse } from '../models/http/ApiResponse';
 import { QueryParams } from '../models/http/params';
 import { fetch } from './utils';
@@ -12,7 +11,7 @@ enum RequestMethods {
 
 /**
  * A service for HTTP Requests.
- * 
+ *
  * @internal
  */
 export class HttpService {

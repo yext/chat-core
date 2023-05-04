@@ -1,6 +1,6 @@
 /**
  * Represents raw query params, without any sanitization.
- * 
+ *
  * @internal
  */
 export interface QueryParams {
@@ -9,7 +9,7 @@ export interface QueryParams {
 
 /**
  * Represents defined query params, without undefined or null values.
- * 
+ *
  * @internal
  */
 export interface SanitizedQueryParams {

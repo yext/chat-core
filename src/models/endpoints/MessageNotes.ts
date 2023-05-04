@@ -1,11 +1,11 @@
 /**
  * Information relevant to the current state of the conversation, serving as the bot’s
  * "memory" regarding what work it previously did to help determine future actions.
- * 
+ *
  * @remarks
  * This data will come from the API. As such, a user’s first request may have this as undefined.
  * Subsequent requests will use the data of this type from the previous response.
- * 
+ *
  * @public
  */
 export interface MessageNotes {

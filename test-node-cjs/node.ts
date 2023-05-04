@@ -5,7 +5,7 @@ const dotenv = require('dotenv');
 dotenv.config();
 
 const config = {
-  apiKey: process.env['TEST_BOT_API_KEY'] ?? "API_KEY_PLACEHOLDER",
+  apiKey: process.env['TEST_BOT_API_KEY'] ?? 'API_KEY_PLACEHOLDER',
   botId: 'red-dog-bot',
   apiDomain: 'liveapi-dev.yext.com',
 };
@@ -13,10 +13,10 @@ const config = {
 const server = http.createServer(async (_req: unknown, res: any) => {
   res.statusCode = 200;
   res.setHeader('Content-Type', 'text/plain');
-  const chatCore = new ChatCore(config)
+  const chatCore = new ChatCore(config);
   const reply = await chatCore.getNextMessage({
     messages: []
-  })
+  });
   res.end(JSON.stringify(reply, null, 2));
 });
 

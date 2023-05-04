@@ -3,7 +3,7 @@ import { MessageNotes } from './MessageNotes';
 
 /**
  * A response from Chat API
- * 
+ *
  * @public
  */
 export interface MessageResponse {

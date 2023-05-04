@@ -35,7 +35,7 @@ it('fails for a response without a meta property', () => {
   const validationResponse = apiResponseValidator.validate(response);
   expect(validationResponse).toBeInstanceOf(Error);
   expect(validationResponse?.message)
-  .toEqual('Malformed Chat API response: missing meta property.');
+    .toEqual('Malformed Chat API response: missing meta property.');
 });
 
 it('fails for a response with an API error', () => {
@@ -55,5 +55,5 @@ it('fails for a response with an API error', () => {
   const validationResponse = apiResponseValidator.validate(response);
   expect(validationResponse).toBeInstanceOf(Error);
   expect(validationResponse?.message)
-  .toEqual('Chat API error: FATAL_ERROR: Invalid API Key. (code: 1)');
+    .toEqual('Chat API error: FATAL_ERROR: Invalid API Key. (code: 1)');
 });

@@ -1,6 +1,6 @@
 /**
  * Represents a message within a conversation
- * 
+ *
  * @public
  */
 export interface Message {
@@ -14,7 +14,7 @@ export interface Message {
 
 /**
  * Types of sender of a message.
- * 
+ *
  * @public
  */
 export enum MessageSource {

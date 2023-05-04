@@ -14,7 +14,7 @@ export class ApiResponseValidator {
       this.checkForApiErrors
     ];
     for (const test of tests) {
-      const err = test(apiResponse)
+      const err = test(apiResponse);
       if (err !== undefined) {
         return err;
       }

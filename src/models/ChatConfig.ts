@@ -1,6 +1,6 @@
 /**
  * The configuration options for {@link ChatCore}.
- * 
+ *
  * @public
  */
 export interface ChatConfig {
@@ -23,7 +23,7 @@ export interface ChatConfig {
   version?: 'STAGING' | 'PRODUCTION' | number,
   /**
    * Domain to use for the URL endpoints.
-   * 
+   *
    * @remarks
    * Default to liveapi.yext.com
    */

@@ -3,7 +3,7 @@ import crossFetch from 'cross-fetch';
 
 /**
  * Performs a fetch, using the polyfill if needed.
- * 
+ *
  * @internal
  */
 export function fetch(
@@ -20,7 +20,7 @@ export function fetch(
 
 /**
  * Removes params with undefined or null values.
- * 
+ *
  * @internal
  */
 export function sanitizeQueryParams(params: QueryParams): SanitizedQueryParams {
@@ -35,7 +35,7 @@ export function sanitizeQueryParams(params: QueryParams): SanitizedQueryParams {
 
 /**
  * Updates a url with the given params.
- * 
+ *
  * @internal
  */
 export function addParamsToURL(
