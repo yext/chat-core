@@ -21,7 +21,7 @@ export class ChatCore {
   constructor(chatConfig: ChatConfig) {
     this.chatConfig = chatConfig;
     this.url = this.getUrl(chatConfig);
-    this.httpService = new HttpService(chatConfig);
+    this.httpService = new HttpService();
     this.apiResponseValidator = new ApiResponseValidator();
   }
 
@@ -30,21 +30,21 @@ export class ChatCore {
   }
 
   /**
-   * Sends message to Chat API to generate a reply.
+   * Make a request to Chat API to generate the next message.
    *
    * @remarks
    * If rejected, an {@link Error} is returned.
    *
    * @param request - message request
    */
-  async send(request: MessageRequest): Promise<MessageResponse> {
+  async getNextMessage(request: MessageRequest): Promise<MessageResponse> {
     const queryParams: QueryParams = { v: defaultApiVersion };
     const body: ApiMessageRequest = {
       version: this.chatConfig.version ?? 'PRODUCTION',
       messages: request.messages,
       notes: request.notes
     };
-    const rawResponse = await this.httpService.post(this.url, queryParams, body);
+    const rawResponse = await this.httpService.post(this.url, queryParams, body, this.chatConfig.apiKey);
     const validationResult = this.apiResponseValidator.validate(rawResponse);
     if (validationResult instanceof Error) {
       return Promise.reject(validationResult);

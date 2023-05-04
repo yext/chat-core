@@ -9,4 +9,4 @@ Then, run the following command to test:
 cd test-node-cjs && npm i && npm run test
 ```
 
-This will start a node server at http://localhost:3030/. Opening that up should trigger a request to the server, which will automatically make an initial request to chat API using ChatCore and display the response (e.g. initial message).
+This will start a node server at http://localhost:3030/. Opening that up should trigger a request to the server, which will automatically make an initial request to chat API on domain "liveapi-dev.yext.com" using ChatCore and display the response (e.g. initial message).

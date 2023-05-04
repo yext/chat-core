@@ -9,4 +9,4 @@ Then, run the following command to test:
 cd test-browser-esm && npm i && npm run build && npm run test
 ```
 
-This will serve the index.html page on http://localhost:5050. Opening that up should show a button to trigger send a request with empty message array to chat API using ChatCore and display the response (e.g. initial message) below.
+This will serve the index.html page on http://localhost:5050. Opening that up should show a button to trigger send a request with empty message array to chat API on domain "liveapi-dev.yext.com" using ChatCore and display the response (e.g. initial message) below.

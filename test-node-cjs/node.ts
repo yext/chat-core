@@ -14,7 +14,7 @@ const server = http.createServer(async (_req: unknown, res: any) => {
   res.statusCode = 200;
   res.setHeader('Content-Type', 'text/plain');
   const chatCore = new ChatCore(config)
-  const reply = await chatCore.send({
+  const reply = await chatCore.getNextMessage({
     messages: []
   })
   res.end(JSON.stringify(reply, null, 2));

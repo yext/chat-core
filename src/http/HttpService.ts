@@ -16,11 +16,6 @@ enum RequestMethods {
  * @internal
  */
 export class HttpService {
-  private apiKey: string;
-  
-  constructor(config: ChatConfig) {
-    this.apiKey = config.apiKey;
-  }
 
   /**
    * Performs a POST request.
@@ -29,6 +24,7 @@ export class HttpService {
     url: string,
     queryParams: QueryParams,
     body: K,
+    apiKey: string
   ): Promise<T> {
     const res = await fetch(url, queryParams, {
       method: RequestMethods.POST,
@@ -36,7 +32,7 @@ export class HttpService {
       mode: 'cors',
       headers: {
         'Content-Type': 'application/json',
-        'api-key': this.apiKey,
+        'api-key': apiKey,
       }
     });
     return await res.json();

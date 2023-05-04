@@ -7,8 +7,8 @@ let chatCore = new ChatCore({
   apiDomain: 'liveapi-dev.yext.com',
 });
 
-window.send = async () => {
-  const data = await chatCore.send({
+window.getNextMessage = async () => {
+  const data = await chatCore.getNextMessage({
     messages: []
   });
   const el = document.getElementById("chatresult")

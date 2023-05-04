@@ -1,5 +1,7 @@
 /**
  * Represents a message within a conversation
+ * 
+ * @public
  */
 export interface Message {
   /** Time when the message is sent. */
@@ -11,8 +13,10 @@ export interface Message {
 }
 
 /**
-  * Types of sender of a message.
-  */
+ * Types of sender of a message.
+ * 
+ * @public
+ */
 export enum MessageSource {
   USER = 'USER',
   BOT = 'BOT'
