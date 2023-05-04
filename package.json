@@ -1,0 +1,49 @@
+{
+  "name": "@yext/chat-core",
+  "version": "0.1.0",
+  "description": "Typescript Networking Library for the Yext Chat API",
+  "main": "./dist/commonjs/index.js",
+  "module": "./dist/esm/index.js",
+  "types": "./dist/esm/index.d.ts",
+  "keywords": [
+    "networking",
+    "chat api",
+    "chat",
+    "browser",
+    "nodejs",
+    "typescript",
+    "commonjs",
+    "es6",
+    "yext"
+  ],
+  "files": [
+    "dist",
+    "src",
+    "THIRD-PARTY-NOTICES"
+  ],
+  "scripts": {
+    "test": "echo \"add tests!\"",
+    "lint": "eslint . --max-warnings=0",
+    "tsc-cjs": "tsc -p tsconfig.cjs.json",
+    "tsc-esm": "tsc -p tsconfig.esm.json",
+    "dev": "npm run tsc-esm -- --watch",
+    "build": "rm -rf dist/** && npm run tsc-esm && npm run tsc-cjs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yext/chat-core.git"
+  },
+  "author": "clippy@yext.com",
+  "bugs": {
+    "url": "https://github.com/yext/chat-core/issues"
+  },
+  "homepage": "https://github.com/yext/chat-core#readme",
+  "dependencies": {
+    "cross-fetch": "^3.1.5"
+  },
+  "devDependencies": {
+    "@yext/eslint-config-slapshot": "^0.7.0",
+    "eslint": "^8.39.0",
+    "typescript": "^5.0.4"
+  }
+}
