@@ -1,0 +1,19 @@
+{
+  "name": "chat-core-test-node",
+  "version": "0.1.0",
+  "description": "test node and cjs compatibility of the chat-core",
+  "private": "true",
+  "devDependencies": {
+    "@types/node": "^18.16.3",
+    "ts-node": "^10.9.1",
+    "typescript": "^4.4.3"
+  },
+  "dependencies": {
+    "@yext/chat-core": "file:..",
+    "dotenv": "^16.0.3"
+  },
+  "scripts": {
+    "test": "ts-node ./node.ts"
+  },
+  "author": "clippy@yext.com"
+}
