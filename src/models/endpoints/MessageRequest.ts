@@ -26,7 +26,7 @@ export interface MessageRequest {
  */
 export interface ApiMessageRequest {
   /** {@inheritDoc ChatConfig.version} */
-  version: 'STAGING' | 'PRODUCTION' | number,
+  version?: 'STAGING' | 'PRODUCTION' | number,
   /** {@inheritDoc MessageRequest.messages} */
   messages: Message[],
   /** {@inheritDoc MessageNotes} */

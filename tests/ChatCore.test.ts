@@ -6,7 +6,7 @@ import { HttpService } from '../src/http/HttpService';
 const emptyMessageRequest: MessageRequest = {
   messages: []
 };
-it('sets default api domain, businessId, version when not specified', async () => {
+it('sets default api domain and businessId when not specified', async () => {
   const httpServiceSpy = jest.spyOn(HttpService.prototype, 'post')
     .mockResolvedValue({
       response: {},
@@ -20,7 +20,7 @@ it('sets default api domain, businessId, version when not specified', async () =
   expect(httpServiceSpy).toHaveBeenCalledWith(
     'https://liveapi.yext.com/v2/accounts/me/chat/my-bot/message',
     { v: defaultApiVersion },
-    { version: 'PRODUCTION', messages: [] },
+    { messages: [] },
     'my-api-key'
   );
 });

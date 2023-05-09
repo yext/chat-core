@@ -1,6 +1,6 @@
 module.exports = {
   extends: [
-    '@yext/slapshot/typescript'
+    '@yext/eslint-config'
   ],
-  ignorePatterns: ['dist'],
+  ignorePatterns: ['dist', 'test*'],
 };
