@@ -35,6 +35,7 @@
     "url": "https://github.com/yext/chat-core.git"
   },
   "author": "clippy@yext.com",
+  "license": "BSD-3-Clause",
   "bugs": {
     "url": "https://github.com/yext/chat-core/issues"
   },
