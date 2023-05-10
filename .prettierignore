@@ -1,4 +1,9 @@
 **/coverage
 **/lib
 **/docs
+**/dist
+**/etc
 .github
+package*.json
+*.d.ts
+.vscode
