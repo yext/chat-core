@@ -40,7 +40,7 @@ export class ChatCore {
   async getNextMessage(request: MessageRequest): Promise<MessageResponse> {
     const queryParams: QueryParams = { v: defaultApiVersion };
     const body: ApiMessageRequest = {
-      version: this.chatConfig.version || 'PRODUCTION',
+      version: this.chatConfig.version,
       messages: request.messages,
       notes: request.notes
     };
