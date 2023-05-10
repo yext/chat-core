@@ -9,7 +9,7 @@ The version of the chat bot configuration.
 **Signature:**
 
 ```typescript
-version?: 'STAGING' | 'PRODUCTION' | number;
+version?: "STAGING" | "PRODUCTION" | number;
 ```
 
 ## Remarks

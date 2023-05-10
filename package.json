@@ -23,7 +23,7 @@
   ],
   "scripts": {
     "test": "jest --config=jest.config.json",
-    "lint": "eslint . --max-warnings=0",
+    "autofix": "prettier --write . && eslint --fix --max-warnings=0 .",
     "tsc-cjs": "tsc -p tsconfig.cjs.json",
     "tsc-esm": "tsc -p tsconfig.esm.json",
     "dev": "npm run tsc-esm -- --watch",
@@ -53,6 +53,7 @@
     "eslint": "^8.39.0",
     "jest": "^29.5.0",
     "jest-environment-jsdom": "^29.5.0",
+    "prettier": "^2.8.8",
     "typescript": "^5.0.4"
   }
 }

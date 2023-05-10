@@ -3,10 +3,12 @@
 This package contains setup to test node and commonjs compatibility of chat-core.
 
 To test, make sure you have the following:
+
 - a .env file setup following the .sample.env file.
 - a build for @yext/chat-core (run `npm run build` in the **root directory**)
 
 Then, run the following command to test:
+
 ```bash
 cd test-node-cjs && npm i && npm run test
 ```

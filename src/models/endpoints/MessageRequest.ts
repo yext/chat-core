@@ -1,5 +1,5 @@
-import { Message } from './Message';
-import { MessageNotes } from './MessageNotes';
+import { Message } from "./Message";
+import { MessageNotes } from "./MessageNotes";
 
 /**
  * A request to Chat API.
@@ -14,9 +14,9 @@ export interface MessageRequest {
    * The most recent message is the last message in the array,
    * in which Chat API will generate a reply for.
    */
-  messages: Message[],
+  messages: Message[];
   /** {@inheritDoc MessageNotes} */
-  notes?: MessageNotes
+  notes?: MessageNotes;
 }
 
 /**
@@ -26,9 +26,9 @@ export interface MessageRequest {
  */
 export interface ApiMessageRequest {
   /** {@inheritDoc ChatConfig.version} */
-  version?: 'STAGING' | 'PRODUCTION' | number,
+  version?: "STAGING" | "PRODUCTION" | number;
   /** {@inheritDoc MessageRequest.messages} */
-  messages: Message[],
+  messages: Message[];
   /** {@inheritDoc MessageNotes} */
-  notes?: MessageNotes
+  notes?: MessageNotes;
 }

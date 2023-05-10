@@ -3,10 +3,12 @@
 This package contains setup to test browser and esm compatibility of chat-core.
 
 To test, make sure you have the following:
+
 - a .env file setup following the .sample.env file.
 - a build for @yext/chat-core (run `npm run build` in the **root directory**)
 
 Then, run the following command to test:
+
 ```bash
 cd test-browser-esm && npm i && npm run build && npm run test
 ```

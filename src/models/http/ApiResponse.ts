@@ -4,13 +4,13 @@
  * @internal
  */
 export interface ApiResponse {
-  response: unknown,
+  response: unknown;
   meta: {
-    uuid: string,
+    uuid: string;
     errors: {
-      message: string,
-      code: number,
-      type: string
-    }[]
-  }
+      message: string;
+      code: number;
+      type: string;
+    }[];
+  };
 }

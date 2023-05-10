@@ -1,9 +1,9 @@
-import { defaultApiDomain, defaultApiVersion } from './constants';
-import { HttpService } from './http/HttpService';
-import { ChatConfig, MessageRequest, MessageResponse } from './models';
-import { ApiMessageRequest } from './models/endpoints/MessageRequest';
-import { QueryParams } from './models/http/params';
-import { ApiResponseValidator } from './validation/ApiResponseValidator';
+import { defaultApiDomain, defaultApiVersion } from "./constants";
+import { HttpService } from "./http/HttpService";
+import { ChatConfig, MessageRequest, MessageResponse } from "./models";
+import { ApiMessageRequest } from "./models/endpoints/MessageRequest";
+import { QueryParams } from "./models/http/params";
+import { ApiResponseValidator } from "./validation/ApiResponseValidator";
 
 /**
  * The entrypoint to the chat-core library. Provides methods for interacting with Chat API.
@@ -11,7 +11,6 @@ import { ApiResponseValidator } from './validation/ApiResponseValidator';
  * @public
  */
 export class ChatCore {
-
   private chatConfig: ChatConfig;
   private url: string;
 
@@ -26,7 +25,9 @@ export class ChatCore {
   }
 
   private getUrl({ businessId, botId, apiDomain }: ChatConfig) {
-    return `https://${apiDomain || defaultApiDomain}/v2/accounts/${businessId ?? 'me'}/chat/${botId}/message`;
+    return `https://${apiDomain || defaultApiDomain}/v2/accounts/${
+      businessId ?? "me"
+    }/chat/${botId}/message`;
   }
 
   /**
@@ -42,9 +43,14 @@ export class ChatCore {
     const body: ApiMessageRequest = {
       version: this.chatConfig.version,
       messages: request.messages,
-      notes: request.notes
+      notes: request.notes,
     };
-    const rawResponse = await this.httpService.post(this.url, queryParams, body, this.chatConfig.apiKey);
+    const rawResponse = await this.httpService.post(
+      this.url,
+      queryParams,
+      body,
+      this.chatConfig.apiKey
+    );
     const validationResult = this.apiResponseValidator.validate(rawResponse);
     if (validationResult instanceof Error) {
       return Promise.reject(validationResult);

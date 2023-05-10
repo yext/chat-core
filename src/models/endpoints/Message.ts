@@ -5,11 +5,11 @@
  */
 export interface Message {
   /** Time when the message is sent. */
-  timestamp: number,
+  timestamp: number;
   /** The sender of the message. */
-  source: MessageSource,
+  source: MessageSource;
   /** The message's content. */
-  text: string
+  text: string;
 }
 
 /**
@@ -19,7 +19,7 @@ export interface Message {
  */
 export enum MessageSource {
   /** From a user. */
-  USER = 'USER',
+  USER = "USER",
   /** From Chat API server. */
-  BOT = 'BOT'
+  BOT = "BOT",
 }

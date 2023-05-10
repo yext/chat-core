@@ -1,2 +1,2 @@
-export { ChatCore } from './ChatCore';
-export * from './models';
+export { ChatCore } from "./ChatCore";
+export * from "./models";

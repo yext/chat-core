@@ -20,5 +20,5 @@ export interface ChatConfig
 |  [apiKey](./chat-core.chatconfig.apikey.md) |  | string | The api key of the Chat experience. |
 |  [botId](./chat-core.chatconfig.botid.md) |  | string | ID of the bot to interface with. |
 |  [businessId?](./chat-core.chatconfig.businessid.md) |  | number | _(Optional)_ ID of the account associated with this chat bot. |
-|  [version?](./chat-core.chatconfig.version.md) |  | 'STAGING' \| 'PRODUCTION' \| number | _(Optional)_ The version of the chat bot configuration. |
+|  [version?](./chat-core.chatconfig.version.md) |  | "STAGING" \| "PRODUCTION" \| number | _(Optional)_ The version of the chat bot configuration. |
 
