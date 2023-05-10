@@ -4,7 +4,7 @@
  * @internal
  */
 export interface QueryParams {
-  [key: string]: string | number | boolean | undefined | null
+  [key: string]: string | number | boolean | undefined | null;
 }
 
 /**
@@ -13,5 +13,5 @@ export interface QueryParams {
  * @internal
  */
 export interface SanitizedQueryParams {
-  [key: string]: string | number | boolean
+  [key: string]: string | number | boolean;
 }

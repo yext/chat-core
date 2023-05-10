@@ -9,9 +9,7 @@
     "declaration": true,
     "declarationMap": false,
     "sourceMap": true,
-    "resolveJsonModule": true,
+    "resolveJsonModule": true
   },
-  "include": [
-    "./src/**/*"
-  ]
+  "include": ["./src/**/*"]
 }

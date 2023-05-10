@@ -1,15 +1,15 @@
 /**
- * Represents a message within a conversation
+ * Represents a message within a conversation.
  *
  * @public
  */
 export interface Message {
   /** Time when the message is sent. */
-  timestamp: number,
+  timestamp: number;
   /** The sender of the message. */
-  source: MessageSource,
+  source: MessageSource;
   /** The message's content. */
-  text: string
+  text: string;
 }
 
 /**
@@ -18,6 +18,8 @@ export interface Message {
  * @public
  */
 export enum MessageSource {
-  USER = 'USER',
-  BOT = 'BOT'
+  /** From a user. */
+  USER = "USER",
+  /** From Chat API server. */
+  BOT = "BOT",
 }

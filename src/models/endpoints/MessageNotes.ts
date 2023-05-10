@@ -10,15 +10,15 @@
  */
 export interface MessageNotes {
   /** The goal of the latest message. */
-  currentGoal?: string,
+  currentGoal?: string;
   /** The indices to traversed within the nested instruction array to access the target step. */
-  currentStepIndices?: number[],
+  currentStepIndices?: number[];
   /** The query used for Yext Search, REST api, etc. */
-  searchQuery?: string,
+  searchQuery?: string;
   /** Data retrieved from Yext Search, REST api, etc. */
-  queryResult?: object,
+  queryResult?: object;
   /** Data collected from user in a conversation. */
-  collectedData?: Record<string, unknown>,
+  collectedData?: Record<string, unknown>;
   /** The index of the message that started the current goal. */
-  goalFirstMsgIndex?: number
+  goalFirstMsgIndex?: number;
 }
