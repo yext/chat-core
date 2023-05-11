@@ -1,3 +1,5 @@
+import { EnumOrLiteral } from "../utils/EnumOrLiteral";
+
 /**
  * Represents a message within a conversation.
  *
@@ -7,7 +9,7 @@ export interface Message {
   /** Time when the message is sent. */
   timestamp: number;
   /** The sender of the message. */
-  source: MessageSource;
+  source: EnumOrLiteral<MessageSource>;
   /** The message's content. */
   text: string;
 }
