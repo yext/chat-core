@@ -1,5 +1,5 @@
-import { QueryParams, SanitizedQueryParams } from '../models/http/params';
-import crossFetch from 'cross-fetch';
+import { QueryParams, SanitizedQueryParams } from "../models/http/params";
+import crossFetch from "cross-fetch";
 
 /**
  * Performs a fetch, using the polyfill if needed.
@@ -12,7 +12,7 @@ export function fetch(
   reqInit: RequestInit
 ): Promise<Response> {
   const urlWithParams = addParamsToURL(url, queryParams);
-  if (typeof(window) !== 'undefined' && window.fetch) {
+  if (typeof window !== "undefined" && window.fetch) {
     return window.fetch(urlWithParams, reqInit);
   }
   return crossFetch(urlWithParams, reqInit);
@@ -24,8 +24,8 @@ export function fetch(
  * @internal
  */
 export function sanitizeQueryParams(params: QueryParams): SanitizedQueryParams {
-  Object.keys(params).forEach(key => {
-    if ( params[key] === undefined || params[key] === null ) {
+  Object.keys(params).forEach((key) => {
+    if (params[key] === undefined || params[key] === null) {
       delete params[key];
     }
   });
@@ -38,10 +38,7 @@ export function sanitizeQueryParams(params: QueryParams): SanitizedQueryParams {
  *
  * @internal
  */
-export function addParamsToURL(
-  url: string,
-  params: QueryParams
-): string {
+export function addParamsToURL(url: string, params: QueryParams): string {
   const parsedUrl = new URL(url);
   const sanitizedParams: SanitizedQueryParams = sanitizeQueryParams(params);
 
