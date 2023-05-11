@@ -9,7 +9,7 @@ export interface Message {
   /** Time when the message is sent. */
   timestamp: number;
   /** The sender of the message. */
-  source: EnumOrLiteral<MessageSource>,
+  source: EnumOrLiteral<MessageSource>;
   /** The message's content. */
   text: string;
 }

@@ -1,7 +1,7 @@
-import { MessageRequest, MessageResponse, MessageSource } from '../src';
-import { ChatCore } from '../src/ChatCore';
-import { defaultApiVersion } from '../src/constants';
-import { HttpService } from '../src/http/HttpService';
+import { MessageRequest, MessageResponse, MessageSource } from "../src";
+import { ChatCore } from "../src/ChatCore";
+import { defaultApiVersion } from "../src/constants";
+import { HttpService } from "../src/http/HttpService";
 
 const emptyMessageRequest: MessageRequest = {
   messages: [],
@@ -49,7 +49,7 @@ it("sets custom api domain, businessId, version when specified", async () => {
   );
 });
 
-it('returns message response on successful API response', async () => {
+it("returns message response on successful API response", async () => {
   const expectedMessageResponse: MessageResponse = {
     message: {
       text: "hello world!",
