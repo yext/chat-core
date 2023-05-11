@@ -26,3 +26,9 @@
 |  [MessageRequest](./chat-core.messagerequest.md) | A request to Chat API. |
 |  [MessageResponse](./chat-core.messageresponse.md) | A response from Chat API. |
 
+## Type Aliases
+
+|  Type Alias | Description |
+|  --- | --- |
+|  [EnumOrLiteral](./chat-core.enumorliteral.md) | Produces a union type from the enum passed as a generic which consists of the enum values and the string literals of the enum. |
+

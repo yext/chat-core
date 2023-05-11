@@ -16,7 +16,7 @@ export interface Message
 
 |  Property | Modifiers | Type | Description |
 |  --- | --- | --- | --- |
-|  [source](./chat-core.message.source.md) |  | [MessageSource](./chat-core.messagesource.md) | The sender of the message. |
+|  [source](./chat-core.message.source.md) |  | [EnumOrLiteral](./chat-core.enumorliteral.md)<!-- -->&lt;[MessageSource](./chat-core.messagesource.md)<!-- -->&gt; | The sender of the message. |
 |  [text](./chat-core.message.text.md) |  | string | The message's content. |
 |  [timestamp](./chat-core.message.timestamp.md) |  | number | Time when the message is sent. |
 

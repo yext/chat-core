@@ -20,8 +20,11 @@ export class ChatCore {
 }
 
 // @public
+export type EnumOrLiteral<T extends string> = T | `${T}`;
+
+// @public
 export interface Message {
-    source: MessageSource;
+    source: EnumOrLiteral<MessageSource>;
     text: string;
     timestamp: number;
 }
