@@ -11,7 +11,7 @@ export interface MessageRequest {
    * The id corresponds to the current conversation. This is generated
    * by the server on the first message of the conversation and returned
    * in {@link MessageResponse}.
-   * 
+   *
    * @remarks
    * The first request for a new conversation may omit this id, but subsequent
    * requests for the same conversation should include the same id returned in
