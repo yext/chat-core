@@ -51,6 +51,7 @@ it("sets custom api domain, businessId, version when specified", async () => {
 
 it("returns message response on successful API response", async () => {
   const expectedMessageResponse: MessageResponse = {
+    conversationId: "someId",
     message: {
       text: "hello world!",
       source: MessageSource.BOT,

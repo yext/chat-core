@@ -41,12 +41,14 @@ export interface MessageNotes {
 
 // @public
 export interface MessageRequest {
+    conversationId?: string;
     messages: Message[];
     notes?: MessageNotes;
 }
 
 // @public
 export interface MessageResponse {
+    conversationId: string;
     message: Message;
     notes: MessageNotes;
 }
