@@ -5,11 +5,11 @@
  */
 export interface ChatConfig {
   /** ID of the bot to interface with. */
-  botId: string,
+  botId: string;
   /** The api key of the Chat experience. */
-  apiKey: string,
+  apiKey: string;
   /** ID of the account associated with this chat bot. */
-  businessId?: number,
+  businessId?: number;
   /**
    * The version of the chat bot configuration.
    *
@@ -20,12 +20,12 @@ export interface ChatConfig {
    * @example
    * Examples: 'STAGING', 42
    */
-  version?: 'STAGING' | 'PRODUCTION' | number,
+  version?: "STAGING" | "PRODUCTION" | number;
   /**
    * Domain to use for the URL endpoints.
    *
    * @remarks
    * Default to liveapi.yext.com
    */
-  apiDomain?: string
+  apiDomain?: string;
 }
