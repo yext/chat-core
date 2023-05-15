@@ -55,7 +55,7 @@ it("returns message response on successful API response", async () => {
     message: {
       text: "hello world!",
       source: MessageSource.BOT,
-      timestamp: 123456789,
+      timestamp: "2023-05-15T17:33:38.373Z",
     },
     notes: {
       currentGoal: "test!",
