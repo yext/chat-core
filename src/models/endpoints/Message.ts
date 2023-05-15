@@ -7,7 +7,7 @@ import { EnumOrLiteral } from "../utils/EnumOrLiteral";
  */
 export interface Message {
   /** Time when the message is sent. */
-  timestamp: number;
+  timestamp: string;
   /** The sender of the message. */
   source: EnumOrLiteral<MessageSource>;
   /** The message's content. */

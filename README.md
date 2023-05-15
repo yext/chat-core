@@ -21,7 +21,7 @@ response = await chatCore.getNextMessage({
     {
       source: "USER",
       text: "What is Yext Chat?",
-      timestamp: 1234566789,
+      timestamp: "2023-05-15T17:33:38.373Z",
     },
   ],
 });
