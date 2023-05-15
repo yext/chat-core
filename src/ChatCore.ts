@@ -60,6 +60,7 @@ export class ChatCore {
 
   private createMessageResponse(data: any): MessageResponse {
     return {
+      conversationId: data.response.conversationId,
       message: data.response.message,
       notes: data.response.notes,
     };
