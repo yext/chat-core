@@ -41,6 +41,7 @@ export interface MessageNotes {
 
 // @public
 export interface MessageRequest {
+    context?: any;
     conversationId?: string;
     messages: Message[];
     notes?: MessageNotes;
