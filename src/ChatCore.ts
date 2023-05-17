@@ -41,9 +41,8 @@ export class ChatCore {
   async getNextMessage(request: MessageRequest): Promise<MessageResponse> {
     const queryParams: QueryParams = { v: defaultApiVersion };
     const body: ApiMessageRequest = {
+      ...request,
       version: this.chatConfig.version,
-      messages: request.messages,
-      notes: request.notes,
     };
     const rawResponse = await this.httpService.post(
       this.url,
