@@ -22,18 +22,17 @@ const messages: Message[] = [
     text: "What is Yext Chat?",
     timestamp: "2023-05-15T17:33:38.373Z",
   },
-]
+];
 
 // Chat API
 response = await chatCore.getNextMessage({ messages });
 
 // Chat Streaming API
 stream = await chatCore.streamNextmessage({ messages });
-stream.addEventListener(
-  StreamEventName.TokenStreamEvent,
-  (event) => console.log("data", event.data)
-)
-stream.consume()
+stream.addEventListener(StreamEventName.TokenStreamEvent, (event) =>
+  console.log("data", event.data)
+);
+stream.consume();
 ```
 
 ## Documentation

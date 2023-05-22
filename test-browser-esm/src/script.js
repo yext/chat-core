@@ -17,7 +17,7 @@ window.getNextMessage = async () => {
 
 window.streamNextMessage = async () => {
   const el = document.getElementById("chatresult-stream");
-  el.textContent = 'loading...'
+  el.textContent = "loading...";
   const stream = await chatCore.streamNextMessage({
     messages: [
       {
@@ -27,16 +27,16 @@ window.streamNextMessage = async () => {
       },
     ],
   });
-  Object.values(StreamEventName).forEach(eventName => {
+  Object.values(StreamEventName).forEach((eventName) => {
     stream.addEventListener(eventName, (event) => {
       console.log(`${eventName}:`, event.data);
-    })
-  })
+    });
+  });
   stream.addEventListener(StreamEventName.StartEvent, (_event) => {
     el.textContent = "";
-  })
+  });
   stream.addEventListener(StreamEventName.TokenStreamEvent, (event) => {
     el.textContent = el.textContent + event.data;
-  })
-  stream.consume()
+  });
+  stream.consume();
 };

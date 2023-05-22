@@ -92,6 +92,6 @@ export class ChatCore {
       body,
       this.chatConfig.apiKey
     );
-    return new StreamResponse(rawResponse)
+    return new StreamResponse(rawResponse);
   }
 }

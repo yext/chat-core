@@ -4,14 +4,14 @@ import { MessageResponse } from "../MessageResponse";
 
 /**
  * Types of stream events returned from Chat Stream API.
- * 
+ *
  * @public
  */
 export type StreamEvent = StartEvent | TokenStreamEvent | EndEvent;
 
 /**
  * Names of stream events returned from Chat Stream API.
- * 
+ *
  * @public
  */
 export enum StreamEventName {
@@ -25,7 +25,7 @@ export enum StreamEventName {
 
 /**
  * An event that indicates start of Chat stream.
- * 
+ *
  * @public
  */
 export interface StartEvent {
@@ -37,7 +37,7 @@ export interface StartEvent {
 
 /**
  * An event that carries a partial response.
- * 
+ *
  * @public
  */
 export interface TokenStreamEvent {
@@ -49,7 +49,7 @@ export interface TokenStreamEvent {
 
 /**
  * An event that indicates end of Chat stream.
- * 
+ *
  * @public
  */
 export interface EndEvent {

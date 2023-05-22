@@ -22,22 +22,22 @@ async function stream(res: any) {
       },
     ],
   });
-  Object.values(StreamEventName).forEach(eventName => {
+  Object.values(StreamEventName).forEach((eventName) => {
     stream.addEventListener(eventName, (event) => {
       console.log(`${eventName}:`, event.data);
-    })
-  })
+    });
+  });
   stream.addEventListener(StreamEventName.EndEvent, () => {
-    res.end()
-  })
-  stream.consume()
+    res.end();
+  });
+  stream.consume();
 }
 
 const server = http.createServer(async (req: any, res: any) => {
   res.statusCode = 200;
   res.setHeader("Content-Type", "text/plain");
-  if (req.url === '/streaming') {
-    stream(res)
+  if (req.url === "/streaming") {
+    stream(res);
   } else {
     const chatCore = new ChatCore(config);
     const reply = await chatCore.getNextMessage({

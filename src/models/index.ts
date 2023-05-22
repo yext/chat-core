@@ -10,9 +10,9 @@ export {
   StreamEventName,
   StartEvent,
   TokenStreamEvent,
-  EndEvent
+  EndEvent,
 } from "./endpoints/stream/StreamEvent";
 export { RawResponse } from "./http/RawResponse";
-export { StreamEventCallback } from './endpoints/stream/StreamEventCallback';
+export { StreamEventCallback } from "./endpoints/stream/StreamEventCallback";
 
 export { EnumOrLiteral } from "./utils/EnumOrLiteral";

@@ -15,7 +15,7 @@ function mockHttpPost(
   expectedResponse: unknown = { response: {}, meta: {} }
 ): jest.SpyInstance {
   return jest.spyOn(HttpService.prototype, "post").mockResolvedValue({
-    json: () => Promise.resolve(expectedResponse)
+    json: () => Promise.resolve(expectedResponse),
   } as Response);
 }
 
@@ -33,7 +33,7 @@ it("returns message response on successful API response", async () => {
   };
   mockHttpPost({
     response: expectedMessageResponse,
-    meta: {}
+    meta: {},
   });
   const chatCore = new ChatCore({
     botId: "my-bot",
@@ -58,7 +58,7 @@ it("returns rejected promise on a failed API response", async () => {
         },
       ],
     },
-  })
+  });
   const chatCore = new ChatCore({
     botId: "my-bot",
     apiKey: "my-api-key",
@@ -72,7 +72,7 @@ it("returns rejected promise on a failed API response", async () => {
 
 describe("URL and http request construction", () => {
   async function testDefault(
-    getFn: (c: ChatCore) => (req: MessageRequest) => Promise<unknown>, 
+    getFn: (c: ChatCore) => (req: MessageRequest) => Promise<unknown>,
     expectedUrl: string
   ) {
     const httpServiceSpy = mockHttpPost();
@@ -80,7 +80,7 @@ describe("URL and http request construction", () => {
       botId: "my-bot",
       apiKey: "my-api-key",
     });
-    await getFn(chatCore).bind(chatCore)(mockedMessageRequest)
+    await getFn(chatCore).bind(chatCore)(mockedMessageRequest);
     expect(httpServiceSpy).toHaveBeenCalledWith(
       expectedUrl,
       { v: defaultApiVersion },
@@ -93,18 +93,18 @@ describe("URL and http request construction", () => {
     testDefault(
       (c) => c.getNextMessage,
       "https://liveapi.yext.com/v2/accounts/me/chat/my-bot/message"
-    )
+    );
   });
 
   it("sets default api domain and businessId when not specified for Chat Stream API", async () => {
     testDefault(
       (c) => c.streamNextMessage,
       "https://liveapi.yext.com/v2/accounts/me/chat/my-bot/message/streaming"
-    )
+    );
   });
 
   async function testCustom(
-    getFn: (c: ChatCore) => (req: MessageRequest) => Promise<unknown>, 
+    getFn: (c: ChatCore) => (req: MessageRequest) => Promise<unknown>,
     expectedUrl: string
   ) {
     const httpServiceSpy = mockHttpPost();
@@ -115,7 +115,7 @@ describe("URL and http request construction", () => {
       apiDomain: "my-domain.com",
       businessId: 1234567,
     });
-    await getFn(chatCore).bind(chatCore)(mockedMessageRequest)
+    await getFn(chatCore).bind(chatCore)(mockedMessageRequest);
     expect(httpServiceSpy).toHaveBeenCalledWith(
       expectedUrl,
       { v: defaultApiVersion },
@@ -135,13 +135,13 @@ describe("URL and http request construction", () => {
     testCustom(
       (c) => c.getNextMessage,
       "https://my-domain.com/v2/accounts/1234567/chat/my-bot/message"
-    )
+    );
   });
 
   it("sets custom api domain, businessId, version when specified for Chat Stream API", async () => {
     testCustom(
       (c) => c.streamNextMessage,
       "https://my-domain.com/v2/accounts/1234567/chat/my-bot/message/streaming"
-    )
+    );
   });
-})
+});
