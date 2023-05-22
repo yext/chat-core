@@ -9,14 +9,14 @@ Registers a function that will be called whenever the specified stream event occ
 **Signature:**
 
 ```typescript
-addEventListener(eventName: StreamEventName, cb: StreamEventCallback): void;
+addEventListener(eventName: EnumOrLiteral<StreamEventName>, cb: StreamEventCallback): void;
 ```
 
 ## Parameters
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  eventName | [StreamEventName](./chat-core.streameventname.md) | name of the event to listen |
+|  eventName | [EnumOrLiteral](./chat-core.enumorliteral.md)<!-- -->&lt;[StreamEventName](./chat-core.streameventname.md)<!-- -->&gt; | name of the event to listen |
 |  cb | [StreamEventCallback](./chat-core.streameventcallback.md) | callback function to invoke when event occur |
 
 **Returns:**

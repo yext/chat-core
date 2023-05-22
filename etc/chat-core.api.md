@@ -94,7 +94,7 @@ export enum StreamEventName {
 // @public
 export class StreamResponse {
     constructor(rawResponse: RawResponse);
-    addEventListener(eventName: StreamEventName, cb: StreamEventCallback): void;
+    addEventListener(eventName: EnumOrLiteral<StreamEventName>, cb: StreamEventCallback): void;
     consume(): Promise<void>;
     readonly rawResponse: RawResponse;
 }

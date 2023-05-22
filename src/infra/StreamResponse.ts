@@ -34,7 +34,10 @@ export class StreamResponse {
    * @param eventName - name of the event to listen
    * @param cb - callback function to invoke when event occur
    */
-  addEventListener(eventName: EnumOrLiteral<StreamEventName>, cb: StreamEventCallback) {
+  addEventListener(
+    eventName: EnumOrLiteral<StreamEventName>,
+    cb: StreamEventCallback
+  ) {
     const cbs = this.eventListeners[eventName];
     cbs ? cbs.push(cb) : (this.eventListeners[eventName] = [cb]);
   }
