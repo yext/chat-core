@@ -1,4 +1,4 @@
-import { HttpService } from "../src/http/HttpService";
+import { HttpService } from "../../src/http/HttpService";
 import * as crossFetch from "cross-fetch";
 
 jest.mock("cross-fetch");
@@ -47,6 +47,7 @@ it("can make post requests in browser environment", async () => {
 it("can make post request in node environment", async () => {
   // Simulate a node environment where the window is undefined
   const windowSpy = jest.spyOn(window, "window", "get");
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   windowSpy.mockImplementationOnce(() => undefined as any);
   const crossFetchSpy = jest
     .spyOn(crossFetch, "fetch")

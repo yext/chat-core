@@ -4,6 +4,8 @@
 
 ```ts
 
+import { Response as Response_2 } from 'node-fetch';
+
 // @public
 export interface ChatConfig {
     apiDomain?: string;
@@ -17,6 +19,13 @@ export interface ChatConfig {
 export class ChatCore {
     constructor(chatConfig: ChatConfig);
     getNextMessage(request: MessageRequest): Promise<MessageResponse>;
+    streamNextMessage(request: MessageRequest): Promise<StreamResponse>;
+}
+
+// @public
+export interface EndEvent {
+    data: MessageResponse;
+    event: EnumOrLiteral<StreamEventName.EndEvent>;
 }
 
 // @public
@@ -58,6 +67,42 @@ export interface MessageResponse {
 export enum MessageSource {
     BOT = "BOT",
     USER = "USER"
+}
+
+// @public
+export type RawResponse = Response | Response_2;
+
+// @public
+export interface StartEvent {
+    data: MessageNotes;
+    event: EnumOrLiteral<StreamEventName.StartEvent>;
+}
+
+// @public
+export type StreamEvent = StartEvent | TokenStreamEvent | EndEvent;
+
+// @public
+export type StreamEventCallback = (event: StreamEvent) => void;
+
+// @public
+export enum StreamEventName {
+    EndEvent = "endStream",
+    StartEvent = "startTokenStream",
+    TokenStreamEvent = "streamToken"
+}
+
+// @public
+export class StreamResponse {
+    constructor(rawResponse: RawResponse);
+    addEventListener(eventName: StreamEventName, cb: StreamEventCallback): void;
+    consume(): Promise<void>;
+    readonly rawResponse: RawResponse;
+}
+
+// @public
+export interface TokenStreamEvent {
+    data: string;
+    event: EnumOrLiteral<StreamEventName.TokenStreamEvent>;
 }
 
 // (No @packageDocumentation comment for this package)
