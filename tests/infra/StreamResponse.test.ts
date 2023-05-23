@@ -85,6 +85,17 @@ describe("process data from stream with event listeners as expected", () => {
   });
 });
 
+it("allows for enum or string to register for the same event", async () => {
+  const stream = new StreamResponse(
+    mockResponse(["event: streamToken\ndata: test \n\n"])
+  );
+  const tokenEventCb = jest.fn();
+  stream.addEventListener(StreamEventName.TokenStreamEvent, tokenEventCb);
+  stream.addEventListener("streamToken", tokenEventCb);
+  await stream.consume();
+  expect(tokenEventCb).toBeCalledTimes(2);
+});
+
 it("log error on unknown stream event", async () => {
   const errorSpy = jest.spyOn(console, "error").mockImplementation();
   const stream = new StreamResponse(

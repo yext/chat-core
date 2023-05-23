@@ -82,7 +82,9 @@ export interface StartEvent {
 export type StreamEvent = StartEvent | TokenStreamEvent | EndEvent;
 
 // @public
-export type StreamEventCallback = (event: StreamEvent) => void;
+export type StreamEventCallback<T extends string = StreamEventName> = (event: Extract<StreamEvent, {
+    event: EnumOrLiteral<T>;
+}>) => void;
 
 // @public
 export enum StreamEventName {
@@ -94,7 +96,7 @@ export enum StreamEventName {
 // @public
 export class StreamResponse {
     constructor(rawResponse: RawResponse);
-    addEventListener(eventName: EnumOrLiteral<StreamEventName>, cb: StreamEventCallback): void;
+    addEventListener<E extends EnumOrLiteral<StreamEventName>>(eventName: E, cb: StreamEventCallback<E>): void;
     consume(): Promise<void>;
     readonly rawResponse: RawResponse;
 }

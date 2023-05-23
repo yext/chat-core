@@ -9,7 +9,9 @@ A function to execute when a [StreamEvent](./chat-core.streamevent.md) occur.
 **Signature:**
 
 ```typescript
-export type StreamEventCallback = (event: StreamEvent) => void;
+export type StreamEventCallback<T extends string = StreamEventName> = (event: Extract<StreamEvent, {
+    event: EnumOrLiteral<T>;
+}>) => void;
 ```
-**References:** [StreamEvent](./chat-core.streamevent.md)
+**References:** [StreamEventName](./chat-core.streameventname.md)<!-- -->, [StreamEvent](./chat-core.streamevent.md)<!-- -->, [EnumOrLiteral](./chat-core.enumorliteral.md)
 

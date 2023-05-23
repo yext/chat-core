@@ -19,7 +19,7 @@ export class StreamResponse {
 
   private isConsumed = false;
   private eventListeners: {
-    [E in StreamEventName]?: StreamEventCallback[];
+    [E in EnumOrLiteral<StreamEventName>]?: StreamEventCallback<E>[];
   } = {};
 
   constructor(rawResponse: RawResponse) {
@@ -34,12 +34,13 @@ export class StreamResponse {
    * @param eventName - name of the event to listen
    * @param cb - callback function to invoke when event occur
    */
-  addEventListener(
-    eventName: EnumOrLiteral<StreamEventName>,
-    cb: StreamEventCallback
+  addEventListener<E extends EnumOrLiteral<StreamEventName>>(
+    eventName: E,
+    cb: StreamEventCallback<E>
   ) {
     const cbs = this.eventListeners[eventName];
-    cbs ? cbs.push(cb) : (this.eventListeners[eventName] = [cb]);
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    cbs ? cbs.push(cb) : (this.eventListeners[eventName] = [cb] as any);
   }
 
   /**
@@ -141,6 +142,8 @@ export class StreamResponse {
   }
 
   private handleEvent(event: StreamEvent) {
-    this.eventListeners[event.event]?.forEach((cb) => cb(event));
+    this.eventListeners[event.event]?.forEach((cb) => {
+      (cb as StreamEventCallback<typeof event.event>)(event);
+    });
   }
 }
