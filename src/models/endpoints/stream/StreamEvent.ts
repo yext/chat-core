@@ -1,6 +1,7 @@
 import { EnumOrLiteral } from "../../utils/EnumOrLiteral";
 import { MessageNotes } from "../MessageNotes";
 import { MessageResponse } from "../MessageResponse";
+import { TokenStreamData } from "./TokenStreamData";
 
 /**
  * Types of stream events returned from Chat Stream API.
@@ -43,8 +44,8 @@ export interface StartEvent {
 export interface TokenStreamEvent {
   /** Name of the event. */
   event: EnumOrLiteral<StreamEventName.TokenStreamEvent>;
-  /** Chunk of data returned from stream response. */
-  data: string;
+  /** {@inheritdoc TokenStreamData} */
+  data: TokenStreamData;
 }
 
 /**

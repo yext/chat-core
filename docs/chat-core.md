@@ -29,6 +29,7 @@
 |  [MessageRequest](./chat-core.messagerequest.md) | A request to Chat API. |
 |  [MessageResponse](./chat-core.messageresponse.md) | A response from Chat API. |
 |  [StartEvent](./chat-core.startevent.md) | An event that indicates start of Chat stream. |
+|  [TokenStreamData](./chat-core.tokenstreamdata.md) | Data returned from a [TokenStreamEvent](./chat-core.tokenstreamevent.md)<!-- -->. |
 |  [TokenStreamEvent](./chat-core.tokenstreamevent.md) | An event that carries a partial response. |
 
 ## Type Aliases

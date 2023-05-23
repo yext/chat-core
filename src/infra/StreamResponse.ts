@@ -122,18 +122,17 @@ export class StreamResponse {
     const decodedData = new TextDecoder().decode(rawData);
     const match = decodedData.match(/^event:\s*(.+)\n*data:\s*(.+\s*)\n\n/);
     if (!match) {
-      console.error("Stream Error: Unknown data:", decodedData);
+      console.error("Stream Error: Unknown decoded data:", decodedData);
       return;
     }
     const event = match[1];
     const dataStr = match[2];
     switch (event) {
       case StreamEventName.StartEvent:
+      case StreamEventName.TokenStreamEvent:
       case StreamEventName.EndEvent:
         const data = JSON.parse(dataStr);
         return { event, data };
-      case StreamEventName.TokenStreamEvent:
-        return { event, data: dataStr };
       default:
         console.error(
           `Stream Error: Unknown Event "${event}" with data: ${dataStr}`

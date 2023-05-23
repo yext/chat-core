@@ -102,8 +102,13 @@ export class StreamResponse {
 }
 
 // @public
+export interface TokenStreamData {
+    token: string;
+}
+
+// @public
 export interface TokenStreamEvent {
-    data: string;
+    data: TokenStreamData;
     event: EnumOrLiteral<StreamEventName.TokenStreamEvent>;
 }
 

@@ -12,6 +12,7 @@ export {
   TokenStreamEvent,
   EndEvent,
 } from "./endpoints/stream/StreamEvent";
+export { TokenStreamData } from "./endpoints/stream/TokenStreamData";
 export { RawResponse } from "./http/RawResponse";
 export { StreamEventCallback } from "./endpoints/stream/StreamEventCallback";
 

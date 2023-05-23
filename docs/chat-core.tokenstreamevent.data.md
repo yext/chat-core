@@ -4,10 +4,10 @@
 
 ## TokenStreamEvent.data property
 
-Chunk of data returned from stream response.
+Data returned from a [TokenStreamEvent](./chat-core.tokenstreamevent.md)<!-- -->.
 
 **Signature:**
 
 ```typescript
-data: string;
+data: TokenStreamData;
 ```
