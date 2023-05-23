@@ -131,3 +131,29 @@ it("log error when attempt to read stream data multiple times", async () => {
     "Stream Error: data has been consumed from the stream. Cannot be read again."
   );
 });
+
+it("rejects when error occurs while reading Web stream from response", async () => {
+  const stream = new StreamResponse({
+    body: {
+      getReader: () => {
+        return {
+          read() {
+            throw Error("Unable to read data.");
+          },
+        };
+      },
+    },
+  } as unknown as RawResponse);
+  await expect(stream.consume()).rejects.toThrow("Unable to read data");
+});
+
+it("rejects when error occurs while reading Node stream from response", async () => {
+  const stream = new StreamResponse({
+    body: new Readable({
+      read() {
+        throw Error("Unable to read data");
+      },
+    }),
+  } as unknown as RawResponse);
+  await expect(stream.consume()).rejects.toThrow("Unable to read data");
+});
