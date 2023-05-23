@@ -36,7 +36,7 @@ window.streamNextMessage = async () => {
     el.textContent = "";
   });
   stream.addEventListener(StreamEventName.TokenStreamEvent, (event) => {
-    el.textContent = el.textContent + event.data;
+    el.textContent = el.textContent + event.data.token;
   });
   stream.consume();
 };
