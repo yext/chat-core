@@ -73,7 +73,8 @@ export class ChatCore {
   }
 
   /**
-   * Make a request to Chat stream API to generate the next message.
+   * Make a request to Chat streaming API to generate the next message
+   * and consume its tokens via server-sent events.
    *
    * @remarks
    * If rejected, an Error is returned.

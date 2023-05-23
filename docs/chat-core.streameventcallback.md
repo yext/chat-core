@@ -4,7 +4,7 @@
 
 ## StreamEventCallback type
 
-A function to execute when a [StreamEvent](./chat-core.streamevent.md) occur.
+A function to execute when a [StreamEvent](./chat-core.streamevent.md) occurs.
 
 **Signature:**
 

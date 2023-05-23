@@ -28,7 +28,7 @@ const messages: Message[] = [
 response = await chatCore.getNextMessage({ messages });
 
 // Chat Streaming API
-stream = await chatCore.streamNextmessage({ messages });
+stream = await chatCore.streamNextMessage({ messages });
 stream.addEventListener(StreamEventName.TokenStreamEvent, (event) =>
   console.log("data", event.data)
 );

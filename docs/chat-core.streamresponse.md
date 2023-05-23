@@ -4,7 +4,7 @@
 
 ## StreamResponse class
 
-Wrapper class around [RawResponse](./chat-core.rawresponse.md) that provides an interface for working with Chat's streaming data in browser and node environment.
+Wrapper class around [RawResponse](./chat-core.rawresponse.md) that provides an interface for working with Chat's streaming data in both browser and Node environments.
 
 **Signature:**
 
@@ -28,6 +28,6 @@ export declare class StreamResponse
 
 |  Method | Modifiers | Description |
 |  --- | --- | --- |
-|  [addEventListener(eventName, cb)](./chat-core.streamresponse.addeventlistener.md) |  | Registers a function that will be called whenever the specified stream event occur. |
+|  [addEventListener(eventName, cb)](./chat-core.streamresponse.addeventlistener.md) |  | Registers a function that will be called whenever the specified stream event occurs. |
 |  [consume()](./chat-core.streamresponse.consume.md) |  | Reads data from a stream response and invokes callbacks from event listeners for each chunk of data that is read. |
 

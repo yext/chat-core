@@ -2,7 +2,7 @@ import { EnumOrLiteral } from "../../utils/EnumOrLiteral";
 import { StreamEvent, StreamEventName } from "./StreamEvent";
 
 /**
- * A function to execute when a {@link StreamEvent} occur.
+ * A function to execute when a {@link StreamEvent} occurs.
  *
  * @public
  */

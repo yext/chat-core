@@ -4,7 +4,7 @@
 
 ## StreamResponse.addEventListener() method
 
-Registers a function that will be called whenever the specified stream event occur.
+Registers a function that will be called whenever the specified stream event occurs.
 
 **Signature:**
 
@@ -17,7 +17,7 @@ addEventListener<E extends EnumOrLiteral<StreamEventName>>(eventName: E, cb: Str
 |  Parameter | Type | Description |
 |  --- | --- | --- |
 |  eventName | E | name of the event to listen |
-|  cb | [StreamEventCallback](./chat-core.streameventcallback.md)<!-- -->&lt;E&gt; | callback function to invoke when event occur |
+|  cb | [StreamEventCallback](./chat-core.streameventcallback.md)<!-- -->&lt;E&gt; | callback function to invoke when event occurs |
 
 **Returns:**
 

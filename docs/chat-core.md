@@ -9,7 +9,7 @@
 |  Class | Description |
 |  --- | --- |
 |  [ChatCore](./chat-core.chatcore.md) | The entrypoint to the chat-core library. Provides methods for interacting with Chat API. |
-|  [StreamResponse](./chat-core.streamresponse.md) | Wrapper class around [RawResponse](./chat-core.rawresponse.md) that provides an interface for working with Chat's streaming data in browser and node environment. |
+|  [StreamResponse](./chat-core.streamresponse.md) | Wrapper class around [RawResponse](./chat-core.rawresponse.md) that provides an interface for working with Chat's streaming data in both browser and Node environments. |
 
 ## Enumerations
 
@@ -38,5 +38,5 @@
 |  [EnumOrLiteral](./chat-core.enumorliteral.md) | Produces a union type from the enum passed as a generic which consists of the enum values and the string literals of the enum. |
 |  [RawResponse](./chat-core.rawresponse.md) | Raw response from Chat API. |
 |  [StreamEvent](./chat-core.streamevent.md) | Types of stream events returned from Chat Stream API. |
-|  [StreamEventCallback](./chat-core.streameventcallback.md) | A function to execute when a [StreamEvent](./chat-core.streamevent.md) occur. |
+|  [StreamEventCallback](./chat-core.streameventcallback.md) | A function to execute when a [StreamEvent](./chat-core.streamevent.md) occurs. |
 

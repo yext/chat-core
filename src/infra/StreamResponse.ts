@@ -5,7 +5,7 @@ import { StreamEventCallback } from "../models/endpoints/stream/StreamEventCallb
 /**
  * Wrapper class around {@link RawResponse} that provides
  * an interface for working with Chat's streaming data in
- * browser and node environment.
+ * both browser and Node environments.
  *
  * @public
  */
@@ -27,12 +27,12 @@ export class StreamResponse {
   }
 
   /**
-   * Registers a function that will be called whenever the specified stream event occur.
+   * Registers a function that will be called whenever the specified stream event occurs.
    *
    * @public
    *
    * @param eventName - name of the event to listen
-   * @param cb - callback function to invoke when event occur
+   * @param cb - callback function to invoke when event occurs
    */
   addEventListener<E extends EnumOrLiteral<StreamEventName>>(
     eventName: E,
@@ -110,7 +110,8 @@ export class StreamResponse {
 
   /**
    * Decodes raw data from stream into a string and parses it into a {@link StreamEvent}.
-   * The expected format of raw data: `event: startTokenStream\ndata: Yext Chat\n\n`
+   * The expected format of raw data follows server-sent events (SSE) standard:
+   * `event: startTokenStream\ndata: Yext Chat\n\n`
    *
    * @internal
    *
