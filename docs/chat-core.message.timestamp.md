@@ -9,5 +9,5 @@ Time when the message is sent.
 **Signature:**
 
 ```typescript
-timestamp: string;
+timestamp?: string;
 ```
