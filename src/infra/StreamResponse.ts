@@ -83,11 +83,11 @@ export class StreamResponse {
       if (!value) {
         continue;
       }
-      const streamEvent = this.parseStreamData(value);
-      if (!streamEvent) {
+      const streamEvents = this.parseStreamData(value);
+      if (!streamEvents) {
         continue;
       }
-      this.handleEvent(streamEvent);
+      streamEvents.forEach((event) => this.handleEvent(event));
     } while (!doneStreaming);
   }
 
@@ -96,9 +96,9 @@ export class StreamResponse {
   ): Promise<void> {
     return new Promise<void>((resolve, reject) => {
       resBody.on("data", (chunk: Buffer) => {
-        const streamEvent = this.parseStreamData(chunk);
-        if (streamEvent) {
-          this.handleEvent(streamEvent);
+        const streamEvents = this.parseStreamData(chunk);
+        if (streamEvents) {
+          streamEvents.forEach((event) => this.handleEvent(event));
         }
       });
       resBody.on("error", (err) => {
@@ -109,35 +109,72 @@ export class StreamResponse {
   }
 
   /**
-   * Decodes raw data from stream into a string and parses it into a {@link StreamEvent}.
+   * Decodes raw data from stream and parses it into an array of {@link StreamEvent}.
    * The expected format of raw data follows server-sent events (SSE) standard:
-   * `event: startTokenStream\ndata: Yext Chat\n\n`
+   * `event: startTokenStream\ndata: {"token": "Yext Chat"}\n\n`
    *
    * @internal
    *
-   * @param rawData - data from stream
-   * @returns a {@link StreamEvent} or undefined if it doesn't have expected format or event type
+   * @param byteArray - data from stream
+   * @returns an array of {@link StreamEvent} or undefined if it doesn't have expected format or event type
    */
-  private parseStreamData(rawData: BufferSource): StreamEvent | undefined {
-    const decodedData = new TextDecoder().decode(rawData);
-    const match = decodedData.match(/^event:\s*(.+)\n*data:\s*(.+\s*)\n\n/);
-    if (!match) {
-      console.error("Stream Error: Unknown decoded data:", decodedData);
-      return;
-    }
-    const event = match[1];
-    const dataStr = match[2];
-    switch (event) {
-      case StreamEventName.StartEvent:
-      case StreamEventName.TokenStreamEvent:
-      case StreamEventName.EndEvent:
-        const data = JSON.parse(dataStr);
-        return { event, data };
-      default:
-        console.error(
-          `Stream Error: Unknown Event "${event}" with data: ${dataStr}`
-        );
+  private parseStreamData(
+    byteArray: Buffer | Uint8Array
+  ): StreamEvent[] | undefined {
+    let eventName = "";
+    let data = "";
+    let newLineIndex = -1;
+    const NEWLINE_ASCII_CODE = 10;
+    const streamEvents: StreamEvent[] = [];
+    const decoder = new TextDecoder();
+    byteArray.forEach((byte, i) => {
+      if (byte !== NEWLINE_ASCII_CODE) {
         return;
+      }
+      const prevNewLineIndex = newLineIndex;
+      newLineIndex = i;
+      // A pair of newline characters indicates end of an event stream
+      if (prevNewLineIndex + 1 === newLineIndex) {
+        const streamEvent = this.createStreamEvent(eventName, data);
+        if (streamEvent) {
+          streamEvents.push(streamEvent);
+        }
+        eventName = "";
+        data = "";
+        return;
+      }
+      const line = decoder.decode(
+        byteArray.subarray(prevNewLineIndex + 1, newLineIndex)
+      );
+      if (line.startsWith("event:")) {
+        eventName = line.replace(/^event: ?/, "");
+      } else if (line.startsWith("data:")) {
+        // Following EventSource API, multiple consecutive lines that begin with "data:"
+        // will be concatenated, with a newline character between each one.
+        const newData = line.replace(/^data: ?/, "");
+        data = data == "" ? newData : `${data}\n${newData}`;
+      }
+    });
+    return streamEvents;
+  }
+
+  private createStreamEvent(
+    eventName: string,
+    data: string
+  ): StreamEvent | undefined {
+    if (!eventName) {
+      console.error("Stream Error: Unnamed event with following data:", data);
+    } else {
+      switch (eventName) {
+        case StreamEventName.StartEvent:
+        case StreamEventName.TokenStreamEvent:
+        case StreamEventName.EndEvent:
+          return { event: eventName, data: JSON.parse(data) };
+        default:
+          console.error(
+            `Stream Error: Unknown Event "${eventName}" with data: ${data}`
+          );
+      }
     }
   }
 

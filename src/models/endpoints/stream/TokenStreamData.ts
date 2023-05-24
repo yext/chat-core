@@ -1,6 +1,6 @@
 /**
  * Data returned from a {@link TokenStreamEvent}.
- * 
+ *
  * @public
  */
 export interface TokenStreamData {

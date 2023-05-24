@@ -100,6 +100,30 @@ it("allows for enum or string to register for the same event", async () => {
   expect(tokenEventCb).toBeCalledTimes(2);
 });
 
+it("handles multiple stream events in one message", async () => {
+  const stream = new StreamResponse(
+    mockResponse([
+      'event: streamToken\ndata: {"token": "test"}\n\n' +
+        'event: endStream\ndata: {"hello": "world"}\n\n',
+    ])
+  );
+  const tokenEventCb = jest.fn();
+  const endEventCb = jest.fn();
+  stream.addEventListener(StreamEventName.TokenStreamEvent, tokenEventCb);
+  stream.addEventListener(StreamEventName.EndEvent, endEventCb);
+  await stream.consume();
+  expect(tokenEventCb).toBeCalledTimes(1);
+  expect(tokenEventCb).toBeCalledWith({
+    event: StreamEventName.TokenStreamEvent,
+    data: { token: "test" },
+  });
+  expect(endEventCb).toBeCalledTimes(1);
+  expect(endEventCb).toBeCalledWith({
+    event: StreamEventName.EndEvent,
+    data: { hello: "world" },
+  });
+});
+
 it("log error on unknown stream event", async () => {
   const errorSpy = jest.spyOn(console, "error").mockImplementation();
   const stream = new StreamResponse(
@@ -111,22 +135,20 @@ it("log error on unknown stream event", async () => {
   );
 });
 
-it("log error on unknown stream data", async () => {
+it("log error on unnamed stream event", async () => {
   const errorSpy = jest.spyOn(console, "error").mockImplementation();
-  const stream = new StreamResponse(
-    mockResponse(["name: test\ninfo: mock\n\n"])
-  );
+  const stream = new StreamResponse(mockResponse(["data: test\n\n"]));
   await stream.consume();
   expect(errorSpy).toBeCalledWith(
-    "Stream Error: Unknown decoded data:",
-    "name: test\ninfo: mock\n\n"
+    "Stream Error: Unnamed event with following data:",
+    "test"
   );
 });
 
 it("log error when attempt to read stream data multiple times", async () => {
   const errorSpy = jest.spyOn(console, "error").mockImplementation();
   const stream = new StreamResponse(
-    mockResponse(['event: streamToken\ndata: {"token": "test"}\n\n'])
+    mockResponse(['event: streamToken\\ndata: {"token": "test"}\\n\\n'])
   );
   await stream.consume();
   expect(errorSpy).not.toBeCalled();
