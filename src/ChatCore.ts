@@ -26,13 +26,13 @@ export class ChatCore {
 
   private getUrl({ businessId, botId, apiDomain }: ChatConfig) {
     return `https://${apiDomain || defaultApiDomain}/v2/accounts/${
-      businessId ?? "me"
+      businessId || "me"
     }/chat/${botId}/message`;
   }
 
   private getStreamUrl({ businessId, botId, apiDomain }: ChatConfig) {
     return `https://${apiDomain || defaultApiDomain}/v2/accounts/${
-      businessId ?? "me"
+      businessId || "me"
     }/chat/${botId}/message/streaming`;
   }
 
