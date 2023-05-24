@@ -1,5 +1,5 @@
-import { ApiResponseValidator } from "../src/validation/ApiResponseValidator";
-import { ApiResponse } from "../src/models/http/ApiResponse";
+import { ApiResponseValidator } from "../../src/validation/ApiResponseValidator";
+import { ApiResponse } from "../../src/models/http/ApiResponse";
 
 const apiResponseValidator = new ApiResponseValidator();
 

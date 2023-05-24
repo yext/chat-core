@@ -23,4 +23,5 @@ export declare class ChatCore
 |  Method | Modifiers | Description |
 |  --- | --- | --- |
 |  [getNextMessage(request)](./chat-core.chatcore.getnextmessage.md) |  | Make a request to Chat API to generate the next message. |
+|  [streamNextMessage(request)](./chat-core.chatcore.streamnextmessage.md) |  | Make a request to Chat streaming API to generate the next message and consume its tokens via server-sent events. |
 

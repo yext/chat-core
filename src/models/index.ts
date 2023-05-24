@@ -5,4 +5,15 @@ export { MessageNotes } from "./endpoints/MessageNotes";
 export { MessageRequest } from "./endpoints/MessageRequest";
 export { MessageResponse } from "./endpoints/MessageResponse";
 
+export {
+  StreamEvent,
+  StreamEventName,
+  StartEvent,
+  TokenStreamEvent,
+  EndEvent,
+} from "./endpoints/stream/StreamEvent";
+export { TokenStreamData } from "./endpoints/stream/TokenStreamData";
+export { RawResponse } from "./http/RawResponse";
+export { StreamEventCallback } from "./endpoints/stream/StreamEventCallback";
+
 export { EnumOrLiteral } from "./utils/EnumOrLiteral";

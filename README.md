@@ -9,22 +9,30 @@ a networking library for interacting with the Yext Chat API
 ## Usage
 
 ```typescript
-import { ChatCore } from "@yext/chat-core";
+import { ChatCore, StreamEventName, Message } from "@yext/chat-core";
 
 const chatCore = new ChatCore({
   botId: "YOUR_BOT_ID",
   apiKey: "YOUR_API_KEY",
 });
 
-response = await chatCore.getNextMessage({
-  messages: [
-    {
-      source: "USER",
-      text: "What is Yext Chat?",
-      timestamp: "2023-05-15T17:33:38.373Z",
-    },
-  ],
-});
+const messages: Message[] = [
+  {
+    source: "USER",
+    text: "What is Yext Chat?",
+    timestamp: "2023-05-15T17:33:38.373Z",
+  },
+];
+
+// Chat API
+response = await chatCore.getNextMessage({ messages });
+
+// Chat Streaming API
+stream = await chatCore.streamNextMessage({ messages });
+stream.addEventListener(StreamEventName.TokenStreamEvent, (event) =>
+  console.log("data", event.data)
+);
+stream.consume();
 ```
 
 ## Documentation

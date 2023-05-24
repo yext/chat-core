@@ -9,26 +9,35 @@
 |  Class | Description |
 |  --- | --- |
 |  [ChatCore](./chat-core.chatcore.md) | The entrypoint to the chat-core library. Provides methods for interacting with Chat API. |
+|  [StreamResponse](./chat-core.streamresponse.md) | Wrapper class around [RawResponse](./chat-core.rawresponse.md) that provides an interface for working with Chat's streaming data in both browser and Node environments. |
 
 ## Enumerations
 
 |  Enumeration | Description |
 |  --- | --- |
 |  [MessageSource](./chat-core.messagesource.md) | Types of sender of a message. |
+|  [StreamEventName](./chat-core.streameventname.md) | Names of stream events returned from Chat Stream API. |
 
 ## Interfaces
 
 |  Interface | Description |
 |  --- | --- |
 |  [ChatConfig](./chat-core.chatconfig.md) | The configuration options for [ChatCore](./chat-core.chatcore.md)<!-- -->. |
+|  [EndEvent](./chat-core.endevent.md) | An event that indicates end of Chat stream. |
 |  [Message](./chat-core.message.md) | Represents a message within a conversation. |
 |  [MessageNotes](./chat-core.messagenotes.md) | Information relevant to the current state of the conversation, serving as the bot’s "memory" regarding what work it previously did to help determine future actions. |
 |  [MessageRequest](./chat-core.messagerequest.md) | A request to Chat API. |
 |  [MessageResponse](./chat-core.messageresponse.md) | A response from Chat API. |
+|  [StartEvent](./chat-core.startevent.md) | An event that indicates start of Chat stream. |
+|  [TokenStreamData](./chat-core.tokenstreamdata.md) | Data returned from a [TokenStreamEvent](./chat-core.tokenstreamevent.md)<!-- -->. |
+|  [TokenStreamEvent](./chat-core.tokenstreamevent.md) | An event that carries a partial response. |
 
 ## Type Aliases
 
 |  Type Alias | Description |
 |  --- | --- |
 |  [EnumOrLiteral](./chat-core.enumorliteral.md) | Produces a union type from the enum passed as a generic which consists of the enum values and the string literals of the enum. |
+|  [RawResponse](./chat-core.rawresponse.md) | Raw response from Chat API. |
+|  [StreamEvent](./chat-core.streamevent.md) | Types of stream events returned from Chat Stream API. |
+|  [StreamEventCallback](./chat-core.streameventcallback.md) | A function to execute when a [StreamEvent](./chat-core.streamevent.md) occurs. |
 

@@ -6,59 +6,18 @@ import { HttpService } from "../src/http/HttpService";
 const mockedMessageRequest: MessageRequest = {
   conversationId: "my-id",
   context: {
-    foo: "bar"
+    foo: "bar",
   },
   messages: [],
 };
-it("sets default api domain and businessId when not specified", async () => {
-  const httpServiceSpy = jest
-    .spyOn(HttpService.prototype, "post")
-    .mockResolvedValue({
-      response: {},
-      meta: {},
-    });
-  const chatCore = new ChatCore({
-    botId: "my-bot",
-    apiKey: "my-api-key",
-  });
-  await chatCore.getNextMessage(mockedMessageRequest);
-  expect(httpServiceSpy).toHaveBeenCalledWith(
-    "https://liveapi.yext.com/v2/accounts/me/chat/my-bot/message",
-    { v: defaultApiVersion },
-    mockedMessageRequest,
-    "my-api-key"
-  );
-});
 
-it("sets custom api domain, businessId, version when specified", async () => {
-  const httpServiceSpy = jest
-    .spyOn(HttpService.prototype, "post")
-    .mockResolvedValue({
-      response: {},
-      meta: {},
-    });
-  const chatCore = new ChatCore({
-    botId: "my-bot",
-    apiKey: "my-api-key",
-    version: "STAGING",
-    apiDomain: "my-domain.com",
-    businessId: 1234567,
-  });
-  await chatCore.getNextMessage(mockedMessageRequest);
-  expect(httpServiceSpy).toHaveBeenCalledWith(
-    "https://my-domain.com/v2/accounts/1234567/chat/my-bot/message",
-    { v: defaultApiVersion },
-    {
-      version: "STAGING",
-      conversationId: "my-id",
-      context: {
-        foo: "bar"
-      },
-      messages: [],
-    },
-    "my-api-key"
-  );
-});
+function mockHttpPost(
+  expectedResponse: unknown = { response: {}, meta: {} }
+): jest.SpyInstance {
+  return jest.spyOn(HttpService.prototype, "post").mockResolvedValue({
+    json: () => Promise.resolve(expectedResponse),
+  } as Response);
+}
 
 it("returns message response on successful API response", async () => {
   const expectedMessageResponse: MessageResponse = {
@@ -72,7 +31,7 @@ it("returns message response on successful API response", async () => {
       currentGoal: "test!",
     },
   };
-  jest.spyOn(HttpService.prototype, "post").mockResolvedValue({
+  mockHttpPost({
     response: expectedMessageResponse,
     meta: {},
   });
@@ -88,7 +47,7 @@ it("returns message response on successful API response", async () => {
 });
 
 it("returns rejected promise on a failed API response", async () => {
-  jest.spyOn(HttpService.prototype, "post").mockResolvedValue({
+  mockHttpPost({
     response: {},
     meta: {
       errors: [
@@ -109,4 +68,80 @@ it("returns rejected promise on a failed API response", async () => {
   ).rejects.toThrowError(
     "Chat API error: FATAL_ERROR: Invalid API Key. (code: 1)"
   );
+});
+
+describe("URL and http request construction", () => {
+  async function testDefault(
+    getFn: (c: ChatCore) => (req: MessageRequest) => Promise<unknown>,
+    expectedUrl: string
+  ) {
+    const httpServiceSpy = mockHttpPost();
+    const chatCore = new ChatCore({
+      botId: "my-bot",
+      apiKey: "my-api-key",
+    });
+    await getFn(chatCore).bind(chatCore)(mockedMessageRequest);
+    expect(httpServiceSpy).toHaveBeenCalledWith(
+      expectedUrl,
+      { v: defaultApiVersion },
+      mockedMessageRequest,
+      "my-api-key"
+    );
+  }
+
+  it("sets default api domain and businessId when not specified for Chat API", async () => {
+    testDefault(
+      (c) => c.getNextMessage,
+      "https://liveapi.yext.com/v2/accounts/me/chat/my-bot/message"
+    );
+  });
+
+  it("sets default api domain and businessId when not specified for Chat Stream API", async () => {
+    testDefault(
+      (c) => c.streamNextMessage,
+      "https://liveapi.yext.com/v2/accounts/me/chat/my-bot/message/streaming"
+    );
+  });
+
+  async function testCustom(
+    getFn: (c: ChatCore) => (req: MessageRequest) => Promise<unknown>,
+    expectedUrl: string
+  ) {
+    const httpServiceSpy = mockHttpPost();
+    const chatCore = new ChatCore({
+      botId: "my-bot",
+      apiKey: "my-api-key",
+      version: "STAGING",
+      apiDomain: "my-domain.com",
+      businessId: 1234567,
+    });
+    await getFn(chatCore).bind(chatCore)(mockedMessageRequest);
+    expect(httpServiceSpy).toHaveBeenCalledWith(
+      expectedUrl,
+      { v: defaultApiVersion },
+      {
+        version: "STAGING",
+        conversationId: "my-id",
+        context: {
+          foo: "bar",
+        },
+        messages: [],
+      },
+      "my-api-key"
+    );
+  }
+
+  it("sets custom api domain, businessId, version when specified for Chat API", async () => {
+    testCustom(
+      (c) => c.getNextMessage,
+      "https://my-domain.com/v2/accounts/1234567/chat/my-bot/message"
+    );
+  });
+
+  it("sets custom api domain, businessId, version when specified for Chat Stream API", async () => {
+    testCustom(
+      (c) => c.streamNextMessage,
+      "https://my-domain.com/v2/accounts/1234567/chat/my-bot/message/streaming"
+    );
+  });
 });
