@@ -84,9 +84,6 @@ export class StreamResponse {
         continue;
       }
       const streamEvents = this.parseStreamData(value);
-      if (!streamEvents) {
-        continue;
-      }
       streamEvents.forEach((event) => this.handleEvent(event));
     } while (!doneStreaming);
   }
@@ -97,9 +94,7 @@ export class StreamResponse {
     return new Promise<void>((resolve, reject) => {
       resBody.on("data", (chunk: Buffer) => {
         const streamEvents = this.parseStreamData(chunk);
-        if (streamEvents) {
-          streamEvents.forEach((event) => this.handleEvent(event));
-        }
+        streamEvents.forEach((event) => this.handleEvent(event));
       });
       resBody.on("error", (err) => {
         reject(err);
@@ -118,9 +113,7 @@ export class StreamResponse {
    * @param byteArray - data from stream
    * @returns an array of {@link StreamEvent} or undefined if it doesn't have expected format or event type
    */
-  private parseStreamData(
-    byteArray: Buffer | Uint8Array
-  ): StreamEvent[] | undefined {
+  private parseStreamData(byteArray: Buffer | Uint8Array): StreamEvent[] {
     let eventName = "";
     let data = "";
     let newLineIndex = -1;
