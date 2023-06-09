@@ -173,14 +173,16 @@ it("rejects when response have a non-successful status code", async () => {
           type: "FATAL_ERROR",
         },
       ],
-    }
-  }
+    },
+  };
   const stream = new StreamResponse({
     ok: false,
     body: {},
-    json: () => Promise.resolve(expectedResponse)
+    json: () => Promise.resolve(expectedResponse),
   } as unknown as RawResponse);
-  await expect(stream.consume()).rejects.toThrow("Chat API error: FATAL_ERROR: Invalid API Key. (code: 1)");
+  await expect(stream.consume()).rejects.toThrow(
+    "Chat API error: FATAL_ERROR: Invalid API Key. (code: 1)"
+  );
 });
 
 it("rejects when error occurs while reading Web stream from response", async () => {

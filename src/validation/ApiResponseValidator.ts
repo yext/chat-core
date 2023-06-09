@@ -20,7 +20,9 @@ export class ApiResponseValidator {
     }
   }
 
-  private static validateResponseProp(apiResponse: ApiResponse): Error | undefined {
+  private static validateResponseProp(
+    apiResponse: ApiResponse
+  ): Error | undefined {
     if (!apiResponse.response) {
       return new Error(
         "Malformed Chat API response: missing response property."
@@ -34,7 +36,9 @@ export class ApiResponseValidator {
     }
   }
 
-  private static checkForApiErrors(apiResponse: ApiResponse): Error | undefined {
+  private static checkForApiErrors(
+    apiResponse: ApiResponse
+  ): Error | undefined {
     if (apiResponse.meta?.errors?.length >= 1) {
       const error = apiResponse.meta.errors[0];
       const { code, message, type } = error;

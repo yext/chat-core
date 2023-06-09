@@ -49,18 +49,21 @@ it("returns message response on successful API response", async () => {
 });
 
 it("returns rejected promise on a failed API response", async () => {
-  mockHttpPost({
-    response: {},
-    meta: {
-      errors: [
-        {
-          message: "Invalid API Key",
-          code: 1,
-          type: "FATAL_ERROR",
-        },
-      ],
+  mockHttpPost(
+    {
+      response: {},
+      meta: {
+        errors: [
+          {
+            message: "Invalid API Key",
+            code: 1,
+            type: "FATAL_ERROR",
+          },
+        ],
+      },
     },
-  }, false);
+    false
+  );
   const chatCore = new ChatCore({
     botId: "my-bot",
     apiKey: "my-api-key",

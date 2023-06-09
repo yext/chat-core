@@ -64,15 +64,17 @@ export class StreamResponse {
     }
     const resBody = this.rawResponse.body;
     if (!resBody) {
-      return Promise.reject("Response Error: \"body\" property is undefined.");
+      return Promise.reject('Response Error: "body" property is undefined.');
     }
-    
+
     if (!this.rawResponse.ok) {
       const jsonResponse: ApiResponse = await this.rawResponse.json();
       const validationResult = ApiResponseValidator.validate(jsonResponse);
       return validationResult instanceof Error
         ? Promise.reject(validationResult)
-        : Promise.reject("An error occurred while processing request to Chat API.")
+        : Promise.reject(
+            "An error occurred while processing request to Chat API."
+          );
     }
 
     const streamCompleted =

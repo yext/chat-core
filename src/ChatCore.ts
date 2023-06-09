@@ -13,7 +13,6 @@ import { ApiResponseValidator } from "./validation/ApiResponseValidator";
  * @public
  */
 export class ChatCore {
-
   private chatConfig: ChatConfig;
   private httpService: HttpService;
 
@@ -59,7 +58,9 @@ export class ChatCore {
       const validationResult = ApiResponseValidator.validate(jsonResponse);
       return validationResult instanceof Error
         ? Promise.reject(validationResult)
-        : Promise.reject("An error occurred while processing request to Chat API.")
+        : Promise.reject(
+            "An error occurred while processing request to Chat API."
+          );
     }
     return this.createMessageResponse(jsonResponse);
   }
