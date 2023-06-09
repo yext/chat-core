@@ -13,15 +13,13 @@ import { ApiResponseValidator } from "./validation/ApiResponseValidator";
  * @public
  */
 export class ChatCore {
-  private chatConfig: ChatConfig;
 
+  private chatConfig: ChatConfig;
   private httpService: HttpService;
-  private apiResponseValidator: ApiResponseValidator;
 
   constructor(chatConfig: ChatConfig) {
     this.chatConfig = chatConfig;
     this.httpService = new HttpService();
-    this.apiResponseValidator = new ApiResponseValidator();
   }
 
   private getUrl({ businessId, botId, apiDomain }: ChatConfig) {
@@ -57,9 +55,11 @@ export class ChatCore {
       this.chatConfig.apiKey
     );
     const jsonResponse: ApiResponse = await rawResponse.json();
-    const validationResult = this.apiResponseValidator.validate(jsonResponse);
-    if (validationResult instanceof Error) {
-      return Promise.reject(validationResult);
+    if (!rawResponse.ok) {
+      const validationResult = ApiResponseValidator.validate(jsonResponse);
+      return validationResult instanceof Error
+        ? Promise.reject(validationResult)
+        : Promise.reject("An error occurred while processing request to Chat API.")
     }
     return this.createMessageResponse(jsonResponse);
   }

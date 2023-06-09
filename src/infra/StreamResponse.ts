@@ -1,6 +1,8 @@
 import { EnumOrLiteral, StreamEvent, StreamEventName } from "../models";
 import { RawResponse } from "../models/http/RawResponse";
 import { StreamEventCallback } from "../models/endpoints/stream/StreamEventCallback";
+import { ApiResponse } from "../models/http/ApiResponse";
+import { ApiResponseValidator } from "../validation/ApiResponseValidator";
 
 /**
  * Wrapper class around {@link RawResponse} that provides
@@ -62,8 +64,17 @@ export class StreamResponse {
     }
     const resBody = this.rawResponse.body;
     if (!resBody) {
-      return;
+      return Promise.reject("Response Error: \"body\" property is undefined.");
     }
+    
+    if (!this.rawResponse.ok) {
+      const jsonResponse: ApiResponse = await this.rawResponse.json();
+      const validationResult = ApiResponseValidator.validate(jsonResponse);
+      return validationResult instanceof Error
+        ? Promise.reject(validationResult)
+        : Promise.reject("An error occurred while processing request to Chat API.")
+    }
+
     const streamCompleted =
       "getReader" in resBody
         ? this.consumeWebStream(resBody)

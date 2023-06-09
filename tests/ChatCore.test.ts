@@ -12,9 +12,11 @@ const mockedMessageRequest: MessageRequest = {
 };
 
 function mockHttpPost(
-  expectedResponse: unknown = { response: {}, meta: {} }
+  expectedResponse: unknown = { response: {}, meta: {} },
+  ok = true
 ): jest.SpyInstance {
   return jest.spyOn(HttpService.prototype, "post").mockResolvedValue({
+    ok,
     json: () => Promise.resolve(expectedResponse),
   } as Response);
 }
@@ -58,7 +60,7 @@ it("returns rejected promise on a failed API response", async () => {
         },
       ],
     },
-  });
+  }, false);
   const chatCore = new ChatCore({
     botId: "my-bot",
     apiKey: "my-api-key",

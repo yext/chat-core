@@ -6,7 +6,7 @@ import { ApiResponse } from "../models/http/ApiResponse";
  * @internal
  */
 export class ApiResponseValidator {
-  public validate(apiResponse: ApiResponse): Error | undefined {
+  public static validate(apiResponse: ApiResponse): Error | undefined {
     const tests = [
       this.validateResponseProp,
       this.validateMetaProp,
@@ -20,7 +20,7 @@ export class ApiResponseValidator {
     }
   }
 
-  private validateResponseProp(apiResponse: ApiResponse): Error | undefined {
+  private static validateResponseProp(apiResponse: ApiResponse): Error | undefined {
     if (!apiResponse.response) {
       return new Error(
         "Malformed Chat API response: missing response property."
@@ -28,13 +28,13 @@ export class ApiResponseValidator {
     }
   }
 
-  private validateMetaProp(apiResponse: ApiResponse): Error | undefined {
+  private static validateMetaProp(apiResponse: ApiResponse): Error | undefined {
     if (!apiResponse.meta) {
       return new Error("Malformed Chat API response: missing meta property.");
     }
   }
 
-  private checkForApiErrors(apiResponse: ApiResponse): Error | undefined {
+  private static checkForApiErrors(apiResponse: ApiResponse): Error | undefined {
     if (apiResponse.meta?.errors?.length >= 1) {
       const error = apiResponse.meta.errors[0];
       const { code, message, type } = error;
