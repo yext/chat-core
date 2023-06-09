@@ -1,8 +1,10 @@
 import { RawResponse, StreamEventName, StreamResponse } from "../../src";
 import { Readable } from "stream";
+import { ApiResponse } from "../../src/models/http/ApiResponse";
 
 function mockResponse(rawData: string[]): RawResponse {
   return {
+    ok: true,
     body: {
       getReader: () => {
         let i = -1;
@@ -23,6 +25,7 @@ function mockResponse(rawData: string[]): RawResponse {
 
 function mockNodeResponse(rawData: string[]): RawResponse {
   return {
+    ok: true,
     body: new Readable({
       read() {
         rawData.forEach((d) => this.push(d));
@@ -158,8 +161,33 @@ it("log error when attempt to read stream data multiple times", async () => {
   );
 });
 
+it("rejects when response have a non-successful status code", async () => {
+  const expectedResponse: ApiResponse = {
+    response: {},
+    meta: {
+      uuid: "test",
+      errors: [
+        {
+          message: "Invalid API Key",
+          code: 1,
+          type: "FATAL_ERROR",
+        },
+      ],
+    },
+  };
+  const stream = new StreamResponse({
+    ok: false,
+    body: {},
+    json: () => Promise.resolve(expectedResponse),
+  } as unknown as RawResponse);
+  await expect(stream.consume()).rejects.toThrow(
+    "Chat API error: FATAL_ERROR: Invalid API Key. (code: 1)"
+  );
+});
+
 it("rejects when error occurs while reading Web stream from response", async () => {
   const stream = new StreamResponse({
+    ok: true,
     body: {
       getReader: () => {
         return {
@@ -175,6 +203,7 @@ it("rejects when error occurs while reading Web stream from response", async () 
 
 it("rejects when error occurs while reading Node stream from response", async () => {
   const stream = new StreamResponse({
+    ok: true,
     body: new Readable({
       read() {
         throw Error("Unable to read data");

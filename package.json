@@ -1,6 +1,6 @@
 {
   "name": "@yext/chat-core",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "Typescript Networking Library for the Yext Chat API",
   "main": "./dist/commonjs/index.js",
   "module": "./dist/esm/index.js",
@@ -25,7 +25,7 @@
   ],
   "scripts": {
     "test": "jest --config=jest.config.json",
-    "autofix": "prettier --write . && eslint --fix --max-warnings=0 .",
+    "lint": "prettier --write . && eslint --fix --max-warnings=0 .",
     "tsc-cjs": "tsc -p tsconfig.cjs.json",
     "tsc-esm": "tsc -p tsconfig.esm.json",
     "dev": "npm run tsc-esm -- --watch",

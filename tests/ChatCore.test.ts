@@ -12,9 +12,11 @@ const mockedMessageRequest: MessageRequest = {
 };
 
 function mockHttpPost(
-  expectedResponse: unknown = { response: {}, meta: {} }
+  expectedResponse: unknown = { response: {}, meta: {} },
+  ok = true
 ): jest.SpyInstance {
   return jest.spyOn(HttpService.prototype, "post").mockResolvedValue({
+    ok,
     json: () => Promise.resolve(expectedResponse),
   } as Response);
 }
@@ -47,18 +49,21 @@ it("returns message response on successful API response", async () => {
 });
 
 it("returns rejected promise on a failed API response", async () => {
-  mockHttpPost({
-    response: {},
-    meta: {
-      errors: [
-        {
-          message: "Invalid API Key",
-          code: 1,
-          type: "FATAL_ERROR",
-        },
-      ],
+  mockHttpPost(
+    {
+      response: {},
+      meta: {
+        errors: [
+          {
+            message: "Invalid API Key",
+            code: 1,
+            type: "FATAL_ERROR",
+          },
+        ],
+      },
     },
-  });
+    false
+  );
   const chatCore = new ChatCore({
     botId: "my-bot",
     apiKey: "my-api-key",
