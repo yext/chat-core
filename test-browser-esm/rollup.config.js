@@ -16,9 +16,7 @@ export default {
       "process.env.TEST_BOT_API_KEY": JSON.stringify(
         process.env.TEST_BOT_API_KEY
       ),
-      "process.env.TEST_BOT_ID": JSON.stringify(
-        process.env.TEST_BOT_ID
-      ),
+      "process.env.TEST_BOT_ID": JSON.stringify(process.env.TEST_BOT_ID),
     }),
     resolve({
       //resolve paths

@@ -100,7 +100,7 @@ export class StreamResponse {
       if (!value) {
         continue;
       }
-      this.streamDataParser.parse(value, (e) => this.handleEvent(e))
+      this.streamDataParser.parse(value, (e) => this.handleEvent(e));
     } while (!doneStreaming);
   }
 
@@ -109,7 +109,7 @@ export class StreamResponse {
   ): Promise<void> {
     return new Promise<void>((resolve, reject) => {
       resBody.on("data", (chunk: Buffer) => {
-        this.streamDataParser.parse(chunk, (e) => this.handleEvent(e))
+        this.streamDataParser.parse(chunk, (e) => this.handleEvent(e));
       });
       resBody.on("error", (err) => {
         reject(err);

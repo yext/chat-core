@@ -128,22 +128,18 @@ it("handles multiple stream events in one message", async () => {
 });
 
 it("handles stream event split into multiple data chunks", async () => {
-  const events = [
-        'event: startTokenStream\ndata: {"foo": "b',
-        'a',
-        'r"}\n\n',
-      ];
+  const events = ['event: startTokenStream\ndata: {"foo": "b', "a", 'r"}\n\n'];
   const stream = new StreamResponse(mockResponse(events));
-  const startEventCb = jest.fn()
+  const startEventCb = jest.fn();
   stream.addEventListener(StreamEventName.StartEvent, startEventCb);
-  await stream.consume()
+  await stream.consume();
   expect(startEventCb).toBeCalledWith({
     event: StreamEventName.StartEvent,
     data: {
       foo: "bar",
     },
   });
-}) 
+});
 
 it("log error on unknown stream event", async () => {
   const errorSpy = jest.spyOn(console, "error").mockImplementation();

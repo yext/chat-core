@@ -2,7 +2,7 @@ import { StreamEvent, StreamEventName } from "../models";
 
 /**
  * Provides parsing functionality for stream data.
- * 
+ *
  * @internal
  */
 export class StreamDataParser {
@@ -25,7 +25,10 @@ export class StreamDataParser {
    * @param byteArray - data from stream
    * @param eventHander - function to invoke once a complete stream event is successfully parsed
    */
-  public parse(byteArray: Buffer | Uint8Array, eventHander: (e: StreamEvent) => void): void {
+  public parse(
+    byteArray: Buffer | Uint8Array,
+    eventHander: (e: StreamEvent) => void
+  ): void {
     let newLineIndex = -1;
 
     const appendData = (line: string) => {
@@ -38,14 +41,14 @@ export class StreamDataParser {
         // Incomplete event data, should continue in next chunk
         this.data += line;
       }
-    }
+    };
 
     byteArray.forEach((byte, i) => {
       if (byte !== this.NEWLINE_ASCII_CODE) {
         if (i == byteArray.length - 1) {
           // Data chunk not ending on pair of newlines indicates more data to come in the next
           // chunk for the same event. Save remaining data to continue process in next chunk
-          appendData(this.decoder.decode(byteArray.subarray(newLineIndex + 1)))
+          appendData(this.decoder.decode(byteArray.subarray(newLineIndex + 1)));
         }
         return;
       }
@@ -67,7 +70,7 @@ export class StreamDataParser {
       if (line.startsWith("event:")) {
         this.eventName = line.replace(/^event: ?/, "");
       } else {
-        appendData(line)
+        appendData(line);
       }
     });
   }
