@@ -216,13 +216,18 @@ it("rejects when error occurs while reading Web stream from response", async () 
 });
 
 it("rejects when error occurs while reading Node stream from response", async () => {
+  expect.assertions(1);
   const stream = new StreamResponse({
     ok: true,
     body: new Readable({
       read() {
-        throw Error("Unable to read data");
+        this.emit("error", "Unable to read data");
       },
     }),
   } as unknown as RawResponse);
-  await expect(stream.consume()).rejects.toThrow("Unable to read data");
+  try {
+    await stream.consume();
+  } catch (e) {
+    expect(e).toEqual("Unable to read data");
+  }
 });
