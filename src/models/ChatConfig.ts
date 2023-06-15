@@ -15,7 +15,7 @@ export interface ChatConfig {
    *
    * @remarks
    * May be a configuration label (string) or a configuration version (number).
-   * Default to 'PRODUCTION'
+   * Default to 'STAGING'
    *
    * @example
    * Examples: 'STAGING', 42

@@ -7,7 +7,7 @@ dotenv.config();
 
 const config = {
   apiKey: process.env["TEST_BOT_API_KEY"] || "API_KEY_PLACEHOLDER",
-  botId: "red-dog-bot",
+  botId: process.env["TEST_BOT_ID"] || "BOT_ID_PLACEHOLDER",
   apiDomain: "liveapi-dev.yext.com",
 };
 
