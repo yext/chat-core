@@ -3,7 +3,7 @@ import { ChatCore, StreamEventName } from "@yext/chat-core";
 let chatCore = new ChatCore({
   // will be replace with actual env value during rollup build process
   apiKey: process.env.TEST_BOT_API_KEY || "API_KEY_PLACEHOLDER",
-  botId: "tripp-bot",
+  botId: process.env.TEST_BOT_ID,
   apiDomain: "liveapi-dev.yext.com",
 });
 

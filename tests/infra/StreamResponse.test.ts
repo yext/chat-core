@@ -127,6 +127,20 @@ it("handles multiple stream events in one message", async () => {
   });
 });
 
+it("handles stream event split into multiple data chunks", async () => {
+  const events = ['event: startTokenStream\ndata: {"foo": "b', "a", 'r"}\n\n'];
+  const stream = new StreamResponse(mockResponse(events));
+  const startEventCb = jest.fn();
+  stream.addEventListener(StreamEventName.StartEvent, startEventCb);
+  await stream.consume();
+  expect(startEventCb).toBeCalledWith({
+    event: StreamEventName.StartEvent,
+    data: {
+      foo: "bar",
+    },
+  });
+});
+
 it("log error on unknown stream event", async () => {
   const errorSpy = jest.spyOn(console, "error").mockImplementation();
   const stream = new StreamResponse(
@@ -202,13 +216,18 @@ it("rejects when error occurs while reading Web stream from response", async () 
 });
 
 it("rejects when error occurs while reading Node stream from response", async () => {
+  expect.assertions(1);
   const stream = new StreamResponse({
     ok: true,
     body: new Readable({
       read() {
-        throw Error("Unable to read data");
+        this.emit("error", "Unable to read data");
       },
     }),
   } as unknown as RawResponse);
-  await expect(stream.consume()).rejects.toThrow("Unable to read data");
+  try {
+    await stream.consume();
+  } catch (e) {
+    expect(e).toEqual("Unable to read data");
+  }
 });

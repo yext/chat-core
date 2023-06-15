@@ -3,6 +3,7 @@ import { RawResponse } from "../models/http/RawResponse";
 import { StreamEventCallback } from "../models/endpoints/stream/StreamEventCallback";
 import { ApiResponse } from "../models/http/ApiResponse";
 import { ApiResponseValidator } from "../validation/ApiResponseValidator";
+import { StreamDataParser } from "./StreamDataParser";
 
 /**
  * Wrapper class around {@link RawResponse} that provides
@@ -19,6 +20,8 @@ export class StreamResponse {
    */
   readonly rawResponse: RawResponse;
 
+  private streamDataParser: StreamDataParser;
+
   private isConsumed = false;
   private eventListeners: {
     [E in EnumOrLiteral<StreamEventName>]?: StreamEventCallback<E>[];
@@ -26,6 +29,7 @@ export class StreamResponse {
 
   constructor(rawResponse: RawResponse) {
     this.rawResponse = rawResponse;
+    this.streamDataParser = new StreamDataParser();
   }
 
   /**
@@ -96,8 +100,7 @@ export class StreamResponse {
       if (!value) {
         continue;
       }
-      const streamEvents = this.parseStreamData(value);
-      streamEvents.forEach((event) => this.handleEvent(event));
+      this.streamDataParser.parse(value, (e) => this.handleEvent(e));
     } while (!doneStreaming);
   }
 
@@ -106,82 +109,13 @@ export class StreamResponse {
   ): Promise<void> {
     return new Promise<void>((resolve, reject) => {
       resBody.on("data", (chunk: Buffer) => {
-        const streamEvents = this.parseStreamData(chunk);
-        streamEvents.forEach((event) => this.handleEvent(event));
+        this.streamDataParser.parse(chunk, (e) => this.handleEvent(e));
       });
       resBody.on("error", (err) => {
         reject(err);
       });
       resBody.on("end", () => resolve());
     });
-  }
-
-  /**
-   * Decodes raw data from stream and parses it into an array of {@link StreamEvent}.
-   * The expected format of raw data follows server-sent events (SSE) standard:
-   * `event: startTokenStream\ndata: {"token": "Yext Chat"}\n\n`
-   *
-   * @internal
-   *
-   * @param byteArray - data from stream
-   * @returns an array of {@link StreamEvent} or undefined if it doesn't have expected format or event type
-   */
-  private parseStreamData(byteArray: Buffer | Uint8Array): StreamEvent[] {
-    let eventName = "";
-    let data = "";
-    let newLineIndex = -1;
-    const NEWLINE_ASCII_CODE = 10;
-    const streamEvents: StreamEvent[] = [];
-    const decoder = new TextDecoder();
-    byteArray.forEach((byte, i) => {
-      if (byte !== NEWLINE_ASCII_CODE) {
-        return;
-      }
-      const prevNewLineIndex = newLineIndex;
-      newLineIndex = i;
-      // A pair of newline characters indicates end of an event stream
-      if (prevNewLineIndex + 1 === newLineIndex) {
-        const streamEvent = this.createStreamEvent(eventName, data);
-        if (streamEvent) {
-          streamEvents.push(streamEvent);
-        }
-        eventName = "";
-        data = "";
-        return;
-      }
-      const line = decoder.decode(
-        byteArray.subarray(prevNewLineIndex + 1, newLineIndex)
-      );
-      if (line.startsWith("event:")) {
-        eventName = line.replace(/^event: ?/, "");
-      } else if (line.startsWith("data:")) {
-        // Following EventSource API, multiple consecutive lines that begin with "data:"
-        // will be concatenated, with a newline character between each one.
-        const newData = line.replace(/^data: ?/, "");
-        data = data == "" ? newData : `${data}\n${newData}`;
-      }
-    });
-    return streamEvents;
-  }
-
-  private createStreamEvent(
-    eventName: string,
-    data: string
-  ): StreamEvent | undefined {
-    if (!eventName) {
-      console.error("Stream Error: Unnamed event with following data:", data);
-    } else {
-      switch (eventName) {
-        case StreamEventName.StartEvent:
-        case StreamEventName.TokenStreamEvent:
-        case StreamEventName.EndEvent:
-          return { event: eventName, data: JSON.parse(data) };
-        default:
-          console.error(
-            `Stream Error: Unknown Event "${eventName}" with data: ${data}`
-          );
-      }
-    }
   }
 
   private handleEvent(event: StreamEvent) {
