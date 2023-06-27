@@ -4,7 +4,7 @@
 
 ## MessageResponse.responseId property
 
-The response's id in the form of ULID
+The response's id in the form of a 26 character ULID
 
 **Signature:**
 
