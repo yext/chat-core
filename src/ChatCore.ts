@@ -71,7 +71,6 @@ export class ChatCore {
       conversationId: data.response.conversationId,
       message: data.response.message,
       notes: data.response.notes,
-      responseId: data.response.responseId
     };
   }
 

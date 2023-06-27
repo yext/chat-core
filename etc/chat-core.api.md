@@ -33,6 +33,7 @@ export type EnumOrLiteral<T extends string> = T | `${T}`;
 
 // @public
 export interface Message {
+    responseId: string;
     source: EnumOrLiteral<MessageSource>;
     text: string;
     timestamp?: string;
@@ -61,7 +62,6 @@ export interface MessageResponse {
     conversationId: string;
     message: Message;
     notes: MessageNotes;
-    responseId: string;
 }
 
 // @public

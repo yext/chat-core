@@ -23,9 +23,9 @@ function mockHttpPost(
 
 it("returns message response on successful API response", async () => {
   const expectedMessageResponse: MessageResponse = {
-    responseId: "someULID",
     conversationId: "someId",
     message: {
+      responseId: "someULID",
       text: "hello world!",
       source: MessageSource.BOT,
       timestamp: "2023-05-15T17:33:38.373Z",
