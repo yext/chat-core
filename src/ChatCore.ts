@@ -66,16 +66,20 @@ export class ChatCore {
   }
 
   private createMessageResponse(data: any): MessageResponse {
+    //CLIP-303: type check data
     return {
       conversationId: data.response.conversationId,
       message: data.response.message,
       notes: data.response.notes,
+      responseId: data.response.responseId
     };
   }
 
   /**
    * Make a request to Chat streaming API to generate the next message
    * and consume its tokens via server-sent events.
+   * 
+   * @experimental
    *
    * @remarks
    * If rejected, an Error is returned.
