@@ -4,10 +4,10 @@
 
 ## Message.responseId property
 
-The response's id in the form of a 26 character ULID
+The response's id in the form of a 26 character ULID. This is present for message coming from server.
 
 **Signature:**
 
 ```typescript
-responseId: string;
+responseId?: string;
 ```
