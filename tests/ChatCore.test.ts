@@ -23,6 +23,7 @@ function mockHttpPost(
 
 it("returns message response on successful API response", async () => {
   const expectedMessageResponse: MessageResponse = {
+    responseId: "someULID",
     conversationId: "someId",
     message: {
       text: "hello world!",

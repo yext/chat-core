@@ -19,4 +19,5 @@ export interface MessageResponse
 |  [conversationId](./chat-core.messageresponse.conversationid.md) |  | string | The id corresponds to the current conversation. |
 |  [message](./chat-core.messageresponse.message.md) |  | [Message](./chat-core.message.md) | The generated reply to the latest message in the request. |
 |  [notes](./chat-core.messageresponse.notes.md) |  | [MessageNotes](./chat-core.messagenotes.md) | Information relevant to the current state of the conversation, serving as the bot’s "memory" regarding what work it previously did to help determine future actions. |
+|  [responseId](./chat-core.messageresponse.responseid.md) |  | string | The response's id in the form of ULID |
 

@@ -61,6 +61,7 @@ export interface MessageResponse {
     conversationId: string;
     message: Message;
     notes: MessageNotes;
+    responseId: string;
 }
 
 // @public

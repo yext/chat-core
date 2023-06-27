@@ -13,4 +13,6 @@ export interface MessageResponse {
   message: Message;
   /** {@inheritDoc MessageNotes} */
   notes: MessageNotes;
+  /** The response's id in the form of ULID */
+  responseId: string;
 }
