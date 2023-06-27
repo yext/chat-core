@@ -6,8 +6,11 @@ import { EnumOrLiteral } from "../utils/EnumOrLiteral";
  * @public
  */
 export interface Message {
-  /** The response's id in the form of a 26 character ULID */
-  responseId: string;
+  /**
+   * The response's id in the form of a 26 character ULID.
+   * This is present for message coming from server.
+   */
+  responseId?: string;
   /** Time when the message is sent. */
   timestamp?: string;
   /** The sender of the message. */

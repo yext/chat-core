@@ -16,7 +16,7 @@ export interface Message
 
 |  Property | Modifiers | Type | Description |
 |  --- | --- | --- | --- |
-|  [responseId](./chat-core.message.responseid.md) |  | string | The response's id in the form of a 26 character ULID |
+|  [responseId?](./chat-core.message.responseid.md) |  | string | _(Optional)_ The response's id in the form of a 26 character ULID. This is present for message coming from server. |
 |  [source](./chat-core.message.source.md) |  | [EnumOrLiteral](./chat-core.enumorliteral.md)<!-- -->&lt;[MessageSource](./chat-core.messagesource.md)<!-- -->&gt; | The sender of the message. |
 |  [text](./chat-core.message.text.md) |  | string | The message's content. |
 |  [timestamp?](./chat-core.message.timestamp.md) |  | string | _(Optional)_ Time when the message is sent. |
