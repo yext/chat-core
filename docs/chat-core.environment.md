@@ -16,6 +16,6 @@ export declare enum Environment
 
 |  Member | Value | Description |
 |  --- | --- | --- |
-|  PROD | <code>&quot;prod&quot;</code> |  |
-|  SANDBOX | <code>&quot;sbx&quot;</code> |  |
+|  PRODUCTION | <code>&quot;PRODUCTION&quot;</code> |  |
+|  SANDBOX | <code>&quot;SANDBOX&quot;</code> |  |
 

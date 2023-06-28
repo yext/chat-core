@@ -4,6 +4,6 @@
  * @public
  */
 export enum Environment {
-  PROD = "prod",
-  SANDBOX = "sbx",
+  PRODUCTION = "PRODUCTION",
+  SANDBOX = "SANDBOX",
 }
