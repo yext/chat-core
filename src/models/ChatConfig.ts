@@ -30,7 +30,7 @@ export interface ChatConfig {
    * Defines the environment of the API domains.
    *
    * @remarks
-   * Default to PROD.
+   * Default to PRODUCTION.
    */
   env?: EnumOrLiteral<Environment>;
   /**

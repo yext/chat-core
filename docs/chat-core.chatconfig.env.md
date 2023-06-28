@@ -14,5 +14,5 @@ env?: EnumOrLiteral<Environment>;
 
 ## Remarks
 
-Default to PROD.
+Default to PRODUCTION.
 

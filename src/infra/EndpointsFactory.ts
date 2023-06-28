@@ -10,14 +10,17 @@ import { Environment } from "../models/endpoints/Environment";
  */
 export class EndpointsFactory {
   private static getDomain(endpointConfig: EndpointConfig): string {
-    const { region = Region.US, env = Environment.PROD } = endpointConfig;
+    const { region = Region.US, env = Environment.PRODUCTION } = endpointConfig;
     switch (region) {
       case Region.US:
-        return env === Environment.PROD
-          ? "liveapi.yext.com"
-          : `liveapi-${env}.yext.com`;
+        switch (env) {
+          case Environment.SANDBOX:
+            return "liveapi-sbx.yext.com";
+          default:
+            return "liveapi.yext.com";
+        }
       case Region.EU:
-        if (env === Environment.PROD) {
+        if (env === Environment.PRODUCTION) {
           return "cdn.eu.yextapis.com";
         }
         throw new Error(
