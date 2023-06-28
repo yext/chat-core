@@ -92,9 +92,9 @@ export type RawResponse = Response | Response_2;
 // @public
 export enum Region {
     // (undocumented)
-    EU = "eu",
+    EU = "EU",
     // (undocumented)
-    US = "us"
+    US = "US"
 }
 
 // @public

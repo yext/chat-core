@@ -16,6 +16,6 @@ export declare enum Region
 
 |  Member | Value | Description |
 |  --- | --- | --- |
-|  EU | <code>&quot;eu&quot;</code> |  |
-|  US | <code>&quot;us&quot;</code> |  |
+|  EU | <code>&quot;EU&quot;</code> |  |
+|  US | <code>&quot;US&quot;</code> |  |
 

@@ -24,7 +24,7 @@ it("provides proper endpoint for custom env", () => {
 it("provides proper endpoint for custom region", () => {
   const endpoints = EndpointsFactory.getEndpoints({
     botId: "my-bot",
-    region: "eu",
+    region: "EU",
   });
   expect(endpoints).toEqual({
     chat: `https://cdn.eu.yextapis.com/v2/accounts/me/chat/my-bot/message`,
@@ -47,7 +47,7 @@ it("throws error on invalid region + env", () => {
   expect(() =>
     EndpointsFactory.getEndpoints({
       botId: "my-bot",
-      region: "eu",
+      region: "EU",
       env: "SANDBOX",
     })
   ).toThrow('Unsupported domain: invalid environment "SANDBOX" for region EU');

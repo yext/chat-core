@@ -52,8 +52,8 @@ it("returns message response on successful API response", async () => {
     botId: "my-bot",
     apiKey: "my-api-key",
     version: "STAGING",
-    env: "prod",
-    region: "us",
+    env: "PRODUCTION",
+    region: "US",
     businessId: 1234567,
   });
   const res = await chatCore.getNextMessage(mockedMessageRequest);

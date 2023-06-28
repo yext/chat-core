@@ -4,6 +4,6 @@
  * @public
  */
 export enum Region {
-  US = "us",
-  EU = "eu",
+  US = "US",
+  EU = "EU",
 }
