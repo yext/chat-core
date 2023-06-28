@@ -1,5 +1,9 @@
 export { ChatConfig } from "./ChatConfig";
 
+export { Endpoints } from "./endpoints/Endpoints";
+export { Environment } from "./endpoints/Environment";
+export { Region } from "./endpoints/Region";
+
 export { Message, MessageSource } from "./endpoints/Message";
 export { MessageNotes } from "./endpoints/MessageNotes";
 export { MessageRequest } from "./endpoints/MessageRequest";

@@ -14,7 +14,7 @@ version?: "STAGING" | "PRODUCTION" | number;
 
 ## Remarks
 
-May be a configuration label (string) or a configuration version (number). Default to 'STAGING'
+May be a configuration label (string) or a configuration version (number). Default to 'STAGING' in Chat API
 
 ## Example
 

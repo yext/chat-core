@@ -1,3 +1,8 @@
+import { Region } from "./endpoints/Region";
+import { Environment } from "./endpoints/Environment";
+import { EnumOrLiteral } from "./utils/EnumOrLiteral";
+import { Endpoints } from "./endpoints/Endpoints";
+
 /**
  * The configuration options for {@link ChatCore}.
  *
@@ -15,17 +20,26 @@ export interface ChatConfig {
    *
    * @remarks
    * May be a configuration label (string) or a configuration version (number).
-   * Default to 'STAGING'
+   * Default to 'STAGING' in Chat API
    *
    * @example
    * Examples: 'STAGING', 42
    */
   version?: "STAGING" | "PRODUCTION" | number;
   /**
-   * Domain to use for the URL endpoints.
+   * Defines the environment of the API domains.
    *
    * @remarks
-   * Default to liveapi.yext.com
+   * Default to PROD.
    */
-  apiDomain?: string;
+  env?: EnumOrLiteral<Environment>;
+  /**
+   * The region to send the requests to.
+   *
+   * @remarks
+   * Defaults to 'US'.
+   */
+  region?: EnumOrLiteral<Region>;
+  /** Overrides for the URLs which are used when making requests to the Chat API. */
+  endpoints?: Endpoints;
 }

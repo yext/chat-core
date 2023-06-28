@@ -8,10 +8,12 @@ import { Response as Response_2 } from 'node-fetch';
 
 // @public
 export interface ChatConfig {
-    apiDomain?: string;
     apiKey: string;
     botId: string;
     businessId?: number;
+    endpoints?: Endpoints;
+    env?: EnumOrLiteral<Environment>;
+    region?: EnumOrLiteral<Region>;
     version?: "STAGING" | "PRODUCTION" | number;
 }
 
@@ -29,7 +31,21 @@ export interface EndEvent {
 }
 
 // @public
+export interface Endpoints {
+    chat: string;
+    chatStream: string;
+}
+
+// @public
 export type EnumOrLiteral<T extends string> = T | `${T}`;
+
+// @public
+export enum Environment {
+    // (undocumented)
+    PROD = "prod",
+    // (undocumented)
+    SANDBOX = "sbx"
+}
 
 // @public
 export interface Message {
@@ -72,6 +88,14 @@ export enum MessageSource {
 
 // @public
 export type RawResponse = Response | Response_2;
+
+// @public
+export enum Region {
+    // (undocumented)
+    EU = "eu",
+    // (undocumented)
+    US = "us"
+}
 
 // @public
 export interface StartEvent {
