@@ -44,7 +44,7 @@ export enum Environment {
     // (undocumented)
     PRODUCTION = "PRODUCTION",
     // (undocumented)
-    SANDBOX = "SANBOX"
+    SANDBOX = "SANDBOX"
 }
 
 // @public

@@ -5,5 +5,5 @@
  */
 export enum Environment {
   PRODUCTION = "PRODUCTION",
-  SANDBOX = "SANBOX",
+  SANDBOX = "SANDBOX",
 }

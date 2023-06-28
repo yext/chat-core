@@ -13,7 +13,7 @@ it("provides proper endpoint for default env, region, and businessId", () => {
 it("provides proper endpoint for custom env", () => {
   const endpoints = EndpointsFactory.getEndpoints({
     botId: "my-bot",
-    env: "SANBOX",
+    env: "SANDBOX",
   });
   expect(endpoints).toEqual({
     chat: `https://liveapi-sbx.yext.com/v2/accounts/me/chat/my-bot/message`,
@@ -48,7 +48,7 @@ it("throws error on invalid region + env", () => {
     EndpointsFactory.getEndpoints({
       botId: "my-bot",
       region: "eu",
-      env: "SANBOX",
+      env: "SANDBOX",
     })
-  ).toThrow('Unsupported domain: invalid environment "SANBOX" for region EU');
+  ).toThrow('Unsupported domain: invalid environment "SANDBOX" for region EU');
 });
