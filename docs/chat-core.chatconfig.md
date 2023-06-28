@@ -16,9 +16,11 @@ export interface ChatConfig
 
 |  Property | Modifiers | Type | Description |
 |  --- | --- | --- | --- |
-|  [apiDomain?](./chat-core.chatconfig.apidomain.md) |  | string | _(Optional)_ Domain to use for the URL endpoints. |
 |  [apiKey](./chat-core.chatconfig.apikey.md) |  | string | The api key of the Chat experience. |
 |  [botId](./chat-core.chatconfig.botid.md) |  | string | ID of the bot to interface with. |
 |  [businessId?](./chat-core.chatconfig.businessid.md) |  | number | _(Optional)_ ID of the account associated with this chat bot. |
+|  [endpoints?](./chat-core.chatconfig.endpoints.md) |  | [Endpoints](./chat-core.endpoints.md) | _(Optional)_ Overrides for the URLs which are used when making requests to the Chat API. |
+|  [env?](./chat-core.chatconfig.env.md) |  | [EnumOrLiteral](./chat-core.enumorliteral.md)<!-- -->&lt;[Environment](./chat-core.environment.md)<!-- -->&gt; | _(Optional)_ Defines the environment of the API domains. |
+|  [region?](./chat-core.chatconfig.region.md) |  | [EnumOrLiteral](./chat-core.enumorliteral.md)<!-- -->&lt;[Region](./chat-core.region.md)<!-- -->&gt; | _(Optional)_ The region to send the requests to. |
 |  [version?](./chat-core.chatconfig.version.md) |  | "STAGING" \| "PRODUCTION" \| number | _(Optional)_ The version of the chat bot configuration. |
 

@@ -1,7 +1,9 @@
-import { defaultApiDomain, defaultApiVersion } from "./constants";
+import { defaultApiVersion } from "./constants";
 import { HttpService } from "./http/HttpService";
+import { EndpointsFactory } from "./infra/EndpointsFactory";
 import { StreamResponse } from "./infra/StreamResponse";
 import { ChatConfig, MessageRequest, MessageResponse } from "./models";
+import { Endpoints } from "./models/endpoints/Endpoints";
 import { ApiMessageRequest } from "./models/endpoints/MessageRequest";
 import { ApiResponse } from "./models/http/ApiResponse";
 import { QueryParams } from "./models/http/params";
@@ -15,22 +17,13 @@ import { ApiResponseValidator } from "./validation/ApiResponseValidator";
 export class ChatCore {
   private chatConfig: ChatConfig;
   private httpService: HttpService;
+  private endpoints: Endpoints;
 
   constructor(chatConfig: ChatConfig) {
     this.chatConfig = chatConfig;
     this.httpService = new HttpService();
-  }
-
-  private getUrl({ businessId, botId, apiDomain }: ChatConfig) {
-    return `https://${apiDomain || defaultApiDomain}/v2/accounts/${
-      businessId || "me"
-    }/chat/${botId}/message`;
-  }
-
-  private getStreamUrl({ businessId, botId, apiDomain }: ChatConfig) {
-    return `https://${apiDomain || defaultApiDomain}/v2/accounts/${
-      businessId || "me"
-    }/chat/${botId}/message/streaming`;
+    this.endpoints =
+      chatConfig.endpoints ?? EndpointsFactory.getEndpoints(this.chatConfig);
   }
 
   /**
@@ -48,7 +41,7 @@ export class ChatCore {
       version: this.chatConfig.version,
     };
     const rawResponse = await this.httpService.post(
-      this.getUrl(this.chatConfig),
+      this.endpoints.chat,
       queryParams,
       body,
       this.chatConfig.apiKey
@@ -77,7 +70,7 @@ export class ChatCore {
   /**
    * Make a request to Chat streaming API to generate the next message
    * and consume its tokens via server-sent events.
-   * 
+   *
    * @experimental
    *
    * @remarks
@@ -92,7 +85,7 @@ export class ChatCore {
       version: this.chatConfig.version,
     };
     const rawResponse = await this.httpService.post(
-      this.getStreamUrl(this.chatConfig),
+      this.endpoints.chatStream,
       queryParams,
       body,
       this.chatConfig.apiKey

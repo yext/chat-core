@@ -15,7 +15,9 @@
 
 |  Enumeration | Description |
 |  --- | --- |
+|  [Environment](./chat-core.environment.md) | Defines the environment of the API domains. |
 |  [MessageSource](./chat-core.messagesource.md) | Types of sender of a message. |
+|  [Region](./chat-core.region.md) | The region to send the requests to. |
 |  [StreamEventName](./chat-core.streameventname.md) | Names of stream events returned from Chat Stream API. |
 
 ## Interfaces
@@ -24,6 +26,7 @@
 |  --- | --- |
 |  [ChatConfig](./chat-core.chatconfig.md) | The configuration options for [ChatCore](./chat-core.chatcore.md)<!-- -->. |
 |  [EndEvent](./chat-core.endevent.md) | An event that indicates end of Chat stream. |
+|  [Endpoints](./chat-core.endpoints.md) | The URLs which are used when making requests to the Chat API. |
 |  [Message](./chat-core.message.md) | Represents a message within a conversation. |
 |  [MessageNotes](./chat-core.messagenotes.md) | Information relevant to the current state of the conversation, serving as the bot’s "memory" regarding what work it previously did to help determine future actions. |
 |  [MessageRequest](./chat-core.messagerequest.md) | A request to Chat API. |
