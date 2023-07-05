@@ -16,8 +16,8 @@ it("provides proper endpoint for custom env", () => {
     env: "SANDBOX",
   });
   expect(endpoints).toEqual({
-    chat: `https://liveapi-sbx.yext.com/v2/accounts/me/chat/my-bot/message`,
-    chatStream: `https://liveapi-sbx.yext.com/v2/accounts/me/chat/my-bot/message/streaming`,
+    chat: `https://liveapi-sandbox.yext.com/v2/accounts/me/chat/my-bot/message`,
+    chatStream: `https://liveapi-sandbox.yext.com/v2/accounts/me/chat/my-bot/message/streaming`,
   });
 });
 
