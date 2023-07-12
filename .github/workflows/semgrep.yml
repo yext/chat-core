@@ -5,16 +5,16 @@ on:
   push:
     branches:
       - main
-      - master
     paths:
       - .github/workflows/semgrep.yml
   schedule:
-    # random HH:MM to avoid a load spike on GitHub Actions at 00:00
-    - cron: '2 9 * * *'
+    # run at 11:00PM to avoid a load spike on GitHub Actions at 00:00
+    - cron: '0 23 * * *'
+
 jobs:
   semgrep:
     name: semgrep/ci
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     container:
       image: returntocorp/semgrep
     if: (github.actor != 'dependabot[bot]')
