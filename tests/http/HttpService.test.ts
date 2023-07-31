@@ -1,4 +1,4 @@
-import { HttpService } from "../../src/http/HttpService";
+import { HttpServiceImpl } from "../../src/http/HttpService";
 import * as crossFetch from "cross-fetch";
 
 jest.mock("cross-fetch");
@@ -30,7 +30,7 @@ it("can make post requests in browser environment", async () => {
     bar: null,
     aQuery: "param",
   };
-  const httpService = new HttpService();
+  const httpService = new HttpServiceImpl();
   await httpService.post(
     "http://yext.com",
     queryParams,
@@ -60,7 +60,7 @@ it("can make post request in node environment", async () => {
   const queryParams = {
     nodeQuery: "param",
   };
-  const httpService = new HttpService();
+  const httpService = new HttpServiceImpl();
   await httpService.post(
     "http://yext.com",
     queryParams,

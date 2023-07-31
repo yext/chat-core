@@ -6,7 +6,7 @@ import {
 } from "../src";
 import { ChatCore } from "../src/ChatCore";
 import { defaultApiVersion } from "../src/constants";
-import { HttpService } from "../src/http/HttpService";
+import { HttpServiceImpl } from "../src/http/HttpService";
 
 const mockedMessageRequest: MessageRequest = {
   conversationId: "my-id",
@@ -14,6 +14,7 @@ const mockedMessageRequest: MessageRequest = {
     foo: "bar",
   },
   messages: [],
+  promptPackage: "stable",
 };
 
 const defaultConfig: ChatConfig = {
@@ -25,7 +26,7 @@ function mockHttpPost(
   expectedResponse: unknown = { response: {}, meta: {} },
   ok = true
 ): jest.SpyInstance {
-  return jest.spyOn(HttpService.prototype, "post").mockResolvedValue({
+  return jest.spyOn(HttpServiceImpl.prototype, "post").mockResolvedValue({
     ok,
     json: () => Promise.resolve(expectedResponse),
   } as Response);
@@ -130,6 +131,7 @@ describe("URL and http request construction", () => {
           foo: "bar",
         },
         messages: [],
+        promptPackage: "stable",
       },
       "my-api-key"
     );
@@ -148,6 +150,7 @@ describe("URL and http request construction", () => {
           foo: "bar",
         },
         messages: [],
+        promptPackage: "stable",
       },
       "my-api-key"
     );
@@ -172,6 +175,7 @@ describe("URL and http request construction", () => {
           foo: "bar",
         },
         messages: [],
+        promptPackage: "stable",
       },
       "my-api-key"
     );
@@ -191,6 +195,7 @@ describe("URL and http request construction", () => {
           foo: "bar",
         },
         messages: [],
+        promptPackage: "stable",
       },
       "my-api-key"
     );

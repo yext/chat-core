@@ -19,10 +19,13 @@ export interface ChatConfig {
 
 // @public
 export class ChatCore {
-    constructor(chatConfig: ChatConfig);
+    constructor(chatConfig: ChatConfig, promptPackage?: ChatPrompt);
     getNextMessage(request: MessageRequest): Promise<MessageResponse>;
     streamNextMessage(request: MessageRequest): Promise<StreamResponse>;
 }
+
+// @public
+export type ChatPrompt = "stable" | "nightly";
 
 // @public
 export interface EndEvent {
@@ -71,6 +74,8 @@ export interface MessageRequest {
     conversationId?: string;
     messages: Message[];
     notes?: MessageNotes;
+    // @internal
+    promptPackage?: ChatPrompt;
 }
 
 // @public

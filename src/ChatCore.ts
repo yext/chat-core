@@ -1,10 +1,13 @@
 import { defaultApiVersion } from "./constants";
-import { HttpService } from "./http/HttpService";
+import { HttpService, HttpServiceImpl } from "./http/HttpService";
 import { EndpointsFactory } from "./infra/EndpointsFactory";
 import { StreamResponse } from "./infra/StreamResponse";
 import { ChatConfig, MessageRequest, MessageResponse } from "./models";
 import { Endpoints } from "./models/endpoints/Endpoints";
-import { ApiMessageRequest } from "./models/endpoints/MessageRequest";
+import {
+  ApiMessageRequest,
+  ChatPrompt,
+} from "./models/endpoints/MessageRequest";
 import { ApiResponse } from "./models/http/ApiResponse";
 import { QueryParams } from "./models/http/params";
 import { ApiResponseValidator } from "./validation/ApiResponseValidator";
@@ -18,12 +21,14 @@ export class ChatCore {
   private chatConfig: ChatConfig;
   private httpService: HttpService;
   private endpoints: Endpoints;
+  private promptPackage: ChatPrompt;
 
-  constructor(chatConfig: ChatConfig) {
+  constructor(chatConfig: ChatConfig, promptPackage?: ChatPrompt) {
     this.chatConfig = chatConfig;
-    this.httpService = new HttpService();
+    this.httpService = new HttpServiceImpl();
     this.endpoints =
       chatConfig.endpoints ?? EndpointsFactory.getEndpoints(this.chatConfig);
+    this.promptPackage = promptPackage ?? "stable";
   }
 
   /**
@@ -39,6 +44,7 @@ export class ChatCore {
     const body: ApiMessageRequest = {
       ...request,
       version: this.chatConfig.version,
+      promptPackage: this.promptPackage,
     };
     const rawResponse = await this.httpService.post(
       this.endpoints.chat,
@@ -83,6 +89,7 @@ export class ChatCore {
     const body: ApiMessageRequest = {
       ...request,
       version: this.chatConfig.version,
+      promptPackage: this.promptPackage,
     };
     const rawResponse = await this.httpService.post(
       this.endpoints.chatStream,

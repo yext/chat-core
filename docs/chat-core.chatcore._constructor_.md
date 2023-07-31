@@ -9,7 +9,7 @@ Constructs a new instance of the `ChatCore` class
 **Signature:**
 
 ```typescript
-constructor(chatConfig: ChatConfig);
+constructor(chatConfig: ChatConfig, promptPackage?: ChatPrompt);
 ```
 
 ## Parameters
@@ -17,4 +17,5 @@ constructor(chatConfig: ChatConfig);
 |  Parameter | Type | Description |
 |  --- | --- | --- |
 |  chatConfig | [ChatConfig](./chat-core.chatconfig.md) |  |
+|  promptPackage | [ChatPrompt](./chat-core.chatprompt.md) | _(Optional)_ |
 
