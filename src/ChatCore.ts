@@ -30,9 +30,9 @@ export class ChatCore {
   private endpoints: Endpoints;
   private nightly: boolean;
 
-  constructor(chatConfig: ChatConfig, nightly?: boolean, httpService?: Poster) {
+  constructor(chatConfig: ChatConfig, nightly?: boolean) {
     this.chatConfig = chatConfig;
-    this.httpService = httpService ?? new HttpService();
+    this.httpService = new HttpService();
     this.endpoints =
       chatConfig.endpoints ?? EndpointsFactory.getEndpoints(this.chatConfig);
     this.nightly = nightly ?? false;
