@@ -8,6 +8,16 @@ import { ApiMessageRequest } from "./models/endpoints/MessageRequest";
 import { ApiResponse } from "./models/http/ApiResponse";
 import { QueryParams } from "./models/http/params";
 import { ApiResponseValidator } from "./validation/ApiResponseValidator";
+import { RawResponse } from "./models";
+
+interface Poster {
+  post<K extends Record<string, any>>(
+    url: string,
+    queryParams: QueryParams,
+    body: K,
+    apiKey: string
+  ): Promise<RawResponse>;
+}
 
 /**
  * The entrypoint to the chat-core library. Provides methods for interacting with Chat API.
@@ -16,14 +26,16 @@ import { ApiResponseValidator } from "./validation/ApiResponseValidator";
  */
 export class ChatCore {
   private chatConfig: ChatConfig;
-  private httpService: HttpService;
+  private httpService: Poster;
   private endpoints: Endpoints;
+  private nightly: boolean;
 
-  constructor(chatConfig: ChatConfig) {
+  constructor(chatConfig: ChatConfig, nightly?: boolean, httpService?: Poster) {
     this.chatConfig = chatConfig;
-    this.httpService = new HttpService();
+    this.httpService = httpService ?? new HttpService();
     this.endpoints =
       chatConfig.endpoints ?? EndpointsFactory.getEndpoints(this.chatConfig);
+    this.nightly = nightly ?? false;
   }
 
   /**
@@ -39,6 +51,7 @@ export class ChatCore {
     const body: ApiMessageRequest = {
       ...request,
       version: this.chatConfig.version,
+      promptPackage: this.nightly ? "nightly" : undefined,
     };
     const rawResponse = await this.httpService.post(
       this.endpoints.chat,
