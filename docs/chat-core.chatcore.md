@@ -16,7 +16,7 @@ export declare class ChatCore
 
 |  Constructor | Modifiers | Description |
 |  --- | --- | --- |
-|  [(constructor)(chatConfig, nightly, httpService)](./chat-core.chatcore._constructor_.md) |  | Constructs a new instance of the <code>ChatCore</code> class |
+|  [(constructor)(chatConfig, promptPackage)](./chat-core.chatcore._constructor_.md) |  | Constructs a new instance of the <code>ChatCore</code> class |
 
 ## Methods
 

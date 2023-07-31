@@ -19,8 +19,8 @@ export interface ChatConfig {
 
 // @public
 export class ChatCore {
-    // Warning: (ae-forgotten-export) The symbol "Poster" needs to be exported by the entry point index.d.ts
-    constructor(chatConfig: ChatConfig, nightly?: boolean, httpService?: Poster);
+    // Warning: (ae-forgotten-export) The symbol "ChatPrompt" needs to be exported by the entry point index.d.ts
+    constructor(chatConfig: ChatConfig, promptPackage?: ChatPrompt);
     getNextMessage(request: MessageRequest): Promise<MessageResponse>;
     streamNextMessage(request: MessageRequest): Promise<StreamResponse>;
 }
@@ -72,7 +72,8 @@ export interface MessageRequest {
     conversationId?: string;
     messages: Message[];
     notes?: MessageNotes;
-    promptPackage?: "stable" | "nightly";
+    // @internal
+    promptPackage?: ChatPrompt;
 }
 
 // @public
