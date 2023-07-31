@@ -1,6 +1,14 @@
 import { Message } from "./Message";
 import { MessageNotes } from "./MessageNotes";
 
+/**
+ * The type of prompts to be used by the Chat bot.
+ * Experimental changes to prompts will be applied to the "nightly"
+ * package and subsequently moved into "stable" after performance and
+ * reliability are verified. It is STRONGLY recommended not to use
+ * "nightly" in production Chat bots.
+ * @public
+ */
 export type ChatPrompt = "stable" | "nightly";
 
 /**

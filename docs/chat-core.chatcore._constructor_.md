@@ -17,5 +17,5 @@ constructor(chatConfig: ChatConfig, promptPackage?: ChatPrompt);
 |  Parameter | Type | Description |
 |  --- | --- | --- |
 |  chatConfig | [ChatConfig](./chat-core.chatconfig.md) |  |
-|  promptPackage | ChatPrompt | _(Optional)_ |
+|  promptPackage | [ChatPrompt](./chat-core.chatprompt.md) | _(Optional)_ |
 

@@ -19,11 +19,13 @@ export interface ChatConfig {
 
 // @public
 export class ChatCore {
-    // Warning: (ae-forgotten-export) The symbol "ChatPrompt" needs to be exported by the entry point index.d.ts
     constructor(chatConfig: ChatConfig, promptPackage?: ChatPrompt);
     getNextMessage(request: MessageRequest): Promise<MessageResponse>;
     streamNextMessage(request: MessageRequest): Promise<StreamResponse>;
 }
+
+// @public
+export type ChatPrompt = "stable" | "nightly";
 
 // @public
 export interface EndEvent {

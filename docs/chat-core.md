@@ -39,6 +39,7 @@
 
 |  Type Alias | Description |
 |  --- | --- |
+|  [ChatPrompt](./chat-core.chatprompt.md) | The type of prompts to be used by the Chat bot. Experimental changes to prompts will be applied to the "nightly" package and subsequently moved into "stable" after performance and reliability are verified. It is STRONGLY recommended not to use "nightly" in production Chat bots. |
 |  [EnumOrLiteral](./chat-core.enumorliteral.md) | Produces a union type from the enum passed as a generic which consists of the enum values and the string literals of the enum. |
 |  [RawResponse](./chat-core.rawresponse.md) | Raw response from Chat API. |
 |  [StreamEvent](./chat-core.streamevent.md) | Types of stream events returned from Chat Stream API. |

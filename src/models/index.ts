@@ -6,7 +6,7 @@ export { Region } from "./endpoints/Region";
 
 export { Message, MessageSource } from "./endpoints/Message";
 export { MessageNotes } from "./endpoints/MessageNotes";
-export { MessageRequest } from "./endpoints/MessageRequest";
+export { MessageRequest, ChatPrompt } from "./endpoints/MessageRequest";
 export { MessageResponse } from "./endpoints/MessageResponse";
 
 export {
