@@ -1,23 +1,16 @@
 import { defaultApiVersion } from "./constants";
-import { HttpService } from "./http/HttpService";
+import { HttpService, HttpServiceImpl } from "./http/HttpService";
 import { EndpointsFactory } from "./infra/EndpointsFactory";
 import { StreamResponse } from "./infra/StreamResponse";
 import { ChatConfig, MessageRequest, MessageResponse } from "./models";
 import { Endpoints } from "./models/endpoints/Endpoints";
-import { ApiMessageRequest } from "./models/endpoints/MessageRequest";
+import {
+  ApiMessageRequest,
+  ChatPrompt,
+} from "./models/endpoints/MessageRequest";
 import { ApiResponse } from "./models/http/ApiResponse";
 import { QueryParams } from "./models/http/params";
 import { ApiResponseValidator } from "./validation/ApiResponseValidator";
-import { RawResponse } from "./models";
-
-interface Poster {
-  post<K extends Record<string, any>>(
-    url: string,
-    queryParams: QueryParams,
-    body: K,
-    apiKey: string
-  ): Promise<RawResponse>;
-}
 
 /**
  * The entrypoint to the chat-core library. Provides methods for interacting with Chat API.
@@ -26,16 +19,16 @@ interface Poster {
  */
 export class ChatCore {
   private chatConfig: ChatConfig;
-  private httpService: Poster;
+  private httpService: HttpService;
   private endpoints: Endpoints;
-  private nightly: boolean;
+  private promptPackage: ChatPrompt;
 
-  constructor(chatConfig: ChatConfig, nightly?: boolean) {
+  constructor(chatConfig: ChatConfig, promptPackage?: ChatPrompt) {
     this.chatConfig = chatConfig;
-    this.httpService = new HttpService();
+    this.httpService = new HttpServiceImpl();
     this.endpoints =
       chatConfig.endpoints ?? EndpointsFactory.getEndpoints(this.chatConfig);
-    this.nightly = nightly ?? false;
+    this.promptPackage = promptPackage ?? "stable";
   }
 
   /**
@@ -51,7 +44,7 @@ export class ChatCore {
     const body: ApiMessageRequest = {
       ...request,
       version: this.chatConfig.version,
-      promptPackage: this.nightly ? "nightly" : undefined,
+      promptPackage: this.promptPackage,
     };
     const rawResponse = await this.httpService.post(
       this.endpoints.chat,
@@ -96,6 +89,7 @@ export class ChatCore {
     const body: ApiMessageRequest = {
       ...request,
       version: this.chatConfig.version,
+      promptPackage: this.promptPackage,
     };
     const rawResponse = await this.httpService.post(
       this.endpoints.chatStream,

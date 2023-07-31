@@ -14,7 +14,21 @@ enum RequestMethods {
  *
  * @internal
  */
-export class HttpService {
+export interface HttpService {
+  post<K extends Record<string, any>>(
+    url: string,
+    queryParams: QueryParams,
+    body: K,
+    apiKey: string
+  ): Promise<RawResponse>;
+}
+
+/**
+ * A concrete implementation of the HttpService interface
+ *
+ * @internal
+ */
+export class HttpServiceImpl implements HttpService {
   /**
    * Performs a POST request.
    */

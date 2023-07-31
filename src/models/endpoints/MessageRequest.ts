@@ -1,6 +1,8 @@
 import { Message } from "./Message";
 import { MessageNotes } from "./MessageNotes";
 
+export type ChatPrompt = "stable" | "nightly";
+
 /**
  * A request to Chat API.
  *
@@ -49,8 +51,9 @@ export interface MessageRequest {
    * @remarks
    * The set of prompts which will be used by the bot's instruction steps.
    * Defaults to "stable", which is the set of tested and verified prompts.
+   * @internal
    */
-  promptPackage?: "stable" | "nightly";
+  promptPackage?: ChatPrompt;
 }
 
 /**
@@ -68,5 +71,5 @@ export interface ApiMessageRequest {
   /** {@inheritDoc MessageNotes} */
   notes?: MessageNotes;
   /** {@inheritdoc MessageRequest.promptPackage} */
-  promptPackage?: "stable" | "nightly";
+  promptPackage?: ChatPrompt;
 }
