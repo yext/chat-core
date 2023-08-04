@@ -17,12 +17,10 @@ export interface ChatConfig {
     version?: "STAGING" | "PRODUCTION" | number;
 }
 
-// @public
-export class ChatCore {
-    constructor(chatConfig: ChatConfig, promptPackage?: ChatPrompt);
-    getNextMessage(request: MessageRequest): Promise<MessageResponse>;
-    streamNextMessage(request: MessageRequest): Promise<StreamResponse>;
-}
+// Warning: (ae-forgotten-export) The symbol "ChatCore_2" needs to be exported by the entry point index.d.ts
+//
+// @public (undocumented)
+export type ChatCore = typeof ChatCore_2;
 
 // @public
 export type ChatPrompt = "stable" | "nightly";
@@ -48,6 +46,14 @@ export enum Environment {
     PRODUCTION = "PRODUCTION",
     // (undocumented)
     SANDBOX = "SANDBOX"
+}
+
+// Warning: (ae-internal-missing-underscore) The name "InternalConfig" should be prefixed with an underscore because the declaration is marked as @internal
+//
+// @internal
+export interface InternalConfig {
+    // (undocumented)
+    promptPackage?: ChatPrompt;
 }
 
 // @public
@@ -90,6 +96,14 @@ export enum MessageSource {
     BOT = "BOT",
     USER = "USER"
 }
+
+// @public
+export function ProvideChatCore(config: ChatConfig): ChatCore_2;
+
+// Warning: (ae-internal-missing-underscore) The name "ProvideChatCoreInternal" should be prefixed with an underscore because the declaration is marked as @internal
+//
+// @internal
+export function ProvideChatCoreInternal(config: ChatConfig, internal: InternalConfig): ChatCore_2;
 
 // @public
 export type RawResponse = Response | Response_2;

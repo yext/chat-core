@@ -2,7 +2,12 @@ import { defaultApiVersion } from "./constants";
 import { HttpService, HttpServiceImpl } from "./http/HttpService";
 import { EndpointsFactory } from "./infra/EndpointsFactory";
 import { StreamResponse } from "./infra/StreamResponse";
-import { ChatConfig, MessageRequest, MessageResponse } from "./models";
+import {
+  ChatConfig,
+  InternalConfig,
+  MessageRequest,
+  MessageResponse,
+} from "./models";
 import { Endpoints } from "./models/endpoints/Endpoints";
 import {
   ApiMessageRequest,
@@ -15,7 +20,7 @@ import { ApiResponseValidator } from "./validation/ApiResponseValidator";
 /**
  * The entrypoint to the chat-core library. Provides methods for interacting with Chat API.
  *
- * @public
+ * @internal
  */
 export class ChatCore {
   private chatConfig: ChatConfig;
@@ -23,12 +28,12 @@ export class ChatCore {
   private endpoints: Endpoints;
   private promptPackage: ChatPrompt;
 
-  constructor(chatConfig: ChatConfig, promptPackage?: ChatPrompt) {
+  constructor(chatConfig: ChatConfig, internalConfig?: InternalConfig) {
     this.chatConfig = chatConfig;
     this.httpService = new HttpServiceImpl();
     this.endpoints =
       chatConfig.endpoints ?? EndpointsFactory.getEndpoints(this.chatConfig);
-    this.promptPackage = promptPackage ?? "stable";
+    this.promptPackage = internalConfig?.promptPackage ?? "stable";
   }
 
   /**

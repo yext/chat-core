@@ -1,4 +1,4 @@
-export { ChatConfig } from "./ChatConfig";
+export { ChatConfig, InternalConfig } from "./ChatConfig";
 
 export { Endpoints } from "./endpoints/Endpoints";
 export { Environment } from "./endpoints/Environment";

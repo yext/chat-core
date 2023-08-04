@@ -3,8 +3,8 @@ import {
   MessageRequest,
   MessageResponse,
   MessageSource,
+  ProvideChatCore,
 } from "../src";
-import { ChatCore } from "../src/ChatCore";
 import { defaultApiVersion } from "../src/constants";
 import { HttpServiceImpl } from "../src/http/HttpService";
 
@@ -49,7 +49,7 @@ it("returns message response on successful API response", async () => {
     response: expectedMessageResponse,
     meta: {},
   });
-  const chatCore = new ChatCore({
+  const chatCore = ProvideChatCore({
     botId: "my-bot",
     apiKey: "my-api-key",
     version: "STAGING",
@@ -77,7 +77,7 @@ it("returns rejected promise on a failed API response", async () => {
     },
     false
   );
-  const chatCore = new ChatCore(defaultConfig);
+  const chatCore = ProvideChatCore(defaultConfig);
   await expect(
     chatCore.getNextMessage(mockedMessageRequest)
   ).rejects.toThrowError(
@@ -88,7 +88,7 @@ it("returns rejected promise on a failed API response", async () => {
 describe("URL and http request construction", () => {
   it("sets default endpoint and businessId when not specified for Chat API", async () => {
     const httpServiceSpy = mockHttpPost();
-    const chatCore = new ChatCore(defaultConfig);
+    const chatCore = ProvideChatCore(defaultConfig);
     await chatCore.getNextMessage(mockedMessageRequest);
     expect(httpServiceSpy).toHaveBeenCalledWith(
       "https://liveapi.yext.com/v2/accounts/me/chat/my-bot/message",
@@ -100,7 +100,7 @@ describe("URL and http request construction", () => {
 
   it("sets default endpoint and businessId when not specified for Chat Stream API", async () => {
     const httpServiceSpy = mockHttpPost();
-    const chatCore = new ChatCore(defaultConfig);
+    const chatCore = ProvideChatCore(defaultConfig);
     await chatCore.streamNextMessage(mockedMessageRequest);
     expect(httpServiceSpy).toHaveBeenCalledWith(
       "https://liveapi.yext.com/v2/accounts/me/chat/my-bot/message/streaming",
@@ -120,7 +120,7 @@ describe("URL and http request construction", () => {
 
   it("sets custom endpoints when specified for Chat API", async () => {
     const httpServiceSpy = mockHttpPost();
-    const chatCore = new ChatCore(configWithEndpoints);
+    const chatCore = ProvideChatCore(configWithEndpoints);
     await chatCore.getNextMessage(mockedMessageRequest);
     expect(httpServiceSpy).toHaveBeenCalledWith(
       "https://my-custom-domain.com/",
@@ -139,7 +139,7 @@ describe("URL and http request construction", () => {
 
   it("sets custom endpoints when specified for Chat Stream API", async () => {
     const httpServiceSpy = mockHttpPost();
-    const chatCore = new ChatCore(configWithEndpoints);
+    const chatCore = ProvideChatCore(configWithEndpoints);
     await chatCore.streamNextMessage(mockedMessageRequest);
     expect(httpServiceSpy).toHaveBeenCalledWith(
       "https://my-custom-stream-domain.com/",
@@ -163,7 +163,7 @@ describe("URL and http request construction", () => {
 
   it("sets custom version when specified for Chat API", async () => {
     const httpServiceSpy = mockHttpPost();
-    const chatCore = new ChatCore(configWithVersion);
+    const chatCore = ProvideChatCore(configWithVersion);
     await chatCore.getNextMessage(mockedMessageRequest);
     expect(httpServiceSpy).toHaveBeenCalledWith(
       "https://liveapi.yext.com/v2/accounts/me/chat/my-bot/message",
@@ -183,7 +183,7 @@ describe("URL and http request construction", () => {
 
   it("sets custom version when specified for Chat Stream API", async () => {
     const httpServiceSpy = mockHttpPost();
-    const chatCore = new ChatCore(configWithVersion);
+    const chatCore = ProvideChatCore(configWithVersion);
     await chatCore.streamNextMessage(mockedMessageRequest);
     expect(httpServiceSpy).toHaveBeenCalledWith(
       "https://liveapi.yext.com/v2/accounts/me/chat/my-bot/message/streaming",
