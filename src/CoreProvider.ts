@@ -5,7 +5,7 @@ import { ChatConfig, InternalConfig } from "./models";
  * Provider for the ChatCore library
  * @public
  */
-export function ProvideChatCore(config: ChatConfig): ChatCore {
+export function provideChatCore(config: ChatConfig): ChatCore {
   return new ChatCore(config);
 }
 
@@ -13,7 +13,7 @@ export function ProvideChatCore(config: ChatConfig): ChatCore {
  * Provider for the ChatCore library with additional internal-only configuration
  * @internal
  */
-export function ProvideChatCoreInternal(
+export function provideChatCoreInternal(
   config: ChatConfig,
   internal: InternalConfig
 ): ChatCore {

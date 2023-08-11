@@ -20,7 +20,7 @@ import { ApiResponseValidator } from "./validation/ApiResponseValidator";
 /**
  * The entrypoint to the chat-core library. Provides methods for interacting with Chat API.
  *
- * @internal
+ * @public
  */
 export class ChatCore {
   private chatConfig: ChatConfig;
