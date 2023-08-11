@@ -16,7 +16,7 @@ export interface MessageResponse
 
 |  Property | Modifiers | Type | Description |
 |  --- | --- | --- | --- |
-|  [conversationId](./chat-core.messageresponse.conversationid.md) |  | string | The id corresponds to the current conversation. |
+|  [conversationId?](./chat-core.messageresponse.conversationid.md) |  | string | _(Optional)_ The id corresponds to the current conversation. |
 |  [message](./chat-core.messageresponse.message.md) |  | [Message](./chat-core.message.md) | The generated reply to the latest message in the request. |
 |  [notes](./chat-core.messageresponse.notes.md) |  | [MessageNotes](./chat-core.messagenotes.md) | Information relevant to the current state of the conversation, serving as the bot’s "memory" regarding what work it previously did to help determine future actions. |
 
