@@ -80,7 +80,7 @@ export interface MessageRequest {
 
 // @public
 export interface MessageResponse {
-    conversationId: string;
+    conversationId?: string;
     message: Message;
     notes: MessageNotes;
 }

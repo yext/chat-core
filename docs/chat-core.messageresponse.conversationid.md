@@ -9,5 +9,10 @@ The id corresponds to the current conversation.
 **Signature:**
 
 ```typescript
-conversationId: string;
+conversationId?: string;
 ```
+
+## Remarks
+
+This is undefined only when it's an initial bot response without any user message present.
+
