@@ -4,13 +4,17 @@
 
 ## ChatCore class
 
-The entrypoint to the chat-core library. Provides methods for interacting with Chat API.
+The primary class for the chat-core library. Provides methods for interacting with Chat API.
 
 **Signature:**
 
 ```typescript
 export declare class ChatCore 
 ```
+
+## Remarks
+
+When creating a ChatCore instance, it is recommended to use the [provideChatCore()](./chat-core.providechatcore.md) method
 
 ## Constructors
 

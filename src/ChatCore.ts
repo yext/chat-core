@@ -18,7 +18,10 @@ import { QueryParams } from "./models/http/params";
 import { ApiResponseValidator } from "./validation/ApiResponseValidator";
 
 /**
- * The entrypoint to the chat-core library. Provides methods for interacting with Chat API.
+ * The primary class for the chat-core library. Provides methods for interacting with Chat API.
+ *
+ * @remarks
+ * When creating a ChatCore instance, it is recommended to use the {@link provideChatCore} method
  *
  * @public
  */

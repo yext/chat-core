@@ -8,7 +8,7 @@
 
 |  Class | Description |
 |  --- | --- |
-|  [ChatCore](./chat-core.chatcore.md) | The entrypoint to the chat-core library. Provides methods for interacting with Chat API. |
+|  [ChatCore](./chat-core.chatcore.md) | The primary class for the chat-core library. Provides methods for interacting with Chat API. |
 |  [StreamResponse](./chat-core.streamresponse.md) | Wrapper class around [RawResponse](./chat-core.rawresponse.md) that provides an interface for working with Chat's streaming data in both browser and Node environments. |
 
 ## Enumerations

@@ -9,9 +9,9 @@ a networking library for interacting with the Yext Chat API
 ## Usage
 
 ```typescript
-import { ChatCore, StreamEventName, Message } from "@yext/chat-core";
+import { provideChatCore, StreamEventName, Message } from "@yext/chat-core";
 
-const chatCore = new ChatCore({
+const chatCore = provideChatCore({
   botId: "YOUR_BOT_ID",
   apiKey: "YOUR_API_KEY",
 });
