@@ -18,14 +18,14 @@ export interface ChatConfig {
 }
 
 // @public
-export class ChatCore {
-    // Warning: (ae-incompatible-release-tags) The symbol "__constructor" is marked as @public, but its signature references "InternalConfig" which is marked as @internal
-    constructor(chatConfig: ChatConfig, internalConfig?: InternalConfig);
+export interface ChatCore {
     getNextMessage(request: MessageRequest): Promise<MessageResponse>;
     streamNextMessage(request: MessageRequest): Promise<StreamResponse>;
 }
 
-// @public
+// Warning: (ae-internal-missing-underscore) The name "ChatPrompt" should be prefixed with an underscore because the declaration is marked as @internal
+//
+// @internal
 export type ChatPrompt = "stable" | "nightly";
 
 // @public

@@ -1,31 +1,29 @@
-import { defaultApiVersion } from "./constants";
-import { HttpService, HttpServiceImpl } from "./http/HttpService";
-import { EndpointsFactory } from "./infra/EndpointsFactory";
-import { StreamResponse } from "./infra/StreamResponse";
+import { defaultApiVersion } from "../constants";
+import { HttpService, HttpServiceImpl } from "../http/HttpService";
+import { EndpointsFactory } from "./EndpointsFactory";
+import { StreamResponse } from "./StreamResponse";
 import {
+  ChatCore,
   ChatConfig,
   InternalConfig,
   MessageRequest,
   MessageResponse,
-} from "./models";
-import { Endpoints } from "./models/endpoints/Endpoints";
+  Endpoints,
+  ChatPrompt
+} from "../models";
 import {
   ApiMessageRequest,
-  ChatPrompt,
-} from "./models/endpoints/MessageRequest";
-import { ApiResponse } from "./models/http/ApiResponse";
-import { QueryParams } from "./models/http/params";
-import { ApiResponseValidator } from "./validation/ApiResponseValidator";
+} from "../models/endpoints/MessageRequest";
+import { ApiResponse } from "../models/http/ApiResponse";
+import { QueryParams } from "../models/http/params";
+import { ApiResponseValidator } from "../validation/ApiResponseValidator";
 
 /**
- * The primary class for the chat-core library. Provides methods for interacting with Chat API.
+ * The primary class for the chat-core library.
  *
- * @remarks
- * When creating a ChatCore instance, it is recommended to use the {@link provideChatCore} method
- *
- * @public
+ * @internal
  */
-export class ChatCore {
+export class ChatCoreImpl implements ChatCore {
   private chatConfig: ChatConfig;
   private httpService: HttpService;
   private endpoints: Endpoints;
@@ -39,14 +37,6 @@ export class ChatCore {
     this.promptPackage = internalConfig?.promptPackage ?? "stable";
   }
 
-  /**
-   * Make a request to Chat API to generate the next message.
-   *
-   * @remarks
-   * If rejected, an Error is returned.
-   *
-   * @param request - request to get next message
-   */
   async getNextMessage(request: MessageRequest): Promise<MessageResponse> {
     const queryParams: QueryParams = { v: defaultApiVersion };
     const body: ApiMessageRequest = {
@@ -81,17 +71,6 @@ export class ChatCore {
     };
   }
 
-  /**
-   * Make a request to Chat streaming API to generate the next message
-   * and consume its tokens via server-sent events.
-   *
-   * @experimental
-   *
-   * @remarks
-   * If rejected, an Error is returned.
-   *
-   * @param request - request to get next message
-   */
   async streamNextMessage(request: MessageRequest): Promise<StreamResponse> {
     const queryParams: QueryParams = { v: defaultApiVersion };
     const body: ApiMessageRequest = {

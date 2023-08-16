@@ -1,4 +1,6 @@
-export { ChatConfig, InternalConfig } from "./ChatConfig";
+export { ChatCore } from "./ChatCore"
+export { ChatConfig } from "./ChatConfig";
+export { InternalConfig, ChatPrompt } from "./InternalConfig"
 
 export { Endpoints } from "./endpoints/Endpoints";
 export { Environment } from "./endpoints/Environment";
@@ -6,7 +8,7 @@ export { Region } from "./endpoints/Region";
 
 export { Message, MessageSource } from "./endpoints/Message";
 export { MessageNotes } from "./endpoints/MessageNotes";
-export { MessageRequest, ChatPrompt } from "./endpoints/MessageRequest";
+export { MessageRequest } from "./endpoints/MessageRequest";
 export { MessageResponse } from "./endpoints/MessageResponse";
 
 export {

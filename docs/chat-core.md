@@ -8,7 +8,6 @@
 
 |  Class | Description |
 |  --- | --- |
-|  [ChatCore](./chat-core.chatcore.md) | The primary class for the chat-core library. Provides methods for interacting with Chat API. |
 |  [StreamResponse](./chat-core.streamresponse.md) | Wrapper class around [RawResponse](./chat-core.rawresponse.md) that provides an interface for working with Chat's streaming data in both browser and Node environments. |
 
 ## Enumerations
@@ -31,6 +30,7 @@
 |  Interface | Description |
 |  --- | --- |
 |  [ChatConfig](./chat-core.chatconfig.md) | The configuration options for [ChatCore](./chat-core.chatcore.md)<!-- -->. |
+|  [ChatCore](./chat-core.chatcore.md) | Provide methods for interacting with Chat API. |
 |  [EndEvent](./chat-core.endevent.md) | An event that indicates end of Chat stream. |
 |  [Endpoints](./chat-core.endpoints.md) | The URLs which are used when making requests to the Chat API. |
 |  [Message](./chat-core.message.md) | Represents a message within a conversation. |
@@ -45,7 +45,6 @@
 
 |  Type Alias | Description |
 |  --- | --- |
-|  [ChatPrompt](./chat-core.chatprompt.md) | The type of prompts to be used by the Chat bot. Experimental changes to prompts will be applied to the "nightly" package and subsequently moved into "stable" after performance and reliability are verified. It is STRONGLY recommended not to use "nightly" in production Chat bots. |
 |  [EnumOrLiteral](./chat-core.enumorliteral.md) | Produces a union type from the enum passed as a generic which consists of the enum values and the string literals of the enum. |
 |  [RawResponse](./chat-core.rawresponse.md) | Raw response from Chat API. |
 |  [StreamEvent](./chat-core.streamevent.md) | Types of stream events returned from Chat Stream API. |

@@ -1,6 +1,6 @@
 {
   "name": "@yext/chat-core",
-  "version": "0.6.0",
+  "version": "0.6.1",
   "description": "Typescript Networking Library for the Yext Chat API",
   "main": "./dist/commonjs/index.js",
   "module": "./dist/esm/index.js",
@@ -30,6 +30,8 @@
     "tsc-esm": "tsc -p tsconfig.esm.json",
     "dev": "npm run tsc-esm -- --watch",
     "generate-notices": "generate-license-file --input package.json --output THIRD-PARTY-NOTICES --overwrite",
+    "api-extractor": "api-extractor run --local --verbose",
+    "api-documentor": "api-documenter markdown --input-folder temp --output-folder docs && rm -rf temp",
     "generate-docs": "api-extractor run --local --verbose && api-documenter markdown --input-folder temp --output-folder docs && rm -rf temp",
     "build": "rm -rf dist/** && npm run tsc-esm && npm run tsc-cjs && npm run generate-docs && npm run generate-notices"
   },
