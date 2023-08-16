@@ -2,7 +2,6 @@ import { Region } from "./endpoints/Region";
 import { Environment } from "./endpoints/Environment";
 import { EnumOrLiteral } from "./utils/EnumOrLiteral";
 import { Endpoints } from "./endpoints/Endpoints";
-import { ChatPrompt } from "./endpoints/MessageRequest";
 
 /**
  * The configuration options for {@link ChatCore}.
@@ -43,12 +42,4 @@ export interface ChatConfig {
   region?: EnumOrLiteral<Region>;
   /** Overrides for the URLs which are used when making requests to the Chat API. */
   endpoints?: Endpoints;
-}
-
-/**
- * Experimental or internal-only features for Chat Core
- * @internal
- */
-export interface InternalConfig {
-  promptPackage?: ChatPrompt;
 }
