@@ -4,7 +4,7 @@
 
 ## ChatCore class
 
-The entrypoint to the chat-core library. Provides methods for interacting with Chat API.
+The primary class for the chat-core library. Provides methods for interacting with Chat API.
 
 **Signature:**
 
@@ -12,11 +12,15 @@ The entrypoint to the chat-core library. Provides methods for interacting with C
 export declare class ChatCore 
 ```
 
+## Remarks
+
+When creating a ChatCore instance, it is recommended to use the [provideChatCore()](./chat-core.providechatcore.md) method
+
 ## Constructors
 
 |  Constructor | Modifiers | Description |
 |  --- | --- | --- |
-|  [(constructor)(chatConfig, promptPackage)](./chat-core.chatcore._constructor_.md) |  | Constructs a new instance of the <code>ChatCore</code> class |
+|  [(constructor)(chatConfig, internalConfig)](./chat-core.chatcore._constructor_.md) |  | Constructs a new instance of the <code>ChatCore</code> class |
 
 ## Methods
 

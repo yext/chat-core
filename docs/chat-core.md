@@ -8,7 +8,7 @@
 
 |  Class | Description |
 |  --- | --- |
-|  [ChatCore](./chat-core.chatcore.md) | The entrypoint to the chat-core library. Provides methods for interacting with Chat API. |
+|  [ChatCore](./chat-core.chatcore.md) | The primary class for the chat-core library. Provides methods for interacting with Chat API. |
 |  [StreamResponse](./chat-core.streamresponse.md) | Wrapper class around [RawResponse](./chat-core.rawresponse.md) that provides an interface for working with Chat's streaming data in both browser and Node environments. |
 
 ## Enumerations
@@ -19,6 +19,12 @@
 |  [MessageSource](./chat-core.messagesource.md) | Types of sender of a message. |
 |  [Region](./chat-core.region.md) | The region to send the requests to. |
 |  [StreamEventName](./chat-core.streameventname.md) | Names of stream events returned from Chat Stream API. |
+
+## Functions
+
+|  Function | Description |
+|  --- | --- |
+|  [provideChatCore(config)](./chat-core.providechatcore.md) | Provider for the ChatCore library |
 
 ## Interfaces
 

@@ -19,7 +19,8 @@ export interface ChatConfig {
 
 // @public
 export class ChatCore {
-    constructor(chatConfig: ChatConfig, promptPackage?: ChatPrompt);
+    // Warning: (ae-incompatible-release-tags) The symbol "__constructor" is marked as @public, but its signature references "InternalConfig" which is marked as @internal
+    constructor(chatConfig: ChatConfig, internalConfig?: InternalConfig);
     getNextMessage(request: MessageRequest): Promise<MessageResponse>;
     streamNextMessage(request: MessageRequest): Promise<StreamResponse>;
 }
@@ -48,6 +49,14 @@ export enum Environment {
     PRODUCTION = "PRODUCTION",
     // (undocumented)
     SANDBOX = "SANDBOX"
+}
+
+// Warning: (ae-internal-missing-underscore) The name "InternalConfig" should be prefixed with an underscore because the declaration is marked as @internal
+//
+// @internal
+export interface InternalConfig {
+    // (undocumented)
+    promptPackage?: ChatPrompt;
 }
 
 // @public
@@ -90,6 +99,14 @@ export enum MessageSource {
     BOT = "BOT",
     USER = "USER"
 }
+
+// @public
+export function provideChatCore(config: ChatConfig): ChatCore;
+
+// Warning: (ae-internal-missing-underscore) The name "provideChatCoreInternal" should be prefixed with an underscore because the declaration is marked as @internal
+//
+// @internal
+export function provideChatCoreInternal(config: ChatConfig, internal: InternalConfig): ChatCore;
 
 // @public
 export type RawResponse = Response | Response_2;
