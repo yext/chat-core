@@ -1,13 +1,13 @@
-import { ChatCore, StreamEventName } from "@yext/chat-core";
+import { StreamEventName, provideChatCore } from "@yext/chat-core";
 
-let chatCore = new ChatCore({
+let chatCore = provideChatCore({
   // will be replace with actual env value during rollup build process
   apiKey: process.env.TEST_BOT_API_KEY || "API_KEY_PLACEHOLDER",
   botId: process.env.TEST_BOT_ID,
   endpoints: {
     chat: `https://liveapi-dev.yext.com/v2/accounts/me/chat/${process.env.TEST_BOT_ID}/message`,
     chatStream: `https://liveapi-dev.yext.com/v2/accounts/me/chat/${process.env.TEST_BOT_ID}/message/streaming`,
-  }
+  },
 });
 
 window.getNextMessage = async () => {

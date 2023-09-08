@@ -9,11 +9,9 @@ import {
   MessageRequest,
   MessageResponse,
   Endpoints,
-  ChatPrompt
+  ChatPrompt,
 } from "../models";
-import {
-  ApiMessageRequest,
-} from "../models/endpoints/MessageRequest";
+import { ApiMessageRequest } from "../models/endpoints/MessageRequest";
 import { ApiResponse } from "../models/http/ApiResponse";
 import { QueryParams } from "../models/http/params";
 import { ApiResponseValidator } from "../validation/ApiResponseValidator";
