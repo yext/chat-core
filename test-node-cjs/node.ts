@@ -1,18 +1,21 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import http from "http";
-import { ChatCore, StreamEventName } from "@yext/chat-core";
+import { ChatConfig, StreamEventName, provideChatCore } from "@yext/chat-core";
 import dotenv from "dotenv";
 
 dotenv.config();
 
-const config = {
+const config: ChatConfig = {
   apiKey: process.env["TEST_BOT_API_KEY"] || "API_KEY_PLACEHOLDER",
   botId: process.env["TEST_BOT_ID"] || "BOT_ID_PLACEHOLDER",
-  apiDomain: "liveapi-dev.yext.com",
+  endpoints: {
+    chat: `https://liveapi-dev.yext.com/v2/accounts/me/chat/${process.env.TEST_BOT_ID}/message`,
+    chatStream: `https://liveapi-dev.yext.com/v2/accounts/me/chat/${process.env.TEST_BOT_ID}/message/streaming`,
+  },
 };
 
 async function stream(res: any) {
-  const chatCore = new ChatCore(config);
+  const chatCore = provideChatCore(config);
   const stream = await chatCore.streamNextMessage({
     messages: [
       {
@@ -39,7 +42,7 @@ const server = http.createServer(async (req: any, res: any) => {
   if (req.url === "/streaming") {
     stream(res);
   } else {
-    const chatCore = new ChatCore(config);
+    const chatCore = provideChatCore(config);
     const reply = await chatCore.getNextMessage({
       messages: [],
     });

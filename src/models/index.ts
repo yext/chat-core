@@ -1,6 +1,6 @@
-export { ChatCore } from "./ChatCore"
+export { ChatCore } from "./ChatCore";
 export { ChatConfig } from "./ChatConfig";
-export { InternalConfig, ChatPrompt } from "./InternalConfig"
+export { InternalConfig, ChatPrompt } from "./InternalConfig";
 
 export { Endpoints } from "./endpoints/Endpoints";
 export { Environment } from "./endpoints/Environment";

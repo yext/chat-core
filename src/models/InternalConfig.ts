@@ -4,7 +4,7 @@
  * package and subsequently moved into "stable" after performance and
  * reliability are verified. It is STRONGLY recommended not to use
  * "nightly" in production Chat bots.
- * 
+ *
  * @internal
  */
 export type ChatPrompt = "stable" | "nightly";

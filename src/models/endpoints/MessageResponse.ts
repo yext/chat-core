@@ -9,7 +9,7 @@ import { MessageNotes } from "./MessageNotes";
 export interface MessageResponse {
   /**
    * The id corresponds to the current conversation.
-   * 
+   *
    * @remarks
    * This is undefined only when it's an initial bot response without any user message present.
    */
