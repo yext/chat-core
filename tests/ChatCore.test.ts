@@ -14,7 +14,6 @@ const mockedMessageRequest: MessageRequest = {
     foo: "bar",
   },
   messages: [],
-  promptPackage: "stable",
 };
 
 const defaultConfig: ChatConfig = {
@@ -131,7 +130,7 @@ describe("URL and http request construction", () => {
           foo: "bar",
         },
         messages: [],
-        promptPackage: "stable",
+
       },
       "my-api-key"
     );
@@ -150,7 +149,6 @@ describe("URL and http request construction", () => {
           foo: "bar",
         },
         messages: [],
-        promptPackage: "stable",
       },
       "my-api-key"
     );
@@ -175,7 +173,6 @@ describe("URL and http request construction", () => {
           foo: "bar",
         },
         messages: [],
-        promptPackage: "stable",
       },
       "my-api-key"
     );
@@ -195,7 +192,6 @@ describe("URL and http request construction", () => {
           foo: "bar",
         },
         messages: [],
-        promptPackage: "stable",
       },
       "my-api-key"
     );

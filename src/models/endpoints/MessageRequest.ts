@@ -40,19 +40,6 @@ export interface MessageRequest {
    */
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   context?: any;
-  /**
-   * promptPackage corresponds to the package of prompts which will be used
-   * to carry out the instruction steps. When set to "nightly", the bot will
-   * use the most recent updates to the prompts, which may include experimental
-   * changes.
-   * It is STRONGLY recommended to use the default "stable" for your bot.
-   *
-   * @remarks
-   * The set of prompts which will be used by the bot's instruction steps.
-   * Defaults to "stable", which is the set of tested and verified prompts.
-   * @internal
-   */
-  promptPackage?: ChatPrompt;
 }
 
 /**
@@ -69,6 +56,8 @@ export interface ApiMessageRequest {
   messages: Message[];
   /** {@inheritDoc MessageNotes} */
   notes?: MessageNotes;
-  /** {@inheritdoc MessageRequest.promptPackage} */
+  /** {@inheritDoc InternalConfig.promptPackage} */
   promptPackage?: ChatPrompt;
+  /** {@inheritDoc InternalConfig.aiMode} */
+  aiMode?: string;
 }

@@ -9,7 +9,6 @@ import {
   MessageRequest,
   MessageResponse,
   Endpoints,
-  ChatPrompt,
 } from "../models";
 import { ApiMessageRequest } from "../models/endpoints/MessageRequest";
 import { ApiResponse } from "../models/http/ApiResponse";
@@ -25,14 +24,13 @@ export class ChatCoreImpl implements ChatCore {
   private chatConfig: ChatConfig;
   private httpService: HttpService;
   private endpoints: Endpoints;
-  private promptPackage: ChatPrompt;
+  private internalConfig: InternalConfig;
 
-  constructor(chatConfig: ChatConfig, internalConfig?: InternalConfig) {
+  constructor(chatConfig: ChatConfig, internalConfig: InternalConfig = {}) {
     this.chatConfig = chatConfig;
     this.httpService = new HttpServiceImpl();
-    this.endpoints =
-      chatConfig.endpoints ?? EndpointsFactory.getEndpoints(this.chatConfig);
-    this.promptPackage = internalConfig?.promptPackage ?? "stable";
+    this.endpoints = chatConfig.endpoints ?? EndpointsFactory.getEndpoints(this.chatConfig);
+    this.internalConfig = internalConfig
   }
 
   async getNextMessage(request: MessageRequest): Promise<MessageResponse> {
@@ -40,7 +38,8 @@ export class ChatCoreImpl implements ChatCore {
     const body: ApiMessageRequest = {
       ...request,
       version: this.chatConfig.version,
-      promptPackage: this.promptPackage,
+      promptPackage: this.internalConfig.promptPackage,
+      aiMode: this.internalConfig.aiMode
     };
     const rawResponse = await this.httpService.post(
       this.endpoints.chat,
@@ -74,7 +73,8 @@ export class ChatCoreImpl implements ChatCore {
     const body: ApiMessageRequest = {
       ...request,
       version: this.chatConfig.version,
-      promptPackage: this.promptPackage,
+      promptPackage: this.internalConfig.promptPackage,
+      aiMode: this.internalConfig.aiMode
     };
     const rawResponse = await this.httpService.post(
       this.endpoints.chatStream,
