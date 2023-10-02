@@ -55,7 +55,7 @@ export enum Environment {
 //
 // @internal
 export interface InternalConfig {
-    // (undocumented)
+    aiMode?: string;
     promptPackage?: ChatPrompt;
 }
 
@@ -83,8 +83,6 @@ export interface MessageRequest {
     conversationId?: string;
     messages: Message[];
     notes?: MessageNotes;
-    // @internal
-    promptPackage?: ChatPrompt;
 }
 
 // @public
