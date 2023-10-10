@@ -22,5 +22,5 @@ export interface ChatConfig
 |  [endpoints?](./chat-core.chatconfig.endpoints.md) |  | [Endpoints](./chat-core.endpoints.md) | _(Optional)_ Overrides for the URLs which are used when making requests to the Chat API. |
 |  [env?](./chat-core.chatconfig.env.md) |  | [EnumOrLiteral](./chat-core.enumorliteral.md)<!-- -->&lt;[Environment](./chat-core.environment.md)<!-- -->&gt; | _(Optional)_ Defines the environment of the API domains. |
 |  [region?](./chat-core.chatconfig.region.md) |  | [EnumOrLiteral](./chat-core.enumorliteral.md)<!-- -->&lt;[Region](./chat-core.region.md)<!-- -->&gt; | _(Optional)_ The region to send the requests to. |
-|  [version?](./chat-core.chatconfig.version.md) |  | "STAGING" \| "PRODUCTION" \| number | _(Optional)_ The version of the chat bot configuration. |
+|  [version?](./chat-core.chatconfig.version.md) |  | string | _(Optional)_ The version of the chat bot configuration. |
 

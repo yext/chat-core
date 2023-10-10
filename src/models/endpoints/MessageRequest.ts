@@ -51,7 +51,7 @@ export interface ApiMessageRequest {
   /** {@inheritdoc MessageRequest.conversationId} */
   conversationId?: string;
   /** {@inheritDoc ChatConfig.version} */
-  version?: "STAGING" | "PRODUCTION" | number;
+  version?: string;
   /** {@inheritDoc MessageRequest.messages} */
   messages: Message[];
   /** {@inheritDoc MessageNotes} */

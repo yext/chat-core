@@ -14,7 +14,7 @@ export interface ChatConfig {
     endpoints?: Endpoints;
     env?: EnumOrLiteral<Environment>;
     region?: EnumOrLiteral<Region>;
-    version?: "STAGING" | "PRODUCTION" | number;
+    version?: string;
 }
 
 // @public
