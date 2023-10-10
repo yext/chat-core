@@ -9,14 +9,14 @@ The version of the chat bot configuration.
 **Signature:**
 
 ```typescript
-version?: "STAGING" | "PRODUCTION" | number;
+version?: string;
 ```
 
 ## Remarks
 
-May be a configuration label (string) or a configuration version (number). Default to 'STAGING' in Chat API
+Default to 'STAGING' in Chat API
 
 ## Example
 
-Examples: 'STAGING', 42
+Examples: 'STAGING', 'PRODUCTION', '42'
 

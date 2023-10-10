@@ -19,13 +19,12 @@ export interface ChatConfig {
    * The version of the chat bot configuration.
    *
    * @remarks
-   * May be a configuration label (string) or a configuration version (number).
    * Default to 'STAGING' in Chat API
    *
    * @example
-   * Examples: 'STAGING', 42
+   * Examples: 'STAGING', 'PRODUCTION', '42'
    */
-  version?: "STAGING" | "PRODUCTION" | number;
+  version?: string;
   /**
    * Defines the environment of the API domains.
    *
