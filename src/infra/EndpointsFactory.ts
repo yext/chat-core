@@ -15,9 +15,9 @@ export class EndpointsFactory {
       case Region.US:
         switch (env) {
           case Environment.SANDBOX:
-            return "liveapi-sandbox.yext.com";
+            return "sbx-cdn.yextapis.com";
           default:
-            return "liveapi.yext.com";
+            return "cdn.yextapis.com";
         }
       case Region.EU:
         if (env === Environment.PRODUCTION) {
