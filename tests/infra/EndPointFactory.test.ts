@@ -5,8 +5,8 @@ it("provides proper endpoint for default env, region, and businessId", () => {
     botId: "my-bot",
   });
   expect(endpoints).toEqual({
-    chat: `https://liveapi.yext.com/v2/accounts/me/chat/my-bot/message`,
-    chatStream: `https://liveapi.yext.com/v2/accounts/me/chat/my-bot/message/streaming`,
+    chat: `https://cdn.yextapis.com/v2/accounts/me/chat/my-bot/message`,
+    chatStream: `https://cdn.yextapis.com/v2/accounts/me/chat/my-bot/message/streaming`,
   });
 });
 
@@ -16,8 +16,8 @@ it("provides proper endpoint for custom env", () => {
     env: "SANDBOX",
   });
   expect(endpoints).toEqual({
-    chat: `https://liveapi-sandbox.yext.com/v2/accounts/me/chat/my-bot/message`,
-    chatStream: `https://liveapi-sandbox.yext.com/v2/accounts/me/chat/my-bot/message/streaming`,
+    chat: `https://sbx-cdn.yextapis.com/v2/accounts/me/chat/my-bot/message`,
+    chatStream: `https://sbx-cdn.yextapis.com/v2/accounts/me/chat/my-bot/message/streaming`,
   });
 });
 
@@ -38,8 +38,8 @@ it("provides proper endpoint for custom businessId", () => {
     businessId: 123,
   });
   expect(endpoints).toEqual({
-    chat: `https://liveapi.yext.com/v2/accounts/123/chat/my-bot/message`,
-    chatStream: `https://liveapi.yext.com/v2/accounts/123/chat/my-bot/message/streaming`,
+    chat: `https://cdn.yextapis.com/v2/accounts/123/chat/my-bot/message`,
+    chatStream: `https://cdn.yextapis.com/v2/accounts/123/chat/my-bot/message/streaming`,
   });
 });
 

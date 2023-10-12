@@ -90,7 +90,7 @@ describe("URL and http request construction", () => {
     const chatCore = provideChatCore(defaultConfig);
     await chatCore.getNextMessage(mockedMessageRequest);
     expect(httpServiceSpy).toHaveBeenCalledWith(
-      "https://liveapi.yext.com/v2/accounts/me/chat/my-bot/message",
+      "https://cdn.yextapis.com/v2/accounts/me/chat/my-bot/message",
       { v: defaultApiVersion },
       mockedMessageRequest,
       "my-api-key"
@@ -102,7 +102,7 @@ describe("URL and http request construction", () => {
     const chatCore = provideChatCore(defaultConfig);
     await chatCore.streamNextMessage(mockedMessageRequest);
     expect(httpServiceSpy).toHaveBeenCalledWith(
-      "https://liveapi.yext.com/v2/accounts/me/chat/my-bot/message/streaming",
+      "https://cdn.yextapis.com/v2/accounts/me/chat/my-bot/message/streaming",
       { v: defaultApiVersion },
       mockedMessageRequest,
       "my-api-key"
@@ -164,7 +164,7 @@ describe("URL and http request construction", () => {
     const chatCore = provideChatCore(configWithVersion);
     await chatCore.getNextMessage(mockedMessageRequest);
     expect(httpServiceSpy).toHaveBeenCalledWith(
-      "https://liveapi.yext.com/v2/accounts/me/chat/my-bot/message",
+      "https://cdn.yextapis.com/v2/accounts/me/chat/my-bot/message",
       { v: defaultApiVersion },
       {
         version: '42',
@@ -183,7 +183,7 @@ describe("URL and http request construction", () => {
     const chatCore = provideChatCore(configWithVersion);
     await chatCore.streamNextMessage(mockedMessageRequest);
     expect(httpServiceSpy).toHaveBeenCalledWith(
-      "https://liveapi.yext.com/v2/accounts/me/chat/my-bot/message/streaming",
+      "https://cdn.yextapis.com/v2/accounts/me/chat/my-bot/message/streaming",
       { v: defaultApiVersion },
       {
         version: '42',
