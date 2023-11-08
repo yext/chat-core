@@ -19,10 +19,10 @@ export interface ChatConfig {
    * The version of the chat bot configuration.
    *
    * @remarks
-   * Default to 'STAGING' in Chat API
+   * Default to 'LATEST' in Chat API
    *
    * @example
-   * Examples: 'STAGING', 'PRODUCTION', '42'
+   * Examples: 'LATEST', 'STAGING', 'PRODUCTION', '42'
    */
   version?: string;
   /**
