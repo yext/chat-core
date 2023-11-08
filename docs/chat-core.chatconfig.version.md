@@ -14,9 +14,9 @@ version?: string;
 
 ## Remarks
 
-Default to 'STAGING' in Chat API
+Default to 'LATEST' in Chat API
 
 ## Example
 
-Examples: 'STAGING', 'PRODUCTION', '42'
+Examples: 'LATEST', 'STAGING', 'PRODUCTION', '42'
 
