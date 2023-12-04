@@ -23,7 +23,7 @@
 
 |  Function | Description |
 |  --- | --- |
-|  [provideChatCore(config)](./chat-core.providechatcore.md) | Provider for the ChatCore library |
+|  [provideChatCore(config)](./chat-core.providechatcore.md) | Provider for the ChatCore library. This is a test |
 
 ## Interfaces
 
