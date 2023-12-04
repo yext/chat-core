@@ -130,7 +130,6 @@ describe("URL and http request construction", () => {
           foo: "bar",
         },
         messages: [],
-
       },
       "my-api-key"
     );
@@ -156,7 +155,7 @@ describe("URL and http request construction", () => {
 
   const configWithVersion: ChatConfig = {
     ...defaultConfig,
-    version: '42',
+    version: "42",
   };
 
   it("sets custom version when specified for Chat API", async () => {
@@ -167,7 +166,7 @@ describe("URL and http request construction", () => {
       "https://cdn.yextapis.com/v2/accounts/me/chat/my-bot/message",
       { v: defaultApiVersion },
       {
-        version: '42',
+        version: "42",
         conversationId: "my-id",
         context: {
           foo: "bar",
@@ -186,7 +185,7 @@ describe("URL and http request construction", () => {
       "https://cdn.yextapis.com/v2/accounts/me/chat/my-bot/message/streaming",
       { v: defaultApiVersion },
       {
-        version: '42',
+        version: "42",
         conversationId: "my-id",
         context: {
           foo: "bar",
