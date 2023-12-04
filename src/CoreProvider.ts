@@ -2,12 +2,12 @@ import { ChatCoreImpl } from "./infra/ChatCoreImpl";
 import { ChatConfig, InternalConfig, ChatCore } from "./models";
 
 /**
- * Provider for the ChatCore library
+ * Provider for the ChatCore library. This is a test
  *
  * @public
  */
-export function provideChatCore(config: ChatConfig): ChatCore {
-  return new ChatCoreImpl(config);
+export function provideChatCore(config    : ChatConfig  ): ChatCore {
+  return new ChatCoreImpl(config)
 }
 
 /**
