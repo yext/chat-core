@@ -4,7 +4,7 @@
 
 ## provideChatCore() function
 
-Provider for the ChatCore library. This is a test
+Provider for the ChatCore library.
 
 **Signature:**
 
