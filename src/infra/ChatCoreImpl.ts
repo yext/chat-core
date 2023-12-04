@@ -59,8 +59,8 @@ export class ChatCoreImpl implements ChatCore {
     return this.createMessageResponse(jsonResponse);
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   private createMessageResponse(data: any): MessageResponse {
-    //CLIP-303: type check data
     return {
       conversationId: data.response.conversationId,
       message: data.response.message,

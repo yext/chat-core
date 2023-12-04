@@ -15,6 +15,7 @@ enum RequestMethods {
  * @internal
  */
 export interface HttpService {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   post<K extends Record<string, any>>(
     url: string,
     queryParams: QueryParams,
@@ -32,6 +33,7 @@ export class HttpServiceImpl implements HttpService {
   /**
    * Performs a POST request.
    */
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   async post<K extends Record<string, any>>(
     url: string,
     queryParams: QueryParams,
