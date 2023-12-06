@@ -4,7 +4,7 @@
 
 ## provideChatCore() function
 
-Provider for the ChatCore library
+Provider for the ChatCore library.
 
 **Signature:**
 

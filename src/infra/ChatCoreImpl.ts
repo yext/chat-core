@@ -29,8 +29,9 @@ export class ChatCoreImpl implements ChatCore {
   constructor(chatConfig: ChatConfig, internalConfig: InternalConfig = {}) {
     this.chatConfig = chatConfig;
     this.httpService = new HttpServiceImpl();
-    this.endpoints = chatConfig.endpoints ?? EndpointsFactory.getEndpoints(this.chatConfig);
-    this.internalConfig = internalConfig
+    this.endpoints =
+      chatConfig.endpoints ?? EndpointsFactory.getEndpoints(this.chatConfig);
+    this.internalConfig = internalConfig;
   }
 
   async getNextMessage(request: MessageRequest): Promise<MessageResponse> {
@@ -39,7 +40,7 @@ export class ChatCoreImpl implements ChatCore {
       ...request,
       version: this.chatConfig.version,
       promptPackage: this.internalConfig.promptPackage,
-      aiMode: this.internalConfig.aiMode
+      aiMode: this.internalConfig.aiMode,
     };
     const rawResponse = await this.httpService.post(
       this.endpoints.chat,
@@ -59,8 +60,8 @@ export class ChatCoreImpl implements ChatCore {
     return this.createMessageResponse(jsonResponse);
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   private createMessageResponse(data: any): MessageResponse {
-    //CLIP-303: type check data
     return {
       conversationId: data.response.conversationId,
       message: data.response.message,
@@ -74,7 +75,7 @@ export class ChatCoreImpl implements ChatCore {
       ...request,
       version: this.chatConfig.version,
       promptPackage: this.internalConfig.promptPackage,
-      aiMode: this.internalConfig.aiMode
+      aiMode: this.internalConfig.aiMode,
     };
     const rawResponse = await this.httpService.post(
       this.endpoints.chatStream,

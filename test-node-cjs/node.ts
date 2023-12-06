@@ -1,6 +1,12 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import http from "http";
-import { ChatConfig, InternalConfig, MessageRequest, StreamEventName, provideChatCoreInternal } from "@yext/chat-core";
+import {
+  ChatConfig,
+  InternalConfig,
+  MessageRequest,
+  StreamEventName,
+  provideChatCoreInternal,
+} from "@yext/chat-core";
 import dotenv from "dotenv";
 
 dotenv.config();
@@ -14,7 +20,9 @@ const config: ChatConfig = {
   },
 };
 
-const internalConfig: InternalConfig = { /** for testing pursposes */}
+const internalConfig: InternalConfig = {
+  /** for testing pursposes */
+};
 
 const request: MessageRequest = {
   messages: [
@@ -22,9 +30,9 @@ const request: MessageRequest = {
       timestamp: "2023-05-17T19:21:21.915Z",
       source: "USER",
       text: "How do I send an email?",
-    }
-  ]
-}
+    },
+  ],
+};
 
 async function stream(res: any) {
   const chatCore = provideChatCoreInternal(config, internalConfig);

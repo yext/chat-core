@@ -2,7 +2,7 @@ import { ChatCoreImpl } from "./infra/ChatCoreImpl";
 import { ChatConfig, InternalConfig, ChatCore } from "./models";
 
 /**
- * Provider for the ChatCore library
+ * Provider for the ChatCore library.
  *
  * @public
  */

@@ -1,7 +1,4 @@
-This file was generated with the generate-license-file npm package!
-https://www.npmjs.com/package/generate-license-file
-
-The following npm package may be included in this product:
+The following NPM package may be included in this product:
 
  - cross-fetch@3.1.5
 
@@ -31,7 +28,7 @@ SOFTWARE.
 
 -----------
 
-The following npm package may be included in this product:
+The following NPM package may be included in this product:
 
  - node-fetch@2.6.7
 
@@ -61,7 +58,7 @@ SOFTWARE.
 
 -----------
 
-The following npm package may be included in this product:
+The following NPM package may be included in this product:
 
  - tr46@0.0.3
 
@@ -71,7 +68,7 @@ This package contains the following license and notice below:
 
 -----------
 
-The following npm package may be included in this product:
+The following NPM package may be included in this product:
 
  - webidl-conversions@3.0.1
 
@@ -92,7 +89,7 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
 
 -----------
 
-The following npm package may be included in this product:
+The following NPM package may be included in this product:
 
  - whatwg-url@5.0.0
 
@@ -122,5 +119,4 @@ THE SOFTWARE.
 
 -----------
 
-This file was generated with the generate-license-file npm package!
-https://www.npmjs.com/package/generate-license-file
+This file was generated with generate-license-file! https://www.npmjs.com/package/generate-license-file
