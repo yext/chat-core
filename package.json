@@ -1,6 +1,6 @@
 {
   "name": "@yext/chat-core",
-  "version": "0.7.5",
+  "version": "0.7.6",
   "description": "Typescript Networking Library for the Yext Chat API",
   "main": "./dist/commonjs/index.js",
   "module": "./dist/esm/index.mjs",

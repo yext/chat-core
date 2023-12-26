@@ -75,6 +75,7 @@ export interface MessageNotes {
     goalFirstMsgIndex?: number;
     queryResult?: object;
     searchQuery?: string;
+    suggestedReplies?: string[];
 }
 
 // @public
