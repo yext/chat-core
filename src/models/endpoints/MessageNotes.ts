@@ -21,4 +21,6 @@ export interface MessageNotes {
   collectedData?: Record<string, unknown>;
   /** The index of the message that started the current goal. */
   goalFirstMsgIndex?: number;
+  /** A set of pre-generated replies given by the AI. */
+  suggestedReplies?: string[];
 }

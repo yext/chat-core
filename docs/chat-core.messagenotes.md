@@ -26,4 +26,5 @@ This data will come from the API. As such, a user’s first request may have thi
 |  [goalFirstMsgIndex?](./chat-core.messagenotes.goalfirstmsgindex.md) |  | number | _(Optional)_ The index of the message that started the current goal. |
 |  [queryResult?](./chat-core.messagenotes.queryresult.md) |  | object | _(Optional)_ Data retrieved from Yext Search, REST api, etc. |
 |  [searchQuery?](./chat-core.messagenotes.searchquery.md) |  | string | _(Optional)_ The query used for Yext Search, REST api, etc. |
+|  [suggestedReplies?](./chat-core.messagenotes.suggestedreplies.md) |  | string\[\] | _(Optional)_ A set of pre-generated replies given by the AI. |
 
