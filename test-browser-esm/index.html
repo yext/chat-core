@@ -6,9 +6,20 @@
     <script type="module" src="./dist/bundle.js"></script>
   </head>
   <body>
-    <button onclick="getNextMessage()">Chat</button>
+    <!-- <button onclick="getNextMessage()">Chat</button>
     <p id="chatresult"></p>
     <button onclick="streamNextMessage()">Chat (Stream)</button>
-    <p id="chatresult-stream"></p>
+    <p id="chatresult-stream"></p> -->
+    <button onclick="getSwitchboard()">Get SwitchBoard</button>
+    <pre id="zendesk-switchboard"></pre>
+    <button onclick="getSwitchboardIntegrations()">Get SwitchBoard Integrations</button>
+    <pre id="zendesk-switchboard-integrations"></pre>
+    <button onclick="getConversation()">Get Zendesk Conversation</button>
+    <pre id="zendesk-conversation"></pre>
+    <button onclick="getZendeskMessages()">Get Zendesk Messages</button>
+    <pre id="zendesk-messages"></pre>
+    <input type="text" id="userInput">
+    <button onclick="sendMessage()">Send</button>
+    <pre id="zendesk-send-message"></pre>
   </body>
 </html>
