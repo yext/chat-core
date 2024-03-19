@@ -43,3 +43,59 @@ window.streamNextMessage = async () => {
   });
   stream.consume();
 };
+
+/**
+ * 
+ * UI to show the conversation ID + messages
+ * user post message
+ * show ChatApiServer receiving it and reply
+ * UI update to show latest message
+ * user post message asking for agent
+ * show in Zendesk UI that a conversation is created
+ * show that when the ticket is close, it suppose to go back to the bot.
+ */
+
+window.getZendeskMessages = async () => {
+  const res = await fetch("http://localhost:3030/zendesk/getMessages")
+  const data = await res.json()
+  const el = document.getElementById("zendesk-messages");
+  el.textContent = JSON.stringify(data, null, 2);
+  // data.messages?.forEach((message) => {
+  //   const p = document.createElement('p')
+  //   p.textContent = `[id: ${message.id} | timestamp: ${message.received}]\n${message.author.type == 'user' ? message.author.displayName : 'business'}: ${message.content.text}`
+  //   el.appendChild(p)
+  // })
+}
+
+window.getSwitchboard = async () => {
+  const res = await fetch("http://localhost:3030/zendesk/getSwitchboard")
+  const data = await res.json()
+  const el = document.getElementById("zendesk-switchboard");
+  el.textContent = JSON.stringify(data, null, 2);
+}
+
+window.getSwitchboardIntegrations = async () => {
+  const res = await fetch("http://localhost:3030/zendesk/getSwitchboardIntegrations")
+  const data = await res.json()
+  const el = document.getElementById("zendesk-switchboard-integrations");
+  el.textContent = JSON.stringify(data, null, 2);
+}
+
+window.getConversation = async () => {
+  const res = await fetch("http://localhost:3030/zendesk/getConversation")
+  const data = await res.json()
+  const el = document.getElementById("zendesk-conversation");
+  el.textContent = JSON.stringify(data, null, 2);
+}
+
+window.sendMessage = async () => {
+  const res = await fetch("http://localhost:3030/zendesk/sendMessage", {
+    method: "POST",
+    body: JSON.stringify({
+      text: document.getElementById("userInput").value
+    })
+  })
+  const data = await res.json()
+  const el = document.getElementById("zendesk-send-message");
+  el.textContent = JSON.stringify(data, null, 2);
+}
