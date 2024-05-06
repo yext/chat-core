@@ -12,7 +12,7 @@ export interface ChatCore {
    * Make a request to Chat API to generate the next message.
    *
    * @remarks
-   * If rejected, an Error is returned.
+   * If rejected, an {@link ApiError} is returned.
    *
    * @param request - request to get next message
    */
@@ -24,7 +24,7 @@ export interface ChatCore {
    * @experimental
    *
    * @remarks
-   * If rejected, an Error is returned.
+   * If rejected, an {@link ApiError} is returned.
    *
    * @param request - request to get next message
    */

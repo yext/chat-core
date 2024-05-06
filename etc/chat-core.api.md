@@ -7,6 +7,16 @@
 import { Response as Response_2 } from 'node-fetch';
 
 // @public
+export class ApiError extends Error {
+    // @internal
+    constructor(message: string, statusCode?: number, apiCode?: number, type?: string);
+    apiCode?: number;
+    message: string;
+    statusCode?: number;
+    type?: string;
+}
+
+// @public
 export interface ChatConfig {
     apiKey: string;
     botId: string;

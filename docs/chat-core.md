@@ -8,6 +8,7 @@
 
 |  Class | Description |
 |  --- | --- |
+|  [ApiError](./chat-core.apierror.md) | Represents an API error |
 |  [StreamResponse](./chat-core.streamresponse.md) | Wrapper class around [RawResponse](./chat-core.rawresponse.md) that provides an interface for working with Chat's streaming data in both browser and Node environments. |
 
 ## Enumerations

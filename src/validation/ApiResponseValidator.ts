@@ -1,3 +1,4 @@
+import { ApiError } from "../models/http/ApiError";
 import { ApiResponse } from "../models/http/ApiResponse";
 
 /**
@@ -6,14 +7,17 @@ import { ApiResponse } from "../models/http/ApiResponse";
  * @internal
  */
 export class ApiResponseValidator {
-  public static validate(apiResponse: ApiResponse): Error | undefined {
+  public static validate(
+    apiResponse: ApiResponse,
+    statusCode?: number
+  ): ApiError | undefined {
     const tests = [
       this.validateResponseProp,
       this.validateMetaProp,
       this.checkForApiErrors,
     ];
     for (const test of tests) {
-      const err = test(apiResponse);
+      const err = test(apiResponse, statusCode);
       if (err !== undefined) {
         return err;
       }
@@ -21,28 +25,36 @@ export class ApiResponseValidator {
   }
 
   private static validateResponseProp(
-    apiResponse: ApiResponse
-  ): Error | undefined {
+    apiResponse: ApiResponse,
+    statusCode?: number
+  ): ApiError | undefined {
     if (!apiResponse.response) {
-      return new Error(
-        "Malformed Chat API response: missing response property."
+      return new ApiError(
+        "Malformed Chat API response: missing response property.",
+        statusCode
       );
     }
   }
 
-  private static validateMetaProp(apiResponse: ApiResponse): Error | undefined {
+  private static validateMetaProp(
+    apiResponse: ApiResponse,
+    statusCode?: number
+  ): ApiError | undefined {
     if (!apiResponse.meta) {
-      return new Error("Malformed Chat API response: missing meta property.");
+      return new ApiError(
+        "Malformed Chat API response: missing meta property.",
+        statusCode
+      );
     }
   }
 
   private static checkForApiErrors(
-    apiResponse: ApiResponse
-  ): Error | undefined {
+    apiResponse: ApiResponse,
+    statusCode?: number
+  ): ApiError | undefined {
     if (apiResponse.meta?.errors?.length >= 1) {
       const error = apiResponse.meta.errors[0];
-      const { code, message, type } = error;
-      return new Error(`Chat API error: ${type}: ${message}. (code: ${code})`);
+      return new ApiError(error.message, statusCode, error.code, error.type);
     }
   }
 }

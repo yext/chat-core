@@ -20,6 +20,7 @@ export {
 } from "./endpoints/stream/StreamEvent";
 export { TokenStreamData } from "./endpoints/stream/TokenStreamData";
 export { RawResponse } from "./http/RawResponse";
+export { ApiError } from "./http/ApiError";
 export { StreamEventCallback } from "./endpoints/stream/StreamEventCallback";
 
 export { EnumOrLiteral } from "./utils/EnumOrLiteral";
