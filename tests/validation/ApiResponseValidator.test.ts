@@ -41,10 +41,10 @@ it("fails for a response without a meta property", () => {
 });
 
 it("fails for a response with an API error", () => {
-  const validationResponse = ApiResponseValidator.validate(errorResponse, 500);
+  const validationResponse = ApiResponseValidator.validate(errorResponse, 401);
   expect(validationResponse).toBeInstanceOf(ApiError);
   expect(validationResponse?.message).toEqual("Invalid API Key");
-  expect(validationResponse?.statusCode).toEqual(500);
+  expect(validationResponse?.statusCode).toEqual(401);
   expect(validationResponse?.apiCode).toEqual(1);
   expect(validationResponse?.type).toEqual("FATAL_ERROR");
 });
