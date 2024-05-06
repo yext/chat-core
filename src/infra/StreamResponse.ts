@@ -1,4 +1,9 @@
-import { EnumOrLiteral, StreamEvent, StreamEventName } from "../models";
+import {
+  ApiError,
+  EnumOrLiteral,
+  StreamEvent,
+  StreamEventName,
+} from "../models";
 import { RawResponse } from "../models/http/RawResponse";
 import { StreamEventCallback } from "../models/endpoints/stream/StreamEventCallback";
 import { ApiResponse } from "../models/http/ApiResponse";
@@ -68,16 +73,23 @@ export class StreamResponse {
     }
     const resBody = this.rawResponse.body;
     if (!resBody) {
-      return Promise.reject('Response Error: "body" property is undefined.');
+      return Promise.reject(
+        new ApiError('Response Error: "body" property is undefined.')
+      );
     }
 
     if (!this.rawResponse.ok) {
       const jsonResponse: ApiResponse = await this.rawResponse.json();
-      const validationResult = ApiResponseValidator.validate(jsonResponse);
-      return validationResult instanceof Error
+      const validationResult = ApiResponseValidator.validate(
+        jsonResponse,
+        this.rawResponse.status
+      );
+      return validationResult
         ? Promise.reject(validationResult)
         : Promise.reject(
-            "An error occurred while processing request to Chat API."
+            new ApiError(
+              "An error occurred while processing request to Chat API."
+            )
           );
     }
 

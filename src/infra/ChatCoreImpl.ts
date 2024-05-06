@@ -9,6 +9,7 @@ import {
   MessageRequest,
   MessageResponse,
   Endpoints,
+  ApiError,
 } from "../models";
 import { ApiMessageRequest } from "../models/endpoints/MessageRequest";
 import { ApiResponse } from "../models/http/ApiResponse";
@@ -50,11 +51,16 @@ export class ChatCoreImpl implements ChatCore {
     );
     const jsonResponse: ApiResponse = await rawResponse.json();
     if (!rawResponse.ok) {
-      const validationResult = ApiResponseValidator.validate(jsonResponse);
-      return validationResult instanceof Error
+      const validationResult = ApiResponseValidator.validate(
+        jsonResponse,
+        rawResponse.status
+      );
+      return validationResult
         ? Promise.reject(validationResult)
         : Promise.reject(
-            "An error occurred while processing request to Chat API."
+            new ApiError(
+              "An error occurred while processing request to Chat API."
+            )
           );
     }
     return this.createMessageResponse(jsonResponse);

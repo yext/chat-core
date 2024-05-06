@@ -1,6 +1,11 @@
-import { RawResponse, StreamEventName, StreamResponse } from "../../src";
+import {
+  ApiError,
+  RawResponse,
+  StreamEventName,
+  StreamResponse,
+} from "../../src";
 import { Readable } from "stream";
-import { ApiResponse } from "../../src/models/http/ApiResponse";
+import { errorResponse } from "../mocks";
 
 function mockResponse(rawData: string[]): RawResponse {
   return {
@@ -176,27 +181,12 @@ it("log error when attempt to read stream data multiple times", async () => {
 });
 
 it("rejects when response have a non-successful status code", async () => {
-  const expectedResponse: ApiResponse = {
-    response: {},
-    meta: {
-      uuid: "test",
-      errors: [
-        {
-          message: "Invalid API Key",
-          code: 1,
-          type: "FATAL_ERROR",
-        },
-      ],
-    },
-  };
   const stream = new StreamResponse({
     ok: false,
     body: {},
-    json: () => Promise.resolve(expectedResponse),
+    json: () => Promise.resolve(errorResponse),
   } as unknown as RawResponse);
-  await expect(stream.consume()).rejects.toThrow(
-    "Chat API error: FATAL_ERROR: Invalid API Key. (code: 1)"
-  );
+  await expect(stream.consume()).rejects.toThrow(ApiError);
 });
 
 it("rejects when error occurs while reading Web stream from response", async () => {

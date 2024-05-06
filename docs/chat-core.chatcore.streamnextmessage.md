@@ -24,5 +24,5 @@ Promise&lt;[StreamResponse](./chat-core.streamresponse.md)<!-- -->&gt;
 
 ## Remarks
 
-If rejected, an Error is returned.
+If rejected, an [ApiError](./chat-core.apierror.md) is returned.
 

@@ -1,4 +1,5 @@
 import {
+  ApiError,
   ChatConfig,
   MessageRequest,
   MessageResponse,
@@ -7,6 +8,7 @@ import {
 } from "../src";
 import { defaultApiVersion } from "../src/constants";
 import { HttpServiceImpl } from "../src/http/HttpService";
+import { errorResponse } from "./mocks";
 
 const mockedMessageRequest: MessageRequest = {
   conversationId: "my-id",
@@ -27,6 +29,7 @@ function mockHttpPost(
 ): jest.SpyInstance {
   return jest.spyOn(HttpServiceImpl.prototype, "post").mockResolvedValue({
     ok,
+    status: ok ? 200 : 500,
     json: () => Promise.resolve(expectedResponse),
   } as Response);
 }
@@ -61,26 +64,10 @@ it("returns message response on successful API response", async () => {
 });
 
 it("returns rejected promise on a failed API response", async () => {
-  mockHttpPost(
-    {
-      response: {},
-      meta: {
-        errors: [
-          {
-            message: "Invalid API Key",
-            code: 1,
-            type: "FATAL_ERROR",
-          },
-        ],
-      },
-    },
-    false
-  );
+  mockHttpPost(errorResponse, false);
   const chatCore = provideChatCore(defaultConfig);
-  await expect(
-    chatCore.getNextMessage(mockedMessageRequest)
-  ).rejects.toThrowError(
-    "Chat API error: FATAL_ERROR: Invalid API Key. (code: 1)"
+  await expect(chatCore.getNextMessage(mockedMessageRequest)).rejects.toThrow(
+    ApiError
   );
 });
 
