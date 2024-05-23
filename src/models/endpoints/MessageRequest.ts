@@ -58,6 +58,4 @@ export interface ApiMessageRequest {
   notes?: MessageNotes;
   /** {@inheritDoc InternalConfig.promptPackage} */
   promptPackage?: ChatPrompt;
-  /** {@inheritDoc InternalConfig.aiMode} */
-  aiMode?: string;
 }

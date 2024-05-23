@@ -41,7 +41,6 @@ export class ChatCoreImpl implements ChatCore {
       ...request,
       version: this.chatConfig.version,
       promptPackage: this.internalConfig.promptPackage,
-      aiMode: this.internalConfig.aiMode,
     };
     const rawResponse = await this.httpService.post(
       this.endpoints.chat,
@@ -81,7 +80,6 @@ export class ChatCoreImpl implements ChatCore {
       ...request,
       version: this.chatConfig.version,
       promptPackage: this.internalConfig.promptPackage,
-      aiMode: this.internalConfig.aiMode,
     };
     const rawResponse = await this.httpService.post(
       this.endpoints.chatStream,
