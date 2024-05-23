@@ -26,9 +26,4 @@ export interface InternalConfig {
    * Defaults to "stable", which is the set of tested and verified prompts.
    */
   promptPackage?: ChatPrompt;
-  /**
-   * Modes to determine types of models to use when sending requests the bot's
-   * instruction steps.
-   */
-  aiMode?: string;
 }

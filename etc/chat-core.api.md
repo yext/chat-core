@@ -65,7 +65,6 @@ export enum Environment {
 //
 // @internal
 export interface InternalConfig {
-    aiMode?: string;
     promptPackage?: ChatPrompt;
 }
 
