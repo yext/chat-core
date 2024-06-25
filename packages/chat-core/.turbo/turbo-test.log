@@ -1,0 +1,230 @@
+
+> @yext/chat-core@0.8.0 test
+> jest --config=jest.config.json
+
+[1m[2mDetermining test suites to run...[22m[22m[999D[K
+[K[1A[999D[K
+[K[1A
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtests/infra/[22m[1mStreamResponse.test.ts[22m
+[K[1A[K[1A
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtests/infra/[22m[1mStreamResponse.test.ts[22m
+[K[1A[K[1A
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtests/infra/[22m[1mStreamResponse.test.ts[22m
+[K[1A[K[1A
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtests/infra/[22m[1mStreamResponse.test.ts[22m
+[K[1A[K[1A
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtests/infra/[22m[1mStreamResponse.test.ts[22m
+[K[1A[K[1A
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtests/infra/[22m[1mStreamResponse.test.ts[22m
+[K[1A[K[1A
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtests/infra/[22m[1mStreamResponse.test.ts[22m
+[K[1A[K[1A
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtests/infra/[22m[1mStreamResponse.test.ts[22m
+[K[1A[K[1A
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtests/infra/[22m[1mStreamResponse.test.ts[22m
+[K[1A[K[1A
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtests/infra/[22m[1mStreamResponse.test.ts[22m
+[K[1A[K[1A
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtests/infra/[22m[1mStreamResponse.test.ts[22m
+[K[1A[K[1A
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtests/infra/[22m[1mStreamResponse.test.ts[22m
+[K[1A[K[1A[0m[7m[1m[32m PASS [39m[22m[27m[0m [2mtests/infra/[22m[1mStreamResponse.test.ts[22m
+
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtests/infra/[22m[1mStreamResponse.test.ts[22m
+[K[1A[K[1A  [32m✓[39m [2mallows for enum or string to register for the same event[22m
+
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtests/infra/[22m[1mStreamResponse.test.ts[22m
+[K[1A[K[1A  [32m✓[39m [2mhandles multiple stream events in one message[22m
+
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtests/infra/[22m[1mStreamResponse.test.ts[22m
+[K[1A[K[1A  [32m✓[39m [2mhandles stream event split into multiple data chunks (1 ms)[22m
+
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtests/infra/[22m[1mStreamResponse.test.ts[22m
+[K[1A[K[1A  [32m✓[39m [2mlog error on unknown stream event[22m
+
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtests/infra/[22m[1mStreamResponse.test.ts[22m
+[K[1A[K[1A  [32m✓[39m [2mlog error on unnamed stream event[22m
+
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtests/infra/[22m[1mStreamResponse.test.ts[22m
+[K[1A[K[1A  [32m✓[39m [2mlog error when attempt to read stream data multiple times[22m
+
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtests/infra/[22m[1mStreamResponse.test.ts[22m
+[K[1A[K[1A  [32m✓[39m [2mrejects when response have a non-successful status code (11 ms)[22m
+
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtests/infra/[22m[1mStreamResponse.test.ts[22m
+[K[1A[K[1A  [32m✓[39m [2mrejects when error occurs while reading Web stream from response (4 ms)[22m
+
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtests/infra/[22m[1mStreamResponse.test.ts[22m
+[K[1A[K[1A  [32m✓[39m [2mrejects when error occurs while reading Node stream from response (1 ms)[22m
+
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtests/infra/[22m[1mStreamResponse.test.ts[22m
+[K[1A[K[1A  process data from stream with event listeners as expected
+
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtests/infra/[22m[1mStreamResponse.test.ts[22m
+[K[1A[K[1A    [32m✓[39m [2mworks as expected with Web Stream API (3 ms)[22m
+
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtests/infra/[22m[1mStreamResponse.test.ts[22m
+[K[1A[K[1A    [32m✓[39m [2mworks as expected with NodeJS Stream API (1 ms)[22m
+
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtests/infra/[22m[1mStreamResponse.test.ts[22m
+[K[1A[K[1A
+
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtests/infra/[22m[1mStreamResponse.test.ts[22m
+[K[1A[K[1A
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtests/[22m[1mChatCore.test.ts[22m
+[K[1A[K[1A
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtests/[22m[1mChatCore.test.ts[22m
+[K[1A[K[1A
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtests/[22m[1mChatCore.test.ts[22m
+[K[1A[K[1A
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtests/[22m[1mChatCore.test.ts[22m
+[K[1A[K[1A
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtests/[22m[1mChatCore.test.ts[22m
+[K[1A[K[1A
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtests/[22m[1mChatCore.test.ts[22m
+[K[1A[K[1A
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtests/[22m[1mChatCore.test.ts[22m
+[K[1A[K[1A
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtests/[22m[1mChatCore.test.ts[22m
+[K[1A[K[1A
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtests/[22m[1mChatCore.test.ts[22m
+[K[1A[K[1A
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtests/[22m[1mChatCore.test.ts[22m
+[K[1A[K[1A[0m[7m[1m[32m PASS [39m[22m[27m[0m [2mtests/[22m[1mChatCore.test.ts[22m
+
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtests/[22m[1mChatCore.test.ts[22m
+[K[1A[K[1A  [32m✓[39m [2mreturns message response on successful API response (1 ms)[22m
+
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtests/[22m[1mChatCore.test.ts[22m
+[K[1A[K[1A  [32m✓[39m [2mreturns rejected promise on a failed API response (12 ms)[22m
+
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtests/[22m[1mChatCore.test.ts[22m
+[K[1A[K[1A  URL and http request construction
+
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtests/[22m[1mChatCore.test.ts[22m
+[K[1A[K[1A    [32m✓[39m [2msets default endpoint and businessId when not specified for Chat API[22m
+
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtests/[22m[1mChatCore.test.ts[22m
+[K[1A[K[1A    [32m✓[39m [2msets default endpoint and businessId when not specified for Chat Stream API (1 ms)[22m
+
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtests/[22m[1mChatCore.test.ts[22m
+[K[1A[K[1A    [32m✓[39m [2msets custom endpoints when specified for Chat API[22m
+
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtests/[22m[1mChatCore.test.ts[22m
+[K[1A[K[1A    [32m✓[39m [2msets custom endpoints when specified for Chat Stream API[22m
+
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtests/[22m[1mChatCore.test.ts[22m
+[K[1A[K[1A    [32m✓[39m [2msets custom version when specified for Chat API[22m
+
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtests/[22m[1mChatCore.test.ts[22m
+[K[1A[K[1A    [32m✓[39m [2msets custom version when specified for Chat Stream API[22m
+
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtests/[22m[1mChatCore.test.ts[22m
+[K[1A[K[1A
+
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtests/[22m[1mChatCore.test.ts[22m
+[K[1A[K[1A
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtests/validation/[22m[1mApiResponseValidator.test.ts[22m
+[K[1A[K[1A
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtests/validation/[22m[1mApiResponseValidator.test.ts[22m
+[K[1A[K[1A
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtests/validation/[22m[1mApiResponseValidator.test.ts[22m
+[K[1A[K[1A
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtests/validation/[22m[1mApiResponseValidator.test.ts[22m
+[K[1A[K[1A
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtests/validation/[22m[1mApiResponseValidator.test.ts[22m
+[K[1A[K[1A[0m[7m[1m[32m PASS [39m[22m[27m[0m [2mtests/validation/[22m[1mApiResponseValidator.test.ts[22m
+
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtests/validation/[22m[1mApiResponseValidator.test.ts[22m
+[K[1A[K[1A  [32m✓[39m [2mpasses for a response with no errors[22m
+
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtests/validation/[22m[1mApiResponseValidator.test.ts[22m
+[K[1A[K[1A  [32m✓[39m [2mfails for a response without a response property[22m
+
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtests/validation/[22m[1mApiResponseValidator.test.ts[22m
+[K[1A[K[1A  [32m✓[39m [2mfails for a response without a meta property[22m
+
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtests/validation/[22m[1mApiResponseValidator.test.ts[22m
+[K[1A[K[1A  [32m✓[39m [2mfails for a response with an API error[22m
+
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtests/validation/[22m[1mApiResponseValidator.test.ts[22m
+[K[1A[K[1A
+
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtests/validation/[22m[1mApiResponseValidator.test.ts[22m
+[K[1A[K[1A
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtests/http/[22m[1mHttpService.test.ts[22m
+[K[1A[K[1A
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtests/http/[22m[1mHttpService.test.ts[22m
+[K[1A[K[1A
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtests/http/[22m[1mHttpService.test.ts[22m
+[K[1A[K[1A
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtests/http/[22m[1mHttpService.test.ts[22m
+[K[1A[K[1A[0m[7m[1m[32m PASS [39m[22m[27m[0m [2mtests/http/[22m[1mHttpService.test.ts[22m
+
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtests/http/[22m[1mHttpService.test.ts[22m
+[K[1A[K[1A  [32m✓[39m [2mcan make post requests in browser environment (3 ms)[22m
+
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtests/http/[22m[1mHttpService.test.ts[22m
+[K[1A[K[1A  [32m✓[39m [2mcan make post request in node environment[22m
+
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtests/http/[22m[1mHttpService.test.ts[22m
+[K[1A[K[1A
+
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtests/http/[22m[1mHttpService.test.ts[22m
+[K[1A[K[1A
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtests/infra/[22m[1mEndPointFactory.test.ts[22m
+[K[1A[K[1A
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtests/infra/[22m[1mEndPointFactory.test.ts[22m
+[K[1A[K[1A
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtests/infra/[22m[1mEndPointFactory.test.ts[22m
+[K[1A[K[1A
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtests/infra/[22m[1mEndPointFactory.test.ts[22m
+[K[1A[K[1A
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtests/infra/[22m[1mEndPointFactory.test.ts[22m
+[K[1A[K[1A
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtests/infra/[22m[1mEndPointFactory.test.ts[22m
+[K[1A[K[1A[0m[7m[1m[32m PASS [39m[22m[27m[0m [2mtests/infra/[22m[1mEndPointFactory.test.ts[22m
+
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtests/infra/[22m[1mEndPointFactory.test.ts[22m
+[K[1A[K[1A  [32m✓[39m [2mprovides proper endpoint for default env, region, and businessId (2 ms)[22m
+
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtests/infra/[22m[1mEndPointFactory.test.ts[22m
+[K[1A[K[1A  [32m✓[39m [2mprovides proper endpoint for custom env[22m
+
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtests/infra/[22m[1mEndPointFactory.test.ts[22m
+[K[1A[K[1A  [32m✓[39m [2mprovides proper endpoint for custom region[22m
+
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtests/infra/[22m[1mEndPointFactory.test.ts[22m
+[K[1A[K[1A  [32m✓[39m [2mprovides proper endpoint for custom businessId (1 ms)[22m
+
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtests/infra/[22m[1mEndPointFactory.test.ts[22m
+[K[1A[K[1A  [32m✓[39m [2mthrows error on invalid region + env (6 ms)[22m
+
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtests/infra/[22m[1mEndPointFactory.test.ts[22m
+[K[1A[K[1A
+
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtests/infra/[22m[1mEndPointFactory.test.ts[22m
+[K[1A[K[1A[999D[K[1m[2mRunning coverage on untested files...[22m[22m[999D[K--------------------------|---------|----------|---------|---------|-------------------
+File                      | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
+--------------------------|---------|----------|---------|---------|-------------------
+[32;1mAll files                [0m | [32;1m  97.69[0m | [32;1m   92.85[0m | [32;1m  97.22[0m | [32;1m  97.63[0m | [31;1m                 [0m 
+[33;1m src                     [0m | [33;1m  66.66[0m | [32;1m     100[0m | [33;1m     50[0m | [33;1m  66.66[0m | [31;1m                 [0m 
+[33;1m  CoreProvider.ts        [0m | [33;1m     50[0m | [32;1m     100[0m | [33;1m     50[0m | [33;1m     50[0m | [31;1m22               [0m 
+[32;1m  constants.ts           [0m | [32;1m    100[0m | [32;1m     100[0m | [32;1m    100[0m | [32;1m    100[0m | [33;1m                 [0m 
+  index.ts                |       0 |        0 |       0 |       0 | [31;1m                 [0m 
+[32;1m src/http                [0m | [32;1m    100[0m | [32;1m     100[0m | [32;1m    100[0m | [32;1m    100[0m | [33;1m                 [0m 
+[32;1m  HttpService.ts         [0m | [32;1m    100[0m | [32;1m     100[0m | [32;1m    100[0m | [32;1m    100[0m | [33;1m                 [0m 
+[32;1m  utils.ts               [0m | [32;1m    100[0m | [32;1m     100[0m | [32;1m    100[0m | [32;1m    100[0m | [33;1m                 [0m 
+[32;1m src/infra               [0m | [32;1m     98[0m | [32;1m   90.74[0m | [32;1m    100[0m | [32;1m  97.93[0m | [31;1m                 [0m 
+[32;1m  ChatCoreImpl.ts        [0m | [32;1m    100[0m | [32;1m   85.71[0m | [32;1m    100[0m | [32;1m    100[0m | [33;1m57               [0m 
+[32;1m  EndpointsFactory.ts    [0m | [32;1m  91.66[0m | [32;1m    92.3[0m | [32;1m    100[0m | [32;1m  91.66[0m | [31;1m30               [0m 
+[32;1m  StreamDataParser.ts    [0m | [32;1m    100[0m | [32;1m      95[0m | [32;1m    100[0m | [32;1m    100[0m | [33;1m39               [0m 
+[32;1m  StreamResponse.ts      [0m | [32;1m  97.36[0m | [32;1m   85.71[0m | [32;1m    100[0m | [32;1m  97.14[0m | [31;1m76               [0m 
+[32;1m src/validation          [0m | [32;1m    100[0m | [32;1m     100[0m | [32;1m    100[0m | [32;1m    100[0m | [33;1m                 [0m 
+[32;1m  ApiResponseValidator.ts[0m | [32;1m    100[0m | [32;1m     100[0m | [32;1m    100[0m | [32;1m    100[0m | [33;1m                 [0m 
+--------------------------|---------|----------|---------|---------|-------------------
+[1mTest Suites: [22m[1m[32m5 passed[39m[22m, 5 total
+[1mTests:       [22m[1m[32m30 passed[39m[22m, 30 total
+[1mSnapshots:   [22m0 total
+[1mTime:[22m        0.879 s, estimated 1 s
+[2mRan all test suites[22m[2m.[22m

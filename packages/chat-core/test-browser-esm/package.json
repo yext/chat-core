@@ -1,0 +1,23 @@
+{
+  "name": "chat-core-test-browser",
+  "version": "0.1.0",
+  "description": "test browser and esm compatibiliy of the chat-core",
+  "private": "true",
+  "type": "module",
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^24.1.0",
+    "@rollup/plugin-node-resolve": "^15.0.2",
+    "@rollup/plugin-replace": "^5.0.2",
+    "rollup": "^3.21.4",
+    "serve": "^14.2.0"
+  },
+  "dependencies": {
+    "@yext/chat-core": "file:..",
+    "dotenv": "^16.0.3"
+  },
+  "scripts": {
+    "build": "rm -rf dist/** && rollup -c",
+    "test": "serve -p 5050"
+  },
+  "author": "clippy@yext.com"
+}
