@@ -1,40 +1,13 @@
-# chat-core
+# chat-core monorepo
 
-a networking library for interacting with the Yext Chat API
+This monorepo contains the core library and bindings required for interacting with the Yext Chat API and supported integrations.
 
-- Works in both the **browser** and **Node.js**
-- 100% **TypeScript**, with detailed request and response models
-- Compatible with both **CommonJS** and **ES6** imports
+## What's inside?
 
-## Usage
+This monorepo includes the following packages/apps:
 
-```typescript
-import { provideChatCore, StreamEventName, Message } from "@yext/chat-core";
+### Apps and Packages
 
-const chatCore = provideChatCore({
-  botId: "YOUR_BOT_ID",
-  apiKey: "YOUR_API_KEY",
-});
+- `@yext/chat-core`: a networking library for interacting with the Yext Chat API. Visit [README.md](./packages/chat-core/README.md) for more details.
 
-const messages: Message[] = [
-  {
-    source: "USER",
-    text: "What is Yext Chat?",
-    timestamp: "2023-05-15T17:33:38.373Z",
-  },
-];
-
-// Chat API
-response = await chatCore.getNextMessage({ messages });
-
-// Chat Streaming API
-stream = await chatCore.streamNextMessage({ messages });
-stream.addEventListener(StreamEventName.TokenStreamEvent, (event) =>
-  console.log("data", event.data)
-);
-stream.consume();
-```
-
-## Documentation
-
-See **[our documentation](./docs/chat-core.md)** for a more details on supported API calls and interfaces.
+Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).

@@ -1,0 +1,67 @@
+{
+  "name": "@yext/chat-core",
+  "version": "0.8.0",
+  "description": "Typescript Networking Library for the Yext Chat API",
+  "main": "./dist/commonjs/index.js",
+  "module": "./dist/esm/index.mjs",
+  "types": "./dist/esm/index.d.ts",
+  "sideEffects": false,
+  "keywords": [
+    "networking",
+    "chat api",
+    "chat",
+    "browser",
+    "nodejs",
+    "typescript",
+    "commonjs",
+    "es6",
+    "yext"
+  ],
+  "files": [
+    "dist",
+    "src",
+    "THIRD-PARTY-NOTICES",
+    "LICENSE"
+  ],
+  "scripts": {
+    "test": "jest --config=jest.config.json",
+    "lint": "prettier --write . && eslint --fix --max-warnings=0 .",
+    "tsc": "tsc -p tsconfig.json",
+    "dev": "npm run tsc -- --watch",
+    "generate-notices": "../../generate-notices.sh",
+    "generate-docs": "api-extractor run --local --verbose && api-documenter markdown --input-folder temp --output-folder docs && rm -rf temp",
+    "build:js": "rollup --config ../../rollup.config.mjs",
+    "build": "rm -rf dist/** && npm run build:js && npm run generate-docs && npm run generate-notices"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yext/chat-core.git"
+  },
+  "author": "clippy@yext.com",
+  "license": "BSD-3-Clause",
+  "bugs": {
+    "url": "https://github.com/yext/chat-core/issues"
+  },
+  "homepage": "https://github.com/yext/chat-core#readme",
+  "dependencies": {
+    "cross-fetch": "^3.1.5"
+  },
+  "devDependencies": {
+    "@babel/preset-env": "^7.21.5",
+    "@babel/preset-typescript": "^7.21.5",
+    "@microsoft/api-documenter": "^7.22.4",
+    "@microsoft/api-extractor": "^7.34.8",
+    "@types/jest": "^29.5.1",
+    "@types/node-fetch": "^2.6.4",
+    "@yext/eslint-config": "^1.0.0",
+    "babel-jest": "^29.5.0",
+    "eslint": "^8.39.0",
+    "generate-license-file": "^1.0.0",
+    "jest": "^29.5.0",
+    "jest-environment-jsdom": "^29.5.0",
+    "prettier": "^2.8.8",
+    "rollup": "^3.29.0",
+    "rollup-plugin-typescript2": "^0.35.0",
+    "typescript": "^5.0.4"
+  }
+}

@@ -1,17 +1,15 @@
 {
   "compilerOptions": {
-    "target": "ESNext",
-    "esModuleInterop": true,
     "strict": true,
+    "esModuleInterop": true,
     "skipLibCheck": true,
-    "noImplicitAny": false,
+    "target": "ESNext",
     "moduleResolution": "node",
     "forceConsistentCasingInFileNames": true,
     "declaration": true,
-    "declarationMap": true,
+    "declarationMap": false,
     "sourceMap": true,
-    "jsx": "react-jsx",
     "resolveJsonModule": true
   },
-  "include": ["**/*.ts", "**/*.tsx", "**/**.js"]
+  "include": ["./src/**/*"]
 }
