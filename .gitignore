@@ -1,6 +1,9 @@
 node_modules/
-dist/
-temp/
 coverage/
-.DS_Store/
+temp/
+dist/
+build/
+.DS_Store
 .env
+.turbo
+.vscode
