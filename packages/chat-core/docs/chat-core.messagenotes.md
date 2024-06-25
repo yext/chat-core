@@ -21,6 +21,7 @@ This data will come from the API. As such, a user’s first request may have thi
 |  Property | Modifiers | Type | Description |
 |  --- | --- | --- | --- |
 |  [collectedData?](./chat-core.messagenotes.collecteddata.md) |  | Record&lt;string, unknown&gt; | _(Optional)_ Data collected from user in a conversation. |
+|  [conversationSummary?](./chat-core.messagenotes.conversationsummary.md) |  | string | _(Optional)_ The summary of the conversation up to this point. |
 |  [currentGoal?](./chat-core.messagenotes.currentgoal.md) |  | string | _(Optional)_ The goal of the latest message. |
 |  [currentStepIndices?](./chat-core.messagenotes.currentstepindices.md) |  | number\[\] | _(Optional)_ The indices to traversed within the nested instruction array to access the target step. |
 |  [goalFirstMsgIndex?](./chat-core.messagenotes.goalfirstmsgindex.md) |  | number | _(Optional)_ The index of the message that started the current goal. |

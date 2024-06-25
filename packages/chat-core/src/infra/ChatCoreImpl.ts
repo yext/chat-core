@@ -71,6 +71,7 @@ export class ChatCoreImpl implements ChatCore {
       conversationId: data.response.conversationId,
       message: data.response.message,
       notes: data.response.notes,
+      integrationDetails: data.response.integrationDetails,
     };
   }
 

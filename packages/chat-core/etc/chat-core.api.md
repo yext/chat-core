@@ -17,6 +17,18 @@ export class ApiError extends Error {
 }
 
 // @public
+export interface AwsConnectCredentials {
+    contactId: string;
+    participantId: string;
+    participantToken: string;
+}
+
+// @public
+export interface AwsConnectHandoff {
+    credentials: AwsConnectCredentials;
+}
+
+// @public
 export interface ChatConfig {
     apiKey: string;
     botId: string;
@@ -61,6 +73,11 @@ export enum Environment {
     SANDBOX = "SANDBOX"
 }
 
+// @public
+export interface IntegrationDetails {
+    awsConnectHandoff?: AwsConnectHandoff;
+}
+
 // Warning: (ae-internal-missing-underscore) The name "InternalConfig" should be prefixed with an underscore because the declaration is marked as @internal
 //
 // @internal
@@ -79,6 +96,7 @@ export interface Message {
 // @public
 export interface MessageNotes {
     collectedData?: Record<string, unknown>;
+    conversationSummary?: string;
     currentGoal?: string;
     currentStepIndices?: number[];
     goalFirstMsgIndex?: number;
@@ -98,6 +116,7 @@ export interface MessageRequest {
 // @public
 export interface MessageResponse {
     conversationId?: string;
+    integrationDetails?: IntegrationDetails;
     message: Message;
     notes: MessageNotes;
 }

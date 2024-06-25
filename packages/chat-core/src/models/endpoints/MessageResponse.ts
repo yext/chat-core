@@ -1,3 +1,4 @@
+import { IntegrationDetails } from "../integrations/IntegrationDetails";
 import { Message } from "./Message";
 import { MessageNotes } from "./MessageNotes";
 
@@ -18,4 +19,6 @@ export interface MessageResponse {
   message: Message;
   /** {@inheritDoc MessageNotes} */
   notes: MessageNotes;
+  /** {@inheritdoc IntegrationDetails} */
+  integrationDetails?: IntegrationDetails;
 }
