@@ -23,4 +23,6 @@ export interface MessageNotes {
   goalFirstMsgIndex?: number;
   /** A set of pre-generated replies given by the AI. */
   suggestedReplies?: string[];
+  /** The summary of the conversation up to this point. */
+  conversationSummary?: string;
 }

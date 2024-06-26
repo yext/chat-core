@@ -45,6 +45,16 @@ it("returns message response on successful API response", async () => {
     },
     notes: {
       currentGoal: "test!",
+      conversationSummary: "convo summary",
+    },
+    integrationDetails: {
+      awsConnectHandoff: {
+        credentials: {
+          contactId: "contact-id",
+          participantId: "participant-id",
+          participantToken: "participant-token",
+        },
+      },
     },
   };
   mockHttpPost({

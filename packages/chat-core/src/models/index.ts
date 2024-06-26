@@ -24,3 +24,10 @@ export { ApiError } from "./http/ApiError";
 export { StreamEventCallback } from "./endpoints/stream/StreamEventCallback";
 
 export { EnumOrLiteral } from "./utils/EnumOrLiteral";
+
+export { IntegrationDetails } from "./integrations/IntegrationDetails";
+
+export {
+  AwsConnectHandoff,
+  AwsConnectCredentials,
+} from "./integrations/AwsConnect";

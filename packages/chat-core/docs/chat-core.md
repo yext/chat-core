@@ -30,10 +30,13 @@
 
 |  Interface | Description |
 |  --- | --- |
+|  [AwsConnectCredentials](./chat-core.awsconnectcredentials.md) | AWS Connect handoff credentials. |
+|  [AwsConnectHandoff](./chat-core.awsconnecthandoff.md) | Configurations for AWS Connect handoff. |
 |  [ChatConfig](./chat-core.chatconfig.md) | The configuration options for [ChatCore](./chat-core.chatcore.md)<!-- -->. |
 |  [ChatCore](./chat-core.chatcore.md) | Provide methods for interacting with Chat API. |
 |  [EndEvent](./chat-core.endevent.md) | An event that indicates end of Chat stream. |
 |  [Endpoints](./chat-core.endpoints.md) | The URLs which are used when making requests to the Chat API. |
+|  [IntegrationDetails](./chat-core.integrationdetails.md) | Integration details for the current conversation. |
 |  [Message](./chat-core.message.md) | Represents a message within a conversation. |
 |  [MessageNotes](./chat-core.messagenotes.md) | Information relevant to the current state of the conversation, serving as the bot’s "memory" regarding what work it previously did to help determine future actions. |
 |  [MessageRequest](./chat-core.messagerequest.md) | A request to Chat API. |
