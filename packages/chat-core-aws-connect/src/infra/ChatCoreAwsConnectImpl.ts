@@ -50,7 +50,7 @@ export class ChatCoreAwsConnectImpl implements ChatCoreAwsConnect {
         level: window.connect.LogLevel.ERROR,
         useDefaultLogger: true,
       },
-      region: messageResponse.integrationDetails.awsConnectHandoff.region, // optional, defaults to: "us-west-2"
+      region: messageResponse.integrationDetails.awsConnectHandoff.region,
     });
 
     this.session = connect.ChatSession.create({

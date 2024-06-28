@@ -55,6 +55,7 @@
         "@microsoft/api-extractor": "^7.34.8",
         "@types/jest": "^29.5.1",
         "@types/node-fetch": "^2.6.4",
+        "@yext/chat-core": "^0.8.1",
         "@yext/eslint-config": "^1.0.0",
         "babel-jest": "^29.5.0",
         "eslint": "^8.39.0",

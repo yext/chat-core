@@ -1,3 +1,8 @@
+/**
+ * An event returned by an AWS Connect callback.
+ *
+ * @internal
+ */
 export interface AwsConnectEvent {
   data: {
     AbsoluteTime: string;
