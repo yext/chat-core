@@ -47,7 +47,7 @@ export class ChatCoreAwsConnectImpl implements ChatCoreAwsConnect {
     connect.ChatSession.setGlobalConfig({
       loggerConfig: {
         // There are five levels available - DEBUG, INFO, WARN, ERROR, ADVANCED_LOG. Default is INFO
-        level: window.connect.LogLevel.ERROR,
+        level: connect.LogLevel.ERROR,
         useDefaultLogger: true,
       },
       region: messageResponse.integrationDetails.awsConnectHandoff.region,
