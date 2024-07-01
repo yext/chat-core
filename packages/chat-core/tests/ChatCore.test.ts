@@ -54,6 +54,7 @@ it("returns message response on successful API response", async () => {
           participantId: "participant-id",
           participantToken: "participant-token",
         },
+        region: "us-east-1",
       },
     },
   };

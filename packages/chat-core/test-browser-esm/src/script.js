@@ -12,7 +12,13 @@ let chatCore = provideChatCore({
 
 window.getNextMessage = async () => {
   const data = await chatCore.getNextMessage({
-    messages: [],
+    messages: [
+      {
+        timestamp: "2023-05-17T19:21:21.915Z",
+        source: "USER",
+        text: "My name is John Doe. I want to speak to an agent",
+      },
+    ],
   });
   const el = document.getElementById("chatresult");
   el.textContent = JSON.stringify(data, null, 2);
