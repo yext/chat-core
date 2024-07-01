@@ -5,20 +5,6 @@ import { EventMap, EventCallback } from "../models/EventCallback";
 import { LoggerConfig } from "../models/LoggerConfig";
 import "amazon-connect-chatjs";
 
-// TODO: Remove this type once the region is added to the MessageResponse type in chat-core
-type MessageResponseWithRegion = MessageResponse & {
-  integrationDetails: {
-    awsConnectHandoff: {
-      credentials: {
-        accessKeyId: string;
-        secretAccessKey: string;
-        sessionToken: string;
-      };
-      region: string;
-    };
-  };
-};
-
 /**
  * The primary class for the chat-core integration with AWS Connect.
  *
@@ -43,11 +29,8 @@ export class ChatCoreAwsConnectImpl implements ChatCoreAwsConnect {
       return;
     }
 
-    // TODO: Remove this type once the region is added to the MessageResponse type in chat-core
-    const messageResponse = messageRsp as MessageResponseWithRegion;
-
     const connectionCreds =
-      messageResponse.integrationDetails?.awsConnectHandoff?.credentials;
+      messageRsp.integrationDetails?.awsConnectHandoff?.credentials;
     if (!connectionCreds) {
       throw new Error(
         "Integration credentials not specified. Cannot initialize chat session."
@@ -60,7 +43,7 @@ export class ChatCoreAwsConnectImpl implements ChatCoreAwsConnect {
         useDefaultLogger: this.loggerConfig.customizedLogger ? false : true,
         customizedLogger: this.loggerConfig.customizedLogger,
       },
-      region: messageResponse.integrationDetails.awsConnectHandoff.region,
+      region: messageRsp.integrationDetails?.awsConnectHandoff?.region,
     });
 
     this.session = connect.ChatSession.create({
@@ -78,7 +61,7 @@ export class ChatCoreAwsConnectImpl implements ChatCoreAwsConnect {
     this.setupEventListeners();
     this.session.sendMessage({
       contentType: "text/plain",
-      message: messageResponse.notes["conversationSummary"],
+      message: messageRsp.notes.conversationSummary,
     });
   }
 

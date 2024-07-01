@@ -68,6 +68,6 @@
         "dotenv": "^16.4.5"
     },
     "peerDependencies": {
-        "@yext/chat-core": "^0.8.1"
+        "@yext/chat-core": "^0.8.2"
     }
 }
