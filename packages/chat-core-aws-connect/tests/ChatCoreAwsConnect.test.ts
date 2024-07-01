@@ -14,9 +14,13 @@ function mockChatSession(
     onTyping(cb: (event: any) => void) {
       cb({ data: { ContentType: "text/plain", ParticipantRole: "AGENT" } });
     },
-    sendEvent(event: any) {},
-    sendMessage(message: any) {},
-    connect(v: any) {
+    sendEvent(_: any) {
+      return { sendEventCalled: true };
+    },
+    sendMessage(_: any) {
+      return { sendMessageCalled: true };
+    },
+    connect(_: any) {
       return { connectCalled: true, connectSuccess: true };
     },
     ...overrider,
@@ -46,7 +50,7 @@ function mockMessageResponse(): MessageResponse {
 
 it("returns an error when failing to connect to chat session", async () => {
   const overrider = {
-    connect(v: any) {
+    connect(_: any) {
       return { connectCalled: true, connectSuccess: false };
     },
   };

@@ -46,7 +46,7 @@ window.getNextMessage = async () => {
         msgs.appendChild(li);
       });
 
-      msgInput.addEventListener("keypress", async (e) => {
+      msgInput.addEventListener("keypress", async () => {
         coreAws.emit("typing");
       });
 

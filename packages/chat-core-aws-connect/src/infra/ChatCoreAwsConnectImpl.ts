@@ -110,7 +110,7 @@ export class ChatCoreAwsConnectImpl implements ChatCoreAwsConnect {
     this.eventListeners[eventName].push(cb);
   }
 
-  emit(eventName: string, data: any): void {
+  emit(eventName: string, _: any): void {
     switch (eventName) {
       case "typing":
         this.session?.sendEvent({
