@@ -10,7 +10,7 @@ export interface AwsConnectEvent {
 /**
  * Data associated with an AWS Connect event.
  *
- * @internal
+ * @public
  */
 export interface AwsConnectEventData {
   /**

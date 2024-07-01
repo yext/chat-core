@@ -103,12 +103,14 @@ export class ChatCoreAwsConnectImpl implements ChatCoreAwsConnect {
     this.eventListeners[eventName]?.push(cb);
   }
 
-  emit<T extends keyof EventMap>(eventName: T, _: EventMap[T]): void {
+  emit<T extends keyof EventMap>(eventName: T, eventValue: EventMap[T]): void {
     switch (eventName) {
       case "typing":
-        this.session?.sendEvent({
-          contentType: "application/vnd.amazonaws.connect.event.typing",
-        });
+        if (eventValue === true) {
+          this.session?.sendEvent({
+            contentType: "application/vnd.amazonaws.connect.event.typing",
+          });
+        }
         break;
     }
   }

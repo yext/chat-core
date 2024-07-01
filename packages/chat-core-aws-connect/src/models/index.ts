@@ -1,2 +1,2 @@
 export { ChatCoreAwsConnect } from "./ChatCoreAwsConnect";
-export { LoggerConfig } from "./LoggerConfig";
+export { LoggerConfig, LogLevel } from "./LoggerConfig";

@@ -44,6 +44,7 @@ function mockMessageResponse(): MessageResponse {
           participantId: "participantId",
           participantToken: "participantToken",
         },
+        region: "us-east-1",
       },
     },
   };
@@ -213,8 +214,14 @@ it("returns session on getSession", async () => {
 
 it("uses logger config when provided", async () => {
   const loggerConfig: LoggerConfig = {
-    level: "DEBUG" as const,
-    customizedLogger: jest.fn(),
+    level: "DEBUG",
+    customizedLogger: {
+      debug: jest.fn(),
+      info: jest.fn(),
+      warn: jest.fn(),
+      error: jest.fn(),
+      advancedLog: jest.fn(),
+    },
   };
 
   const globalConfigFn = jest.fn();
@@ -237,6 +244,6 @@ it("uses logger config when provided", async () => {
       useDefaultLogger: false,
       customizedLogger: loggerConfig.customizedLogger,
     },
-    region: undefined,
+    region: "us-east-1",
   });
 });
