@@ -8,11 +8,17 @@
 
 |  Function | Description |
 |  --- | --- |
-|  [provideChatCoreAwsConnect()](./chat-core-aws-connect.providechatcoreawsconnect.md) | Provider for the ChatCore integration with AWS Connect. |
+|  [provideChatCoreAwsConnect(loggerConfig)](./chat-core-aws-connect.providechatcoreawsconnect.md) | Provider for the ChatCore integration with AWS Connect. |
 
 ## Interfaces
 
 |  Interface | Description |
 |  --- | --- |
 |  [ChatCoreAwsConnect](./chat-core-aws-connect.chatcoreawsconnect.md) | Provides methods for interacting with Chat's AWS Connect integration. |
+
+## Type Aliases
+
+|  Type Alias | Description |
+|  --- | --- |
+|  [LoggerConfig](./chat-core-aws-connect.loggerconfig.md) | Configuration for the internal logger of the AWS Connect Chat session. |
 

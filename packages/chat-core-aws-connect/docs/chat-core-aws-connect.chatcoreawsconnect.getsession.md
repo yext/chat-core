@@ -4,6 +4,8 @@
 
 ## ChatCoreAwsConnect.getSession() method
 
+Get the current AWS Connect chat session.
+
 **Signature:**
 
 ```typescript
@@ -12,4 +14,8 @@ getSession(): connect.ActiveChatSession | undefined;
 **Returns:**
 
 connect.ActiveChatSession \| undefined
+
+## Remarks
+
+If the session is not initialized, this method will return `undefined`<!-- -->.
 

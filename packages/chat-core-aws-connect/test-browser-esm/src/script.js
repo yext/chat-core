@@ -24,8 +24,12 @@ window.getNextMessage = async () => {
     ],
   };
 
+  const msgs = document.getElementById("messages");
   if (coreAws.getSession()) {
     await coreAws.processMessage(req);
+    const li = document.createElement("li");
+    li.textContent = "USER: " + msgInput.value;
+    msgs.appendChild(li);
   } else {
     const data = await chatCore.getNextMessage(req);
     const el = document.getElementById("chatresult");
@@ -33,7 +37,6 @@ window.getNextMessage = async () => {
 
     if (data?.integrationDetails?.awsConnectHandoff?.credentials) {
       coreAws = provideChatCoreAwsConnect();
-      const msgs = document.getElementById("messages");
       coreAws.on("message", (message) => {
         const li = document.createElement("li");
         li.textContent = "CONNECT: " + message;

@@ -4,18 +4,20 @@
 
 ## ChatCoreAwsConnect.emit() method
 
+Emit an event into the AWS Connect chat session. Supported events are: - typing: The customer is typing.
+
 **Signature:**
 
 ```typescript
-emit(eventName: string, data: any): void;
+emit<T extends keyof EventMap>(eventName: T, data: EventMap[T]): void;
 ```
 
 ## Parameters
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  eventName | string |  |
-|  data | any |  |
+|  eventName | T | The name of the event to emit. |
+|  data | EventMap\[T\] | The data to be sent with the event. |
 
 **Returns:**
 

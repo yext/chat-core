@@ -9,20 +9,23 @@ import { MessageResponse } from '@yext/chat-core';
 
 // @public
 export interface ChatCoreAwsConnect {
-    // (undocumented)
-    emit(eventName: string, data: any): void;
-    // (undocumented)
+    emit<T extends keyof EventMap>(eventName: T, data: EventMap[T]): void;
     getSession(): connect.ActiveChatSession | undefined;
-    // (undocumented)
     init(messageResponse: MessageResponse): Promise<void>;
-    // (undocumented)
-    on(eventName: string, cb: EventListener): void;
-    // (undocumented)
+    // Warning: (ae-forgotten-export) The symbol "EventMap" needs to be exported by the entry point index.d.ts
+    // Warning: (ae-forgotten-export) The symbol "EventCallback" needs to be exported by the entry point index.d.ts
+    on<T extends keyof EventMap>(eventName: T, cb: EventCallback<T>): void;
     processMessage(request: MessageRequest): Promise<void>;
 }
 
 // @public
-export function provideChatCoreAwsConnect(): ChatCoreAwsConnect;
+export type LoggerConfig = {
+    level: keyof typeof connect.LogLevel;
+    customizedLogger?: connect.Logger;
+};
+
+// @public
+export function provideChatCoreAwsConnect(loggerConfig?: LoggerConfig): ChatCoreAwsConnect;
 
 // (No @packageDocumentation comment for this package)
 

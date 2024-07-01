@@ -4,6 +4,8 @@
 
 ## ChatCoreAwsConnect.init() method
 
+Initialize the AWS Connect chat session using the credentials from the Chat API.
+
 **Signature:**
 
 ```typescript
@@ -14,7 +16,7 @@ init(messageResponse: MessageResponse): Promise<void>;
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  messageResponse | MessageResponse |  |
+|  messageResponse | MessageResponse | The response returned from a successful call to the Chat API. |
 
 **Returns:**
 

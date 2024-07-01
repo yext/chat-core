@@ -4,6 +4,8 @@
 
 ## ChatCoreAwsConnect.processMessage() method
 
+Process a message sent by the user.
+
 **Signature:**
 
 ```typescript
@@ -14,7 +16,7 @@ processMessage(request: MessageRequest): Promise<void>;
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  request | MessageRequest |  |
+|  request | MessageRequest | The message sent by the user, in the Chat API format. |
 
 **Returns:**
 

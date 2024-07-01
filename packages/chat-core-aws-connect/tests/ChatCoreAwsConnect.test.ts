@@ -1,26 +1,27 @@
 import { provideChatCoreAwsConnect } from "../src";
 import { MessageResponse } from "@yext/chat-core";
+import { LoggerConfig } from "../src/models/LoggerConfig";
 
 function mockChatSession(
   overrider: Partial<connect.ActiveChatSession> = {}
 ): connect.ActiveChatSession {
   return {
-    onMessage(cb: (event: any) => void) {
+    onMessage(cb: (event: unknown) => void) {
       cb({ data: { ContentType: "text/plain", ParticipantRole: "AGENT" } });
     },
-    onEnded(cb: (event: any) => void) {
+    onEnded(cb: (event: unknown) => void) {
       cb({ data: { ContentType: "text/plain", ParticipantRole: "AGENT" } });
     },
-    onTyping(cb: (event: any) => void) {
+    onTyping(cb: (event: unknown) => void) {
       cb({ data: { ContentType: "text/plain", ParticipantRole: "AGENT" } });
     },
-    sendEvent(_: any) {
+    sendEvent() {
       return { sendEventCalled: true };
     },
-    sendMessage(_: any) {
+    sendMessage() {
       return { sendMessageCalled: true };
     },
-    connect(_: any) {
+    connect() {
       return { connectCalled: true, connectSuccess: true };
     },
     ...overrider,
@@ -50,7 +51,7 @@ function mockMessageResponse(): MessageResponse {
 
 it("returns an error when failing to connect to chat session", async () => {
   const overrider = {
-    connect(_: any) {
+    connect() {
       return { connectCalled: true, connectSuccess: false };
     },
   };
@@ -124,7 +125,7 @@ it("emits typing event", async () => {
   const chatCoreAwsConnect = provideChatCoreAwsConnect();
   await chatCoreAwsConnect.init(mockMessageResponse());
 
-  chatCoreAwsConnect.emit("typing", {});
+  chatCoreAwsConnect.emit("typing", true);
 
   expect(sendEventSpy).toBeCalledWith({
     contentType: "application/vnd.amazonaws.connect.event.typing",
@@ -181,4 +182,61 @@ it("logs warning when session already exists", async () => {
   await chatCoreAwsConnect.init(mockMessageResponse());
 
   expect(consoleWarnSpy).toBeCalledWith("Chat session already initialized");
+});
+
+it("returns error when integration credentials are not specified", async () => {
+  const messageResponse = mockMessageResponse();
+  delete messageResponse.integrationDetails;
+
+  const chatCoreAwsConnect = provideChatCoreAwsConnect();
+  await expect(chatCoreAwsConnect.init(messageResponse)).rejects.toThrowError(
+    "Integration credentials not specified. Cannot initialize chat session."
+  );
+});
+
+it("returns session on getSession", async () => {
+  const sess = mockChatSession();
+  window.connect = {
+    ...window.connect,
+    ChatSession: {
+      ...window.connect.ChatSession,
+      create: jest.fn().mockReturnValue(sess),
+      setGlobalConfig: jest.fn(),
+    },
+  };
+
+  const chatCoreAwsConnect = provideChatCoreAwsConnect();
+  await chatCoreAwsConnect.init(mockMessageResponse());
+
+  expect(chatCoreAwsConnect.getSession()).toBe(sess);
+});
+
+it("uses logger config when provided", async () => {
+  const loggerConfig: LoggerConfig = {
+    level: "DEBUG" as const,
+    customizedLogger: jest.fn(),
+  };
+
+  const globalConfigFn = jest.fn();
+
+  window.connect = {
+    ...window.connect,
+    ChatSession: {
+      ...window.connect.ChatSession,
+      create: jest.fn().mockReturnValue(mockChatSession()),
+      setGlobalConfig: globalConfigFn,
+    },
+  };
+
+  const chatCoreAwsConnect = provideChatCoreAwsConnect(loggerConfig);
+  await chatCoreAwsConnect.init(mockMessageResponse());
+
+  expect(globalConfigFn).toBeCalledWith({
+    loggerConfig: {
+      level: connect.LogLevel.DEBUG,
+      useDefaultLogger: false,
+      customizedLogger: loggerConfig.customizedLogger,
+    },
+    region: undefined,
+  });
 });

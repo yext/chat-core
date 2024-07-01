@@ -45,8 +45,7 @@
     "homepage": "https://github.com/yext/chat-core#readme",
     "dependencies": {
         "amazon-connect-chatjs": "^2.3.0",
-        "cross-fetch": "^3.1.5",
-        "dotenv": "^16.4.5"
+        "cross-fetch": "^3.1.5"
     },
     "devDependencies": {
         "@babel/preset-env": "^7.21.5",
@@ -65,7 +64,8 @@
         "prettier": "^2.8.8",
         "rollup": "^3.29.0",
         "rollup-plugin-typescript2": "^0.35.0",
-        "typescript": "^5.0.4"
+        "typescript": "^5.0.4",
+        "dotenv": "^16.4.5"
     },
     "peerDependencies": {
         "@yext/chat-core": "^0.8.1"

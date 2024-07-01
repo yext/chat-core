@@ -4,18 +4,20 @@
 
 ## ChatCoreAwsConnect.on() method
 
+Register a callback for an event triggered within the AWS Connect chat session. Supported events are: - message: A new message has been received. - typing: The agent is typing. - close: The chat session has been closed.
+
 **Signature:**
 
 ```typescript
-on(eventName: string, cb: EventListener): void;
+on<T extends keyof EventMap>(eventName: T, cb: EventCallback<T>): void;
 ```
 
 ## Parameters
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  eventName | string |  |
-|  cb | EventListener |  |
+|  eventName | T | The name of the event to listen for. |
+|  cb | EventCallback&lt;T&gt; | The callback to be executed when the event is triggered. |
 
 **Returns:**
 

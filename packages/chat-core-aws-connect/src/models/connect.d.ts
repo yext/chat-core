@@ -5,5 +5,6 @@ declare global {
         const ChatSession: typeof AwsChatSession;
         const LogLevel: typeof AwsChatSession.LogLevel;
         export type ActiveChatSession = ReturnType<typeof connect.ChatSession.create>;
+        export type Logger = typeof AwsChatSession.Logger;
     }
 }

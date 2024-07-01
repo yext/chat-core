@@ -1,10 +1,11 @@
 import { ChatCoreAwsConnect } from "../models/ChatCoreAwsConnect";
 import { MessageRequest, MessageResponse } from "@yext/chat-core";
 import { AwsConnectEvent } from "../models/AwsConnectEvent";
-import { EventCallback } from "../models/EventCallback";
+import { EventMap, EventCallback } from "../models/EventCallback";
+import { LoggerConfig } from "../models/LoggerConfig";
 import "amazon-connect-chatjs";
 
-// TODO: Remove this type once the integration details are added to the MessageResponse type in chat-core
+// TODO: Remove this type once the region is added to the MessageResponse type in chat-core
 type MessageResponseWithRegion = MessageResponse & {
   integrationDetails: {
     awsConnectHandoff: {
@@ -25,7 +26,16 @@ type MessageResponseWithRegion = MessageResponse & {
  */
 export class ChatCoreAwsConnectImpl implements ChatCoreAwsConnect {
   private session?: connect.ActiveChatSession;
-  private eventListeners: Record<string, EventCallback[]> = {};
+  private eventListeners: { [T in keyof EventMap]?: EventCallback<T>[] } = {};
+  private loggerConfig: LoggerConfig = {
+    level: "ERROR",
+  };
+
+  constructor(loggerConfig?: LoggerConfig) {
+    if (loggerConfig) {
+      this.loggerConfig = loggerConfig;
+    }
+  }
 
   async init(messageRsp: MessageResponse): Promise<void> {
     if (this.session) {
@@ -33,7 +43,7 @@ export class ChatCoreAwsConnectImpl implements ChatCoreAwsConnect {
       return;
     }
 
-    // TODO: Remove this type assertion once the integration details are added to the MessageResponse type in chat-core
+    // TODO: Remove this type once the region is added to the MessageResponse type in chat-core
     const messageResponse = messageRsp as MessageResponseWithRegion;
 
     const connectionCreds =
@@ -46,9 +56,9 @@ export class ChatCoreAwsConnectImpl implements ChatCoreAwsConnect {
 
     connect.ChatSession.setGlobalConfig({
       loggerConfig: {
-        // There are five levels available - DEBUG, INFO, WARN, ERROR, ADVANCED_LOG. Default is INFO
-        level: connect.LogLevel.ERROR,
-        useDefaultLogger: true,
+        level: connect.LogLevel[this.loggerConfig.level],
+        useDefaultLogger: this.loggerConfig.customizedLogger ? false : true,
+        customizedLogger: this.loggerConfig.customizedLogger,
       },
       region: messageResponse.integrationDetails.awsConnectHandoff.region,
     });
@@ -56,7 +66,7 @@ export class ChatCoreAwsConnectImpl implements ChatCoreAwsConnect {
     this.session = connect.ChatSession.create({
       chatDetails: connectionCreds,
       type: "CUSTOMER",
-    }) as connect.ActiveChatSession;
+    });
 
     const { connectCalled, connectSuccess } = await this.session.connect(
       undefined
@@ -103,14 +113,14 @@ export class ChatCoreAwsConnectImpl implements ChatCoreAwsConnect {
     });
   }
 
-  on(eventName: string, cb: EventCallback): void {
+  on<T extends keyof EventMap>(eventName: T, cb: EventCallback<T>): void {
     if (!this.eventListeners[eventName]) {
       this.eventListeners[eventName] = [];
     }
-    this.eventListeners[eventName].push(cb);
+    this.eventListeners[eventName]?.push(cb);
   }
 
-  emit(eventName: string, _: any): void {
+  emit<T extends keyof EventMap>(eventName: T, _: EventMap[T]): void {
     switch (eventName) {
       case "typing":
         this.session?.sendEvent({
