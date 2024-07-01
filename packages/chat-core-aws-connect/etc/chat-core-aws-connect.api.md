@@ -20,12 +20,19 @@ export interface ChatCoreAwsConnect {
 
 // @public
 export type LoggerConfig = {
-    level: keyof typeof connect.LogLevel;
-    customizedLogger?: connect.Logger;
+    level: LogLevel;
+    customizedLogger?: Logger;
 };
 
 // @public
+export type LogLevel = "DEBUG" | "INFO" | "WARN" | "ERROR" | "ADVANCED_LOG";
+
+// @public
 export function provideChatCoreAwsConnect(loggerConfig?: LoggerConfig): ChatCoreAwsConnect;
+
+// Warnings were encountered during analysis:
+//
+// dist/esm/models/LoggerConfig.d.ts:14:5 - (ae-forgotten-export) The symbol "Logger" needs to be exported by the entry point index.d.ts
 
 // (No @packageDocumentation comment for this package)
 

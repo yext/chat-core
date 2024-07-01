@@ -21,4 +21,5 @@
 |  Type Alias | Description |
 |  --- | --- |
 |  [LoggerConfig](./chat-core-aws-connect.loggerconfig.md) | Configuration for the internal logger of the AWS Connect Chat session. |
+|  [LogLevel](./chat-core-aws-connect.loglevel.md) | The log level for the logger. |
 

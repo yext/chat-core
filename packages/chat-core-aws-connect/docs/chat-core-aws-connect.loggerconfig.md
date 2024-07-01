@@ -10,7 +10,9 @@ Configuration for the internal logger of the AWS Connect Chat session.
 
 ```typescript
 export type LoggerConfig = {
-    level: keyof typeof connect.LogLevel;
-    customizedLogger?: connect.Logger;
+    level: LogLevel;
+    customizedLogger?: Logger;
 };
 ```
+**References:** [LogLevel](./chat-core-aws-connect.loglevel.md)
+
