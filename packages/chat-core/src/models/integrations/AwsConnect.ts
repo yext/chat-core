@@ -6,6 +6,8 @@
 export interface AwsConnectHandoff {
   /** {@inheritdoc AwsConnectCredentials} */
   credentials: AwsConnectCredentials;
+  /** The region of The AWS Connect instance. */
+  region: string;
 }
 
 /**

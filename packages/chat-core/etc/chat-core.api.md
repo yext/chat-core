@@ -26,6 +26,7 @@ export interface AwsConnectCredentials {
 // @public
 export interface AwsConnectHandoff {
     credentials: AwsConnectCredentials;
+    region: string;
 }
 
 // @public
