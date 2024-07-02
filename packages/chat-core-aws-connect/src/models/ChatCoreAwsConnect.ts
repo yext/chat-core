@@ -17,9 +17,9 @@ export interface ChatCoreAwsConnect {
   /**
    * Register a callback for an event triggered within the AWS Connect chat session.
    * Supported events are:
-   * - message: A new message has been received.
-   * - typing: The agent is typing.
-   * - close: The chat session has been closed.
+   * - `message`: A new message has been received.
+   * - `typing`: The agent is typing.
+   * - `close`: The chat session has been closed.
    *
    * @param eventName - The name of the event to listen for.
    * @param cb - The callback to be executed when the event is triggered.
@@ -29,7 +29,7 @@ export interface ChatCoreAwsConnect {
   /**
    * Emit an event into the AWS Connect chat session.
    * Supported events are:
-   * - typing: The customer is typing.
+   * - `typing`: The customer is typing.
    *
    * @param eventName - The name of the event to emit.
    * @param data - The data to be sent with the event.

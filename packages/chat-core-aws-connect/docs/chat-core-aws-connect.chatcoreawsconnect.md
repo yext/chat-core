@@ -16,9 +16,9 @@ export interface ChatCoreAwsConnect
 
 |  Method | Description |
 |  --- | --- |
-|  [emit(eventName, data)](./chat-core-aws-connect.chatcoreawsconnect.emit.md) | Emit an event into the AWS Connect chat session. Supported events are: - typing: The customer is typing. |
+|  [emit(eventName, data)](./chat-core-aws-connect.chatcoreawsconnect.emit.md) | Emit an event into the AWS Connect chat session. Supported events are: - <code>typing</code>: The customer is typing. |
 |  [getSession()](./chat-core-aws-connect.chatcoreawsconnect.getsession.md) | Get the current AWS Connect chat session. |
 |  [init(messageResponse)](./chat-core-aws-connect.chatcoreawsconnect.init.md) | Initialize the AWS Connect chat session using the credentials from the Chat API. |
-|  [on(eventName, cb)](./chat-core-aws-connect.chatcoreawsconnect.on.md) | Register a callback for an event triggered within the AWS Connect chat session. Supported events are: - message: A new message has been received. - typing: The agent is typing. - close: The chat session has been closed. |
+|  [on(eventName, cb)](./chat-core-aws-connect.chatcoreawsconnect.on.md) | Register a callback for an event triggered within the AWS Connect chat session. Supported events are: - <code>message</code>: A new message has been received. - <code>typing</code>: The agent is typing. - <code>close</code>: The chat session has been closed. |
 |  [processMessage(request)](./chat-core-aws-connect.chatcoreawsconnect.processmessage.md) | Process a message sent by the user. |
 

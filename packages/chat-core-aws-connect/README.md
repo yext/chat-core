@@ -10,11 +10,18 @@ a library used for integrating Yext Chat with the Amazon Connect agent platform.
 
 ```typescript
 import { provideChatCoreAwsConnect } from "@yext/chat-core-aws-connect";
-import { Message } from "@yext/chat-core";
+import { Message, MessageResponse } from "@yext/chat-core";
 
+// create a new instance of ChatCoreAwsConnect
 const chatCoreAwsConnect = provideChatCoreAwsConnect();
-await chatCoreAwsConnect.init();
 
+// with some response from the Chat API containing handoff credentials...
+const chatApiResponse: MessageResponse;
+
+// initiate a connection to Amazon Connect using the credentials
+await chatCoreAwsConnect.init(chatApiResponse);
+
+// create a message payload
 const messages: Message[] = [
   {
     source: "USER",
@@ -23,6 +30,7 @@ const messages: Message[] = [
   },
 ];
 
+// send it to Connect!
 await chatCoreAwsConnect.processMessage({ messages });
 ```
 

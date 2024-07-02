@@ -1,30 +1,57 @@
 import { provideChatCoreAwsConnect } from "../src";
 import { MessageResponse } from "@yext/chat-core";
 import { LoggerConfig } from "../src/models/LoggerConfig";
+import {
+  AwsConnectEvent,
+  AwsConnectEventData,
+} from "../src/models/AwsConnectEvent";
+import "amazon-connect-chatjs";
 
-function mockChatSession(
-  overrider: Partial<connect.ActiveChatSession> = {}
-): connect.ActiveChatSession {
+const createSpy = jest.fn().mockReturnValue(mockChatSession());
+const globalConfigSpy = jest.fn();
+let sess: connect.ActiveChatSession;
+
+beforeAll(() => {
+  global.window.connect = {
+    ...global.window.connect,
+    ChatSession: {
+      ...global.window.connect.ChatSession,
+      create: createSpy,
+      setGlobalConfig: globalConfigSpy,
+    },
+  };
+});
+
+beforeEach(() => {
+  jest.useFakeTimers();
+  sess = mockChatSession();
+  createSpy.mockReturnValue(sess);
+});
+
+afterEach(() => {
+  jest.clearAllMocks();
+});
+
+function mockChatSession(): connect.ActiveChatSession {
   return {
-    onMessage(cb: (event: unknown) => void) {
-      cb({ data: { ContentType: "text/plain", ParticipantRole: "AGENT" } });
+    onMessage(_: (event: DeepPartial<AwsConnectEvent>) => void) {
+      return null;
     },
-    onEnded(cb: (event: unknown) => void) {
-      cb({ data: { ContentType: "text/plain", ParticipantRole: "AGENT" } });
+    onEnded(_: (event: DeepPartial<AwsConnectEvent>) => void) {
+      return null;
     },
-    onTyping(cb: (event: unknown) => void) {
-      cb({ data: { ContentType: "text/plain", ParticipantRole: "AGENT" } });
+    onTyping(_: (event: DeepPartial<AwsConnectEvent>) => void) {
+      return null;
     },
     sendEvent() {
-      return { sendEventCalled: true };
+      return null;
     },
     sendMessage() {
-      return { sendMessageCalled: true };
+      return null;
     },
     connect() {
       return { connectCalled: true, connectSuccess: true };
     },
-    ...overrider,
   } as unknown as connect.ActiveChatSession;
 }
 
@@ -51,19 +78,8 @@ function mockMessageResponse(): MessageResponse {
 }
 
 it("returns an error when failing to connect to chat session", async () => {
-  const overrider = {
-    connect() {
-      return { connectCalled: true, connectSuccess: false };
-    },
-  };
-
-  window.connect = {
-    ...window.connect,
-    ChatSession: {
-      ...window.connect.ChatSession,
-      create: jest.fn().mockReturnValue(mockChatSession(overrider)),
-      setGlobalConfig: jest.fn(),
-    },
+  sess.connect = () => {
+    return { connectCalled: true, connectSuccess: false };
   };
 
   const chatCoreAwsConnect = provideChatCoreAwsConnect();
@@ -73,15 +89,6 @@ it("returns an error when failing to connect to chat session", async () => {
 });
 
 it("returns no error when successfully connecting to chat session", async () => {
-  window.connect = {
-    ...window.connect,
-    ChatSession: {
-      ...window.connect.ChatSession,
-      create: jest.fn().mockReturnValue(mockChatSession()),
-      setGlobalConfig: jest.fn(),
-    },
-  };
-
   const chatCoreAwsConnect = provideChatCoreAwsConnect();
   await expect(
     chatCoreAwsConnect.init(mockMessageResponse())
@@ -89,17 +96,7 @@ it("returns no error when successfully connecting to chat session", async () => 
 });
 
 it("sends conversation summary message on chat session initialization", async () => {
-  const sess = mockChatSession();
   const sendMessageSpy = jest.spyOn(sess, "sendMessage");
-
-  window.connect = {
-    ...window.connect,
-    ChatSession: {
-      ...window.connect.ChatSession,
-      create: jest.fn().mockReturnValue(sess),
-      setGlobalConfig: jest.fn(),
-    },
-  };
 
   const chatCoreAwsConnect = provideChatCoreAwsConnect();
   await chatCoreAwsConnect.init(mockMessageResponse());
@@ -111,17 +108,7 @@ it("sends conversation summary message on chat session initialization", async ()
 });
 
 it("emits typing event", async () => {
-  const sess = mockChatSession();
   const sendEventSpy = jest.spyOn(sess, "sendEvent");
-
-  window.connect = {
-    ...window.connect,
-    ChatSession: {
-      ...window.connect.ChatSession,
-      create: jest.fn().mockReturnValue(sess),
-      setGlobalConfig: jest.fn(),
-    },
-  };
 
   const chatCoreAwsConnect = provideChatCoreAwsConnect();
   await chatCoreAwsConnect.init(mockMessageResponse());
@@ -131,20 +118,15 @@ it("emits typing event", async () => {
   expect(sendEventSpy).toBeCalledWith({
     contentType: "application/vnd.amazonaws.connect.event.typing",
   });
+
+  sendEventSpy.mockClear();
+  chatCoreAwsConnect.emit("typing", false);
+
+  expect(sendEventSpy).not.toBeCalled;
 });
 
 it("sends message on processMessage", async () => {
-  const sess = mockChatSession();
   const sendMessageSpy = jest.spyOn(sess, "sendMessage");
-
-  window.connect = {
-    ...window.connect,
-    ChatSession: {
-      ...window.connect.ChatSession,
-      create: jest.fn().mockReturnValue(sess),
-      setGlobalConfig: jest.fn(),
-    },
-  };
 
   const chatCoreAwsConnect = provideChatCoreAwsConnect();
   await chatCoreAwsConnect.init(mockMessageResponse());
@@ -166,17 +148,7 @@ it("sends message on processMessage", async () => {
 });
 
 it("logs warning when session already exists", async () => {
-  const sess = mockChatSession();
   const consoleWarnSpy = jest.spyOn(console, "warn");
-
-  window.connect = {
-    ...window.connect,
-    ChatSession: {
-      ...window.connect.ChatSession,
-      create: jest.fn().mockReturnValue(sess),
-      setGlobalConfig: jest.fn(),
-    },
-  };
 
   const chatCoreAwsConnect = provideChatCoreAwsConnect();
   await chatCoreAwsConnect.init(mockMessageResponse());
@@ -196,16 +168,6 @@ it("returns error when integration credentials are not specified", async () => {
 });
 
 it("returns session on getSession", async () => {
-  const sess = mockChatSession();
-  window.connect = {
-    ...window.connect,
-    ChatSession: {
-      ...window.connect.ChatSession,
-      create: jest.fn().mockReturnValue(sess),
-      setGlobalConfig: jest.fn(),
-    },
-  };
-
   const chatCoreAwsConnect = provideChatCoreAwsConnect();
   await chatCoreAwsConnect.init(mockMessageResponse());
 
@@ -224,21 +186,10 @@ it("uses logger config when provided", async () => {
     },
   };
 
-  const globalConfigFn = jest.fn();
-
-  window.connect = {
-    ...window.connect,
-    ChatSession: {
-      ...window.connect.ChatSession,
-      create: jest.fn().mockReturnValue(mockChatSession()),
-      setGlobalConfig: globalConfigFn,
-    },
-  };
-
   const chatCoreAwsConnect = provideChatCoreAwsConnect(loggerConfig);
   await chatCoreAwsConnect.init(mockMessageResponse());
 
-  expect(globalConfigFn).toBeCalledWith({
+  expect(globalConfigSpy).toBeCalledWith({
     loggerConfig: {
       level: connect.LogLevel.DEBUG,
       useDefaultLogger: false,
@@ -246,4 +197,160 @@ it("uses logger config when provided", async () => {
     },
     region: "us-east-1",
   });
+});
+
+type DeepPartial<T> = {
+  [P in keyof T]?: T[P] extends object ? DeepPartial<T[P]> : T[P];
+};
+type AwsEventCallback = (event: DeepPartial<AwsConnectEvent>) => void;
+
+it("triggers message event callbacks", async () => {
+  const onMessageSpy = jest.spyOn(sess, "onMessage");
+
+  const chatCoreAwsConnect = provideChatCoreAwsConnect();
+  await chatCoreAwsConnect.init(mockMessageResponse());
+
+  const msgText = "hello world!";
+  const dummyFn = jest.fn();
+  chatCoreAwsConnect.on("message", (event: string) => {
+    expect(event).toBe(msgText);
+    dummyFn();
+  });
+  expect(onMessageSpy).toBeCalled();
+
+  // get the parameter passed to the onMessage callback
+  const onMessageFn = onMessageSpy.mock.calls[0][0] as AwsEventCallback;
+
+  // simulate a message event
+  onMessageFn({
+    data: {
+      ContentType: "text/plain",
+      ParticipantRole: "AGENT",
+      Content: msgText,
+    },
+  });
+
+  expect(dummyFn).toBeCalled();
+});
+
+it("triggers close event callbacks", async () => {
+  const onEndedSpy = jest.spyOn(sess, "onEnded");
+
+  const chatCoreAwsConnect = provideChatCoreAwsConnect();
+  await chatCoreAwsConnect.init(mockMessageResponse());
+
+  const endEvent: DeepPartial<AwsConnectEvent> = {
+    data: { ContentType: "text/plain", ParticipantRole: "AGENT", Type: "END" },
+  };
+  const dummyFn = jest.fn();
+  chatCoreAwsConnect.on("close", (event: AwsConnectEventData) => {
+    console.log(event);
+    expect(event).toStrictEqual(endEvent.data);
+    dummyFn();
+  });
+  expect(onEndedSpy).toBeCalled();
+
+  // get the parameter passed to the onEnded callback
+  const onEndedFn = onEndedSpy.mock.calls[0][0] as AwsEventCallback;
+
+  // simulate an ended event
+  onEndedFn({
+    data: { ContentType: "text/plain", ParticipantRole: "AGENT", Type: "END" },
+  });
+
+  expect(dummyFn).toBeCalled();
+});
+
+it("triggers typing event callbacks", async () => {
+  const onTypingSpy = jest.spyOn(sess, "onTyping");
+
+  const chatCoreAwsConnect = provideChatCoreAwsConnect();
+  await chatCoreAwsConnect.init(mockMessageResponse());
+
+  const dummyFn = jest.fn();
+  chatCoreAwsConnect.on("typing", (event: boolean) => {
+    expect(event).toBe(true);
+    dummyFn();
+  });
+  expect(onTypingSpy).toBeCalled();
+
+  // get the parameter passed to the onTyping callback
+  const onTypingFn = onTypingSpy.mock.calls[0][0] as AwsEventCallback;
+
+  // simulate a typing event
+  onTypingFn({ data: { ParticipantRole: "AGENT", Type: "TYPING" } });
+
+  expect(dummyFn).toBeCalled();
+});
+
+it("sets a timeout to turn off typing indicator", async () => {
+  jest.useFakeTimers();
+  const onTypingSpy = jest.spyOn(sess, "onTyping");
+
+  const chatCoreAwsConnect = provideChatCoreAwsConnect();
+  await chatCoreAwsConnect.init(mockMessageResponse());
+
+  const dummyFn = jest.fn();
+  chatCoreAwsConnect.on("typing", dummyFn);
+
+  // get the parameter passed to the onTyping callback
+  const onTypingFn = onTypingSpy.mock.calls[0][0] as AwsEventCallback;
+
+  // simulate a typing event
+  onTypingFn({ data: { ParticipantRole: "AGENT", Type: "TYPING" } });
+
+  expect(dummyFn).toBeCalledTimes(1);
+
+  // advance time by 5s
+  jest.advanceTimersByTime(5000);
+
+  expect(dummyFn).toBeCalledTimes(2);
+});
+
+it("ignores non-agent messages", async () => {
+  const onMessageSpy = jest.spyOn(sess, "onMessage");
+
+  const chatCoreAwsConnect = provideChatCoreAwsConnect();
+  await chatCoreAwsConnect.init(mockMessageResponse());
+
+  const dummyFn = jest.fn();
+  chatCoreAwsConnect.on("message", dummyFn);
+
+  // get the parameter passed to the onMessage callback
+  const onMessageFn = onMessageSpy.mock.calls[0][0] as AwsEventCallback;
+
+  // simulate a message event
+  onMessageFn({
+    data: {
+      ContentType: "text/plain",
+      ParticipantRole: "CUSTOMER",
+      Content: "hello world!",
+    },
+  });
+
+  expect(dummyFn).not.toBeCalled();
+});
+
+it("ignores messages with non-text content type", async () => {
+  const onMessageSpy = jest.spyOn(sess, "onMessage");
+
+  const chatCoreAwsConnect = provideChatCoreAwsConnect();
+  await chatCoreAwsConnect.init(mockMessageResponse());
+
+  const dummyFn = jest.fn();
+  chatCoreAwsConnect.on("message", dummyFn);
+
+  // get the parameter passed to the onMessage callback
+  const onMessageFn = onMessageSpy.mock.calls[0][0] as AwsEventCallback;
+
+  // simulate a message event
+  onMessageFn({
+    data: {
+      ContentType: "application/json",
+      ParticipantRole: "AGENT",
+      Content: "hello world!",
+    },
+  });
+
+  expect(dummyFn).not.toBeCalled();
 });
