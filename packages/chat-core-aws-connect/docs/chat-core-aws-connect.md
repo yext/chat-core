@@ -8,19 +8,22 @@
 
 |  Function | Description |
 |  --- | --- |
-|  [provideChatCoreAwsConnect(loggerConfig)](./chat-core-aws-connect.providechatcoreawsconnect.md) | Provider for the ChatCore integration with AWS Connect. |
+|  [provideChatCoreAwsConnect(config)](./chat-core-aws-connect.providechatcoreawsconnect.md) | Provider for the ChatCore integration with AWS Connect. |
 
 ## Interfaces
 
 |  Interface | Description |
 |  --- | --- |
 |  [ChatCoreAwsConnect](./chat-core-aws-connect.chatcoreawsconnect.md) | Provides methods for interacting with Chat's AWS Connect integration. |
+|  [ChatCoreAwsConnectConfig](./chat-core-aws-connect.chatcoreawsconnectconfig.md) | Configuration for this instance of the [ChatCoreAwsConnect](./chat-core-aws-connect.chatcoreawsconnect.md)<!-- -->. |
 |  [LoggerConfig](./chat-core-aws-connect.loggerconfig.md) | Configuration for the internal logger of the AWS Connect Chat session. |
 
 ## Type Aliases
 
 |  Type Alias | Description |
 |  --- | --- |
+|  [EventCallback](./chat-core-aws-connect.eventcallback.md) | A generic event callback, to be used when defining listeners for a [ChatCoreAwsConnect](./chat-core-aws-connect.chatcoreawsconnect.md)<!-- -->. |
+|  [EventMap](./chat-core-aws-connect.eventmap.md) | A map of events that can be emitted or listened for within a [ChatCoreAwsConnect](./chat-core-aws-connect.chatcoreawsconnect.md) to their associated data types. |
 |  [Logger](./chat-core-aws-connect.logger.md) | The logger interface for the AWS Connect Chat session. |
 |  [LogLevel](./chat-core-aws-connect.loglevel.md) | The log level for the logger. |
 

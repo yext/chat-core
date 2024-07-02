@@ -1,4 +1,4 @@
-import { provideChatCoreAwsConnect } from "../src";
+import { provideChatCoreAwsConnect } from "../src/CoreAwsConnectProvider";
 import { MessageResponse } from "@yext/chat-core";
 import { LoggerConfig } from "../src/models/LoggerConfig";
 import {
@@ -122,7 +122,7 @@ it("emits typing event", async () => {
   sendEventSpy.mockClear();
   chatCoreAwsConnect.emit("typing", false);
 
-  expect(sendEventSpy).not.toBeCalled;
+  expect(sendEventSpy).not.toBeCalled();
 });
 
 it("sends message on processMessage", async () => {
@@ -182,7 +182,7 @@ it("uses logger config when provided", async () => {
     },
   };
 
-  const chatCoreAwsConnect = provideChatCoreAwsConnect(loggerConfig);
+  const chatCoreAwsConnect = provideChatCoreAwsConnect({ loggerConfig });
   await chatCoreAwsConnect.init(mockMessageResponse());
 
   expect(globalConfigSpy).toBeCalledWith({

@@ -1,16 +1,15 @@
 import { ChatCoreAwsConnectImpl } from "./infra/ChatCoreAwsConnectImpl";
-import { ChatCoreAwsConnect } from "./models";
-import { LoggerConfig } from "./models/LoggerConfig";
+import { ChatCoreAwsConnect, ChatCoreAwsConnectConfig } from "./models";
 
 /**
  * Provider for the ChatCore integration with AWS Connect.
  *
- * @param loggerConfig - Configuration for the logger. If not provided, the default logger will be used with level ERROR.
+ * @param config - Configuration for the returned instance of the {@link ChatCoreAwsConnect}.
  *
  * @public
  */
 export function provideChatCoreAwsConnect(
-  loggerConfig?: LoggerConfig
+  config?: ChatCoreAwsConnectConfig
 ): ChatCoreAwsConnect {
-  return new ChatCoreAwsConnectImpl(loggerConfig);
+  return new ChatCoreAwsConnectImpl(config);
 }

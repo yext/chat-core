@@ -17,7 +17,7 @@ on<T extends keyof EventMap>(eventName: T, cb: EventCallback<T>): void;
 |  Parameter | Type | Description |
 |  --- | --- | --- |
 |  eventName | T | The name of the event to listen for. |
-|  cb | EventCallback&lt;T&gt; | The callback to be executed when the event is triggered. |
+|  cb | [EventCallback](./chat-core-aws-connect.eventcallback.md)<!-- -->&lt;T&gt; | The callback to be executed when the event is triggered. |
 
 **Returns:**
 

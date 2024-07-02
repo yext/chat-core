@@ -3,6 +3,7 @@ import { MessageRequest, MessageResponse } from "@yext/chat-core";
 import { AwsConnectEvent } from "../models/AwsConnectEvent";
 import { EventMap, EventCallback } from "../models/EventCallback";
 import { LoggerConfig } from "../models/LoggerConfig";
+import { ChatCoreAwsConnectConfig } from "../models/ChatCoreAwsConnectConfig";
 import "amazon-connect-chatjs";
 
 /**
@@ -17,9 +18,13 @@ export class ChatCoreAwsConnectImpl implements ChatCoreAwsConnect {
     level: "ERROR",
   };
 
-  constructor(loggerConfig?: LoggerConfig) {
-    if (loggerConfig) {
-      this.loggerConfig = loggerConfig;
+  constructor(config?: ChatCoreAwsConnectConfig) {
+    if (!config) {
+      return;
+    }
+
+    if (config.loggerConfig) {
+      this.loggerConfig = config.loggerConfig;
     }
   }
 
@@ -104,7 +109,6 @@ export class ChatCoreAwsConnectImpl implements ChatCoreAwsConnect {
   emit<T extends keyof EventMap>(eventName: T, eventValue: EventMap[T]): void {
     switch (eventName) {
       case "typing":
-        console.log(eventValue);
         if (eventValue === true) {
           this.session?.sendEvent({
             contentType: "application/vnd.amazonaws.connect.event.typing",

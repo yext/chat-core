@@ -9,14 +9,14 @@ Provider for the ChatCore integration with AWS Connect.
 **Signature:**
 
 ```typescript
-export declare function provideChatCoreAwsConnect(loggerConfig?: LoggerConfig): ChatCoreAwsConnect;
+export declare function provideChatCoreAwsConnect(config?: ChatCoreAwsConnectConfig): ChatCoreAwsConnect;
 ```
 
 ## Parameters
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  loggerConfig | [LoggerConfig](./chat-core-aws-connect.loggerconfig.md) | _(Optional)_ Configuration for the logger. If not provided, the default logger will be used with level ERROR. |
+|  config | [ChatCoreAwsConnectConfig](./chat-core-aws-connect.chatcoreawsconnectconfig.md) | _(Optional)_ Configuration for the returned instance of the [ChatCoreAwsConnect](./chat-core-aws-connect.chatcoreawsconnect.md)<!-- -->. |
 
 **Returns:**
 

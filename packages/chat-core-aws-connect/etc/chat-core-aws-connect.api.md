@@ -12,11 +12,24 @@ export interface ChatCoreAwsConnect {
     emit<T extends keyof EventMap>(eventName: T, data: EventMap[T]): void;
     getSession(): connect.ActiveChatSession | undefined;
     init(messageResponse: MessageResponse): Promise<void>;
-    // Warning: (ae-forgotten-export) The symbol "EventMap" needs to be exported by the entry point index.d.ts
-    // Warning: (ae-forgotten-export) The symbol "EventCallback" needs to be exported by the entry point index.d.ts
     on<T extends keyof EventMap>(eventName: T, cb: EventCallback<T>): void;
     processMessage(request: MessageRequest): Promise<void>;
 }
+
+// @public
+export interface ChatCoreAwsConnectConfig {
+    loggerConfig: LoggerConfig;
+}
+
+// @public
+export type EventCallback<T extends keyof EventMap> = (arg: EventMap[T]) => void;
+
+// @public
+export type EventMap = {
+    message: string;
+    typing: boolean;
+    close: AwsConnectEventData;
+};
 
 // @public
 export type Logger = {
@@ -37,7 +50,11 @@ export interface LoggerConfig {
 export type LogLevel = "DEBUG" | "INFO" | "WARN" | "ERROR" | "ADVANCED_LOG";
 
 // @public
-export function provideChatCoreAwsConnect(loggerConfig?: LoggerConfig): ChatCoreAwsConnect;
+export function provideChatCoreAwsConnect(config?: ChatCoreAwsConnectConfig): ChatCoreAwsConnect;
+
+// Warnings were encountered during analysis:
+//
+// dist/esm/models/EventCallback.d.ts:16:5 - (ae-forgotten-export) The symbol "AwsConnectEventData" needs to be exported by the entry point index.d.ts
 
 // (No @packageDocumentation comment for this package)
 
