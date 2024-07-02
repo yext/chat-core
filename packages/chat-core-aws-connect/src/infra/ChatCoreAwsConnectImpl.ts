@@ -51,8 +51,7 @@ export class ChatCoreAwsConnectImpl implements ChatCoreAwsConnect {
       type: "CUSTOMER",
     });
 
-    // @ts-ignore -- native type is incorrect, `connect` requires no arguments
-    const { connectCalled, connectSuccess } = await this.session.connect();
+    const { connectCalled, connectSuccess } = await this.session.connect({});
     if (!connectCalled || !connectSuccess) {
       throw new Error("Failed to connect to chat session");
     }
