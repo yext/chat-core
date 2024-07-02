@@ -15,3 +15,5 @@ export type EventMap = {
     close: AwsConnectEventData;
 };
 ```
+**References:** [AwsConnectEventData](./chat-core-aws-connect.awsconnecteventdata.md)
+

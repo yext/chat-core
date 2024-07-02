@@ -8,6 +8,19 @@ import { MessageRequest } from '@yext/chat-core';
 import { MessageResponse } from '@yext/chat-core';
 
 // @public
+export interface AwsConnectEventData {
+    AbsoluteTime: string;
+    ContactId: string;
+    Content: string;
+    ContentType: string;
+    DisplayName: string;
+    Id: string;
+    ParticipantId: string;
+    ParticipantRole: string;
+    Type: string;
+}
+
+// @public
 export interface ChatCoreAwsConnect {
     emit<T extends keyof EventMap>(eventName: T, data: EventMap[T]): void;
     getSession(): connect.ActiveChatSession | undefined;
@@ -51,10 +64,6 @@ export type LogLevel = "DEBUG" | "INFO" | "WARN" | "ERROR" | "ADVANCED_LOG";
 
 // @public
 export function provideChatCoreAwsConnect(config?: ChatCoreAwsConnectConfig): ChatCoreAwsConnect;
-
-// Warnings were encountered during analysis:
-//
-// dist/esm/models/EventCallback.d.ts:16:5 - (ae-forgotten-export) The symbol "AwsConnectEventData" needs to be exported by the entry point index.d.ts
 
 // (No @packageDocumentation comment for this package)
 

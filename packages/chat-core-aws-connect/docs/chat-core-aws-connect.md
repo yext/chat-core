@@ -14,6 +14,7 @@
 
 |  Interface | Description |
 |  --- | --- |
+|  [AwsConnectEventData](./chat-core-aws-connect.awsconnecteventdata.md) | Data associated with an AWS Connect event. |
 |  [ChatCoreAwsConnect](./chat-core-aws-connect.chatcoreawsconnect.md) | Provides methods for interacting with Chat's AWS Connect integration. |
 |  [ChatCoreAwsConnectConfig](./chat-core-aws-connect.chatcoreawsconnectconfig.md) | Configuration for this instance of the [ChatCoreAwsConnect](./chat-core-aws-connect.chatcoreawsconnect.md)<!-- -->. |
 |  [LoggerConfig](./chat-core-aws-connect.loggerconfig.md) | Configuration for the internal logger of the AWS Connect Chat session. |
