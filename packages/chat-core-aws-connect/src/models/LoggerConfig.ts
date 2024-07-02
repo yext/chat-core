@@ -3,7 +3,7 @@
  *
  * @public
  */
-export type LoggerConfig = {
+export interface LoggerConfig {
   /**
    * The log level for the logger. Can be one of DEBUG, INFO, WARN, ERROR, ADVANCED_LOG. Default is ERROR.
    */
@@ -12,7 +12,7 @@ export type LoggerConfig = {
    * The custom logger to use. If provided, the default logger will be disabled.
    */
   customizedLogger?: Logger;
-};
+}
 
 /**
  * The log level for the logger.
@@ -36,29 +36,29 @@ export type Logger = {
    *
    * @param log - The incoming log message.
    */
-  debug(log: string): void;
+  debug?: (log: string) => void;
   /**
    * Handler for log messages output at the `INFO` level.
    *
    * @param log - The incoming log message.
    */
-  info(log: string): void;
+  info?: (log: string) => void;
   /**
    * Handler for log messages output at the `WARN` level.
    *
    * @param log - The incoming log message.
    */
-  warn(log: string): void;
+  warn?: (log: string) => void;
   /**
    * Handler for log messages output at the `ERROR` level.
    *
    * @param log - The incoming log message.
    */
-  error(log: string): void;
+  error?: (log: string) => void;
   /**
    * Handler for log messages output at the `ADVANCED_LOG` level.
    *
    * @param log - The incoming log message.
    */
-  advancedLog(log: string): void;
+  advancedLog?: (log: string) => void;
 };

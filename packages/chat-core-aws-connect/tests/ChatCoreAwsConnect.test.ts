@@ -179,10 +179,6 @@ it("uses logger config when provided", async () => {
     level: "DEBUG",
     customizedLogger: {
       debug: jest.fn(),
-      info: jest.fn(),
-      warn: jest.fn(),
-      error: jest.fn(),
-      advancedLog: jest.fn(),
     },
   };
 
@@ -244,7 +240,6 @@ it("triggers close event callbacks", async () => {
   };
   const dummyFn = jest.fn();
   chatCoreAwsConnect.on("close", (event: AwsConnectEventData) => {
-    console.log(event);
     expect(event).toStrictEqual(endEvent.data);
     dummyFn();
   });
@@ -254,9 +249,7 @@ it("triggers close event callbacks", async () => {
   const onEndedFn = onEndedSpy.mock.calls[0][0] as AwsEventCallback;
 
   // simulate an ended event
-  onEndedFn({
-    data: { ContentType: "text/plain", ParticipantRole: "AGENT", Type: "END" },
-  });
+  onEndedFn({ ...endEvent });
 
   expect(dummyFn).toBeCalled();
 });

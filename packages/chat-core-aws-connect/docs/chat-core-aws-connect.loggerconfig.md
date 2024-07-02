@@ -2,17 +2,20 @@
 
 [Home](./index.md) &gt; [@yext/chat-core-aws-connect](./chat-core-aws-connect.md) &gt; [LoggerConfig](./chat-core-aws-connect.loggerconfig.md)
 
-## LoggerConfig type
+## LoggerConfig interface
 
 Configuration for the internal logger of the AWS Connect Chat session.
 
 **Signature:**
 
 ```typescript
-export type LoggerConfig = {
-    level: LogLevel;
-    customizedLogger?: Logger;
-};
+export interface LoggerConfig 
 ```
-**References:** [LogLevel](./chat-core-aws-connect.loglevel.md)
+
+## Properties
+
+|  Property | Modifiers | Type | Description |
+|  --- | --- | --- | --- |
+|  [customizedLogger?](./chat-core-aws-connect.loggerconfig.customizedlogger.md) |  | [Logger](./chat-core-aws-connect.logger.md) | _(Optional)_ The custom logger to use. If provided, the default logger will be disabled. |
+|  [level](./chat-core-aws-connect.loggerconfig.level.md) |  | [LogLevel](./chat-core-aws-connect.loglevel.md) | The log level for the logger. Can be one of DEBUG, INFO, WARN, ERROR, ADVANCED\_LOG. Default is ERROR. |
 

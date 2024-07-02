@@ -15,11 +15,12 @@
 |  Interface | Description |
 |  --- | --- |
 |  [ChatCoreAwsConnect](./chat-core-aws-connect.chatcoreawsconnect.md) | Provides methods for interacting with Chat's AWS Connect integration. |
+|  [LoggerConfig](./chat-core-aws-connect.loggerconfig.md) | Configuration for the internal logger of the AWS Connect Chat session. |
 
 ## Type Aliases
 
 |  Type Alias | Description |
 |  --- | --- |
-|  [LoggerConfig](./chat-core-aws-connect.loggerconfig.md) | Configuration for the internal logger of the AWS Connect Chat session. |
+|  [Logger](./chat-core-aws-connect.logger.md) | The logger interface for the AWS Connect Chat session. |
 |  [LogLevel](./chat-core-aws-connect.loglevel.md) | The log level for the logger. |
 
