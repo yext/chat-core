@@ -1,6 +1,6 @@
 {
     "name": "@yext/chat-core-aws-connect",
-    "version": "0.1.0-alpha",
+    "version": "0.1.0-alpha.2",
     "description": "Typescript Networking Library for the Yext Chat API Integration with Amazon Connect",
     "main": "./dist/commonjs/index.js",
     "module": "./dist/esm/index.mjs",
