@@ -64,7 +64,7 @@ export class ChatCoreAwsConnectImpl implements ChatCoreAwsConnect {
     this.setupEventListeners();
     this.session.sendMessage({
       contentType: "text/plain",
-      message: messageRsp.notes.conversationSummary,
+      message: `SUMMARY: ${messageRsp.notes.conversationSummary}`,
     });
   }
 
@@ -96,6 +96,8 @@ export class ChatCoreAwsConnectImpl implements ChatCoreAwsConnect {
 
     this.session?.onEnded((event: AwsConnectEvent) => {
       this.eventListeners["close"]?.forEach((cb) => cb(event.data));
+      // Connection is closed. Clear session and create new one on next handoff request.
+      this.session = undefined;
     });
   }
 

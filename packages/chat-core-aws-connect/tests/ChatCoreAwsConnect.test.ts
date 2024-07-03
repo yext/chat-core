@@ -6,6 +6,7 @@ import {
   AwsConnectEventData,
 } from "../src/models/AwsConnectEvent";
 import "amazon-connect-chatjs";
+import "../src/models/connect";
 
 const createSpy = jest.fn().mockReturnValue(mockChatSession());
 const globalConfigSpy = jest.fn();
@@ -77,33 +78,59 @@ function mockMessageResponse(): MessageResponse {
   };
 }
 
-it("returns an error when failing to connect to chat session", async () => {
-  sess.connect = () => {
-    return { connectCalled: true, connectSuccess: false };
-  };
+describe("chat session initialization", () => {
+  it("returns an error when failing to connect to chat session", async () => {
+    sess.connect = () => {
+      return { connectCalled: true, connectSuccess: false };
+    };
 
-  const chatCoreAwsConnect = provideChatCoreAwsConnect();
-  await expect(
-    chatCoreAwsConnect.init(mockMessageResponse())
-  ).rejects.toThrowError("Failed to connect to chat session");
-});
+    const chatCoreAwsConnect = provideChatCoreAwsConnect();
+    await expect(
+      chatCoreAwsConnect.init(mockMessageResponse())
+    ).rejects.toThrowError("Failed to connect to chat session");
+  });
 
-it("returns no error when successfully connecting to chat session", async () => {
-  const chatCoreAwsConnect = provideChatCoreAwsConnect();
-  await expect(
-    chatCoreAwsConnect.init(mockMessageResponse())
-  ).resolves.toBeUndefined();
-});
+  it("returns no error when successfully connecting to chat session", async () => {
+    const chatCoreAwsConnect = provideChatCoreAwsConnect();
+    await expect(
+      chatCoreAwsConnect.init(mockMessageResponse())
+    ).resolves.toBeUndefined();
+  });
 
-it("sends conversation summary message on chat session initialization", async () => {
-  const sendMessageSpy = jest.spyOn(sess, "sendMessage");
+  it("returns error when integration credentials are not specified", async () => {
+    const messageResponse = mockMessageResponse();
+    delete messageResponse.integrationDetails;
 
-  const chatCoreAwsConnect = provideChatCoreAwsConnect();
-  await chatCoreAwsConnect.init(mockMessageResponse());
+    const chatCoreAwsConnect = provideChatCoreAwsConnect();
+    await expect(chatCoreAwsConnect.init(messageResponse)).rejects.toThrowError(
+      "Integration credentials not specified. Cannot initialize chat session."
+    );
+  });
 
-  expect(sendMessageSpy).toBeCalledWith({
-    contentType: "text/plain",
-    message: "conversationSummary",
+  it("logs warning when session already exists", async () => {
+    const consoleWarnSpy = jest.spyOn(console, "warn").mockImplementation();
+    const sendMessageSpy = jest.spyOn(sess, "sendMessage");
+
+    const chatCoreAwsConnect = provideChatCoreAwsConnect();
+    await chatCoreAwsConnect.init(mockMessageResponse());
+    expect(consoleWarnSpy).not.toBeCalled();
+    expect(sendMessageSpy).toBeCalledTimes(1);
+
+    await chatCoreAwsConnect.init(mockMessageResponse());
+    expect(consoleWarnSpy).toBeCalledWith("Chat session already initialized");
+    expect(sendMessageSpy).toBeCalledTimes(1);
+  });
+
+  it("sends conversation summary message on chat session initialization", async () => {
+    const sendMessageSpy = jest.spyOn(sess, "sendMessage");
+
+    const chatCoreAwsConnect = provideChatCoreAwsConnect();
+    await chatCoreAwsConnect.init(mockMessageResponse());
+
+    expect(sendMessageSpy).toBeCalledWith({
+      contentType: "text/plain",
+      message: "SUMMARY: conversationSummary",
+    });
   });
 });
 
@@ -145,26 +172,6 @@ it("sends message on processMessage", async () => {
     contentType: "text/plain",
     message: msg,
   });
-});
-
-it("logs warning when session already exists", async () => {
-  const consoleWarnSpy = jest.spyOn(console, "warn");
-
-  const chatCoreAwsConnect = provideChatCoreAwsConnect();
-  await chatCoreAwsConnect.init(mockMessageResponse());
-  await chatCoreAwsConnect.init(mockMessageResponse());
-
-  expect(consoleWarnSpy).toBeCalledWith("Chat session already initialized");
-});
-
-it("returns error when integration credentials are not specified", async () => {
-  const messageResponse = mockMessageResponse();
-  delete messageResponse.integrationDetails;
-
-  const chatCoreAwsConnect = provideChatCoreAwsConnect();
-  await expect(chatCoreAwsConnect.init(messageResponse)).rejects.toThrowError(
-    "Integration credentials not specified. Cannot initialize chat session."
-  );
 });
 
 it("returns session on getSession", async () => {
@@ -346,4 +353,19 @@ it("ignores messages with non-text content type", async () => {
   });
 
   expect(dummyFn).not.toBeCalled();
+});
+
+it("clear session on close event", async () => {
+  const onEndedSpy = jest.spyOn(sess, "onEnded");
+
+  const chatCoreAwsConnect = provideChatCoreAwsConnect();
+  await chatCoreAwsConnect.init(mockMessageResponse());
+  expect(chatCoreAwsConnect.getSession()).toBeDefined();
+
+  // get the parameter passed to the onSpy callback
+  const onEndedFn = onEndedSpy.mock.calls[0][0] as AwsEventCallback;
+
+  // simulate a session close event
+  onEndedFn({});
+  expect(chatCoreAwsConnect.getSession()).toBeUndefined();
 });
