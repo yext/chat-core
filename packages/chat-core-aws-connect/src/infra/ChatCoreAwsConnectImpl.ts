@@ -4,6 +4,7 @@ import { AwsConnectEvent } from "../models/AwsConnectEvent";
 import { EventMap, EventCallback } from "../models/EventCallback";
 import { LoggerConfig } from "../models/LoggerConfig";
 import { ChatCoreAwsConnectConfig } from "../models/ChatCoreAwsConnectConfig";
+import { isCustomerChatSession } from "../models/ChatSession";
 import "amazon-connect-chatjs";
 
 /**
@@ -12,7 +13,7 @@ import "amazon-connect-chatjs";
  * @internal
  */
 export class ChatCoreAwsConnectImpl implements ChatCoreAwsConnect {
-  private session?: connect.ActiveChatSession;
+  private session?: connect.ActiveCustomerChatSession;
   private eventListeners: { [T in keyof EventMap]?: EventCallback<T>[] } = {};
   private loggerConfig: LoggerConfig = {
     level: "ERROR",
@@ -51,10 +52,15 @@ export class ChatCoreAwsConnectImpl implements ChatCoreAwsConnect {
       region: messageRsp.integrationDetails?.awsConnectHandoff?.region,
     });
 
-    this.session = connect.ChatSession.create({
+    const sess = connect.ChatSession.create({
       chatDetails: connectionCreds,
       type: "CUSTOMER",
     });
+
+    if (!isCustomerChatSession(sess)) {
+      throw new Error("Unexpected non-customer chat session type");
+    }
+    this.session = sess;
 
     const { connectCalled, connectSuccess } = await this.session.connect({});
     if (!connectCalled || !connectSuccess) {
@@ -136,8 +142,7 @@ export class ChatCoreAwsConnectImpl implements ChatCoreAwsConnect {
       return;
     }
 
-    const customerSession = this.session as connect.ActiveCustomerChatSession;
-    customerSession.disconnectParticipant();
+    this.session.disconnectParticipant();
     this.session = undefined;
   }
 }

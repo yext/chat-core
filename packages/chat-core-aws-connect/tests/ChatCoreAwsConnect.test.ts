@@ -6,7 +6,6 @@ import {
   AwsConnectEventData,
 } from "../src/models/AwsConnectEvent";
 import "amazon-connect-chatjs";
-import "../src/models/connect";
 
 const createSpy = jest.fn().mockReturnValue(mockChatSession());
 const globalConfigSpy = jest.fn();
@@ -388,4 +387,14 @@ it("noops when clearing undefined session", async () => {
 
   chatCoreAwsConnect.resetSession();
   expect(chatCoreAwsConnect.getSession()).toBeUndefined();
+});
+
+it("throws error when session is not a customer session", async () => {
+  const sess = {} as unknown as connect.ActiveChatSession;
+  createSpy.mockReturnValue(sess);
+
+  const chatCoreAwsConnect = provideChatCoreAwsConnect();
+  expect(() => chatCoreAwsConnect.init(mockMessageResponse())).rejects.toThrow(
+    "Unexpected non-customer chat session type"
+  );
 });
