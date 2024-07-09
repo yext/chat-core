@@ -12,6 +12,11 @@ let chatCore = provideChatCore({
 });
 
 let coreAws = provideChatCoreAwsConnect();
+
+window.resetSession = () => {
+  coreAws.resetSession();
+};
+
 const msgInput = document.getElementById("messageInput");
 window.getNextMessage = async () => {
   const req = {

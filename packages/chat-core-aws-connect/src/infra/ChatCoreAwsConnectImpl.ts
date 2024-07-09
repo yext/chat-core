@@ -97,7 +97,7 @@ export class ChatCoreAwsConnectImpl implements ChatCoreAwsConnect {
     this.session?.onEnded((event: AwsConnectEvent) => {
       this.eventListeners["close"]?.forEach((cb) => cb(event.data));
       // Connection is closed. Clear session and create new one on next handoff request.
-      this.session = undefined;
+      this.resetSession();
     });
   }
 
@@ -129,5 +129,15 @@ export class ChatCoreAwsConnectImpl implements ChatCoreAwsConnect {
 
   getSession(): connect.ActiveChatSession | undefined {
     return this.session;
+  }
+
+  resetSession(): void {
+    if (this.session === undefined) {
+      return;
+    }
+
+    const customerSession = this.session as connect.ActiveCustomerChatSession;
+    customerSession.disconnectParticipant();
+    this.session = undefined;
   }
 }

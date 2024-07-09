@@ -4,7 +4,7 @@
 
 ## ChatCoreAwsConnect.getSession() method
 
-Get the current AWS Connect chat session.
+Get the current Amazon Connect chat session.
 
 **Signature:**
 

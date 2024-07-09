@@ -53,6 +53,9 @@ function mockChatSession(): connect.ActiveChatSession {
     connect() {
       return { connectCalled: true, connectSuccess: true };
     },
+    disconnectParticipant() {
+      return null;
+    },
   } as unknown as connect.ActiveChatSession;
 }
 
@@ -367,5 +370,22 @@ it("clear session on close event", async () => {
 
   // simulate a session close event
   onEndedFn({});
+  expect(chatCoreAwsConnect.getSession()).toBeUndefined();
+});
+
+it("clears session on resetSession", async () => {
+  const chatCoreAwsConnect = provideChatCoreAwsConnect();
+  await chatCoreAwsConnect.init(mockMessageResponse());
+  expect(chatCoreAwsConnect.getSession()).toBeDefined();
+
+  chatCoreAwsConnect.resetSession();
+  expect(chatCoreAwsConnect.getSession()).toBeUndefined();
+});
+
+it("noops when clearing undefined session", async () => {
+  const chatCoreAwsConnect = provideChatCoreAwsConnect();
+  expect(chatCoreAwsConnect.getSession()).toBeUndefined();
+
+  chatCoreAwsConnect.resetSession();
   expect(chatCoreAwsConnect.getSession()).toBeUndefined();
 });

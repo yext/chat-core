@@ -4,7 +4,7 @@
 
 ## ChatCoreAwsConnect.on() method
 
-Register a callback for an event triggered within the AWS Connect chat session. Supported events are: - `message`<!-- -->: A new message has been received. - `typing`<!-- -->: The agent is typing. - `close`<!-- -->: The chat session has been closed.
+Register a callback for an event triggered within the Amazon Connect chat session. Supported events are: - `message`<!-- -->: A new message has been received. - `typing`<!-- -->: The agent is typing. - `close`<!-- -->: The chat session has been closed.
 
 **Signature:**
 

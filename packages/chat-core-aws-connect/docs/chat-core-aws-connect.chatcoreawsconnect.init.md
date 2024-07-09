@@ -4,7 +4,7 @@
 
 ## ChatCoreAwsConnect.init() method
 
-Initialize the AWS Connect chat session using the credentials from the Chat API.
+Initialize the Amazon Connect chat session using the credentials from the Chat API.
 
 **Signature:**
 
