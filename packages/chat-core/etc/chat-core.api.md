@@ -124,6 +124,7 @@ export interface MessageResponse {
 
 // @public
 export enum MessageSource {
+    AGENT = "AGENT",
     BOT = "BOT",
     USER = "USER"
 }

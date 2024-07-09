@@ -16,6 +16,7 @@ export declare enum MessageSource
 
 |  Member | Value | Description |
 |  --- | --- | --- |
+|  AGENT | <code>&quot;AGENT&quot;</code> | From third-party integration. |
 |  BOT | <code>&quot;BOT&quot;</code> | From Chat API server. |
 |  USER | <code>&quot;USER&quot;</code> | From a user. |
 
