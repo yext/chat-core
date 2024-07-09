@@ -32,7 +32,7 @@ afterEach(() => {
   jest.clearAllMocks();
 });
 
-function mockChatSession(): connect.ActiveChatSession {
+function mockChatSession(): connect.ActiveCustomerChatSession {
   return {
     onMessage(_: (event: DeepPartial<AwsConnectEvent>) => void) {
       return null;
@@ -55,7 +55,7 @@ function mockChatSession(): connect.ActiveChatSession {
     disconnectParticipant() {
       return null;
     },
-  } as unknown as connect.ActiveChatSession;
+  } as unknown as connect.ActiveCustomerChatSession;
 }
 
 function mockMessageResponse(): MessageResponse {
