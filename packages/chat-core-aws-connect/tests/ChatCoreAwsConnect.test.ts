@@ -55,7 +55,7 @@ function mockChatSession(): connect.ActiveCustomerChatSession {
     disconnectParticipant() {
       return null;
     },
-  } as unknown as connect.ActiveCustomerChatSession;
+  } as Partial<connect.ActiveCustomerChatSession> as connect.ActiveCustomerChatSession;
 }
 
 function mockMessageResponse(): MessageResponse {
