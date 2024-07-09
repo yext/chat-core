@@ -4,7 +4,7 @@
 
 ## ChatCoreAwsConnect.emit() method
 
-Emit an event into the AWS Connect chat session. Supported events are: - `typing`<!-- -->: The customer is typing.
+Emit an event into the Amazon Connect chat session. Supported events are: - `typing`<!-- -->: The customer is typing.
 
 **Signature:**
 

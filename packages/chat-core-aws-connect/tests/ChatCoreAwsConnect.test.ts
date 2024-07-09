@@ -6,7 +6,6 @@ import {
   AwsConnectEventData,
 } from "../src/models/AwsConnectEvent";
 import "amazon-connect-chatjs";
-import "../src/models/connect";
 
 const createSpy = jest.fn().mockReturnValue(mockChatSession());
 const globalConfigSpy = jest.fn();
@@ -33,7 +32,7 @@ afterEach(() => {
   jest.clearAllMocks();
 });
 
-function mockChatSession(): connect.ActiveChatSession {
+function mockChatSession(): connect.ActiveCustomerChatSession {
   return {
     onMessage(_: (event: DeepPartial<AwsConnectEvent>) => void) {
       return null;
@@ -53,7 +52,10 @@ function mockChatSession(): connect.ActiveChatSession {
     connect() {
       return { connectCalled: true, connectSuccess: true };
     },
-  } as unknown as connect.ActiveChatSession;
+    disconnectParticipant() {
+      return null;
+    },
+  } as Partial<connect.ActiveCustomerChatSession> as connect.ActiveCustomerChatSession;
 }
 
 function mockMessageResponse(): MessageResponse {
@@ -368,4 +370,31 @@ it("clear session on close event", async () => {
   // simulate a session close event
   onEndedFn({});
   expect(chatCoreAwsConnect.getSession()).toBeUndefined();
+});
+
+it("clears session on resetSession", async () => {
+  const chatCoreAwsConnect = provideChatCoreAwsConnect();
+  await chatCoreAwsConnect.init(mockMessageResponse());
+  expect(chatCoreAwsConnect.getSession()).toBeDefined();
+
+  chatCoreAwsConnect.resetSession();
+  expect(chatCoreAwsConnect.getSession()).toBeUndefined();
+});
+
+it("noops when clearing undefined session", async () => {
+  const chatCoreAwsConnect = provideChatCoreAwsConnect();
+  expect(chatCoreAwsConnect.getSession()).toBeUndefined();
+
+  chatCoreAwsConnect.resetSession();
+  expect(chatCoreAwsConnect.getSession()).toBeUndefined();
+});
+
+it("throws error when session is not a customer session", async () => {
+  const sess = {} as unknown as connect.ActiveChatSession;
+  createSpy.mockReturnValue(sess);
+
+  const chatCoreAwsConnect = provideChatCoreAwsConnect();
+  expect(() => chatCoreAwsConnect.init(mockMessageResponse())).rejects.toThrow(
+    "Unexpected non-customer chat session type"
+  );
 });

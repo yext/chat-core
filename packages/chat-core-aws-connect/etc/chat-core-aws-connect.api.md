@@ -27,6 +27,7 @@ export interface ChatCoreAwsConnect {
     init(messageResponse: MessageResponse): Promise<void>;
     on<T extends keyof EventMap>(eventName: T, cb: EventCallback<T>): void;
     processMessage(request: MessageRequest): Promise<void>;
+    resetSession(): void;
 }
 
 // @public

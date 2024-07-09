@@ -2,20 +2,20 @@ import { MessageRequest, MessageResponse } from "@yext/chat-core";
 import { EventCallback, EventMap } from "./EventCallback";
 
 /**
- * Provides methods for interacting with Chat's AWS Connect integration.
+ * Provides methods for interacting with Chat's Amazon Connect integration.
  *
  * @public
  */
 export interface ChatCoreAwsConnect {
   /**
-   * Initialize the AWS Connect chat session using the credentials from the Chat API.
+   * Initialize the Amazon Connect chat session using the credentials from the Chat API.
    *
    * @param messageResponse - The response returned from a successful call to the Chat API.
    */
   init(messageResponse: MessageResponse): Promise<void>;
 
   /**
-   * Register a callback for an event triggered within the AWS Connect chat session.
+   * Register a callback for an event triggered within the Amazon Connect chat session.
    * Supported events are:
    * - `message`: A new message has been received.
    * - `typing`: The agent is typing.
@@ -27,7 +27,7 @@ export interface ChatCoreAwsConnect {
   on<T extends keyof EventMap>(eventName: T, cb: EventCallback<T>): void;
 
   /**
-   * Emit an event into the AWS Connect chat session.
+   * Emit an event into the Amazon Connect chat session.
    * Supported events are:
    * - `typing`: The customer is typing.
    *
@@ -44,10 +44,15 @@ export interface ChatCoreAwsConnect {
   processMessage(request: MessageRequest): Promise<void>;
 
   /**
-   * Get the current AWS Connect chat session.
+   * Get the current Amazon Connect chat session.
    *
    * @remarks
    * If the session is not initialized, this method will return `undefined`.
    */
   getSession(): connect.ActiveChatSession | undefined;
+
+  /**
+   * Resets the {@link ChatCoreAwsConnect} instance, clearing the underlying Amazon Connect session.
+   */
+  resetSession(): void;
 }
