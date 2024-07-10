@@ -6,7 +6,8 @@
     "build": "turbo run build --filter='./packages/*'",
     "dev": "turbo run dev",
     "lint": "prettier --write . && eslint --fix --max-warnings=0 .",
-    "test": "turbo run test --filter='./packages/*'"
+    "test": "turbo run test --filter='./packages/*'",
+    "foobar": "turbo run dev"
   },
   "devDependencies": {
     "@yext/eslint-config": "^1.0.0",
