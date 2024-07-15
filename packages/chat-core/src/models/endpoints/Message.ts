@@ -29,4 +29,6 @@ export enum MessageSource {
   USER = "USER",
   /** From Chat API server. */
   BOT = "BOT",
+  /** From third-party integration. */
+  AGENT = "AGENT",
 }
