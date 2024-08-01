@@ -14,10 +14,101 @@ export interface MessageResponse
 
 ## Properties
 
-|  Property | Modifiers | Type | Description |
-|  --- | --- | --- | --- |
-|  [conversationId?](./chat-core.messageresponse.conversationid.md) |  | string | _(Optional)_ The id corresponds to the current conversation. |
-|  [integrationDetails?](./chat-core.messageresponse.integrationdetails.md) |  | [IntegrationDetails](./chat-core.integrationdetails.md) | _(Optional)_ Integration details for the current conversation. |
-|  [message](./chat-core.messageresponse.message.md) |  | [Message](./chat-core.message.md) | The generated reply to the latest message in the request. |
-|  [notes](./chat-core.messageresponse.notes.md) |  | [MessageNotes](./chat-core.messagenotes.md) | Information relevant to the current state of the conversation, serving as the bot’s "memory" regarding what work it previously did to help determine future actions. |
+<table><thead><tr><th>
 
+Property
+
+
+</th><th>
+
+Modifiers
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+[conversationId?](./chat-core.messageresponse.conversationid.md)
+
+
+</td><td>
+
+
+</td><td>
+
+string
+
+
+</td><td>
+
+_(Optional)_ The id corresponds to the current conversation.
+
+
+</td></tr>
+<tr><td>
+
+[integrationDetails?](./chat-core.messageresponse.integrationdetails.md)
+
+
+</td><td>
+
+
+</td><td>
+
+[IntegrationDetails](./chat-core.integrationdetails.md)
+
+
+</td><td>
+
+_(Optional)_ Integration details for the current conversation.
+
+
+</td></tr>
+<tr><td>
+
+[message](./chat-core.messageresponse.message.md)
+
+
+</td><td>
+
+
+</td><td>
+
+[Message](./chat-core.message.md)
+
+
+</td><td>
+
+The generated reply to the latest message in the request.
+
+
+</td></tr>
+<tr><td>
+
+[notes](./chat-core.messageresponse.notes.md)
+
+
+</td><td>
+
+
+</td><td>
+
+[MessageNotes](./chat-core.messagenotes.md)
+
+
+</td><td>
+
+Information relevant to the current state of the conversation, serving as the bot’s "memory" regarding what work it previously did to help determine future actions.
+
+
+</td></tr>
+</tbody></table>

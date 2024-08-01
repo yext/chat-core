@@ -14,7 +14,34 @@ constructor(rawResponse: RawResponse);
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  rawResponse | [RawResponse](./chat-core.rawresponse.md) |  |
+<table><thead><tr><th>
 
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+rawResponse
+
+
+</td><td>
+
+[RawResponse](./chat-core.rawresponse.md)
+
+
+</td><td>
+
+
+</td></tr>
+</tbody></table>

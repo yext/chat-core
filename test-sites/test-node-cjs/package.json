@@ -9,7 +9,8 @@
     "typescript": "^4.4.3"
   },
   "dependencies": {
-    "@yext/chat-core": "file:..",
+    "@yext/chat-core": "file:../../packages/chat-core",
+    "@yext/chat-core-aws-connect": "file:../../packages/chat-core-aws-connect",
     "dotenv": "^16.0.3"
   },
   "scripts": {

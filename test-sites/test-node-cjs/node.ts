@@ -4,9 +4,15 @@ import {
   ChatConfig,
   InternalConfig,
   MessageRequest,
+  MessageResponse,
   StreamEventName,
   provideChatCoreInternal,
 } from "@yext/chat-core";
+
+import {
+  provideChatCoreAwsConnect,
+} from "@yext/chat-core-aws-connect";
+
 import dotenv from "dotenv";
 
 dotenv.config();
@@ -48,11 +54,26 @@ async function stream(res: any) {
   stream.consume();
 }
 
-const server = http.createServer(async (req: any, res: any) => {
+const server = http.createServer(async (req, res) => {
   res.statusCode = 200;
   res.setHeader("Content-Type", "text/plain");
   if (req.url === "/streaming") {
     stream(res);
+  } else if (req.url === "/aws") {
+    let coreAws = provideChatCoreAwsConnect();
+    const chatCore = provideChatCoreInternal(config, internalConfig);
+    const awsMessageRequest : MessageRequest = {
+      messages: [
+        {
+          timestamp: "2023-05-17T19:21:21.915Z",
+          source: "USER",
+          text: "I want to talk to an agent",
+        },
+      ],
+    };
+    const data : MessageResponse = await chatCore.getNextMessage(awsMessageRequest);
+    await coreAws.init(data);
+  
   } else {
     const chatCore = provideChatCoreInternal(config, internalConfig);
     const reply = await chatCore.getNextMessage(request);

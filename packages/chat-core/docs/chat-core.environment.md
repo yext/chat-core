@@ -14,8 +14,48 @@ export declare enum Environment
 
 ## Enumeration Members
 
-|  Member | Value | Description |
-|  --- | --- | --- |
-|  PRODUCTION | <code>&quot;PRODUCTION&quot;</code> |  |
-|  SANDBOX | <code>&quot;SANDBOX&quot;</code> |  |
+<table><thead><tr><th>
 
+Member
+
+
+</th><th>
+
+Value
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+PRODUCTION
+
+
+</td><td>
+
+`"PRODUCTION"`
+
+
+</td><td>
+
+
+</td></tr>
+<tr><td>
+
+SANDBOX
+
+
+</td><td>
+
+`"SANDBOX"`
+
+
+</td><td>
+
+
+</td></tr>
+</tbody></table>

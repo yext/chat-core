@@ -14,8 +14,63 @@ export interface AwsConnectHandoff
 
 ## Properties
 
-|  Property | Modifiers | Type | Description |
-|  --- | --- | --- | --- |
-|  [credentials](./chat-core.awsconnecthandoff.credentials.md) |  | [AwsConnectCredentials](./chat-core.awsconnectcredentials.md) | AWS Connect handoff credentials. |
-|  [region](./chat-core.awsconnecthandoff.region.md) |  | string | The region of The AWS Connect instance. |
+<table><thead><tr><th>
 
+Property
+
+
+</th><th>
+
+Modifiers
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+[credentials](./chat-core.awsconnecthandoff.credentials.md)
+
+
+</td><td>
+
+
+</td><td>
+
+[AwsConnectCredentials](./chat-core.awsconnectcredentials.md)
+
+
+</td><td>
+
+AWS Connect handoff credentials.
+
+
+</td></tr>
+<tr><td>
+
+[region](./chat-core.awsconnecthandoff.region.md)
+
+
+</td><td>
+
+
+</td><td>
+
+string
+
+
+</td><td>
+
+The region of The AWS Connect instance.
+
+
+</td></tr>
+</tbody></table>

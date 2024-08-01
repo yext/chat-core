@@ -14,8 +14,63 @@ export interface LoggerConfig
 
 ## Properties
 
-|  Property | Modifiers | Type | Description |
-|  --- | --- | --- | --- |
-|  [customizedLogger?](./chat-core-aws-connect.loggerconfig.customizedlogger.md) |  | [Logger](./chat-core-aws-connect.logger.md) | _(Optional)_ The custom logger to use. If provided, the default logger will be disabled. |
-|  [level](./chat-core-aws-connect.loggerconfig.level.md) |  | [LogLevel](./chat-core-aws-connect.loglevel.md) | The log level for the logger. Can be one of DEBUG, INFO, WARN, ERROR, ADVANCED\_LOG. Default is ERROR. |
+<table><thead><tr><th>
 
+Property
+
+
+</th><th>
+
+Modifiers
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+[customizedLogger?](./chat-core-aws-connect.loggerconfig.customizedlogger.md)
+
+
+</td><td>
+
+
+</td><td>
+
+[Logger](./chat-core-aws-connect.logger.md)
+
+
+</td><td>
+
+_(Optional)_ The custom logger to use. If provided, the default logger will be disabled.
+
+
+</td></tr>
+<tr><td>
+
+[level](./chat-core-aws-connect.loggerconfig.level.md)
+
+
+</td><td>
+
+
+</td><td>
+
+[LogLevel](./chat-core-aws-connect.loglevel.md)
+
+
+</td><td>
+
+The log level for the logger. Can be one of DEBUG, INFO, WARN, ERROR, ADVANCED\_LOG. Default is ERROR.
+
+
+</td></tr>
+</tbody></table>

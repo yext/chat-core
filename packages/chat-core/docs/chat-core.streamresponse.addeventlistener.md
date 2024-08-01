@@ -14,11 +14,55 @@ addEventListener<E extends EnumOrLiteral<StreamEventName>>(eventName: E, cb: Str
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  eventName | E | name of the event to listen |
-|  cb | [StreamEventCallback](./chat-core.streameventcallback.md)<!-- -->&lt;E&gt; | callback function to invoke when event occurs |
+<table><thead><tr><th>
 
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+eventName
+
+
+</td><td>
+
+E
+
+
+</td><td>
+
+name of the event to listen
+
+
+</td></tr>
+<tr><td>
+
+cb
+
+
+</td><td>
+
+[StreamEventCallback](./chat-core.streameventcallback.md)<!-- -->&lt;E&gt;
+
+
+</td><td>
+
+callback function to invoke when event occurs
+
+
+</td></tr>
+</tbody></table>
 **Returns:**
 
 void

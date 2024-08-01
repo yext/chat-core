@@ -14,8 +14,63 @@ export interface Endpoints
 
 ## Properties
 
-|  Property | Modifiers | Type | Description |
-|  --- | --- | --- | --- |
-|  [chat](./chat-core.endpoints.chat.md) |  | string | Chat API endpoint. |
-|  [chatStream](./chat-core.endpoints.chatstream.md) |  | string | Chat streaming API endpoint. |
+<table><thead><tr><th>
 
+Property
+
+
+</th><th>
+
+Modifiers
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+[chat](./chat-core.endpoints.chat.md)
+
+
+</td><td>
+
+
+</td><td>
+
+string
+
+
+</td><td>
+
+Chat API endpoint.
+
+
+</td></tr>
+<tr><td>
+
+[chatStream](./chat-core.endpoints.chatstream.md)
+
+
+</td><td>
+
+
+</td><td>
+
+string
+
+
+</td><td>
+
+Chat streaming API endpoint.
+
+
+</td></tr>
+</tbody></table>

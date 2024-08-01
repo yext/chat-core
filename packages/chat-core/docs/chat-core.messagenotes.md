@@ -18,14 +18,177 @@ This data will come from the API. As such, a user’s first request may have thi
 
 ## Properties
 
-|  Property | Modifiers | Type | Description |
-|  --- | --- | --- | --- |
-|  [collectedData?](./chat-core.messagenotes.collecteddata.md) |  | Record&lt;string, unknown&gt; | _(Optional)_ Data collected from user in a conversation. |
-|  [conversationSummary?](./chat-core.messagenotes.conversationsummary.md) |  | string | _(Optional)_ The summary of the conversation up to this point. |
-|  [currentGoal?](./chat-core.messagenotes.currentgoal.md) |  | string | _(Optional)_ The goal of the latest message. |
-|  [currentStepIndices?](./chat-core.messagenotes.currentstepindices.md) |  | number\[\] | _(Optional)_ The indices to traversed within the nested instruction array to access the target step. |
-|  [goalFirstMsgIndex?](./chat-core.messagenotes.goalfirstmsgindex.md) |  | number | _(Optional)_ The index of the message that started the current goal. |
-|  [queryResult?](./chat-core.messagenotes.queryresult.md) |  | object | _(Optional)_ Data retrieved from Yext Search, REST api, etc. |
-|  [searchQuery?](./chat-core.messagenotes.searchquery.md) |  | string | _(Optional)_ The query used for Yext Search, REST api, etc. |
-|  [suggestedReplies?](./chat-core.messagenotes.suggestedreplies.md) |  | string\[\] | _(Optional)_ A set of pre-generated replies given by the AI. |
+<table><thead><tr><th>
 
+Property
+
+
+</th><th>
+
+Modifiers
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+[collectedData?](./chat-core.messagenotes.collecteddata.md)
+
+
+</td><td>
+
+
+</td><td>
+
+Record&lt;string, unknown&gt;
+
+
+</td><td>
+
+_(Optional)_ Data collected from user in a conversation.
+
+
+</td></tr>
+<tr><td>
+
+[conversationSummary?](./chat-core.messagenotes.conversationsummary.md)
+
+
+</td><td>
+
+
+</td><td>
+
+string
+
+
+</td><td>
+
+_(Optional)_ The summary of the conversation up to this point.
+
+
+</td></tr>
+<tr><td>
+
+[currentGoal?](./chat-core.messagenotes.currentgoal.md)
+
+
+</td><td>
+
+
+</td><td>
+
+string
+
+
+</td><td>
+
+_(Optional)_ The goal of the latest message.
+
+
+</td></tr>
+<tr><td>
+
+[currentStepIndices?](./chat-core.messagenotes.currentstepindices.md)
+
+
+</td><td>
+
+
+</td><td>
+
+number\[\]
+
+
+</td><td>
+
+_(Optional)_ The indices to traversed within the nested instruction array to access the target step.
+
+
+</td></tr>
+<tr><td>
+
+[goalFirstMsgIndex?](./chat-core.messagenotes.goalfirstmsgindex.md)
+
+
+</td><td>
+
+
+</td><td>
+
+number
+
+
+</td><td>
+
+_(Optional)_ The index of the message that started the current goal.
+
+
+</td></tr>
+<tr><td>
+
+[queryResult?](./chat-core.messagenotes.queryresult.md)
+
+
+</td><td>
+
+
+</td><td>
+
+object
+
+
+</td><td>
+
+_(Optional)_ Data retrieved from Yext Search, REST api, etc.
+
+
+</td></tr>
+<tr><td>
+
+[searchQuery?](./chat-core.messagenotes.searchquery.md)
+
+
+</td><td>
+
+
+</td><td>
+
+string
+
+
+</td><td>
+
+_(Optional)_ The query used for Yext Search, REST api, etc.
+
+
+</td></tr>
+<tr><td>
+
+[suggestedReplies?](./chat-core.messagenotes.suggestedreplies.md)
+
+
+</td><td>
+
+
+</td><td>
+
+string\[\]
+
+
+</td><td>
+
+_(Optional)_ A set of pre-generated replies given by the AI.
+
+
+</td></tr>
+</tbody></table>

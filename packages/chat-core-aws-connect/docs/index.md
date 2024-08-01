@@ -6,7 +6,24 @@
 
 ## Packages
 
-|  Package | Description |
-|  --- | --- |
-|  [@yext/chat-core-aws-connect](./chat-core-aws-connect.md) |  |
+<table><thead><tr><th>
 
+Package
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+[@yext/chat-core-aws-connect](./chat-core-aws-connect.md)
+
+
+</td><td>
+
+
+</td></tr>
+</tbody></table>

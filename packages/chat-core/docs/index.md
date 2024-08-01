@@ -6,7 +6,24 @@
 
 ## Packages
 
-|  Package | Description |
-|  --- | --- |
-|  [@yext/chat-core](./chat-core.md) |  |
+<table><thead><tr><th>
 
+Package
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+[@yext/chat-core](./chat-core.md)
+
+
+</td><td>
+
+
+</td></tr>
+</tbody></table>

@@ -14,10 +14,39 @@ getNextMessage(request: MessageRequest): Promise<MessageResponse>;
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  request | [MessageRequest](./chat-core.messagerequest.md) | request to get next message |
+<table><thead><tr><th>
 
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+request
+
+
+</td><td>
+
+[MessageRequest](./chat-core.messagerequest.md)
+
+
+</td><td>
+
+request to get next message
+
+
+</td></tr>
+</tbody></table>
 **Returns:**
 
 Promise&lt;[MessageResponse](./chat-core.messageresponse.md)<!-- -->&gt;

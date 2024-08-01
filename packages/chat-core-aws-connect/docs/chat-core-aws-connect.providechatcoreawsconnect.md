@@ -14,10 +14,39 @@ export declare function provideChatCoreAwsConnect(config?: ChatCoreAwsConnectCon
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  config | [ChatCoreAwsConnectConfig](./chat-core-aws-connect.chatcoreawsconnectconfig.md) | _(Optional)_ Configuration for the returned instance of the [ChatCoreAwsConnect](./chat-core-aws-connect.chatcoreawsconnect.md)<!-- -->. |
+<table><thead><tr><th>
 
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+config
+
+
+</td><td>
+
+[ChatCoreAwsConnectConfig](./chat-core-aws-connect.chatcoreawsconnectconfig.md)
+
+
+</td><td>
+
+_(Optional)_ Configuration for the returned instance of the [ChatCoreAwsConnect](./chat-core-aws-connect.chatcoreawsconnect.md)<!-- -->.
+
+
+</td></tr>
+</tbody></table>
 **Returns:**
 
 [ChatCoreAwsConnect](./chat-core-aws-connect.chatcoreawsconnect.md)

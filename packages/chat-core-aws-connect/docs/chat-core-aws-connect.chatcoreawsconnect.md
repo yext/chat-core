@@ -14,12 +14,81 @@ export interface ChatCoreAwsConnect
 
 ## Methods
 
-|  Method | Description |
-|  --- | --- |
-|  [emit(eventName, data)](./chat-core-aws-connect.chatcoreawsconnect.emit.md) | Emit an event into the Amazon Connect chat session. Supported events are: - <code>typing</code>: The customer is typing. |
-|  [getSession()](./chat-core-aws-connect.chatcoreawsconnect.getsession.md) | Get the current Amazon Connect chat session. |
-|  [init(messageResponse)](./chat-core-aws-connect.chatcoreawsconnect.init.md) | Initialize the Amazon Connect chat session using the credentials from the Chat API. |
-|  [on(eventName, cb)](./chat-core-aws-connect.chatcoreawsconnect.on.md) | Register a callback for an event triggered within the Amazon Connect chat session. Supported events are: - <code>message</code>: A new message has been received. - <code>typing</code>: The agent is typing. - <code>close</code>: The chat session has been closed. |
-|  [processMessage(request)](./chat-core-aws-connect.chatcoreawsconnect.processmessage.md) | Process a message sent by the user. |
-|  [resetSession()](./chat-core-aws-connect.chatcoreawsconnect.resetsession.md) | Resets the [ChatCoreAwsConnect](./chat-core-aws-connect.chatcoreawsconnect.md) instance, clearing the underlying Amazon Connect session. |
+<table><thead><tr><th>
 
+Method
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+[emit(eventName, data)](./chat-core-aws-connect.chatcoreawsconnect.emit.md)
+
+
+</td><td>
+
+Emit an event into the Amazon Connect chat session. Supported events are: - `typing`<!-- -->: The customer is typing.
+
+
+</td></tr>
+<tr><td>
+
+[getSession()](./chat-core-aws-connect.chatcoreawsconnect.getsession.md)
+
+
+</td><td>
+
+Get the current Amazon Connect chat session.
+
+
+</td></tr>
+<tr><td>
+
+[init(messageResponse)](./chat-core-aws-connect.chatcoreawsconnect.init.md)
+
+
+</td><td>
+
+Initialize the Amazon Connect chat session using the credentials from the Chat API.
+
+
+</td></tr>
+<tr><td>
+
+[on(eventName, cb)](./chat-core-aws-connect.chatcoreawsconnect.on.md)
+
+
+</td><td>
+
+Register a callback for an event triggered within the Amazon Connect chat session. Supported events are: - `message`<!-- -->: A new message has been received. - `typing`<!-- -->: The agent is typing. - `close`<!-- -->: The chat session has been closed.
+
+
+</td></tr>
+<tr><td>
+
+[processMessage(request)](./chat-core-aws-connect.chatcoreawsconnect.processmessage.md)
+
+
+</td><td>
+
+Process a message sent by the user.
+
+
+</td></tr>
+<tr><td>
+
+[resetSession()](./chat-core-aws-connect.chatcoreawsconnect.resetsession.md)
+
+
+</td><td>
+
+Resets the [ChatCoreAwsConnect](./chat-core-aws-connect.chatcoreawsconnect.md) instance, clearing the underlying Amazon Connect session.
+
+
+</td></tr>
+</tbody></table>

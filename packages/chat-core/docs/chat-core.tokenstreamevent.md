@@ -14,8 +14,63 @@ export interface TokenStreamEvent
 
 ## Properties
 
-|  Property | Modifiers | Type | Description |
-|  --- | --- | --- | --- |
-|  [data](./chat-core.tokenstreamevent.data.md) |  | [TokenStreamData](./chat-core.tokenstreamdata.md) | Data returned from a [TokenStreamEvent](./chat-core.tokenstreamevent.md)<!-- -->. |
-|  [event](./chat-core.tokenstreamevent.event.md) |  | [EnumOrLiteral](./chat-core.enumorliteral.md)<!-- -->&lt;[StreamEventName.TokenStreamEvent](./chat-core.streameventname.md)<!-- -->&gt; | Name of the event. |
+<table><thead><tr><th>
 
+Property
+
+
+</th><th>
+
+Modifiers
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+[data](./chat-core.tokenstreamevent.data.md)
+
+
+</td><td>
+
+
+</td><td>
+
+[TokenStreamData](./chat-core.tokenstreamdata.md)
+
+
+</td><td>
+
+Data returned from a [TokenStreamEvent](./chat-core.tokenstreamevent.md)<!-- -->.
+
+
+</td></tr>
+<tr><td>
+
+[event](./chat-core.tokenstreamevent.event.md)
+
+
+</td><td>
+
+
+</td><td>
+
+[EnumOrLiteral](./chat-core.enumorliteral.md)<!-- -->&lt;[StreamEventName.TokenStreamEvent](./chat-core.streameventname.md)<!-- -->&gt;
+
+
+</td><td>
+
+Name of the event.
+
+
+</td></tr>
+</tbody></table>

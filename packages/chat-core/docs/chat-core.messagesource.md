@@ -14,9 +14,68 @@ export declare enum MessageSource
 
 ## Enumeration Members
 
-|  Member | Value | Description |
-|  --- | --- | --- |
-|  AGENT | <code>&quot;AGENT&quot;</code> | From third-party integration. |
-|  BOT | <code>&quot;BOT&quot;</code> | From Chat API server. |
-|  USER | <code>&quot;USER&quot;</code> | From a user. |
+<table><thead><tr><th>
 
+Member
+
+
+</th><th>
+
+Value
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+AGENT
+
+
+</td><td>
+
+`"AGENT"`
+
+
+</td><td>
+
+From third-party integration.
+
+
+</td></tr>
+<tr><td>
+
+BOT
+
+
+</td><td>
+
+`"BOT"`
+
+
+</td><td>
+
+From Chat API server.
+
+
+</td></tr>
+<tr><td>
+
+USER
+
+
+</td><td>
+
+`"USER"`
+
+
+</td><td>
+
+From a user.
+
+
+</td></tr>
+</tbody></table>

@@ -14,20 +14,128 @@ export declare class StreamResponse
 
 ## Constructors
 
-|  Constructor | Modifiers | Description |
-|  --- | --- | --- |
-|  [(constructor)(rawResponse)](./chat-core.streamresponse._constructor_.md) |  | Constructs a new instance of the <code>StreamResponse</code> class |
+<table><thead><tr><th>
+
+Constructor
+
+
+</th><th>
+
+Modifiers
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+[(constructor)(rawResponse)](./chat-core.streamresponse._constructor_.md)
+
+
+</td><td>
+
+
+</td><td>
+
+Constructs a new instance of the `StreamResponse` class
+
+
+</td></tr>
+</tbody></table>
 
 ## Properties
 
-|  Property | Modifiers | Type | Description |
-|  --- | --- | --- | --- |
-|  [rawResponse](./chat-core.streamresponse.rawresponse.md) | <code>readonly</code> | [RawResponse](./chat-core.rawresponse.md) | Raw response from Chat API. |
+<table><thead><tr><th>
+
+Property
+
+
+</th><th>
+
+Modifiers
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+[rawResponse](./chat-core.streamresponse.rawresponse.md)
+
+
+</td><td>
+
+`readonly`
+
+
+</td><td>
+
+[RawResponse](./chat-core.rawresponse.md)
+
+
+</td><td>
+
+Raw response from Chat API.
+
+
+</td></tr>
+</tbody></table>
 
 ## Methods
 
-|  Method | Modifiers | Description |
-|  --- | --- | --- |
-|  [addEventListener(eventName, cb)](./chat-core.streamresponse.addeventlistener.md) |  | Registers a function that will be called whenever the specified stream event occurs. |
-|  [consume()](./chat-core.streamresponse.consume.md) |  | Reads data from a stream response and invokes callbacks from event listeners for each chunk of data that is read. |
+<table><thead><tr><th>
 
+Method
+
+
+</th><th>
+
+Modifiers
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+[addEventListener(eventName, cb)](./chat-core.streamresponse.addeventlistener.md)
+
+
+</td><td>
+
+
+</td><td>
+
+Registers a function that will be called whenever the specified stream event occurs.
+
+
+</td></tr>
+<tr><td>
+
+[consume()](./chat-core.streamresponse.consume.md)
+
+
+</td><td>
+
+
+</td><td>
+
+Reads data from a stream response and invokes callbacks from event listeners for each chunk of data that is read.
+
+
+</td></tr>
+</tbody></table>

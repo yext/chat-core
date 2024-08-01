@@ -6,51 +6,350 @@
 
 ## Classes
 
-|  Class | Description |
-|  --- | --- |
-|  [ApiError](./chat-core.apierror.md) | Represents an API error |
-|  [StreamResponse](./chat-core.streamresponse.md) | Wrapper class around [RawResponse](./chat-core.rawresponse.md) that provides an interface for working with Chat's streaming data in both browser and Node environments. |
+<table><thead><tr><th>
+
+Class
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+[ApiError](./chat-core.apierror.md)
+
+
+</td><td>
+
+Represents an API error
+
+
+</td></tr>
+<tr><td>
+
+[StreamResponse](./chat-core.streamresponse.md)
+
+
+</td><td>
+
+Wrapper class around [RawResponse](./chat-core.rawresponse.md) that provides an interface for working with Chat's streaming data in both browser and Node environments.
+
+
+</td></tr>
+</tbody></table>
 
 ## Enumerations
 
-|  Enumeration | Description |
-|  --- | --- |
-|  [Environment](./chat-core.environment.md) | Defines the environment of the API domains. |
-|  [MessageSource](./chat-core.messagesource.md) | Types of sender of a message. |
-|  [Region](./chat-core.region.md) | The region to send the requests to. |
-|  [StreamEventName](./chat-core.streameventname.md) | Names of stream events returned from Chat Stream API. |
+<table><thead><tr><th>
+
+Enumeration
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+[Environment](./chat-core.environment.md)
+
+
+</td><td>
+
+Defines the environment of the API domains.
+
+
+</td></tr>
+<tr><td>
+
+[MessageSource](./chat-core.messagesource.md)
+
+
+</td><td>
+
+Types of sender of a message.
+
+
+</td></tr>
+<tr><td>
+
+[Region](./chat-core.region.md)
+
+
+</td><td>
+
+The region to send the requests to.
+
+
+</td></tr>
+<tr><td>
+
+[StreamEventName](./chat-core.streameventname.md)
+
+
+</td><td>
+
+Names of stream events returned from Chat Stream API.
+
+
+</td></tr>
+</tbody></table>
 
 ## Functions
 
-|  Function | Description |
-|  --- | --- |
-|  [provideChatCore(config)](./chat-core.providechatcore.md) | Provider for the ChatCore library. |
+<table><thead><tr><th>
+
+Function
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+[provideChatCore(config)](./chat-core.providechatcore.md)
+
+
+</td><td>
+
+Provider for the ChatCore library.
+
+
+</td></tr>
+</tbody></table>
 
 ## Interfaces
 
-|  Interface | Description |
-|  --- | --- |
-|  [AwsConnectCredentials](./chat-core.awsconnectcredentials.md) | AWS Connect handoff credentials. |
-|  [AwsConnectHandoff](./chat-core.awsconnecthandoff.md) | Configurations for AWS Connect handoff. |
-|  [ChatConfig](./chat-core.chatconfig.md) | The configuration options for [ChatCore](./chat-core.chatcore.md)<!-- -->. |
-|  [ChatCore](./chat-core.chatcore.md) | Provide methods for interacting with Chat API. |
-|  [EndEvent](./chat-core.endevent.md) | An event that indicates end of Chat stream. |
-|  [Endpoints](./chat-core.endpoints.md) | The URLs which are used when making requests to the Chat API. |
-|  [IntegrationDetails](./chat-core.integrationdetails.md) | Integration details for the current conversation. |
-|  [Message](./chat-core.message.md) | Represents a message within a conversation. |
-|  [MessageNotes](./chat-core.messagenotes.md) | Information relevant to the current state of the conversation, serving as the bot’s "memory" regarding what work it previously did to help determine future actions. |
-|  [MessageRequest](./chat-core.messagerequest.md) | A request to Chat API. |
-|  [MessageResponse](./chat-core.messageresponse.md) | A response from Chat API. |
-|  [StartEvent](./chat-core.startevent.md) | An event that indicates start of Chat stream. |
-|  [TokenStreamData](./chat-core.tokenstreamdata.md) | Data returned from a [TokenStreamEvent](./chat-core.tokenstreamevent.md)<!-- -->. |
-|  [TokenStreamEvent](./chat-core.tokenstreamevent.md) | An event that carries a partial response. |
+<table><thead><tr><th>
+
+Interface
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+[AwsConnectCredentials](./chat-core.awsconnectcredentials.md)
+
+
+</td><td>
+
+AWS Connect handoff credentials.
+
+
+</td></tr>
+<tr><td>
+
+[AwsConnectHandoff](./chat-core.awsconnecthandoff.md)
+
+
+</td><td>
+
+Configurations for AWS Connect handoff.
+
+
+</td></tr>
+<tr><td>
+
+[ChatConfig](./chat-core.chatconfig.md)
+
+
+</td><td>
+
+The configuration options for [ChatCore](./chat-core.chatcore.md)<!-- -->.
+
+
+</td></tr>
+<tr><td>
+
+[ChatCore](./chat-core.chatcore.md)
+
+
+</td><td>
+
+Provide methods for interacting with Chat API.
+
+
+</td></tr>
+<tr><td>
+
+[EndEvent](./chat-core.endevent.md)
+
+
+</td><td>
+
+An event that indicates end of Chat stream.
+
+
+</td></tr>
+<tr><td>
+
+[Endpoints](./chat-core.endpoints.md)
+
+
+</td><td>
+
+The URLs which are used when making requests to the Chat API.
+
+
+</td></tr>
+<tr><td>
+
+[IntegrationDetails](./chat-core.integrationdetails.md)
+
+
+</td><td>
+
+Integration details for the current conversation.
+
+
+</td></tr>
+<tr><td>
+
+[Message](./chat-core.message.md)
+
+
+</td><td>
+
+Represents a message within a conversation.
+
+
+</td></tr>
+<tr><td>
+
+[MessageNotes](./chat-core.messagenotes.md)
+
+
+</td><td>
+
+Information relevant to the current state of the conversation, serving as the bot’s "memory" regarding what work it previously did to help determine future actions.
+
+
+</td></tr>
+<tr><td>
+
+[MessageRequest](./chat-core.messagerequest.md)
+
+
+</td><td>
+
+A request to Chat API.
+
+
+</td></tr>
+<tr><td>
+
+[MessageResponse](./chat-core.messageresponse.md)
+
+
+</td><td>
+
+A response from Chat API.
+
+
+</td></tr>
+<tr><td>
+
+[StartEvent](./chat-core.startevent.md)
+
+
+</td><td>
+
+An event that indicates start of Chat stream.
+
+
+</td></tr>
+<tr><td>
+
+[TokenStreamData](./chat-core.tokenstreamdata.md)
+
+
+</td><td>
+
+Data returned from a [TokenStreamEvent](./chat-core.tokenstreamevent.md)<!-- -->.
+
+
+</td></tr>
+<tr><td>
+
+[TokenStreamEvent](./chat-core.tokenstreamevent.md)
+
+
+</td><td>
+
+An event that carries a partial response.
+
+
+</td></tr>
+</tbody></table>
 
 ## Type Aliases
 
-|  Type Alias | Description |
-|  --- | --- |
-|  [EnumOrLiteral](./chat-core.enumorliteral.md) | Produces a union type from the enum passed as a generic which consists of the enum values and the string literals of the enum. |
-|  [RawResponse](./chat-core.rawresponse.md) | Raw response from Chat API. |
-|  [StreamEvent](./chat-core.streamevent.md) | Types of stream events returned from Chat Stream API. |
-|  [StreamEventCallback](./chat-core.streameventcallback.md) | A function to execute when a [StreamEvent](./chat-core.streamevent.md) occurs. |
+<table><thead><tr><th>
 
+Type Alias
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+[EnumOrLiteral](./chat-core.enumorliteral.md)
+
+
+</td><td>
+
+Produces a union type from the enum passed as a generic which consists of the enum values and the string literals of the enum.
+
+
+</td></tr>
+<tr><td>
+
+[RawResponse](./chat-core.rawresponse.md)
+
+
+</td><td>
+
+Raw response from Chat API.
+
+
+</td></tr>
+<tr><td>
+
+[StreamEvent](./chat-core.streamevent.md)
+
+
+</td><td>
+
+Types of stream events returned from Chat Stream API.
+
+
+</td></tr>
+<tr><td>
+
+[StreamEventCallback](./chat-core.streameventcallback.md)
+
+
+</td><td>
+
+A function to execute when a [StreamEvent](./chat-core.streamevent.md) occurs.
+
+
+</td></tr>
+</tbody></table>

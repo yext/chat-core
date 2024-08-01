@@ -14,10 +14,39 @@ init(messageResponse: MessageResponse): Promise<void>;
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  messageResponse | MessageResponse | The response returned from a successful call to the Chat API. |
+<table><thead><tr><th>
 
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+messageResponse
+
+
+</td><td>
+
+MessageResponse
+
+
+</td><td>
+
+The response returned from a successful call to the Chat API.
+
+
+</td></tr>
+</tbody></table>
 **Returns:**
 
 Promise&lt;void&gt;

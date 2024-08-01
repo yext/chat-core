@@ -14,7 +14,44 @@ export interface TokenStreamData
 
 ## Properties
 
-|  Property | Modifiers | Type | Description |
-|  --- | --- | --- | --- |
-|  [token](./chat-core.tokenstreamdata.token.md) |  | string | Chunk of data returned from stream response. |
+<table><thead><tr><th>
 
+Property
+
+
+</th><th>
+
+Modifiers
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+[token](./chat-core.tokenstreamdata.token.md)
+
+
+</td><td>
+
+
+</td><td>
+
+string
+
+
+</td><td>
+
+Chunk of data returned from stream response.
+
+
+</td></tr>
+</tbody></table>

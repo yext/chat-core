@@ -14,8 +14,63 @@ export interface StartEvent
 
 ## Properties
 
-|  Property | Modifiers | Type | Description |
-|  --- | --- | --- | --- |
-|  [data](./chat-core.startevent.data.md) |  | [MessageNotes](./chat-core.messagenotes.md) | Information relevant to the current state of the conversation, serving as the bot’s "memory" regarding what work it previously did to help determine future actions. |
-|  [event](./chat-core.startevent.event.md) |  | [EnumOrLiteral](./chat-core.enumorliteral.md)<!-- -->&lt;[StreamEventName.StartEvent](./chat-core.streameventname.md)<!-- -->&gt; | Name of the event. |
+<table><thead><tr><th>
 
+Property
+
+
+</th><th>
+
+Modifiers
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+[data](./chat-core.startevent.data.md)
+
+
+</td><td>
+
+
+</td><td>
+
+[MessageNotes](./chat-core.messagenotes.md)
+
+
+</td><td>
+
+Information relevant to the current state of the conversation, serving as the bot’s "memory" regarding what work it previously did to help determine future actions.
+
+
+</td></tr>
+<tr><td>
+
+[event](./chat-core.startevent.event.md)
+
+
+</td><td>
+
+
+</td><td>
+
+[EnumOrLiteral](./chat-core.enumorliteral.md)<!-- -->&lt;[StreamEventName.StartEvent](./chat-core.streameventname.md)<!-- -->&gt;
+
+
+</td><td>
+
+Name of the event.
+
+
+</td></tr>
+</tbody></table>

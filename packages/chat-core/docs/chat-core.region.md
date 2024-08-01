@@ -14,8 +14,48 @@ export declare enum Region
 
 ## Enumeration Members
 
-|  Member | Value | Description |
-|  --- | --- | --- |
-|  EU | <code>&quot;EU&quot;</code> |  |
-|  US | <code>&quot;US&quot;</code> |  |
+<table><thead><tr><th>
 
+Member
+
+
+</th><th>
+
+Value
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+EU
+
+
+</td><td>
+
+`"EU"`
+
+
+</td><td>
+
+
+</td></tr>
+<tr><td>
+
+US
+
+
+</td><td>
+
+`"US"`
+
+
+</td><td>
+
+
+</td></tr>
+</tbody></table>

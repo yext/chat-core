@@ -13,7 +13,6 @@
   },
   "dependencies": {
     "@yext/chat-core": "^0.8.2",
-    "@yext/chat-core-aws-connect": "file:..",
     "dotenv": "^16.0.3"
   },
   "scripts": {

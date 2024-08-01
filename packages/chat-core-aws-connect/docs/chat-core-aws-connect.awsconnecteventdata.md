@@ -14,15 +14,196 @@ export interface AwsConnectEventData
 
 ## Properties
 
-|  Property | Modifiers | Type | Description |
-|  --- | --- | --- | --- |
-|  [AbsoluteTime](./chat-core-aws-connect.awsconnecteventdata.absolutetime.md) |  | string | The time at which the event occurred. |
-|  [ContactId](./chat-core-aws-connect.awsconnecteventdata.contactid.md) |  | string | The ID of the AWS Connect contact associated with the event. |
-|  [Content](./chat-core-aws-connect.awsconnecteventdata.content.md) |  | string | The content of the event. |
-|  [ContentType](./chat-core-aws-connect.awsconnecteventdata.contenttype.md) |  | string | The type of content in the event. |
-|  [DisplayName](./chat-core-aws-connect.awsconnecteventdata.displayname.md) |  | string | The display name of the participant associated with the event. |
-|  [Id](./chat-core-aws-connect.awsconnecteventdata.id.md) |  | string | The ID of the event. |
-|  [ParticipantId](./chat-core-aws-connect.awsconnecteventdata.participantid.md) |  | string | The ID of the participant associated with the event. |
-|  [ParticipantRole](./chat-core-aws-connect.awsconnecteventdata.participantrole.md) |  | string | The role of the participant associated with the event. |
-|  [Type](./chat-core-aws-connect.awsconnecteventdata.type.md) |  | string | The type of the event. |
+<table><thead><tr><th>
 
+Property
+
+
+</th><th>
+
+Modifiers
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+[AbsoluteTime](./chat-core-aws-connect.awsconnecteventdata.absolutetime.md)
+
+
+</td><td>
+
+
+</td><td>
+
+string
+
+
+</td><td>
+
+The time at which the event occurred.
+
+
+</td></tr>
+<tr><td>
+
+[ContactId](./chat-core-aws-connect.awsconnecteventdata.contactid.md)
+
+
+</td><td>
+
+
+</td><td>
+
+string
+
+
+</td><td>
+
+The ID of the AWS Connect contact associated with the event.
+
+
+</td></tr>
+<tr><td>
+
+[Content](./chat-core-aws-connect.awsconnecteventdata.content.md)
+
+
+</td><td>
+
+
+</td><td>
+
+string
+
+
+</td><td>
+
+The content of the event.
+
+
+</td></tr>
+<tr><td>
+
+[ContentType](./chat-core-aws-connect.awsconnecteventdata.contenttype.md)
+
+
+</td><td>
+
+
+</td><td>
+
+string
+
+
+</td><td>
+
+The type of content in the event.
+
+
+</td></tr>
+<tr><td>
+
+[DisplayName](./chat-core-aws-connect.awsconnecteventdata.displayname.md)
+
+
+</td><td>
+
+
+</td><td>
+
+string
+
+
+</td><td>
+
+The display name of the participant associated with the event.
+
+
+</td></tr>
+<tr><td>
+
+[Id](./chat-core-aws-connect.awsconnecteventdata.id.md)
+
+
+</td><td>
+
+
+</td><td>
+
+string
+
+
+</td><td>
+
+The ID of the event.
+
+
+</td></tr>
+<tr><td>
+
+[ParticipantId](./chat-core-aws-connect.awsconnecteventdata.participantid.md)
+
+
+</td><td>
+
+
+</td><td>
+
+string
+
+
+</td><td>
+
+The ID of the participant associated with the event.
+
+
+</td></tr>
+<tr><td>
+
+[ParticipantRole](./chat-core-aws-connect.awsconnecteventdata.participantrole.md)
+
+
+</td><td>
+
+
+</td><td>
+
+string
+
+
+</td><td>
+
+The role of the participant associated with the event.
+
+
+</td></tr>
+<tr><td>
+
+[Type](./chat-core-aws-connect.awsconnecteventdata.type.md)
+
+
+</td><td>
+
+
+</td><td>
+
+string
+
+
+</td><td>
+
+The type of the event.
+
+
+</td></tr>
+</tbody></table>

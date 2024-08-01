@@ -14,9 +14,82 @@ export interface AwsConnectCredentials
 
 ## Properties
 
-|  Property | Modifiers | Type | Description |
-|  --- | --- | --- | --- |
-|  [contactId](./chat-core.awsconnectcredentials.contactid.md) |  | string | The identifier of an AWS chat session. |
-|  [participantId](./chat-core.awsconnectcredentials.participantid.md) |  | string | The identifier for a chat participant in AWS Connect. |
-|  [participantToken](./chat-core.awsconnectcredentials.participanttoken.md) |  | string | The token used by the chat participant create connection. |
+<table><thead><tr><th>
 
+Property
+
+
+</th><th>
+
+Modifiers
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+[contactId](./chat-core.awsconnectcredentials.contactid.md)
+
+
+</td><td>
+
+
+</td><td>
+
+string
+
+
+</td><td>
+
+The identifier of an AWS chat session.
+
+
+</td></tr>
+<tr><td>
+
+[participantId](./chat-core.awsconnectcredentials.participantid.md)
+
+
+</td><td>
+
+
+</td><td>
+
+string
+
+
+</td><td>
+
+The identifier for a chat participant in AWS Connect.
+
+
+</td></tr>
+<tr><td>
+
+[participantToken](./chat-core.awsconnectcredentials.participanttoken.md)
+
+
+</td><td>
+
+
+</td><td>
+
+string
+
+
+</td><td>
+
+The token used by the chat participant create connection.
+
+
+</td></tr>
+</tbody></table>

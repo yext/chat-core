@@ -14,8 +14,37 @@ export interface ChatCore
 
 ## Methods
 
-|  Method | Description |
-|  --- | --- |
-|  [getNextMessage(request)](./chat-core.chatcore.getnextmessage.md) | Make a request to Chat API to generate the next message. |
-|  [streamNextMessage(request)](./chat-core.chatcore.streamnextmessage.md) | Make a request to Chat streaming API to generate the next message and consume its tokens via server-sent events. |
+<table><thead><tr><th>
 
+Method
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+[getNextMessage(request)](./chat-core.chatcore.getnextmessage.md)
+
+
+</td><td>
+
+Make a request to Chat API to generate the next message.
+
+
+</td></tr>
+<tr><td>
+
+[streamNextMessage(request)](./chat-core.chatcore.streamnextmessage.md)
+
+
+</td><td>
+
+Make a request to Chat streaming API to generate the next message and consume its tokens via server-sent events.
+
+
+</td></tr>
+</tbody></table>

@@ -14,7 +14,44 @@ export interface ChatCoreAwsConnectConfig
 
 ## Properties
 
-|  Property | Modifiers | Type | Description |
-|  --- | --- | --- | --- |
-|  [loggerConfig](./chat-core-aws-connect.chatcoreawsconnectconfig.loggerconfig.md) |  | [LoggerConfig](./chat-core-aws-connect.loggerconfig.md) | Configuration for the internal logger of the AWS Connect Chat session. |
+<table><thead><tr><th>
 
+Property
+
+
+</th><th>
+
+Modifiers
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+[loggerConfig](./chat-core-aws-connect.chatcoreawsconnectconfig.loggerconfig.md)
+
+
+</td><td>
+
+
+</td><td>
+
+[LoggerConfig](./chat-core-aws-connect.loggerconfig.md)
+
+
+</td><td>
+
+Configuration for the internal logger of the AWS Connect Chat session.
+
+
+</td></tr>
+</tbody></table>

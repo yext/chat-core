@@ -14,8 +14,63 @@ export interface EndEvent
 
 ## Properties
 
-|  Property | Modifiers | Type | Description |
-|  --- | --- | --- | --- |
-|  [data](./chat-core.endevent.data.md) |  | [MessageResponse](./chat-core.messageresponse.md) | Full response from Chat API. |
-|  [event](./chat-core.endevent.event.md) |  | [EnumOrLiteral](./chat-core.enumorliteral.md)<!-- -->&lt;[StreamEventName.EndEvent](./chat-core.streameventname.md)<!-- -->&gt; | Name of the event. |
+<table><thead><tr><th>
 
+Property
+
+
+</th><th>
+
+Modifiers
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+[data](./chat-core.endevent.data.md)
+
+
+</td><td>
+
+
+</td><td>
+
+[MessageResponse](./chat-core.messageresponse.md)
+
+
+</td><td>
+
+Full response from Chat API.
+
+
+</td></tr>
+<tr><td>
+
+[event](./chat-core.endevent.event.md)
+
+
+</td><td>
+
+
+</td><td>
+
+[EnumOrLiteral](./chat-core.enumorliteral.md)<!-- -->&lt;[StreamEventName.EndEvent](./chat-core.streameventname.md)<!-- -->&gt;
+
+
+</td><td>
+
+Name of the event.
+
+
+</td></tr>
+</tbody></table>

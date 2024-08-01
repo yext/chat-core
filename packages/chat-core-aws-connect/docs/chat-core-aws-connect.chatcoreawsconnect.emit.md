@@ -14,11 +14,55 @@ emit<T extends keyof EventMap>(eventName: T, data: EventMap[T]): void;
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  eventName | T | The name of the event to emit. |
-|  data | [EventMap](./chat-core-aws-connect.eventmap.md)<!-- -->\[T\] | The data to be sent with the event. |
+<table><thead><tr><th>
 
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+eventName
+
+
+</td><td>
+
+T
+
+
+</td><td>
+
+The name of the event to emit.
+
+
+</td></tr>
+<tr><td>
+
+data
+
+
+</td><td>
+
+[EventMap](./chat-core-aws-connect.eventmap.md)<!-- -->\[T\]
+
+
+</td><td>
+
+The data to be sent with the event.
+
+
+</td></tr>
+</tbody></table>
 **Returns:**
 
 void

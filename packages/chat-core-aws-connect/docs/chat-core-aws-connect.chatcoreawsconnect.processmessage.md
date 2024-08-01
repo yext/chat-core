@@ -14,10 +14,39 @@ processMessage(request: MessageRequest): Promise<void>;
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  request | MessageRequest | The message sent by the user, in the Chat API format. |
+<table><thead><tr><th>
 
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+request
+
+
+</td><td>
+
+MessageRequest
+
+
+</td><td>
+
+The message sent by the user, in the Chat API format.
+
+
+</td></tr>
+</tbody></table>
 **Returns:**
 
 Promise&lt;void&gt;

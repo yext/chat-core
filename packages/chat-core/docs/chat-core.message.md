@@ -14,10 +14,101 @@ export interface Message
 
 ## Properties
 
-|  Property | Modifiers | Type | Description |
-|  --- | --- | --- | --- |
-|  [responseId?](./chat-core.message.responseid.md) |  | string | _(Optional)_ The response's id in the form of a 26 character ULID. This is present for message coming from server. |
-|  [source](./chat-core.message.source.md) |  | [EnumOrLiteral](./chat-core.enumorliteral.md)<!-- -->&lt;[MessageSource](./chat-core.messagesource.md)<!-- -->&gt; | The sender of the message. |
-|  [text](./chat-core.message.text.md) |  | string | The message's content. |
-|  [timestamp?](./chat-core.message.timestamp.md) |  | string | _(Optional)_ Time when the message is sent. |
+<table><thead><tr><th>
 
+Property
+
+
+</th><th>
+
+Modifiers
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+[responseId?](./chat-core.message.responseid.md)
+
+
+</td><td>
+
+
+</td><td>
+
+string
+
+
+</td><td>
+
+_(Optional)_ The response's id in the form of a 26 character ULID. This is present for message coming from server.
+
+
+</td></tr>
+<tr><td>
+
+[source](./chat-core.message.source.md)
+
+
+</td><td>
+
+
+</td><td>
+
+[EnumOrLiteral](./chat-core.enumorliteral.md)<!-- -->&lt;[MessageSource](./chat-core.messagesource.md)<!-- -->&gt;
+
+
+</td><td>
+
+The sender of the message.
+
+
+</td></tr>
+<tr><td>
+
+[text](./chat-core.message.text.md)
+
+
+</td><td>
+
+
+</td><td>
+
+string
+
+
+</td><td>
+
+The message's content.
+
+
+</td></tr>
+<tr><td>
+
+[timestamp?](./chat-core.message.timestamp.md)
+
+
+</td><td>
+
+
+</td><td>
+
+string
+
+
+</td><td>
+
+_(Optional)_ Time when the message is sent.
+
+
+</td></tr>
+</tbody></table>

@@ -21,10 +21,101 @@ The constructor for this class is marked as internal. Third-party code should no
 
 ## Properties
 
-|  Property | Modifiers | Type | Description |
-|  --- | --- | --- | --- |
-|  [apiCode?](./chat-core.apierror.apicode.md) |  | number | _(Optional)_ The internal API error code. |
-|  [message](./chat-core.apierror.message.md) |  | string | The error message. |
-|  [statusCode?](./chat-core.apierror.statuscode.md) |  | number | _(Optional)_ The request status code |
-|  [type?](./chat-core.apierror.type.md) |  | string | _(Optional)_ The internal API error type. |
+<table><thead><tr><th>
 
+Property
+
+
+</th><th>
+
+Modifiers
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+[apiCode?](./chat-core.apierror.apicode.md)
+
+
+</td><td>
+
+
+</td><td>
+
+number
+
+
+</td><td>
+
+_(Optional)_ The internal API error code.
+
+
+</td></tr>
+<tr><td>
+
+[message](./chat-core.apierror.message.md)
+
+
+</td><td>
+
+
+</td><td>
+
+string
+
+
+</td><td>
+
+The error message.
+
+
+</td></tr>
+<tr><td>
+
+[statusCode?](./chat-core.apierror.statuscode.md)
+
+
+</td><td>
+
+
+</td><td>
+
+number
+
+
+</td><td>
+
+_(Optional)_ The request status code
+
+
+</td></tr>
+<tr><td>
+
+[type?](./chat-core.apierror.type.md)
+
+
+</td><td>
+
+
+</td><td>
+
+string
+
+
+</td><td>
+
+_(Optional)_ The internal API error type.
+
+
+</td></tr>
+</tbody></table>

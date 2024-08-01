@@ -14,9 +14,68 @@ export declare enum StreamEventName
 
 ## Enumeration Members
 
-|  Member | Value | Description |
-|  --- | --- | --- |
-|  EndEvent | <code>&quot;endStream&quot;</code> | An event that indicates end of Chat stream. |
-|  StartEvent | <code>&quot;startTokenStream&quot;</code> | An event that indicates start of Chat stream. |
-|  TokenStreamEvent | <code>&quot;streamToken&quot;</code> | An event that carries a partial response. |
+<table><thead><tr><th>
 
+Member
+
+
+</th><th>
+
+Value
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+EndEvent
+
+
+</td><td>
+
+`"endStream"`
+
+
+</td><td>
+
+An event that indicates end of Chat stream.
+
+
+</td></tr>
+<tr><td>
+
+StartEvent
+
+
+</td><td>
+
+`"startTokenStream"`
+
+
+</td><td>
+
+An event that indicates start of Chat stream.
+
+
+</td></tr>
+<tr><td>
+
+TokenStreamEvent
+
+
+</td><td>
+
+`"streamToken"`
+
+
+</td><td>
+
+An event that carries a partial response.
+
+
+</td></tr>
+</tbody></table>
