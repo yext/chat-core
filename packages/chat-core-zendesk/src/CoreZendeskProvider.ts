@@ -1,4 +1,4 @@
-import { MessageRequest } from "@yext/chat-core";
+import { MessageRequest, MessageResponse } from "@yext/chat-core";
 
 interface Conversation {
   id: string;
@@ -133,7 +133,8 @@ class ChatCoreZendeskImpl {
     });
   }
   
-  async init() {
+  async init(messageResponse: MessageResponse) {
+    console.log("messageResponse", messageResponse)
     const div = window.document.createElement('div')
     window.document.body.appendChild(div);
     div.id = 'yext-chat-core-zendesk-container';
@@ -175,7 +176,13 @@ class ChatCoreZendeskImpl {
     });
     Smooch.on('disconnected', (data: any) => {
       console.error('Zendesk chat disconnected', data);
-  });
+    });
+    Smooch.on('participant:removed', (data: any) => {
+      console.log('participant:removed', data);
+    });
+    Smooch.on('conversation:read', (data: any) => {
+      console.log('conversation:read', data);
+    });
   }
 
   on<T extends keyof EventMap>(eventName: T, cb: EventCallback<T>): void {
