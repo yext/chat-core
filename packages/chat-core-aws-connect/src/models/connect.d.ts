@@ -8,4 +8,5 @@ declare global {
         export type ActiveCustomerChatSession = Extract<ActiveChatSession, { disconnectParticipant(): unknown }>;
         export type Logger = typeof AwsChatSession.Logger;
     }
+    const AWS: unknown;
 }

@@ -2,15 +2,14 @@
 
 a library used for integrating Yext Chat with the Amazon Connect agent platform.
 
-- Works in both the **browser** and **Node.js**
 - 100% **TypeScript**, with detailed request and response models
-- Compatible with both **CommonJS** and **ES6** imports
+- Currently only supports browser-based chat sessions
 
 ## Usage
 
 ```typescript
 import { provideChatCoreAwsConnect } from "@yext/chat-core-aws-connect";
-import { Message, MessageResponse } from "@yext/chat-core";
+import { MessageResponse } from "@yext/chat-core";
 
 // create a new instance of ChatCoreAwsConnect
 const chatCoreAwsConnect = provideChatCoreAwsConnect();
@@ -21,17 +20,19 @@ const chatApiResponse: MessageResponse;
 // initiate a connection to Amazon Connect using the credentials
 await chatCoreAwsConnect.init(chatApiResponse);
 
-// create a message payload
-const messages: Message[] = [
-  {
-    source: "USER",
-    text: "Could I get some assistance?",
-    timestamp: "2023-05-15T17:33:38.373Z",
-  },
-];
+// create a payload
+const req = {
+  messages: [
+    {
+      timestamp: "2023-05-17T19:21:21.915Z",
+      source: "USER",
+      text: "Could I get some assistance?"
+    },
+  ],
+};
 
 // send it to Connect!
-await chatCoreAwsConnect.processMessage({ messages });
+await chatCoreAwsConnect.processMessage(req);
 ```
 
 ## Documentation

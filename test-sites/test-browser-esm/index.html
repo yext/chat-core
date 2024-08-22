@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Chat Core Test Site</title>
+    <script type="module" src="./dist/bundle.js"></script>
+    <style>
+      #chatresult {
+        font-family: monospace;
+        height: 150px;
+        overflow-y: scroll;
+        margin-left: 10px;
+        padding: 1rem;
+        white-space: pre-wrap;
+      }
+
+      #loading {
+        height: 2rem;
+        font-family: monospace;
+      }
+    </style>
+  </head>
+  <body>
+    <input
+      id="messageInput"
+      type="text"
+    />
+    <button onclick="getNextMessage()">Chat</button>
+    <button onclick="streamNextMessage()">Chat (Stream)</button>
+    <button id="reset" onclick="resetSession()">Reset</button>
+    <p id="loading"></p>
+    <ul id="messages"></ul>
+    <p id="chatresult"></p>
+    <p id="chatresult-stream"></p>
+  </body>
+</html>
