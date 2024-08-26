@@ -17,10 +17,10 @@ let chatCore = provideChatCore({
 });
 
 window.init = async () => {
-  console.log('window.init')
+  console.log('init Sunco Widget')
   await chatCoreZendesk.init();
   chatCoreZendesk.on('message', (text) => {
-    console.log('message received', text);
+    console.log('Zendesk: message received', text);
     const el = document.getElementById("chatresult");
     el.textContent = el.textContent + `Zendesk: ${text}\n`;
   });
@@ -29,8 +29,8 @@ window.init = async () => {
 const msgInput = document.getElementById("messageInput");
 let client = "bot"
 window.sendMessage = async () => {
-  console.log('window.sendMessage')
   if (client === "bot") {
+    console.log('Yext: send message to bot')
     const data = await chatCore.getNextMessage({
       messages: [{
         timestamp: "2023-05-17T19:21:21.915Z",
@@ -38,14 +38,14 @@ window.sendMessage = async () => {
         text: msgInput.value,
       }],
     });
-    console.log('BOT!', data)
+    console.log('Yext: data received from bot', data)
     const el = document.getElementById("chatresult");
     el.textContent = el.textContent + `Bot: ${JSON.stringify(data, null, 2)}\n`;
     if (data?.integrationDetails?.zendeskHandoff) {
-      console.log('HANDOFF!')
+      console.log('Yext: perform agent handoff')
       await chatCoreZendesk.init();
       chatCoreZendesk.on('message', (text) => {
-        console.log('message received', text);
+        console.log('Zendesk: message received', text);
         const el = document.getElementById("chatresult");
         el.textContent = el.textContent + `Zendesk: ${text}\n`;
       });

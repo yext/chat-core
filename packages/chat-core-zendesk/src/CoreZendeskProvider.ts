@@ -78,7 +78,6 @@ const Smooch = SmoochLib.default || SmoochLib;
  * @public
  */
 export function provideChatCoreZendesk(config: ChatCoreZendeskConfig) {
-  console.log('Smooch4', Smooch)
   return new ChatCoreZendeskImpl(config);
 }
 
@@ -121,6 +120,7 @@ class ChatCoreZendeskImpl {
 
   async _init() {
     return new Promise<void>((resolve, reject) => {
+      console.log('Smooch: init ...')
       Smooch.init({
         integrationId: this.integrationId,
         embedded: true,
@@ -133,23 +133,20 @@ class ChatCoreZendeskImpl {
     });
   }
   
-  async init(messageResponse: MessageResponse) {
-    console.log("messageResponse", messageResponse)
+  async init(_messageResponse: MessageResponse) {
     const div = window.document.createElement('div')
     window.document.body.appendChild(div);
     div.id = 'yext-chat-core-zendesk-container';
     div.style.display = 'none';
     Smooch.render(div);
     
-    console.log('init')
     await this._init();
-    console.log('after init', Smooch)
     this.setupEventListeners();
     await this.setupSession();
   }
 
   private async setupSession() {
-    console.log('setup session')
+    console.log('Smooch: setup conversation')
     // const conversations = Smooch.getConversations();
     // console.log('conversations', conversations)
     // Smooch.createConversation().then((conversation: any) => {
