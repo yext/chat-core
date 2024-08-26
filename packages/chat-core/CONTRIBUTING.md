@@ -9,7 +9,7 @@ npm run test
 ### Test Environments
 The `chat-core` library is designed to be compatible with both CommonJS and ES6 import styles. Additionally, it should function properly in both browser and Node.js environments. To ensure this, we have set up two distinct test environments:
 
-- **Browser ESM Test Site:** For more information, refer to the README.md file located in the `/test-browser-esm` directory.
+- **Browser ESM Test Site:** For more information, refer to the README.md file located in the `test-sites/test-browser-esm` directory.
 
 - **Node CJS Test Site:** For more details, consult the README.md file found in the `/test-node-cjs` directory.
 
