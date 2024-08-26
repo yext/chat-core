@@ -779,7 +779,7 @@ The following NPM packages may be included in this product:
  - braces@3.0.3
  - fill-range@7.1.1
  - is-number@7.0.0
- - micromatch@4.0.7
+ - micromatch@4.0.8
 
 These packages each contain the following license and notice below:
 
