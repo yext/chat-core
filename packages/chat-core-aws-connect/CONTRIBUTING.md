@@ -7,11 +7,9 @@ npm run test
 ```
 
 ### Test Environments
-The `chat-core-aws-connect` library is designed to be compatible with both CommonJS and ES6 import styles. Additionally, it should function properly in both browser and Node.js environments. To ensure this, we have set up two distinct test environments:
+The `chat-core-aws-connect` library is designed to be compatible with both CommonJS and ES6 import styles. Additionally, it should function properly in browser environments. To ensure this, we have set up a shared testing environment:
 
-- **Browser ESM Test Site:** For more information, refer to the README.md file located in the `/test-browser-esm` directory.
-
-- **Node CJS Test Site:** TODO
+- **Browser ESM Test Site:** For more information, refer to the README.md file located in the `test-sites/test-browser-esm` directory.
 
 ## Build Process
 

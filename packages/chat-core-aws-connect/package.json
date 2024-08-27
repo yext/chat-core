@@ -44,8 +44,7 @@
     },
     "homepage": "https://github.com/yext/chat-core#readme",
     "dependencies": {
-        "amazon-connect-chatjs": "^2.3.0",
-        "cross-fetch": "^3.1.5"
+        "amazon-connect-chatjs": "^2.3.0"
     },
     "devDependencies": {
         "@babel/preset-env": "^7.21.5",

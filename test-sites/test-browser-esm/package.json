@@ -12,8 +12,8 @@
     "serve": "^14.2.0"
   },
   "dependencies": {
-    "@yext/chat-core": "^0.8.2",
-    "@yext/chat-core-aws-connect": "file:..",
+    "@yext/chat-core": "file:../../packages/chat-core",
+    "@yext/chat-core-aws-connect": "file:../../packages/chat-core-aws-connect",
     "dotenv": "^16.0.3"
   },
   "scripts": {
