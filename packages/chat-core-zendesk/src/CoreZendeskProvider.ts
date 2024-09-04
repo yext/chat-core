@@ -110,7 +110,7 @@ class ChatCoreZendeskImpl {
   private eventListeners: { [T in keyof EventMap]?: EventCallback<T>[] } = {};
   private conversationId: string | undefined;
   private integrationId: string;
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  
   constructor(config: ChatCoreZendeskConfig) {
     if (window === undefined) {
       throw new Error("This package can only be used in the browser.");

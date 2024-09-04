@@ -1,2 +1,34 @@
-{
-  "searchId": "01918049-d466-4166-f801-87ee26824d92", "searchTerm": "What is this account", "results": { "appliedQueryFilters": [], "queryDurationMillis": 88, "results": [{ "rawData": { "id": "5498274745141875691", "type": "faq", "answerV2": { "json": { "root": { "type": "root", "direction": "ltr", "format": "", "indent": 0, "children": [{ "type": "paragraph", "direction": "ltr", "format": "", "indent": 0, "children": [{ "type": "text", "detail": 0, "format": 0, "mode": "normal", "style": "", "text": "This is team clippy's account! For testing!", "version": 1 }], "version": 1 }], "version": 1 } } }, "question": "What is this account", "name": "What is this account", "uid": "1007453985" }, "source": "KNOWLEDGE_MANAGER", "index": 1, "name": "What is this account", "id": "5498274745141875691", "highlightedFields": { "question": { "value": "What is this account", "matchedSubstrings": [{ "offset": 13, "length": 7 }] } }, "entityType": "faq" }], "resultsCount": 1, "source": "KNOWLEDGE_MANAGER", "verticalKey": "faqs" } }
+import Smooch from "smooch";
+
+window.init = async () => {
+  try {
+    await Smooch.init({
+      integrationId: "65f4a281e2bab7777482db6d",
+      embedded: true,
+      soundNotificationEnabled: false,
+    })
+
+    console.log('Smooch: package init')
+      const convo = await Smooch.createConversation({
+        metadata: {
+          "zen:ticket:tags": "yext-chat"
+        }
+      });
+      console.log('Smooch: convo', convo)
+      window.convoId = convo.id;
+      Smooch.on((message, data) => {
+        console.log('Smooch: message received', message, data)
+      })
+  } catch (error) {
+    console.log('Smooch: package init failed', error)
+  }
+
+  const div = document.createElement('div');
+  document.body.appendChild(div);
+  div.style.display = 'none';
+  Smooch.render(div);
+}
+window.sendMessage = async () => {
+  console.log('Frontend: sending message')
+  Smooch.sendMessage("Test!", window.convoId);
+}
