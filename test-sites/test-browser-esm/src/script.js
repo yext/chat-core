@@ -22,7 +22,7 @@ window.resetSession = () => {
   if (coreAws.getSession()) {
     coreAws.resetSession();
   }
-  
+
   msgs.innerHTML = "";
   jsonRes.textContent = "";
   convoHistory = [];
@@ -76,8 +76,6 @@ window.getNextMessage = async () => {
       msgInput.addEventListener("keypress", async () => {
         coreAws.emit("typing");
       });
-
-      
 
       await coreAws.init(data);
     }

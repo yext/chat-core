@@ -36,6 +36,10 @@ export interface ChatConfig {
     businessId?: number;
     endpoints?: Endpoints;
     env?: EnumOrLiteral<Environment>;
+    locationOverride?: {
+        latitude: number;
+        longitude: number;
+    };
     region?: EnumOrLiteral<Region>;
     version?: string;
 }

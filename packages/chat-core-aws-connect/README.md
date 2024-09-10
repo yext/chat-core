@@ -26,7 +26,7 @@ const req = {
     {
       timestamp: "2023-05-17T19:21:21.915Z",
       source: "USER",
-      text: "Could I get some assistance?"
+      text: "Could I get some assistance?",
     },
   ],
 };

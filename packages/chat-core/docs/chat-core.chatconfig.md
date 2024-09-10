@@ -21,6 +21,7 @@ export interface ChatConfig
 |  [businessId?](./chat-core.chatconfig.businessid.md) |  | number | _(Optional)_ ID of the account associated with this chat bot. |
 |  [endpoints?](./chat-core.chatconfig.endpoints.md) |  | [Endpoints](./chat-core.endpoints.md) | _(Optional)_ Overrides for the URLs which are used when making requests to the Chat API. |
 |  [env?](./chat-core.chatconfig.env.md) |  | [EnumOrLiteral](./chat-core.enumorliteral.md)<!-- -->&lt;[Environment](./chat-core.environment.md)<!-- -->&gt; | _(Optional)_ Defines the environment of the API domains. |
+|  [locationOverride?](./chat-core.chatconfig.locationoverride.md) |  | { latitude: number; longitude: number; } | _(Optional)_ An optional location override to use instead of the user's provided location. |
 |  [region?](./chat-core.chatconfig.region.md) |  | [EnumOrLiteral](./chat-core.enumorliteral.md)<!-- -->&lt;[Region](./chat-core.region.md)<!-- -->&gt; | _(Optional)_ The region to send the requests to. |
 |  [version?](./chat-core.chatconfig.version.md) |  | string | _(Optional)_ The version of the chat bot configuration. |
 
