@@ -24,12 +24,16 @@
     <input
       id="messageInput"
       type="text"
+      style="width: 50%;"
     />
     <button onclick="getNextMessage()">Chat</button>
     <button onclick="streamNextMessage()">Chat (Stream)</button>
     <button id="reset" onclick="resetSession()">Reset</button>
-    <p id="loading"></p>
+    <h2>Messages</h2>
     <ul id="messages"></ul>
+    <p id="loading"></p>
+    <hr>
+    <h2>Chat Response Payload</h2>
     <p id="chatresult"></p>
     <p id="chatresult-stream"></p>
   </body>

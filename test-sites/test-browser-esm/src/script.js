@@ -1,5 +1,6 @@
 import { StreamEventName, provideChatCore } from "@yext/chat-core";
 import { provideChatCoreAwsConnect } from "@yext/chat-core-aws-connect";
+import { provideChatCoreZendesk } from "@yext/chat-core-zendesk";
 
 let chatCore = provideChatCore({
   // will be replace with actual env value during rollup build process
@@ -11,7 +12,10 @@ let chatCore = provideChatCore({
   },
 });
 
-let coreAws = provideChatCoreAwsConnect();
+//ChatCoreAwsConnect | ChatCoreZendesk | null
+let agentCore;
+let currentResponder = "BOT";
+
 const msgInput = document.getElementById("messageInput");
 const msgs = document.getElementById("messages");
 const jsonRes = document.getElementById("chatresult");
@@ -19,20 +23,13 @@ const loading = document.getElementById("loading");
 const convoHistory = [];
 
 window.resetSession = () => {
-  if (coreAws.getSession()) {
-    coreAws.resetSession();
+  if (agentCore?.getSession()) {
+    agentCore.resetSession();
   }
-  
   msgs.innerHTML = "";
   jsonRes.textContent = "";
   convoHistory = [];
 };
-
-function createListItem(source, text) {
-  const li = document.createElement("li");
-  li.textContent = `${source}: ${text}`;
-  return li;
-}
 
 window.getNextMessage = async () => {
   const req = {
@@ -44,45 +41,32 @@ window.getNextMessage = async () => {
       },
     ],
   };
-
   msgs.appendChild(createListItem("USER", msgInput.value));
 
-  if (coreAws.getSession()) {
-    await coreAws.processMessage(req);
+  if (agentCore?.getSession()) {
+    await agentCore.processMessage(req);
   } else {
+    currentResponder = "BOT";
     loading.textContent = "Chat API processing...";
     const data = await chatCore.getNextMessage(req);
+    
     loading.textContent = "";
     convoHistory.push(data.message);
     jsonRes.textContent = JSON.stringify(data, null, 2);
-    msgs.appendChild(createListItem("BOT", data.message.text));
+    msgs.appendChild(createListItem(currentResponder, data.message.text));
 
     if (data?.integrationDetails?.awsConnectHandoff?.credentials) {
-      coreAws = provideChatCoreAwsConnect();
-      coreAws.on("message", (message) => {
-        loading.textContent = "";
-        msgs.appendChild(createListItem("CONNECT", message));
+      currentResponder = "AWS_CONNECT";
+      agentCore = provideChatCoreAwsConnect();
+      handleHandoff(data);
+    } else if (data?.integrationDetails?.zendeskHandoff) {
+      currentResponder = "ZENDESK";
+      agentCore = provideChatCoreZendesk({
+        integrationId: process.env.TEST_ZENDESK_INTEGRATION_ID,
       });
-
-      coreAws.on("close", (_) => {
-        msgs.appendChild(createListItem("DISCONNECT", ""));
-      });
-
-      coreAws.on("typing", () => {
-        loading.textContent = "Agent is typing...";
-        msgs.appendChild(createListItem("CONNECT", "Agent is typing..."));
-      });
-
-      msgInput.addEventListener("keypress", async () => {
-        coreAws.emit("typing");
-      });
-
-      
-
-      await coreAws.init(data);
+      handleHandoff(data);
     }
   }
-
   msgInput.value = "";
 };
 
@@ -112,3 +96,34 @@ window.streamNextMessage = async () => {
   stream.consume();
   msgInput.value = "";
 };
+
+function createListItem(source, text) {
+  const li = document.createElement("li");
+  li.textContent = `${source}: ${text}`;
+  return li;
+}
+
+let typeEventResetId;
+async function handleHandoff(data) {
+  await agentCore.init(data);
+  agentCore.on("message", (message) => {
+    loading.textContent = "";
+    msgs.appendChild(createListItem(currentResponder, message));
+  });
+
+  agentCore.on("close", (_) => {
+    msgs.appendChild(createListItem("DISCONNECT", ""));
+  });
+
+  agentCore.on("typing", (isTyping) => {
+    loading.textContent = isTyping ? "Agent is typing..." : "";
+  });
+
+  msgInput.addEventListener("keypress", async () => {
+    agentCore.emit("typing", true);
+    window.clearTimeout(typeEventResetId);
+    typeEventResetId = window.setTimeout(() => {
+      agentCore.emit("typing", false);
+    }, 2000);
+  });
+}
