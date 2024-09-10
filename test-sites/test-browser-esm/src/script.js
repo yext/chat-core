@@ -49,7 +49,7 @@ window.getNextMessage = async () => {
     currentResponder = "BOT";
     loading.textContent = "Chat API processing...";
     const data = await chatCore.getNextMessage(req);
-    
+
     loading.textContent = "";
     convoHistory.push(data.message);
     jsonRes.textContent = JSON.stringify(data, null, 2);

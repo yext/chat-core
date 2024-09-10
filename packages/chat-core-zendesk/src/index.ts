@@ -1,2 +1,2 @@
-export { provideChatCoreZendesk } from './CoreZendeskProvider';
+export { provideChatCoreZendesk } from "./CoreZendeskProvider";
 export * from "./models";

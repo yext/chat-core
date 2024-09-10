@@ -1,2 +1,2 @@
-export { ChatCoreZendeskConfig } from './ChatCoreZendeskConfig';
-export { ChatCoreZendesk } from './ChatCoreZendesk';
+export { ChatCoreZendeskConfig } from "./ChatCoreZendeskConfig";
+export { ChatCoreZendesk } from "./ChatCoreZendesk";

@@ -1,26 +1,28 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { ChatCoreZendeskConfig, provideChatCoreZendesk } from "../src/index";
 import { MessageResponse } from "@yext/chat-core";
-import * as SmoochLib from 'smooch';
+import * as SmoochLib from "smooch";
 
 function mockMessageResponse(): MessageResponse {
- return {
-  notes: {
-    conversationSummary: "conversationSummary",
-  },
-  message: {
-    source: "BOT",
-    text: "text",
-  },
-  integrationDetails: {
-    zendeskHandoff: {},
-  },
- } as MessageResponse; //TODO: remove this once chat-core PR is merged
+  return {
+    notes: {
+      conversationSummary: "conversationSummary",
+    },
+    message: {
+      source: "BOT",
+      text: "text",
+    },
+    integrationDetails: {
+      zendeskHandoff: {},
+    },
+  } as MessageResponse; //TODO: remove this once chat-core PR is merged
 }
 
-const mockConfig: ChatCoreZendeskConfig = { integrationId: "mock-integration-id" }
+const mockConfig: ChatCoreZendeskConfig = {
+  integrationId: "mock-integration-id",
+};
 const mockConversationId = "mock-conversation-id";
-jest.mock('smooch', () => ({
+jest.mock("smooch", () => ({
   render: jest.fn(),
   init: jest.fn(),
   createConversation: jest.fn(),
@@ -32,20 +34,26 @@ jest.mock('smooch', () => ({
 }));
 
 beforeEach(() => {
-  jest.mocked(SmoochLib.createConversation)
+  jest
+    .mocked(SmoochLib.createConversation)
     .mockResolvedValue({ id: mockConversationId } as Conversation);
-  document.body.innerHTML = '';
+  document.body.innerHTML = "";
 });
 
 describe("chat session initialization", () => {
   it("returns an error when failing to connect to chat session", async () => {
-    jest.mocked(SmoochLib.init).mockRejectedValue(new Error("Failed to connect to chat session"));
+    jest
+      .mocked(SmoochLib.init)
+      .mockRejectedValue(new Error("Failed to connect to chat session"));
     jest.spyOn(console, "error").mockImplementation();
     const chatCoreZendesk = provideChatCoreZendesk(mockConfig);
-    await expect(
-      chatCoreZendesk.init(mockMessageResponse())
-    ).rejects.toThrow("Failed to connect to chat session");
-    expect(console.error).toBeCalledWith("Zendesk SDK init error", expect.any(Error));
+    await expect(chatCoreZendesk.init(mockMessageResponse())).rejects.toThrow(
+      "Failed to connect to chat session"
+    );
+    expect(console.error).toBeCalledWith(
+      "Zendesk SDK init error",
+      expect.any(Error)
+    );
   });
 
   it("returns no error when successfully connecting to chat session", async () => {
@@ -77,7 +85,10 @@ describe("chat session initialization", () => {
     const sendMessageSpy = jest.spyOn(SmoochLib, "sendMessage");
     const chatCoreZendesk = provideChatCoreZendesk(mockConfig);
     await chatCoreZendesk.init(mockMessageResponse());
-    expect(sendMessageSpy).toBeCalledWith("SUMMARY: conversationSummary", mockConversationId);
+    expect(sendMessageSpy).toBeCalledWith(
+      "SUMMARY: conversationSummary",
+      mockConversationId
+    );
   });
 });
 
@@ -86,7 +97,7 @@ it("emits typing event", async () => {
   const stopTypingSpy = jest.spyOn(SmoochLib, "stopTyping");
   const chatCoreZendesk = provideChatCoreZendesk(mockConfig);
   await chatCoreZendesk.init(mockMessageResponse());
-  
+
   chatCoreZendesk.emit("typing", true);
   expect(startTypingSpy).toBeCalledTimes(1);
   expect(stopTypingSpy).toBeCalledTimes(0);
@@ -100,7 +111,7 @@ it("sends message on processMessage", async () => {
   const sendMessageSpy = jest.spyOn(SmoochLib, "sendMessage");
   const chatCoreZendesk = provideChatCoreZendesk(mockConfig);
   await chatCoreZendesk.init(mockMessageResponse());
-  
+
   const msg = "hello world!";
   await chatCoreZendesk.processMessage({
     messages: [
@@ -132,7 +143,10 @@ it("triggers message event callbacks", async () => {
   // get "message:received" callback
   const onMessageFn = onCbSpy.mock.calls[0][1] as any;
   // simulate a message event
-  onMessageFn({text, type: "text"}, { conversation: { id: mockConversationId }});
+  onMessageFn(
+    { text, type: "text" },
+    { conversation: { id: mockConversationId } }
+  );
   expect(dummyFn).toBeCalledWith(text);
 });
 
@@ -142,7 +156,7 @@ it("triggers close event callbacks", async () => {
   await chatCoreZendesk.init(mockMessageResponse());
 
   const text = "hello world!";
-  const conversation = { conversation: { id: mockConversationId }};
+  const conversation = { conversation: { id: mockConversationId } };
   const dummyFn = jest.fn();
   chatCoreZendesk.on("close", dummyFn);
   expect(onCbSpy).toBeCalled();
@@ -150,7 +164,10 @@ it("triggers close event callbacks", async () => {
   // get "message:received" callback
   const onCloseFn = onCbSpy.mock.calls[0][1] as any;
   // simulate a message event from internal bot indicating agent has left
-  onCloseFn({text, type: "text", role: "business", subroles: ["AI"]}, conversation);
+  onCloseFn(
+    { text, type: "text", role: "business", subroles: ["AI"] },
+    conversation
+  );
   expect(dummyFn).toBeCalledWith(conversation);
 });
 
@@ -184,13 +201,16 @@ it("clear session on close event", async () => {
 
   // get the parameter passed to the onSpy callback
   const text = "hello world!";
-  const conversation = { conversation: { id: mockConversationId }};
+  const conversation = { conversation: { id: mockConversationId } };
   const dummyFn = jest.fn();
   chatCoreZendesk.on("close", dummyFn);
   const onCbFn = onCbSpy.mock.calls[0][1] as any;
 
   // simulate a session close event via a message event from internal bot
-  onCbFn({text, type: "text", role: "business", subroles: ["AI"]}, conversation);
+  onCbFn(
+    { text, type: "text", role: "business", subroles: ["AI"] },
+    conversation
+  );
   expect(dummyFn).toBeCalledWith(conversation);
   expect(chatCoreZendesk.getSession()).toBeUndefined();
 });
