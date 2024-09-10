@@ -59,5 +59,5 @@ export interface ApiMessageRequest {
   /** {@inheritDoc InternalConfig.promptPackage} */
   promptPackage?: ChatPrompt;
   /** {@inheritDoc ChatConfig.locationOverride} */
-  locationOverride?: {latitude: number, longitude: number};
+  locationOverride?: { latitude: number; longitude: number };
 }

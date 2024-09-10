@@ -43,7 +43,7 @@ export interface ChatConfig {
   endpoints?: Endpoints;
   /**
    * An optional location override to use instead of the user's provided location.
-   * 
+   *
    * @remarks
    * If provided, Search steps will not attept to infer the location from
    * the request data and will use this latitude and longitude instead.
