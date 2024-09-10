@@ -17,5 +17,5 @@ locationOverride?: {
 
 ## Remarks
 
-If provided, Search steps will not attept to infer the location from the request data and will use this latitude and longitude instead.
+If provided, Search steps will not attempt to infer the location from the request data and will use this latitude and longitude instead.
 
