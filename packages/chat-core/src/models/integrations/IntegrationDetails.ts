@@ -1,4 +1,5 @@
 import { AwsConnectHandoff } from "./AwsConnect";
+import { ZendeskHandoff } from "./Zendesk";
 
 /**
  * Integration details for the current conversation.
@@ -11,4 +12,6 @@ import { AwsConnectHandoff } from "./AwsConnect";
 export interface IntegrationDetails {
   /** {@inheritdoc AwsConnectHandoff} */
   awsConnectHandoff?: AwsConnectHandoff;
+  /** {@inheritdoc ZendeskHandoff} */
+  zendeskHandoff?: ZendeskHandoff;
 }

@@ -21,4 +21,5 @@ This is only present when the conversation is integrated with a third-party serv
 |  Property | Modifiers | Type | Description |
 |  --- | --- | --- | --- |
 |  [awsConnectHandoff?](./chat-core.integrationdetails.awsconnecthandoff.md) |  | [AwsConnectHandoff](./chat-core.awsconnecthandoff.md) | _(Optional)_ Configurations for AWS Connect handoff. |
+|  [zendeskHandoff?](./chat-core.integrationdetails.zendeskhandoff.md) |  | [ZendeskHandoff](./chat-core.zendeskhandoff.md) | _(Optional)_ Configurations for Zendesk handoff. |
 
