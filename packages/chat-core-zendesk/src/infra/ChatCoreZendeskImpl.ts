@@ -95,14 +95,16 @@ export class ChatCoreZendeskImpl {
         [MetadataChatSDKKey]: true,
       }
     });
-    console.log('Smooch: convo', convo)
     this.conversationId = convo.id
     Smooch.loadConversation(convo.id);
-    Smooch.sendMessage(messageRsp.notes.conversationSummary ?? "User requested agent assistance", this.conversationId);
+    Smooch.sendMessage(`SUMMARY: ${messageRsp.notes.conversationSummary}` ?? "User requested agent assistance", this.conversationId);
   }
 
   private setupEventListeners() {
     Smooch.on('message:received', (message: Message, data: ConversationData) => {
+      if (message.type !== 'text') {
+        return;
+      }
       // If the message is from a bot, indicating the agent has left or closed the ticket, then reset the session
       if (message.role === 'business' &&
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment

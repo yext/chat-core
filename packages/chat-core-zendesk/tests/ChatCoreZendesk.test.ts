@@ -1,143 +1,108 @@
-import { provideChatCoreAwsConnect } from "../src/CoreAwsConnectProvider";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { ChatCoreZendeskConfig, provideChatCoreZendesk } from "../src/index";
 import { MessageResponse } from "@yext/chat-core";
-import { LoggerConfig } from "../src/models/LoggerConfig";
-import {
-  AwsConnectEvent,
-  AwsConnectEventData,
-} from "../src/models/AwsConnectEvent";
-import "amazon-connect-chatjs";
-
-const createSpy = jest.fn().mockReturnValue(mockChatSession());
-
-beforeEach(() => {
-  jest.useFakeTimers();
-  sess = mockChatSession();
-  createSpy.mockReturnValue(sess);
-});
-
-function mockChatSession(): connect.ActiveCustomerChatSession {
-  return {
-    onMessage(_: (event: DeepPartial<AwsConnectEvent>) => void) {
-      return null;
-    },
-    onEnded(_: (event: DeepPartial<AwsConnectEvent>) => void) {
-      return null;
-    },
-    onTyping(_: (event: DeepPartial<AwsConnectEvent>) => void) {
-      return null;
-    },
-    sendEvent() {
-      return null;
-    },
-    sendMessage() {
-      return null;
-    },
-    connect() {
-      return { connectCalled: true, connectSuccess: true };
-    },
-    disconnectParticipant() {
-      return null;
-    },
-  } as Partial<connect.ActiveCustomerChatSession> as connect.ActiveCustomerChatSession;
-}
+import * as SmoochLib from 'smooch';
 
 function mockMessageResponse(): MessageResponse {
-  return {
-    notes: {
-      conversationSummary: "conversationSummary",
-    },
-    message: {
-      source: "BOT",
-      text: "text",
-    },
-    integrationDetails: {
-      zendeskHandoff: {},
-    },
-  };
+ return {
+  notes: {
+    conversationSummary: "conversationSummary",
+  },
+  message: {
+    source: "BOT",
+    text: "text",
+  },
+  integrationDetails: {
+    zendeskHandoff: {},
+  },
+ } as MessageResponse; //TODO: remove this once chat-core PR is merged
 }
+
+const mockConfig: ChatCoreZendeskConfig = { integrationId: "mock-integration-id" }
+const mockConversationId = "mock-conversation-id";
+jest.mock('smooch', () => ({
+  render: jest.fn(),
+  init: jest.fn(),
+  createConversation: jest.fn(),
+  loadConversation: jest.fn(),
+  sendMessage: jest.fn(),
+  on: jest.fn(),
+  startTyping: jest.fn(),
+  stopTyping: jest.fn(),
+}));
+
+beforeEach(() => {
+  jest.mocked(SmoochLib.createConversation)
+    .mockResolvedValue({ id: mockConversationId } as Conversation);
+  document.body.innerHTML = '';
+});
 
 describe("chat session initialization", () => {
   it("returns an error when failing to connect to chat session", async () => {
-    sess.connect = () => {
-      return { connectCalled: true, connectSuccess: false };
-    };
-
-    const chatCoreAwsConnect = provideChatCoreAwsConnect();
+    jest.mocked(SmoochLib.init).mockRejectedValue(new Error("Failed to connect to chat session"));
+    jest.spyOn(console, "error").mockImplementation();
+    const chatCoreZendesk = provideChatCoreZendesk(mockConfig);
     await expect(
-      chatCoreAwsConnect.init(mockMessageResponse())
-    ).rejects.toThrowError("Failed to connect to chat session");
+      chatCoreZendesk.init(mockMessageResponse())
+    ).rejects.toThrow("Failed to connect to chat session");
+    expect(console.error).toBeCalledWith("Zendesk SDK init error", expect.any(Error));
   });
 
   it("returns no error when successfully connecting to chat session", async () => {
-    const chatCoreAwsConnect = provideChatCoreAwsConnect();
+    const chatCoreZendesk = provideChatCoreZendesk(mockConfig);
     await expect(
-      chatCoreAwsConnect.init(mockMessageResponse())
+      chatCoreZendesk.init(mockMessageResponse())
     ).resolves.toBeUndefined();
   });
 
-  it("returns error when integration credentials are not specified", async () => {
-    const messageResponse = mockMessageResponse();
-    delete messageResponse.integrationDetails;
-
-    const chatCoreAwsConnect = provideChatCoreAwsConnect();
-    await expect(chatCoreAwsConnect.init(messageResponse)).rejects.toThrowError(
-      "Integration credentials not specified. Cannot initialize chat session."
-    );
+  it("avoid rendering smooch web widget on subsequent initialization", async () => {
+    const renderSpy = jest.spyOn(SmoochLib, "render");
+    const chatCoreZendesk = provideChatCoreZendesk(mockConfig);
+    await chatCoreZendesk.init(mockMessageResponse());
+    expect(renderSpy).toBeCalledTimes(1);
+    await chatCoreZendesk.init(mockMessageResponse());
+    expect(renderSpy).toBeCalledTimes(1);
   });
 
-  it("logs warning when session already exists", async () => {
-    const consoleWarnSpy = jest.spyOn(console, "warn").mockImplementation();
-    const sendMessageSpy = jest.spyOn(sess, "sendMessage");
-
-    const chatCoreAwsConnect = provideChatCoreAwsConnect();
-    await chatCoreAwsConnect.init(mockMessageResponse());
-    expect(consoleWarnSpy).not.toBeCalled();
-    expect(sendMessageSpy).toBeCalledTimes(1);
-
-    await chatCoreAwsConnect.init(mockMessageResponse());
-    expect(consoleWarnSpy).toBeCalledWith("Chat session already initialized");
-    expect(sendMessageSpy).toBeCalledTimes(1);
+  it("setup new conversation session on each initialization", async () => {
+    const createConversationSpy = jest.spyOn(SmoochLib, "createConversation");
+    const chatCoreZendesk = provideChatCoreZendesk(mockConfig);
+    await chatCoreZendesk.init(mockMessageResponse());
+    expect(createConversationSpy).toBeCalledTimes(1);
+    await chatCoreZendesk.init(mockMessageResponse());
+    expect(createConversationSpy).toBeCalledTimes(2);
   });
 
   it("sends conversation summary message on chat session initialization", async () => {
-    const sendMessageSpy = jest.spyOn(sess, "sendMessage");
-
-    const chatCoreAwsConnect = provideChatCoreAwsConnect();
-    await chatCoreAwsConnect.init(mockMessageResponse());
-
-    expect(sendMessageSpy).toBeCalledWith({
-      contentType: "text/plain",
-      message: "SUMMARY: conversationSummary",
-    });
+    const sendMessageSpy = jest.spyOn(SmoochLib, "sendMessage");
+    const chatCoreZendesk = provideChatCoreZendesk(mockConfig);
+    await chatCoreZendesk.init(mockMessageResponse());
+    expect(sendMessageSpy).toBeCalledWith("SUMMARY: conversationSummary", mockConversationId);
   });
 });
 
 it("emits typing event", async () => {
-  const sendEventSpy = jest.spyOn(sess, "sendEvent");
+  const startTypingSpy = jest.spyOn(SmoochLib, "startTyping");
+  const stopTypingSpy = jest.spyOn(SmoochLib, "stopTyping");
+  const chatCoreZendesk = provideChatCoreZendesk(mockConfig);
+  await chatCoreZendesk.init(mockMessageResponse());
+  
+  chatCoreZendesk.emit("typing", true);
+  expect(startTypingSpy).toBeCalledTimes(1);
+  expect(stopTypingSpy).toBeCalledTimes(0);
 
-  const chatCoreAwsConnect = provideChatCoreAwsConnect();
-  await chatCoreAwsConnect.init(mockMessageResponse());
-
-  chatCoreAwsConnect.emit("typing", true);
-
-  expect(sendEventSpy).toBeCalledWith({
-    contentType: "application/vnd.amazonaws.connect.event.typing",
-  });
-
-  sendEventSpy.mockClear();
-  chatCoreAwsConnect.emit("typing", false);
-
-  expect(sendEventSpy).not.toBeCalled();
+  chatCoreZendesk.emit("typing", false);
+  expect(startTypingSpy).toBeCalledTimes(1);
+  expect(stopTypingSpy).toBeCalledTimes(1);
 });
 
 it("sends message on processMessage", async () => {
-  const sendMessageSpy = jest.spyOn(sess, "sendMessage");
-
-  const chatCoreAwsConnect = provideChatCoreAwsConnect();
-  await chatCoreAwsConnect.init(mockMessageResponse());
-
+  const sendMessageSpy = jest.spyOn(SmoochLib, "sendMessage");
+  const chatCoreZendesk = provideChatCoreZendesk(mockConfig);
+  await chatCoreZendesk.init(mockMessageResponse());
+  
   const msg = "hello world!";
-  await chatCoreAwsConnect.processMessage({
+  await chatCoreZendesk.processMessage({
     messages: [
       {
         source: "USER",
@@ -145,232 +110,95 @@ it("sends message on processMessage", async () => {
       },
     ],
   });
-
-  expect(sendMessageSpy).toBeCalledWith({
-    contentType: "text/plain",
-    message: msg,
-  });
+  expect(sendMessageSpy).toBeCalledWith(msg, mockConversationId);
 });
 
 it("returns session on getSession", async () => {
-  const chatCoreAwsConnect = provideChatCoreAwsConnect();
-  await chatCoreAwsConnect.init(mockMessageResponse());
-
-  expect(chatCoreAwsConnect.getSession()).toBe(sess);
+  const chatCoreZendesk = provideChatCoreZendesk(mockConfig);
+  await chatCoreZendesk.init(mockMessageResponse());
+  expect(chatCoreZendesk.getSession()).toBe(mockConversationId);
 });
-
-it("uses logger config when provided", async () => {
-  const loggerConfig: LoggerConfig = {
-    level: "DEBUG",
-    customizedLogger: {
-      debug: jest.fn(),
-    },
-  };
-
-  const chatCoreAwsConnect = provideChatCoreAwsConnect({ loggerConfig });
-  await chatCoreAwsConnect.init(mockMessageResponse());
-
-  expect(globalConfigSpy).toBeCalledWith({
-    loggerConfig: {
-      level: connect.LogLevel.DEBUG,
-      useDefaultLogger: false,
-      customizedLogger: loggerConfig.customizedLogger,
-    },
-    region: "us-east-1",
-  });
-});
-
-type DeepPartial<T> = {
-  [P in keyof T]?: T[P] extends object ? DeepPartial<T[P]> : T[P];
-};
-type AwsEventCallback = (event: DeepPartial<AwsConnectEvent>) => void;
 
 it("triggers message event callbacks", async () => {
-  const onMessageSpy = jest.spyOn(sess, "onMessage");
+  const onCbSpy = jest.spyOn(SmoochLib, "on");
+  const chatCoreZendesk = provideChatCoreZendesk(mockConfig);
+  await chatCoreZendesk.init(mockMessageResponse());
 
-  const chatCoreAwsConnect = provideChatCoreAwsConnect();
-  await chatCoreAwsConnect.init(mockMessageResponse());
-
-  const msgText = "hello world!";
+  const text = "hello world!";
   const dummyFn = jest.fn();
-  chatCoreAwsConnect.on("message", (event: string) => {
-    expect(event).toBe(msgText);
-    dummyFn();
-  });
-  expect(onMessageSpy).toBeCalled();
+  chatCoreZendesk.on("message", dummyFn);
+  expect(onCbSpy).toBeCalled();
 
-  // get the parameter passed to the onMessage callback
-  const onMessageFn = onMessageSpy.mock.calls[0][0] as AwsEventCallback;
-
+  // get "message:received" callback
+  const onMessageFn = onCbSpy.mock.calls[0][1] as any;
   // simulate a message event
-  onMessageFn({
-    data: {
-      ContentType: "text/plain",
-      ParticipantRole: "AGENT",
-      Content: msgText,
-    },
-  });
-
-  expect(dummyFn).toBeCalled();
+  onMessageFn({text, type: "text"}, { conversation: { id: mockConversationId }});
+  expect(dummyFn).toBeCalledWith(text);
 });
 
 it("triggers close event callbacks", async () => {
-  const onEndedSpy = jest.spyOn(sess, "onEnded");
+  const onCbSpy = jest.spyOn(SmoochLib, "on");
+  const chatCoreZendesk = provideChatCoreZendesk(mockConfig);
+  await chatCoreZendesk.init(mockMessageResponse());
 
-  const chatCoreAwsConnect = provideChatCoreAwsConnect();
-  await chatCoreAwsConnect.init(mockMessageResponse());
-
-  const endEvent: DeepPartial<AwsConnectEvent> = {
-    data: { ContentType: "text/plain", ParticipantRole: "AGENT", Type: "END" },
-  };
+  const text = "hello world!";
+  const conversation = { conversation: { id: mockConversationId }};
   const dummyFn = jest.fn();
-  chatCoreAwsConnect.on("close", (event: AwsConnectEventData) => {
-    expect(event).toStrictEqual(endEvent.data);
-    dummyFn();
-  });
-  expect(onEndedSpy).toBeCalled();
+  chatCoreZendesk.on("close", dummyFn);
+  expect(onCbSpy).toBeCalled();
 
-  // get the parameter passed to the onEnded callback
-  const onEndedFn = onEndedSpy.mock.calls[0][0] as AwsEventCallback;
-
-  // simulate an ended event
-  onEndedFn({ ...endEvent });
-
-  expect(dummyFn).toBeCalled();
+  // get "message:received" callback
+  const onCloseFn = onCbSpy.mock.calls[0][1] as any;
+  // simulate a message event from internal bot indicating agent has left
+  onCloseFn({text, type: "text", role: "business", subroles: ["AI"]}, conversation);
+  expect(dummyFn).toBeCalledWith(conversation);
 });
 
 it("triggers typing event callbacks", async () => {
-  const onTypingSpy = jest.spyOn(sess, "onTyping");
-
-  const chatCoreAwsConnect = provideChatCoreAwsConnect();
-  await chatCoreAwsConnect.init(mockMessageResponse());
+  const onTypingSpy = jest.spyOn(SmoochLib, "on");
+  const chatCoreZendesk = provideChatCoreZendesk(mockConfig);
+  await chatCoreZendesk.init(mockMessageResponse());
 
   const dummyFn = jest.fn();
-  chatCoreAwsConnect.on("typing", (event: boolean) => {
-    expect(event).toBe(true);
-    dummyFn();
-  });
+  chatCoreZendesk.on("typing", dummyFn);
   expect(onTypingSpy).toBeCalled();
 
-  // get the parameter passed to the onTyping callback
-  const onTypingFn = onTypingSpy.mock.calls[0][0] as AwsEventCallback;
-
+  // get "typing:start" callback
+  const onStartTypingFn = onTypingSpy.mock.calls[1][1] as any;
   // simulate a typing event
-  onTypingFn({ data: { ParticipantRole: "AGENT", Type: "TYPING" } });
+  onStartTypingFn();
+  expect(dummyFn).toBeCalledWith(true);
 
-  expect(dummyFn).toBeCalled();
-});
-
-it("sets a timeout to turn off typing indicator", async () => {
-  jest.useFakeTimers();
-  const onTypingSpy = jest.spyOn(sess, "onTyping");
-
-  const chatCoreAwsConnect = provideChatCoreAwsConnect();
-  await chatCoreAwsConnect.init(mockMessageResponse());
-
-  const dummyFn = jest.fn();
-  chatCoreAwsConnect.on("typing", dummyFn);
-
-  // get the parameter passed to the onTyping callback
-  const onTypingFn = onTypingSpy.mock.calls[0][0] as AwsEventCallback;
-
+  // get "typing:stop" callback
+  const onStopTypingFn = onTypingSpy.mock.calls[2][1] as any;
   // simulate a typing event
-  onTypingFn({ data: { ParticipantRole: "AGENT", Type: "TYPING" } });
-
-  expect(dummyFn).toBeCalledTimes(1);
-
-  // advance time by 5s
-  jest.advanceTimersByTime(5000);
-
-  expect(dummyFn).toBeCalledTimes(2);
-});
-
-it("ignores non-agent messages", async () => {
-  const onMessageSpy = jest.spyOn(sess, "onMessage");
-
-  const chatCoreAwsConnect = provideChatCoreAwsConnect();
-  await chatCoreAwsConnect.init(mockMessageResponse());
-
-  const dummyFn = jest.fn();
-  chatCoreAwsConnect.on("message", dummyFn);
-
-  // get the parameter passed to the onMessage callback
-  const onMessageFn = onMessageSpy.mock.calls[0][0] as AwsEventCallback;
-
-  // simulate a message event
-  onMessageFn({
-    data: {
-      ContentType: "text/plain",
-      ParticipantRole: "CUSTOMER",
-      Content: "hello world!",
-    },
-  });
-
-  expect(dummyFn).not.toBeCalled();
-});
-
-it("ignores messages with non-text content type", async () => {
-  const onMessageSpy = jest.spyOn(sess, "onMessage");
-
-  const chatCoreAwsConnect = provideChatCoreAwsConnect();
-  await chatCoreAwsConnect.init(mockMessageResponse());
-
-  const dummyFn = jest.fn();
-  chatCoreAwsConnect.on("message", dummyFn);
-
-  // get the parameter passed to the onMessage callback
-  const onMessageFn = onMessageSpy.mock.calls[0][0] as AwsEventCallback;
-
-  // simulate a message event
-  onMessageFn({
-    data: {
-      ContentType: "application/json",
-      ParticipantRole: "AGENT",
-      Content: "hello world!",
-    },
-  });
-
-  expect(dummyFn).not.toBeCalled();
+  onStopTypingFn();
+  expect(dummyFn).toBeCalledWith(false);
 });
 
 it("clear session on close event", async () => {
-  const onEndedSpy = jest.spyOn(sess, "onEnded");
-
-  const chatCoreAwsConnect = provideChatCoreAwsConnect();
-  await chatCoreAwsConnect.init(mockMessageResponse());
-  expect(chatCoreAwsConnect.getSession()).toBeDefined();
+  const onCbSpy = jest.spyOn(SmoochLib, "on");
+  const chatCoreZendesk = provideChatCoreZendesk(mockConfig);
+  await chatCoreZendesk.init(mockMessageResponse());
+  expect(chatCoreZendesk.getSession()).toBeDefined();
 
   // get the parameter passed to the onSpy callback
-  const onEndedFn = onEndedSpy.mock.calls[0][0] as AwsEventCallback;
+  const text = "hello world!";
+  const conversation = { conversation: { id: mockConversationId }};
+  const dummyFn = jest.fn();
+  chatCoreZendesk.on("close", dummyFn);
+  const onCbFn = onCbSpy.mock.calls[0][1] as any;
 
-  // simulate a session close event
-  onEndedFn({});
-  expect(chatCoreAwsConnect.getSession()).toBeUndefined();
+  // simulate a session close event via a message event from internal bot
+  onCbFn({text, type: "text", role: "business", subroles: ["AI"]}, conversation);
+  expect(dummyFn).toBeCalledWith(conversation);
+  expect(chatCoreZendesk.getSession()).toBeUndefined();
 });
 
 it("clears session on resetSession", async () => {
-  const chatCoreAwsConnect = provideChatCoreAwsConnect();
-  await chatCoreAwsConnect.init(mockMessageResponse());
-  expect(chatCoreAwsConnect.getSession()).toBeDefined();
-
-  chatCoreAwsConnect.resetSession();
-  expect(chatCoreAwsConnect.getSession()).toBeUndefined();
-});
-
-it("noops when clearing undefined session", async () => {
-  const chatCoreAwsConnect = provideChatCoreAwsConnect();
-  expect(chatCoreAwsConnect.getSession()).toBeUndefined();
-
-  chatCoreAwsConnect.resetSession();
-  expect(chatCoreAwsConnect.getSession()).toBeUndefined();
-});
-
-it("throws error when session is not a customer session", async () => {
-  const sess = {} as unknown as connect.ActiveChatSession;
-  createSpy.mockReturnValue(sess);
-
-  const chatCoreAwsConnect = provideChatCoreAwsConnect();
-  expect(() => chatCoreAwsConnect.init(mockMessageResponse())).rejects.toThrow(
-    "Unexpected non-customer chat session type"
-  );
+  const chatCoreZendesk = provideChatCoreZendesk(mockConfig);
+  await chatCoreZendesk.init(mockMessageResponse());
+  expect(chatCoreZendesk.getSession()).toBeDefined();
+  chatCoreZendesk.resetSession();
+  expect(chatCoreZendesk.getSession()).toBeUndefined();
 });
