@@ -58,4 +58,6 @@ export interface ApiMessageRequest {
   notes?: MessageNotes;
   /** {@inheritDoc InternalConfig.promptPackage} */
   promptPackage?: ChatPrompt;
+  /** {@inheritDoc ChatConfig.locationOverride} */
+  locationOverride?: {latitude: number, longitude: number};
 }
