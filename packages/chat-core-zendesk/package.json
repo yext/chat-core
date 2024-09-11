@@ -5,6 +5,9 @@
   "main": "./dist/commonjs/index.js",
   "module": "./dist/esm/index.mjs",
   "types": "./dist/esm/index.d.ts",
+  "publishConfig": {
+    "access": "restricted"
+  },
   "sideEffects": false,
   "keywords": [
     "networking",
