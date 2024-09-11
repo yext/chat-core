@@ -36,6 +36,10 @@ export interface ChatConfig {
     businessId?: number;
     endpoints?: Endpoints;
     env?: EnumOrLiteral<Environment>;
+    locationOverride?: {
+        latitude: number;
+        longitude: number;
+    };
     region?: EnumOrLiteral<Region>;
     version?: string;
 }
@@ -77,6 +81,7 @@ export enum Environment {
 // @public
 export interface IntegrationDetails {
     awsConnectHandoff?: AwsConnectHandoff;
+    zendeskHandoff?: ZendeskHandoff;
 }
 
 // Warning: (ae-internal-missing-underscore) The name "InternalConfig" should be prefixed with an underscore because the declaration is marked as @internal
@@ -186,6 +191,10 @@ export interface TokenStreamData {
 export interface TokenStreamEvent {
     data: TokenStreamData;
     event: EnumOrLiteral<StreamEventName.TokenStreamEvent>;
+}
+
+// @public
+export interface ZendeskHandoff {
 }
 
 // (No @packageDocumentation comment for this package)

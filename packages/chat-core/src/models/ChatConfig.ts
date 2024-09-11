@@ -41,4 +41,12 @@ export interface ChatConfig {
   region?: EnumOrLiteral<Region>;
   /** Overrides for the URLs which are used when making requests to the Chat API. */
   endpoints?: Endpoints;
+  /**
+   * An optional location override to use instead of the user's provided location.
+   *
+   * @remarks
+   * If provided, Search steps will not attempt to infer the location from
+   * the request data and will use this latitude and longitude instead.
+   */
+  locationOverride?: { latitude: number; longitude: number };
 }

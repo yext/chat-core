@@ -41,6 +41,7 @@ export class ChatCoreImpl implements ChatCore {
       ...request,
       version: this.chatConfig.version,
       promptPackage: this.internalConfig.promptPackage,
+      locationOverride: this.chatConfig.locationOverride,
     };
     const rawResponse = await this.httpService.post(
       this.endpoints.chat,

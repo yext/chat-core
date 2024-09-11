@@ -44,6 +44,7 @@
 |  [StartEvent](./chat-core.startevent.md) | An event that indicates start of Chat stream. |
 |  [TokenStreamData](./chat-core.tokenstreamdata.md) | Data returned from a [TokenStreamEvent](./chat-core.tokenstreamevent.md)<!-- -->. |
 |  [TokenStreamEvent](./chat-core.tokenstreamevent.md) | An event that carries a partial response. |
+|  [ZendeskHandoff](./chat-core.zendeskhandoff.md) | Configurations for Zendesk handoff. |
 
 ## Type Aliases
 
