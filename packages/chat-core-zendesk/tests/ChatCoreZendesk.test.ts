@@ -15,7 +15,7 @@ function mockMessageResponse(): MessageResponse {
     integrationDetails: {
       zendeskHandoff: {},
     },
-  } as MessageResponse; //TODO: remove this once chat-core PR is merged
+  }
 }
 
 const mockConfig: ChatCoreZendeskConfig = {

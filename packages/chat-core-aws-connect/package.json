@@ -55,7 +55,7 @@
         "@types/node-fetch": "^2.6.4",
         "@yext/eslint-config": "^1.0.0",
         "babel-jest": "^29.5.0",
-        "@yext/chat-core": "^0.8.2",
+        "@yext/chat-core": "^0.9.1",
         "dotenv": "^16.4.5",
         "eslint": "^8.39.0",
         "generate-license-file": "^1.0.0",
@@ -67,6 +67,6 @@
         "typescript": "^5.0.4"
     },
     "peerDependencies": {
-        "@yext/chat-core": "^0.8.2"
+        "@yext/chat-core": "^0.9.1"
     }
 }
