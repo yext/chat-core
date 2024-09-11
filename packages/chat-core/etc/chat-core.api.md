@@ -92,12 +92,13 @@ export interface InternalConfig {
 }
 
 // @public
-export interface Message {
+interface Message_2 {
     responseId?: string;
-    source: EnumOrLiteral<MessageSource>;
+    source: EnumOrLiteral<MessageSource_2>;
     text: string;
     timestamp?: string;
 }
+export { Message_2 as Message }
 
 // @public
 export interface MessageNotes {
@@ -115,7 +116,7 @@ export interface MessageNotes {
 export interface MessageRequest {
     context?: any;
     conversationId?: string;
-    messages: Message[];
+    messages: Message_2[];
     notes?: MessageNotes;
 }
 
@@ -123,16 +124,17 @@ export interface MessageRequest {
 export interface MessageResponse {
     conversationId?: string;
     integrationDetails?: IntegrationDetails;
-    message: Message;
+    message: Message_2;
     notes: MessageNotes;
 }
 
 // @public
-export enum MessageSource {
+enum MessageSource_2 {
     AGENT = "AGENT",
     BOT = "BOT",
     USER = "USER"
 }
+export { MessageSource_2 as MessageSource }
 
 // @public
 export function provideChatCore(config: ChatConfig): ChatCore;
