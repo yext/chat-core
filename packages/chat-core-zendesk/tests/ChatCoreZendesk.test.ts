@@ -144,7 +144,7 @@ it("triggers message event callbacks", async () => {
   const onMessageFn = onCbSpy.mock.calls[0][1] as any;
   // simulate a message event
   onMessageFn(
-    { text, type: "text" },
+    { text, type: "text", role: "business" },
     { conversation: { id: mockConversationId } }
   );
   expect(dummyFn).toBeCalledWith(text);

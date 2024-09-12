@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import { MessageRequest, MessageResponse } from "@yext/chat-core";
 
 /**
@@ -118,21 +119,28 @@ export class ChatCoreZendeskImpl {
     Smooch.on(
       "message:received",
       (message: Message, data: ConversationData) => {
-        if (message.type !== "text") {
+        if (message.type !== "text" || message.role !== "business") {
           return;
         }
-        // If the message is from a bot, indicating the agent has left or closed the ticket, then reset the session
-        if (
-          message.role === "business" &&
-          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-          // @ts-ignore - subroles is not in the Smooch types but it's in the actual data
-          message["subroles"]?.includes("AI")
-        ) {
+        let msg: string = message.text;
+        
+        // If the message is of type CSAT, indicating the agent has resolved the ticket, then omit this message.
+        // Instead, send a message to inform user and reset the session
+        // @ts-ignore - metadata is not in the Smooch types but it's in the actual data
+        if (message["metadata"]?.type === "csat") {
+          this.resetSession();
+          this.eventListeners["close"]?.forEach((cb) => cb(data));
+          msg = "The agent has resolved the ticket. Further assistance will now be provided by the bot.";
+        }
+
+        // If the message is from a bot, indicating the agent has deleted the ticket, then reset the session
+        // @ts-ignore - subroles is not in the Smooch types but it's in the actual data
+        if (message["subroles"]?.includes("AI")) {
           this.resetSession();
           this.eventListeners["close"]?.forEach((cb) => cb(data));
         }
 
-        this.eventListeners["message"]?.forEach((cb) => cb(message.text));
+        this.eventListeners["message"]?.forEach((cb) => cb(msg));
         this.eventListeners["typing"]?.forEach((cb) => cb(false));
       }
     );
