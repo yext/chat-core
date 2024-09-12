@@ -88,13 +88,23 @@ export class ChatCoreZendeskImpl {
    * with the conversation summary as the initial message.
    */
   private async setupSession(messageRsp: MessageResponse) {
-    const convo: Conversation = await Smooch.createConversation({
+    let convo: Conversation = await Smooch.createConversation({
       metadata: {
         "zen:ticket:tags": "yext-chat",
         // this indicates to the internal zendesk bot webhook that the conversation is from the Chat SDK
         [MetadataChatSDKKey]: true,
       },
     });
+
+    // On first conversation creation of a new user, the id is TEMPORARY_CONVERSATION.
+    // We need to re-fetch the current conversation to get the actual id.
+    if (convo.id === 'TEMPORARY_CONVERSATION') {
+      const currentConversation = Smooch.getDisplayedConversation();
+      if (!currentConversation) {
+        throw new Error("No conversation found");
+      }
+      convo = currentConversation;
+    }
     this.conversationId = convo.id;
     Smooch.loadConversation(convo.id);
     Smooch.sendMessage(
