@@ -91,7 +91,7 @@ export class ChatCoreZendeskImpl {
   private async setupSession(messageRsp: MessageResponse) {
     let convo: Conversation = await Smooch.createConversation({
       metadata: {
-        "zen:ticket:tags": "yext-chat",
+        "zen:ticket:tags": "yext-chat-agent-handoff",
         // this indicates to the internal zendesk bot webhook that the conversation is from the Chat SDK
         [MetadataChatSDKKey]: true,
       },
