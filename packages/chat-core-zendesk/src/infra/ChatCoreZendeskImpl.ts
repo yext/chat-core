@@ -89,8 +89,23 @@ export class ChatCoreZendeskImpl {
    * with the conversation summary as the initial message.
    */
   private async setupSession(messageRsp: MessageResponse) {
+    const ticketFields: Record<string, unknown> = {};
+    try {
+      if (messageRsp.integrationDetails?.zendeskHandoff?.ticketFields) {
+        const rawFields = JSON.parse(
+          messageRsp.integrationDetails?.zendeskHandoff?.ticketFields
+        );
+        for (const key in rawFields) {
+          ticketFields[`zen:ticket_field:${key}`] = rawFields[key];
+        }
+      }
+    } catch (e) {
+      console.error("Error parsing metadata", e);
+    }
+
     let convo: Conversation = await Smooch.createConversation({
       metadata: {
+        ...ticketFields,
         "zen:ticket:tags": "yext-chat-agent-handoff",
         // this indicates to the internal zendesk bot webhook that the conversation is from the Chat SDK
         [MetadataChatSDKKey]: true,
@@ -99,7 +114,7 @@ export class ChatCoreZendeskImpl {
 
     // On first conversation creation of a new user, the id is TEMPORARY_CONVERSATION.
     // We need to re-fetch the current conversation to get the actual id.
-    if (convo.id === 'TEMPORARY_CONVERSATION') {
+    if (convo.id === "TEMPORARY_CONVERSATION") {
       const currentConversation = Smooch.getDisplayedConversation();
       if (!currentConversation) {
         throw new Error("No conversation found");
@@ -109,8 +124,10 @@ export class ChatCoreZendeskImpl {
     this.conversationId = convo.id;
     Smooch.loadConversation(convo.id);
     Smooch.sendMessage(
-      `SUMMARY: ${messageRsp.notes.conversationSummary}` ??
-        "User requested agent assistance",
+      `SUMMARY: ${
+        messageRsp.notes.conversationSummary ??
+        "User requested agent assistance"
+      }`,
       this.conversationId
     );
   }
@@ -123,14 +140,15 @@ export class ChatCoreZendeskImpl {
           return;
         }
         let msg: string = message.text;
-        
+
         // If the message is of type CSAT, indicating the agent has resolved the ticket, then omit this message.
         // Instead, send a message to inform user and reset the session
         // @ts-ignore - metadata is not in the Smooch types but it's in the actual data
         if (message["metadata"]?.type === "csat") {
           this.resetSession();
           this.eventListeners["close"]?.forEach((cb) => cb(data));
-          msg = "The agent has resolved the ticket. Further assistance will now be provided by the bot.";
+          msg =
+            "The agent has resolved the ticket. Further assistance will now be provided by the bot.";
         }
 
         // If the message is from a bot, indicating the agent has deleted the ticket, then reset the session

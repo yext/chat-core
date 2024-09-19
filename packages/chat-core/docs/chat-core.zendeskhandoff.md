@@ -11,3 +11,10 @@ Configurations for Zendesk handoff.
 ```typescript
 export interface ZendeskHandoff 
 ```
+
+## Properties
+
+|  Property | Modifiers | Type | Description |
+|  --- | --- | --- | --- |
+|  [ticketFields?](./chat-core.zendeskhandoff.ticketfields.md) |  | string | _(Optional)_ A serialized JSON string of ticket fields to be automatically set when initiating Zendesk handoff. |
+

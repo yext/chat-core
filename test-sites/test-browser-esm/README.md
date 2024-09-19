@@ -18,4 +18,5 @@ This will serve the index.html page on http://localhost:5050. Opening that up sh
 ### Chat Core Integrations
 
 #### Zendesk
+
 To test Zendesk integration, ensures that the bot is configured with Zendesk handoff goal and provided appropriate credentials. In the `.env` file, provide the value for `TEST_ZENDESK_INTEGRATION_ID`. The test site should switch to use ChatCoreZendesk instance if it detects a zendesk-specific handoff step.

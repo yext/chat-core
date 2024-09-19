@@ -2,7 +2,7 @@
 
 A library used for integrating Yext Chat with the Zendesk agent platform.
 
-This is an internal package as of now. 
+This is an internal package as of now.
 
 - 100% **TypeScript**, with detailed request and response models
 - Currently only supports browser-based chat sessions

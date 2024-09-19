@@ -197,6 +197,7 @@ export interface TokenStreamEvent {
 
 // @public
 export interface ZendeskHandoff {
+    ticketFields?: string;
 }
 
 // (No @packageDocumentation comment for this package)
