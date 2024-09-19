@@ -3,5 +3,10 @@
  *
  * @public
  */
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
-export interface ZendeskHandoff {}
+export interface ZendeskHandoff {
+    /**
+     * A serialized JSON string of ticket fields to be automatically set 
+     * when initiating Zendesk handoff.
+     */
+    ticketFields?: string;
+}

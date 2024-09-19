@@ -13,9 +13,11 @@ function mockMessageResponse(): MessageResponse {
       text: "text",
     },
     integrationDetails: {
-      zendeskHandoff: {},
+      zendeskHandoff: {
+        ticketFields: '{"field1": "value1", "field2": "value2"}',
+      },
     },
-  }
+  };
 }
 
 const mockConfig: ChatCoreZendeskConfig = {
@@ -221,4 +223,18 @@ it("clears session on resetSession", async () => {
   expect(chatCoreZendesk.getSession()).toBeDefined();
   chatCoreZendesk.resetSession();
   expect(chatCoreZendesk.getSession()).toBeUndefined();
+});
+
+it("sets ticket fields on handoff", async () => {
+  const createConversationSpy = jest.spyOn(SmoochLib, "createConversation");
+  const chatCoreZendesk = provideChatCoreZendesk(mockConfig);
+  await chatCoreZendesk.init(mockMessageResponse());
+  expect(createConversationSpy).toBeCalledWith({
+    metadata: {
+      "zen:ticket_field:field1": "value1",
+      "zen:ticket_field:field2": "value2",
+      "zen:ticket:tags": "yext-chat-agent-handoff",
+      "YEXT_CHAT_SDK": true,
+    },
+  });
 });
