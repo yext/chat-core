@@ -47,12 +47,14 @@ export class ChatCoreZendeskImpl {
   private eventListeners: { [T in keyof EventMap]?: EventCallback<T>[] } = {};
   private conversationId: string | undefined;
   private integrationId: string;
+  private tags: string[] = ["yext-chat-agent-handoff"];
 
   constructor(config: ChatCoreZendeskConfig) {
     if (window === undefined) {
       throw new Error("This package can only be used in the browser.");
     }
     this.integrationId = config.integrationId;
+    this.tags = [...this.tags, ...(config.ticketTags ?? [])];
   }
 
   /**
@@ -106,7 +108,7 @@ export class ChatCoreZendeskImpl {
     let convo: Conversation = await Smooch.createConversation({
       metadata: {
         ...ticketFields,
-        "zen:ticket:tags": "yext-chat-agent-handoff",
+        "zen:ticket:tags": this.tags.join(", "),
         // this indicates to the internal zendesk bot webhook that the conversation is from the Chat SDK
         [MetadataChatSDKKey]: true,
       },

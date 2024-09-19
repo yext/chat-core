@@ -63,6 +63,7 @@ window.getNextMessage = async () => {
       currentResponder = "ZENDESK";
       agentCore = provideChatCoreZendesk({
         integrationId: process.env.TEST_ZENDESK_INTEGRATION_ID,
+        ticketTags: ["testingTag"],
       });
       handleHandoff(data);
     }

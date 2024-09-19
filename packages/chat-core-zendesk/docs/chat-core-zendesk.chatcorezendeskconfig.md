@@ -17,4 +17,5 @@ export interface ChatCoreZendeskConfig
 |  Property | Modifiers | Type | Description |
 |  --- | --- | --- | --- |
 |  [integrationId](./chat-core-zendesk.chatcorezendeskconfig.integrationid.md) |  | string | The web widget integration ID for the Zendesk chat. |
+|  [ticketTags?](./chat-core-zendesk.chatcorezendeskconfig.tickettags.md) |  | string\[\] | _(Optional)_ Tags to apply when handoff to Zendesk is initiated. |
 
