@@ -234,7 +234,7 @@ it("sets ticket fields on handoff", async () => {
       "zen:ticket_field:field1": "value1",
       "zen:ticket_field:field2": "value2",
       "zen:ticket:tags": "yext-chat-agent-handoff",
-      "YEXT_CHAT_SDK": true,
+      YEXT_CHAT_SDK: true,
     },
   });
 });

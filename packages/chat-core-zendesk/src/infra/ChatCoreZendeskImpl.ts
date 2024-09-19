@@ -89,7 +89,7 @@ export class ChatCoreZendeskImpl {
    * with the conversation summary as the initial message.
    */
   private async setupSession(messageRsp: MessageResponse) {
-    let ticketFields: Record<string, any> = {};
+    const ticketFields: Record<string, unknown> = {};
     try {
       if (!!messageRsp.integrationDetails?.zendeskHandoff?.ticketFields) {
         const rawFields = JSON.parse(
