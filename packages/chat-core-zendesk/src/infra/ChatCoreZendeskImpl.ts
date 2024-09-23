@@ -55,6 +55,7 @@ export class ChatCoreZendeskImpl {
     }
     this.integrationId = config.integrationId;
     this.tags = [...this.tags, ...(config.ticketTags ?? [])];
+    this.tags = [...new Set(this.tags)];
   }
 
   /**
