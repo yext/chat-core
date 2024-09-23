@@ -238,3 +238,20 @@ it("sets ticket fields on handoff", async () => {
     },
   });
 });
+
+it("sets ticket tags defined in config on handoff", async () => {
+  const createConversationSpy = jest.spyOn(SmoochLib, "createConversation");
+  const chatCoreZendesk = provideChatCoreZendesk({
+    ...mockConfig,
+    ticketTags: ["tag1", "tag2"],
+  });
+  await chatCoreZendesk.init(mockMessageResponse());
+  expect(createConversationSpy).toBeCalledWith({
+    metadata: {
+      "zen:ticket_field:field1": "value1",
+      "zen:ticket_field:field2": "value2",
+      "zen:ticket:tags": "yext-chat-agent-handoff, tag1, tag2",
+      YEXT_CHAT_SDK: true,
+    },
+  });
+});

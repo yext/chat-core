@@ -24,6 +24,7 @@ export interface ChatCoreZendesk {
 // @public
 export interface ChatCoreZendeskConfig {
     integrationId: string;
+    ticketTags?: string[];
 }
 
 // Warning: (ae-forgotten-export) The symbol "ChatCoreZendeskImpl" needs to be exported by the entry point index.d.ts
