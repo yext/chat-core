@@ -58,11 +58,11 @@ describe("chat session initialization", () => {
     );
   });
 
-  it("returns no error when successfully connecting to chat session", async () => {
+  it("returns convo id and no error when successfully connecting to chat session", async () => {
     const chatCoreZendesk = provideChatCoreZendesk(mockConfig);
     await expect(
       chatCoreZendesk.init(mockMessageResponse())
-    ).resolves.toBeUndefined();
+    ).resolves.toBe("mock-conversation-id");
   });
 
   it("avoid rendering smooch web widget on subsequent initialization", async () => {

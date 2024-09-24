@@ -21,5 +21,6 @@ export interface ChatCoreAwsConnect
 |  [init(messageResponse)](./chat-core-aws-connect.chatcoreawsconnect.init.md) | Initialize the Amazon Connect chat session using the credentials from the Chat API. |
 |  [on(eventName, cb)](./chat-core-aws-connect.chatcoreawsconnect.on.md) | Register a callback for an event triggered within the Amazon Connect chat session. Supported events are: - <code>message</code>: A new message has been received. - <code>typing</code>: The agent is typing. - <code>close</code>: The chat session has been closed. |
 |  [processMessage(request)](./chat-core-aws-connect.chatcoreawsconnect.processmessage.md) | Process a message sent by the user. |
+|  [reinitializeSession(\_)](./chat-core-aws-connect.chatcoreawsconnect.reinitializesession.md) | Reinitialize the session using existing session data. |
 |  [resetSession()](./chat-core-aws-connect.chatcoreawsconnect.resetsession.md) | Resets the [ChatCoreAwsConnect](./chat-core-aws-connect.chatcoreawsconnect.md) instance, clearing the underlying Amazon Connect session. |
 

@@ -52,4 +52,11 @@ export interface ChatCoreZendesk {
    * Reset the chat session by clearing the current conversation ID.
    */
   resetSession(): void;
+
+  /**
+   * Reinitialize the session using existing session data.
+   *
+   * @param credentials - The credentials to use to reinitialize the session.
+   */
+  reinitializeSession(credentials: string): Promise<void>;
 }

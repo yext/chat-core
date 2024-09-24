@@ -63,7 +63,12 @@ export class ChatCoreZendeskImpl {
    * mode on the first invocation. Subsequent calls to this method will create a
    * new conversation session.
    */
-  async init(messageRsp: MessageResponse): Promise<void> {
+  async init(messageRsp: MessageResponse): Promise<string> {
+    await this.initializeZendeskSdk();
+    return await this.createZendeskConversation(messageRsp);
+  }
+
+  private async initializeZendeskSdk(): Promise<void> {
     const divId = "yext-chat-core-zendesk-container";
     if (!window.document.getElementById(divId)) {
       const div = window.document.createElement("div");
@@ -83,7 +88,6 @@ export class ChatCoreZendeskImpl {
       }
       this.setupEventListeners();
     }
-    await this.setupSession(messageRsp);
   }
 
   /**
@@ -91,7 +95,9 @@ export class ChatCoreZendeskImpl {
    * On ticket creation, the metadata is set to include the tag "yext-chat"
    * with the conversation summary as the initial message.
    */
-  private async setupSession(messageRsp: MessageResponse) {
+  private async createZendeskConversation(
+    messageRsp: MessageResponse
+  ): Promise<string> {
     const ticketFields: Record<string, unknown> = {};
     try {
       if (messageRsp.integrationDetails?.zendeskHandoff?.ticketFields) {
@@ -133,6 +139,7 @@ export class ChatCoreZendeskImpl {
       }`,
       this.conversationId
     );
+    return this.conversationId;
   }
 
   private setupEventListeners() {
@@ -209,5 +216,11 @@ export class ChatCoreZendeskImpl {
 
   resetSession(): void {
     this.conversationId = undefined;
+  }
+
+  async reinitializeSession(conversationId: string): Promise<void> {
+    this.conversationId = conversationId;
+    await this.initializeZendeskSdk();
+    await Smooch.loadConversation(conversationId);
   }
 }

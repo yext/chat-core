@@ -21,5 +21,6 @@ export interface ChatCoreZendesk
 |  [init(messageResponse)](./chat-core-zendesk.chatcorezendesk.init.md) | Initialize the Amazon Connect chat session using the credentials from the Chat API. |
 |  [on(eventName, cb)](./chat-core-zendesk.chatcorezendesk.on.md) | Register a callback for an event triggered within the Zendesk chat session. Supported events are: - <code>message</code>: A new message has been received. - <code>typing</code>: The agent is typing. - <code>close</code>: The chat session has been closed (e.g. agent left or closed the ticket). |
 |  [processMessage(request)](./chat-core-zendesk.chatcorezendesk.processmessage.md) | Process a message sent by the user. |
+|  [reinitializeSession(credentials)](./chat-core-zendesk.chatcorezendesk.reinitializesession.md) | Reinitialize the session using existing session data. |
 |  [resetSession()](./chat-core-zendesk.chatcorezendesk.resetsession.md) | Reset the chat session by clearing the current conversation ID. |
 

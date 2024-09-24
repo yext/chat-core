@@ -55,4 +55,14 @@ export interface ChatCoreAwsConnect {
    * Resets the {@link ChatCoreAwsConnect} instance, clearing the underlying Amazon Connect session.
    */
   resetSession(): void;
+
+  /**
+   * Reinitialize the session using existing session data.
+   *
+   * @param credentials - The credentials to use to reinitialize the session.
+   *
+   * @remarks
+   * This is currently not supported for Amazon Connect.
+   */
+  reinitializeSession(_: unknown): Promise<void>;
 }

@@ -18,6 +18,7 @@ export interface ChatCoreZendesk {
     // Warning: (ae-forgotten-export) The symbol "EventCallback" needs to be exported by the entry point index.d.ts
     on<T extends keyof EventMap>(eventName: T, cb: EventCallback<T>): void;
     processMessage(request: MessageRequest): Promise<void>;
+    reinitializeSession(credentials: string): Promise<void>;
     resetSession(): void;
 }
 
