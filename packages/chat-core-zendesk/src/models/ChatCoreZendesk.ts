@@ -1,5 +1,6 @@
 import { MessageRequest, MessageResponse } from "@yext/chat-core";
 import { EventCallback, EventMap } from "./EventCallback";
+import { ChatCoreZendeskSessionCredentials } from "./ChatCoreZendeskSessionCredentials";
 
 /**
  * Provides methods for interacting with Chat's Zendesk integration.
@@ -12,7 +13,7 @@ export interface ChatCoreZendesk {
    *
    * @param messageResponse - The response returned from a successful call to the Chat API.
    */
-  init(messageResponse: MessageResponse): Promise<void>;
+  init(messageResponse: MessageResponse): Promise<ChatCoreZendeskSessionCredentials>;
 
   /**
    * Register a callback for an event triggered within the Zendesk chat session.
@@ -46,7 +47,7 @@ export interface ChatCoreZendesk {
   /**
    * Provide the current conversation ID for the chat session.
    */
-  getSession(): void;
+  getSession(): string | undefined;
 
   /**
    * Reset the chat session by clearing the current conversation ID.
@@ -58,5 +59,5 @@ export interface ChatCoreZendesk {
    *
    * @param credentials - The credentials to use to reinitialize the session.
    */
-  reinitializeSession(credentials: string): Promise<void>;
+  reinitializeSession(credentials: ChatCoreZendeskSessionCredentials): Promise<void>;
 }

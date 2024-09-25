@@ -9,14 +9,14 @@ Reinitialize the session using existing session data.
 **Signature:**
 
 ```typescript
-reinitializeSession(credentials: string): Promise<void>;
+reinitializeSession(credentials: ChatCoreZendeskSessionCredentials): Promise<void>;
 ```
 
 ## Parameters
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  credentials | string | The credentials to use to reinitialize the session. |
+|  credentials | ChatCoreZendeskSessionCredentials | The credentials to use to reinitialize the session. |
 
 **Returns:**
 

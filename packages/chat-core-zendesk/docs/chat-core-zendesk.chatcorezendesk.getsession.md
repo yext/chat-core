@@ -9,9 +9,9 @@ Provide the current conversation ID for the chat session.
 **Signature:**
 
 ```typescript
-getSession(): void;
+getSession(): string | undefined;
 ```
 **Returns:**
 
-void
+string \| undefined
 
