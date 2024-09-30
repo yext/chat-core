@@ -33,6 +33,7 @@ jest.mock("smooch", () => ({
   on: jest.fn(),
   startTyping: jest.fn(),
   stopTyping: jest.fn(),
+  off: jest.fn(),
 }));
 
 beforeEach(() => {
@@ -62,7 +63,7 @@ describe("chat session initialization", () => {
     const chatCoreZendesk = provideChatCoreZendesk(mockConfig);
     await expect(
       chatCoreZendesk.init(mockMessageResponse())
-    ).resolves.toBe("mock-conversation-id");
+    ).resolves.toStrictEqual({conversationId: "mock-conversation-id"});
   });
 
   it("avoid rendering smooch web widget on subsequent initialization", async () => {
