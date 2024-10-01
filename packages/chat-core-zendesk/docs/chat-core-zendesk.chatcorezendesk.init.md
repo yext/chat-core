@@ -20,5 +20,5 @@ init(messageResponse: MessageResponse): Promise<ChatCoreZendeskSessionCredential
 
 **Returns:**
 
-Promise&lt;ChatCoreZendeskSessionCredentials&gt;
+Promise&lt;[ChatCoreZendeskSessionCredentials](./chat-core-zendesk.chatcorezendesksessioncredentials.md)<!-- -->&gt;
 

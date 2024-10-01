@@ -16,4 +16,5 @@
 |  --- | --- |
 |  [ChatCoreZendesk](./chat-core-zendesk.chatcorezendesk.md) | Provides methods for interacting with Chat's Zendesk integration. |
 |  [ChatCoreZendeskConfig](./chat-core-zendesk.chatcorezendeskconfig.md) | Configuration for this instance of the [ChatCoreZendesk](./chat-core-zendesk.chatcorezendesk.md)<!-- -->. |
+|  [ChatCoreZendeskSessionCredentials](./chat-core-zendesk.chatcorezendesksessioncredentials.md) | Credentials for the Zendesk session created by the [ChatCoreZendesk](./chat-core-zendesk.chatcorezendesk.md)<!-- -->. Used for reinitializing the session across page reloads. |
 

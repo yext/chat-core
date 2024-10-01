@@ -16,7 +16,7 @@ reinitializeSession(credentials: ChatCoreZendeskSessionCredentials): Promise<voi
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  credentials | ChatCoreZendeskSessionCredentials | The credentials to use to reinitialize the session. |
+|  credentials | [ChatCoreZendeskSessionCredentials](./chat-core-zendesk.chatcorezendesksessioncredentials.md) | The credentials to use to reinitialize the session. |
 
 **Returns:**
 
