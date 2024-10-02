@@ -1,8 +1,8 @@
 The following NPM packages may be included in this product:
 
- - @babel/code-frame@7.24.7
- - @babel/helper-validator-identifier@7.24.7
- - @babel/highlight@7.24.7
+ - @babel/code-frame@7.25.7
+ - @babel/helper-validator-identifier@7.25.7
+ - @babel/highlight@7.25.7
 
 These packages each contain the following license and notice below:
 
