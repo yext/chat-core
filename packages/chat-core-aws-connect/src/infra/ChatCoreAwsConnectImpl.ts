@@ -145,4 +145,10 @@ export class ChatCoreAwsConnectImpl implements ChatCoreAwsConnect {
     this.session.disconnectParticipant();
     this.session = undefined;
   }
+
+  async reinitializeSession(_: unknown): Promise<void> {
+    console.warn(
+      "Reinitializing chat session is currently not supported for AWS Connect"
+    );
+  }
 }

@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 import { MessageRequest, MessageResponse } from "@yext/chat-core";
+import { ChatCoreZendesk } from "../models";
 
 /**
  * Issue 1: Smooch Version
@@ -32,6 +33,7 @@ const Smooch = (SmoochLib.default || SmoochLib) as typeof SmoochLib;
 
 import { ChatCoreZendeskConfig } from "../models/ChatCoreZendeskConfig";
 import { EventCallback, EventMap } from "../models/EventCallback";
+import { ChatCoreZendeskSessionCredentials } from "../models/ChatCoreZendeskSessionCredentials";
 
 const MetadataChatSDKKey = "YEXT_CHAT_SDK";
 
@@ -43,7 +45,7 @@ const MetadataChatSDKKey = "YEXT_CHAT_SDK";
  *
  * @internal
  */
-export class ChatCoreZendeskImpl {
+export class ChatCoreZendeskImpl implements ChatCoreZendesk {
   private eventListeners: { [T in keyof EventMap]?: EventCallback<T>[] } = {};
   private conversationId: string | undefined;
   private integrationId: string;
@@ -63,7 +65,12 @@ export class ChatCoreZendeskImpl {
    * mode on the first invocation. Subsequent calls to this method will create a
    * new conversation session.
    */
-  async init(messageRsp: MessageResponse): Promise<void> {
+  async init(messageRsp: MessageResponse): Promise<ChatCoreZendeskSessionCredentials> {
+    await this.initializeZendeskSdk();
+    return this.createZendeskConversation(messageRsp);
+  }
+
+  private async initializeZendeskSdk(): Promise<void> {
     const divId = "yext-chat-core-zendesk-container";
     if (!window.document.getElementById(divId)) {
       const div = window.document.createElement("div");
@@ -83,7 +90,6 @@ export class ChatCoreZendeskImpl {
       }
       this.setupEventListeners();
     }
-    await this.setupSession(messageRsp);
   }
 
   /**
@@ -91,7 +97,9 @@ export class ChatCoreZendeskImpl {
    * On ticket creation, the metadata is set to include the tag "yext-chat"
    * with the conversation summary as the initial message.
    */
-  private async setupSession(messageRsp: MessageResponse) {
+  private async createZendeskConversation(
+    messageRsp: MessageResponse
+  ): Promise<ChatCoreZendeskSessionCredentials> {
     const ticketFields: Record<string, unknown> = {};
     try {
       if (messageRsp.integrationDetails?.zendeskHandoff?.ticketFields) {
@@ -133,6 +141,10 @@ export class ChatCoreZendeskImpl {
       }`,
       this.conversationId
     );
+
+    return {
+      conversationId: convo.id,
+    };
   }
 
   private setupEventListeners() {
@@ -208,6 +220,14 @@ export class ChatCoreZendeskImpl {
   }
 
   resetSession(): void {
+    // @ts-ignore - off() is not in the Smooch types, but does exist
+    Smooch.off();
     this.conversationId = undefined;
+  }
+
+  async reinitializeSession(credentials: ChatCoreZendeskSessionCredentials): Promise<void> {
+    this.conversationId = credentials.conversationId;
+    await this.initializeZendeskSdk();
+    await Smooch.loadConversation(credentials.conversationId);
   }
 }

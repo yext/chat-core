@@ -9,7 +9,7 @@ Initialize the Amazon Connect chat session using the credentials from the Chat A
 **Signature:**
 
 ```typescript
-init(messageResponse: MessageResponse): Promise<void>;
+init(messageResponse: MessageResponse): Promise<ChatCoreZendeskSessionCredentials>;
 ```
 
 ## Parameters
@@ -20,5 +20,5 @@ init(messageResponse: MessageResponse): Promise<void>;
 
 **Returns:**
 
-Promise&lt;void&gt;
+Promise&lt;[ChatCoreZendeskSessionCredentials](./chat-core-zendesk.chatcorezendesksessioncredentials.md)<!-- -->&gt;
 

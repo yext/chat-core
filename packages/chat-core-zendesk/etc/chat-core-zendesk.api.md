@@ -12,12 +12,13 @@ import { MessageResponse } from '@yext/chat-core';
 // @public
 export interface ChatCoreZendesk {
     emit<T extends keyof EventMap>(eventName: T, data: EventMap[T]): void;
-    getSession(): void;
-    init(messageResponse: MessageResponse): Promise<void>;
+    getSession(): string | undefined;
+    init(messageResponse: MessageResponse): Promise<ChatCoreZendeskSessionCredentials>;
     // Warning: (ae-forgotten-export) The symbol "EventMap" needs to be exported by the entry point index.d.ts
     // Warning: (ae-forgotten-export) The symbol "EventCallback" needs to be exported by the entry point index.d.ts
     on<T extends keyof EventMap>(eventName: T, cb: EventCallback<T>): void;
     processMessage(request: MessageRequest): Promise<void>;
+    reinitializeSession(credentials: ChatCoreZendeskSessionCredentials): Promise<void>;
     resetSession(): void;
 }
 
@@ -25,6 +26,11 @@ export interface ChatCoreZendesk {
 export interface ChatCoreZendeskConfig {
     integrationId: string;
     ticketTags?: string[];
+}
+
+// @public
+export interface ChatCoreZendeskSessionCredentials {
+    conversationId: string;
 }
 
 // Warning: (ae-forgotten-export) The symbol "ChatCoreZendeskImpl" needs to be exported by the entry point index.d.ts
