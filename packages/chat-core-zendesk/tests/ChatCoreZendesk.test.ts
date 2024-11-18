@@ -63,7 +63,7 @@ describe("chat session initialization", () => {
     const chatCoreZendesk = provideChatCoreZendesk(mockConfig);
     await expect(
       chatCoreZendesk.init(mockMessageResponse())
-    ).resolves.toStrictEqual({conversationId: "mock-conversation-id"});
+    ).resolves.toStrictEqual({ conversationId: "mock-conversation-id" });
   });
 
   it("avoid rendering smooch web widget on subsequent initialization", async () => {

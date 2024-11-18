@@ -13,7 +13,9 @@ export interface ChatCoreZendesk {
    *
    * @param messageResponse - The response returned from a successful call to the Chat API.
    */
-  init(messageResponse: MessageResponse): Promise<ChatCoreZendeskSessionCredentials>;
+  init(
+    messageResponse: MessageResponse
+  ): Promise<ChatCoreZendeskSessionCredentials>;
 
   /**
    * Register a callback for an event triggered within the Zendesk chat session.
@@ -59,5 +61,7 @@ export interface ChatCoreZendesk {
    *
    * @param credentials - The credentials to use to reinitialize the session.
    */
-  reinitializeSession(credentials: ChatCoreZendeskSessionCredentials): Promise<void>;
+  reinitializeSession(
+    credentials: ChatCoreZendeskSessionCredentials
+  ): Promise<void>;
 }

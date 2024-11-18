@@ -65,7 +65,9 @@ export class ChatCoreZendeskImpl implements ChatCoreZendesk {
    * mode on the first invocation. Subsequent calls to this method will create a
    * new conversation session.
    */
-  async init(messageRsp: MessageResponse): Promise<ChatCoreZendeskSessionCredentials> {
+  async init(
+    messageRsp: MessageResponse
+  ): Promise<ChatCoreZendeskSessionCredentials> {
     await this.initializeZendeskSdk();
     return this.createZendeskConversation(messageRsp);
   }
@@ -225,7 +227,9 @@ export class ChatCoreZendeskImpl implements ChatCoreZendesk {
     this.conversationId = undefined;
   }
 
-  async reinitializeSession(credentials: ChatCoreZendeskSessionCredentials): Promise<void> {
+  async reinitializeSession(
+    credentials: ChatCoreZendeskSessionCredentials
+  ): Promise<void> {
     this.conversationId = credentials.conversationId;
     await this.initializeZendeskSdk();
     await Smooch.loadConversation(credentials.conversationId);

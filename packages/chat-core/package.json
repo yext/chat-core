@@ -1,6 +1,6 @@
 {
   "name": "@yext/chat-core",
-  "version": "0.9.1",
+  "version": "0.9.2",
   "description": "Typescript Networking Library for the Yext Chat API",
   "main": "./dist/commonjs/index.js",
   "module": "./dist/esm/index.mjs",
@@ -53,7 +53,7 @@
     "@microsoft/api-extractor": "^7.34.8",
     "@types/jest": "^29.5.1",
     "@types/node-fetch": "^2.6.4",
-    "@yext/eslint-config": "^1.0.0",
+    "@yext/eslint-config": "^1.0.1",
     "babel-jest": "^29.5.0",
     "eslint": "^8.39.0",
     "generate-license-file": "^1.0.0",

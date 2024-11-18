@@ -9,7 +9,7 @@
     "test": "turbo run test --filter='./packages/*'"
   },
   "devDependencies": {
-    "@yext/eslint-config": "^1.0.0",
+    "@yext/eslint-config": "^1.0.1",
     "eslint": "^8.40.0",
     "generate-license-file": "^2.0.0",
     "prettier": "^2.8.8",
