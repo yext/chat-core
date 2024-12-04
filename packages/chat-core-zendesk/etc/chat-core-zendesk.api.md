@@ -24,7 +24,10 @@ export interface ChatCoreZendesk {
 
 // @public
 export interface ChatCoreZendeskConfig {
+    externalId?: string;
     integrationId: string;
+    jwt?: string;
+    onInvalidAuth?: () => string | Promise<string>;
     ticketTags?: string[];
 }
 

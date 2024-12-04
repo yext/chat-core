@@ -16,6 +16,9 @@ export interface ChatCoreZendeskConfig
 
 |  Property | Modifiers | Type | Description |
 |  --- | --- | --- | --- |
+|  [externalId?](./chat-core-zendesk.chatcorezendeskconfig.externalid.md) |  | string | _(Optional)_ The external ID to associate with the user in Zendesk. |
 |  [integrationId](./chat-core-zendesk.chatcorezendeskconfig.integrationid.md) |  | string | The web widget integration ID for the Zendesk chat. |
+|  [jwt?](./chat-core-zendesk.chatcorezendeskconfig.jwt.md) |  | string | _(Optional)_ The JWT token to authenticate the user with Zendesk. |
+|  [onInvalidAuth?](./chat-core-zendesk.chatcorezendeskconfig.oninvalidauth.md) |  | () =&gt; string \| Promise&lt;string&gt; | _(Optional)_ Callback to be invoked when the authentication token is invalid. The returned string will be used as the new auth token when retrying the request. |
 |  [ticketTags?](./chat-core-zendesk.chatcorezendeskconfig.tickettags.md) |  | string\[\] | _(Optional)_ Tags to apply when handoff to Zendesk is initiated. |
 

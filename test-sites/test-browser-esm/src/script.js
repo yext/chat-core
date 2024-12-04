@@ -2,8 +2,10 @@ import { StreamEventName, provideChatCore } from "@yext/chat-core";
 import { provideChatCoreAwsConnect } from "@yext/chat-core-aws-connect";
 import { provideChatCoreZendesk } from "@yext/chat-core-zendesk";
 
+// will be replace with actual env value during rollup build process
+const process = { env: REPLACE_ME_WITH_ENV_VALUES };
+
 let chatCore = provideChatCore({
-  // will be replace with actual env value during rollup build process
   apiKey: process.env.TEST_BOT_API_KEY || "API_KEY_PLACEHOLDER",
   botId: process.env.TEST_BOT_ID,
   endpoints: {
@@ -64,6 +66,12 @@ window.getNextMessage = async () => {
       agentCore = provideChatCoreZendesk({
         integrationId: process.env.TEST_ZENDESK_INTEGRATION_ID,
         ticketTags: ["testingTag"],
+        jwt: process.env.TEST_JWT,
+        externalId: process.env.TEST_EXTERNAL_ID,
+        onInvalidAuth: () => {
+          console.log("onInvalidAuth: return TEST_REFRESH_JWT");
+          return process.env.TEST_REFRESH_JWT;
+        }
       });
       handleHandoff(data);
     }

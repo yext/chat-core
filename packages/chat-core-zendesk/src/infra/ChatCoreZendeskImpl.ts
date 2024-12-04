@@ -50,6 +50,9 @@ export class ChatCoreZendeskImpl implements ChatCoreZendesk {
   private conversationId: string | undefined;
   private integrationId: string;
   private tags: string[] = ["yext-chat-agent-handoff"];
+  private jwt?: string;
+  private externalId?: string;
+  private onInvalidAuth?: () => string | Promise<string>;
 
   constructor(config: ChatCoreZendeskConfig) {
     if (window === undefined) {
@@ -58,6 +61,9 @@ export class ChatCoreZendeskImpl implements ChatCoreZendesk {
     this.integrationId = config.integrationId;
     this.tags = [...this.tags, ...(config.ticketTags ?? [])];
     this.tags = [...new Set(this.tags)];
+    this.jwt = config.jwt;
+    this.externalId = config.externalId;
+    this.onInvalidAuth = config.onInvalidAuth 
   }
 
   /**
@@ -74,24 +80,35 @@ export class ChatCoreZendeskImpl implements ChatCoreZendesk {
 
   private async initializeZendeskSdk(): Promise<void> {
     const divId = "yext-chat-core-zendesk-container";
-    if (!window.document.getElementById(divId)) {
-      const div = window.document.createElement("div");
-      window.document.body.appendChild(div);
-      div.id = divId;
-      div.style.display = "none";
-      Smooch.render(div);
-      try {
-        await Smooch.init({
-          integrationId: this.integrationId,
-          embedded: true,
-          soundNotificationEnabled: false,
-        });
-      } catch (e) {
-        console.error("Zendesk SDK init error", e);
-        throw e;
-      }
-      this.setupEventListeners();
+    if (window.document.getElementById(divId)) {
+      return;
     }
+    const div = window.document.createElement("div");
+    window.document.body.appendChild(div);
+    div.id = divId;
+    div.style.display = "none";
+    Smooch.render(div);
+
+    // Smooch.init() returns a Thenable object, not an actual Promise.
+    // So we can't use await syntax. Instead, we use try/catch to handle errors.
+    return new Promise((resolve, reject) => {
+      Smooch.init({
+        integrationId: this.integrationId,
+        embedded: true,
+        soundNotificationEnabled: false,
+        ...(this.jwt && { jwt: this.jwt }),
+        ...(this.externalId && { externalId: this.externalId }),
+        delegate: {
+          onInvalidAuth: this.onInvalidAuth,
+        },
+      }).then(() => {
+        this.setupEventListeners();
+        resolve();
+      }).catch((e) => {
+        console.error("Zendesk SDK init error", e);
+        reject(e);
+      });
+    });
   }
 
   /**
