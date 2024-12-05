@@ -13,13 +13,7 @@ export default {
   plugins: [
     replace({
       //inject env values
-      "process.env.TEST_BOT_API_KEY": JSON.stringify(
-        process.env.TEST_BOT_API_KEY
-      ),
-      "process.env.TEST_BOT_ID": JSON.stringify(process.env.TEST_BOT_ID),
-      "process.env.TEST_ZENDESK_INTEGRATION_ID": JSON.stringify(
-        process.env.TEST_ZENDESK_INTEGRATION_ID
-      ),
+      "REPLACE_ME_WITH_ENV_VALUES": JSON.stringify(process.env),
     }),
     resolve({
       //resolve paths

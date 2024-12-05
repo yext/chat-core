@@ -40,6 +40,9 @@ beforeEach(() => {
   jest
     .mocked(SmoochLib.createConversation)
     .mockResolvedValue({ id: mockConversationId } as Conversation);
+  jest
+    .mocked(SmoochLib.init)
+    .mockResolvedValue(Promise.resolve());
   document.body.innerHTML = "";
 });
 
