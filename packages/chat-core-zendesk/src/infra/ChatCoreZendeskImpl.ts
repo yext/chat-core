@@ -63,7 +63,7 @@ export class ChatCoreZendeskImpl implements ChatCoreZendesk {
     this.tags = [...new Set(this.tags)];
     this.jwt = config.jwt;
     this.externalId = config.externalId;
-    this.onInvalidAuth = config.onInvalidAuth 
+    this.onInvalidAuth = config.onInvalidAuth;
   }
 
   /**
@@ -80,7 +80,9 @@ export class ChatCoreZendeskImpl implements ChatCoreZendesk {
 
   private async initializeZendeskSdk(): Promise<void> {
     const divId = "yext-chat-core-zendesk-container";
+    // If the div already exists, assume the SDK is already initialized
     if (window.document.getElementById(divId)) {
+      this.setupEventListeners();
       return;
     }
     const div = window.document.createElement("div");
@@ -101,13 +103,15 @@ export class ChatCoreZendeskImpl implements ChatCoreZendesk {
         delegate: {
           onInvalidAuth: this.onInvalidAuth,
         },
-      }).then(() => {
-        this.setupEventListeners();
-        resolve();
-      }).catch((e) => {
-        console.error("Zendesk SDK init error", e);
-        reject(e);
-      });
+      })
+        .then(() => {
+          this.setupEventListeners();
+          resolve();
+        })
+        .catch((e) => {
+          console.error("Zendesk SDK init error", e);
+          reject(e);
+        });
     });
   }
 
@@ -167,9 +171,14 @@ export class ChatCoreZendeskImpl implements ChatCoreZendesk {
   }
 
   private setupEventListeners() {
+    // @ts-ignore - off() is not in the Smooch types, but does exist
+    Smooch.off(); // Unbind all previous event listeners, if any, before setting up new ones
     Smooch.on(
       "message:received",
       (message: Message, data: ConversationData) => {
+        if (data.conversation.id !== this.conversationId) {
+          return;
+        }
         if (message.type !== "text" || message.role !== "business") {
           return;
         }

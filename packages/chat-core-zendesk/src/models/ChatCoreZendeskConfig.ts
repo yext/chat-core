@@ -14,14 +14,14 @@ export interface ChatCoreZendeskConfig {
   ticketTags?: string[];
   /**
    * The JWT token to authenticate the user with Zendesk.
-   * 
+   *
    * @remarks
    * Should be provided along with the {@link ChatCoreZendeskConfig.externalId} to authenticate the user.
    */
   jwt?: string;
   /**
    * The external ID to associate with the user in Zendesk.
-   * 
+   *
    * @remarks
    * Should be provided along with the {@link ChatCoreZendeskConfig.jwt} token to authenticate the user.
    */
