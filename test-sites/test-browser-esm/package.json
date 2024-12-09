@@ -8,7 +8,7 @@
     "@rollup/plugin-commonjs": "^24.1.0",
     "@rollup/plugin-node-resolve": "^15.0.2",
     "@rollup/plugin-replace": "^5.0.2",
-    "rollup": "^3.21.4",
+    "rollup": "^3.29.5",
     "serve": "^14.2.0"
   },
   "dependencies": {
