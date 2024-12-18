@@ -1,6 +1,6 @@
 {
   "name": "@yext/chat-core-zendesk",
-  "version": "0.3.1",
+  "version": "0.4.0",
   "description": "Typescript Networking Library for the Yext Chat API Integration with Zendesk",
   "main": "./dist/commonjs/index.js",
   "module": "./dist/esm/index.mjs",

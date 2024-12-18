@@ -28,6 +28,7 @@ jest.mock("smooch", () => ({
   render: jest.fn(),
   init: jest.fn(),
   createConversation: jest.fn(),
+  updateConversation: jest.fn(),
   loadConversation: jest.fn(),
   sendMessage: jest.fn(),
   on: jest.fn(),
@@ -297,6 +298,34 @@ it("sets ticket tags defined in config on handoff", async () => {
       "zen:ticket_field:field2": "value2",
       "zen:ticket:tags": "yext-chat-agent-handoff, tag1, tag2",
       YEXT_CHAT_SDK: true,
+    },
+  });
+});
+
+it("set conversation id to custom field on handoff", async () => {
+  const createConversationSpy = jest.spyOn(SmoochLib, "createConversation");
+  const updateConversationSpy = jest.spyOn(SmoochLib, "updateConversation");
+  const chatCoreZendesk = provideChatCoreZendesk(mockConfig);
+
+  await chatCoreZendesk.init({
+    ...mockMessageResponse(),
+    integrationDetails: {
+      zendeskHandoff: {
+        ticketFields: '{"123456": "SUNCO_CONVERSATION_ID_PLACEHOLDER"}',
+      },
+    },
+  });
+  expect(createConversationSpy).toBeCalledWith({
+    metadata: {
+      "zen:ticket:tags": "yext-chat-agent-handoff",
+      YEXT_CHAT_SDK: true,
+      "zen:ticket_field:123456": "SUNCO_CONVERSATION_ID_PLACEHOLDER",
+    },
+  });
+
+  expect(updateConversationSpy).toBeCalledWith(mockConversationId, {
+    metadata: {
+      "zen:ticket_field:123456": mockConversationId,
     },
   });
 });

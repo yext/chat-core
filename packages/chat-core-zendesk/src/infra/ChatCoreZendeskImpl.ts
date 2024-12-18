@@ -157,6 +157,21 @@ export class ChatCoreZendeskImpl implements ChatCoreZendesk {
     }
     this.conversationId = convo.id;
     Smooch.loadConversation(convo.id);
+
+    // This is a temporary solution until Zendesk have a more robust way of fetching the ticket id.
+    // A Zendesk trigger is setup to make a Sunco API call, using this conversation ID placed inside
+    // a Zendesk custom field, to append the corresponding ticket id into the Sunco conversation's
+    // metadata. The bot then pull from metadata to inform the user of the ticket id when the messaging
+    // session ends.
+    const convoIdTicketField = Object.keys(ticketFields).find((key) => {
+      return ticketFields[key] === "SUNCO_CONVERSATION_ID_PLACEHOLDER";
+    });
+    if (convoIdTicketField) {
+      await Smooch.updateConversation(convo.id, {
+        metadata: { [convoIdTicketField]: convo.id },
+      });
+    }
+
     Smooch.sendMessage(
       `SUMMARY: ${
         messageRsp.notes.conversationSummary ??
@@ -179,29 +194,23 @@ export class ChatCoreZendeskImpl implements ChatCoreZendesk {
         if (data.conversation.id !== this.conversationId) {
           return;
         }
-        if (message.type !== "text" || message.role !== "business") {
+        if (
+          message.type !== "text" ||
+          message.role !== "business" ||
+          // @ts-ignore - metadata is not in the Smooch types but it's in the actual data
+          message["metadata"]?.type === "csat"
+        ) {
           return;
         }
-        let msg: string = message.text;
 
-        // If the message is of type CSAT, indicating the agent has resolved the ticket, then omit this message.
-        // Instead, send a message to inform user and reset the session
-        // @ts-ignore - metadata is not in the Smooch types but it's in the actual data
-        if (message["metadata"]?.type === "csat") {
-          this.resetSession();
-          this.eventListeners["close"]?.forEach((cb) => cb(data));
-          msg =
-            "The agent has resolved the ticket. Further assistance will now be provided by the bot.";
-        }
-
-        // If the message is from a bot, indicating the agent has deleted the ticket, then reset the session
+        // If the message is from a bot, indicating the agent has ended the messaging session, then reset the session
         // @ts-ignore - subroles is not in the Smooch types but it's in the actual data
         if (message["subroles"]?.includes("AI")) {
           this.resetSession();
           this.eventListeners["close"]?.forEach((cb) => cb(data));
         }
 
-        this.eventListeners["message"]?.forEach((cb) => cb(msg));
+        this.eventListeners["message"]?.forEach((cb) => cb(message.text));
         this.eventListeners["typing"]?.forEach((cb) => cb(false));
       }
     );
