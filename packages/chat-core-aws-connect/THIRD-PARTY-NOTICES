@@ -194,7 +194,7 @@ The following NPM packages may be included in this product:
  - @types/istanbul-lib-report@3.0.3
  - @types/istanbul-reports@3.0.4
  - @types/jsdom@20.0.1
- - @types/node@22.10.1
+ - @types/node@22.10.2
  - @types/stack-utils@2.0.3
  - @types/tough-cookie@4.0.5
  - @types/yargs-parser@21.0.3
