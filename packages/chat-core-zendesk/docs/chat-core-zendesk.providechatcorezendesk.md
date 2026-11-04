@@ -14,9 +14,39 @@ export declare function provideChatCoreZendesk(config: ChatCoreZendeskConfig): C
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  config | [ChatCoreZendeskConfig](./chat-core-zendesk.chatcorezendeskconfig.md) | Configuration for the returned instance of the [ChatCoreZendesk](./chat-core-zendesk.chatcorezendesk.md)<!-- -->. |
+<table><thead><tr><th>
+
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+config
+
+
+</td><td>
+
+[ChatCoreZendeskConfig](./chat-core-zendesk.chatcorezendeskconfig.md)
+
+
+</td><td>
+
+Configuration for the returned instance of the [ChatCoreZendesk](./chat-core-zendesk.chatcorezendesk.md)<!-- -->.
+
+
+</td></tr>
+</tbody></table>
 
 **Returns:**
 

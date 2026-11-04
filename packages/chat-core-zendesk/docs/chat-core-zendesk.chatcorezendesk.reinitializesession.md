@@ -14,9 +14,39 @@ reinitializeSession(credentials: ChatCoreZendeskSessionCredentials): Promise<voi
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  credentials | [ChatCoreZendeskSessionCredentials](./chat-core-zendesk.chatcorezendesksessioncredentials.md) | The credentials to use to reinitialize the session. |
+<table><thead><tr><th>
+
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+credentials
+
+
+</td><td>
+
+[ChatCoreZendeskSessionCredentials](./chat-core-zendesk.chatcorezendesksessioncredentials.md)
+
+
+</td><td>
+
+The credentials to use to reinitialize the session.
+
+
+</td></tr>
+</tbody></table>
 
 **Returns:**
 

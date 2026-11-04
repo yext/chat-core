@@ -14,13 +14,93 @@ export interface ChatCoreZendesk
 
 ## Methods
 
-|  Method | Description |
-|  --- | --- |
-|  [emit(eventName, data)](./chat-core-zendesk.chatcorezendesk.emit.md) | Emit an event into the Zendesk chat session. Supported events are: - <code>typing</code>: The customer is typing. |
-|  [getSession()](./chat-core-zendesk.chatcorezendesk.getsession.md) | Provide the current conversation ID for the chat session. |
-|  [init(messageResponse)](./chat-core-zendesk.chatcorezendesk.init.md) | Initialize the Amazon Connect chat session using the credentials from the Chat API. |
-|  [on(eventName, cb)](./chat-core-zendesk.chatcorezendesk.on.md) | Register a callback for an event triggered within the Zendesk chat session. Supported events are: - <code>message</code>: A new message has been received. - <code>typing</code>: The agent is typing. - <code>close</code>: The chat session has been closed (e.g. agent left or closed the ticket). |
-|  [processMessage(request)](./chat-core-zendesk.chatcorezendesk.processmessage.md) | Process a message sent by the user. |
-|  [reinitializeSession(credentials)](./chat-core-zendesk.chatcorezendesk.reinitializesession.md) | Reinitialize the session using existing session data. |
-|  [resetSession()](./chat-core-zendesk.chatcorezendesk.resetsession.md) | Reset the chat session by clearing the current conversation ID. |
+<table><thead><tr><th>
+
+Method
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+[emit(eventName, data)](./chat-core-zendesk.chatcorezendesk.emit.md)
+
+
+</td><td>
+
+Emit an event into the Zendesk chat session. Supported events are: - `typing`<!-- -->: The customer is typing.
+
+
+</td></tr>
+<tr><td>
+
+[getSession()](./chat-core-zendesk.chatcorezendesk.getsession.md)
+
+
+</td><td>
+
+Provide the current conversation ID for the chat session.
+
+
+</td></tr>
+<tr><td>
+
+[init(messageResponse)](./chat-core-zendesk.chatcorezendesk.init.md)
+
+
+</td><td>
+
+Initialize the Amazon Connect chat session using the credentials from the Chat API.
+
+
+</td></tr>
+<tr><td>
+
+[on(eventName, cb)](./chat-core-zendesk.chatcorezendesk.on.md)
+
+
+</td><td>
+
+Register a callback for an event triggered within the Zendesk chat session. Supported events are: - `message`<!-- -->: A new message has been received. - `typing`<!-- -->: The agent is typing. - `close`<!-- -->: The chat session has been closed (e.g. agent left or closed the ticket).
+
+
+</td></tr>
+<tr><td>
+
+[processMessage(request)](./chat-core-zendesk.chatcorezendesk.processmessage.md)
+
+
+</td><td>
+
+Process a message sent by the user.
+
+
+</td></tr>
+<tr><td>
+
+[reinitializeSession(credentials)](./chat-core-zendesk.chatcorezendesk.reinitializesession.md)
+
+
+</td><td>
+
+Reinitialize the session using existing session data.
+
+
+</td></tr>
+<tr><td>
+
+[resetSession()](./chat-core-zendesk.chatcorezendesk.resetsession.md)
+
+
+</td><td>
+
+Reset the chat session by clearing the current conversation ID.
+
+
+</td></tr>
+</tbody></table>
 

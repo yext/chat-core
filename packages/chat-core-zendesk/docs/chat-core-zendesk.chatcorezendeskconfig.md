@@ -14,11 +14,121 @@ export interface ChatCoreZendeskConfig
 
 ## Properties
 
-|  Property | Modifiers | Type | Description |
-|  --- | --- | --- | --- |
-|  [externalId?](./chat-core-zendesk.chatcorezendeskconfig.externalid.md) |  | string | _(Optional)_ The external ID to associate with the user in Zendesk. |
-|  [integrationId](./chat-core-zendesk.chatcorezendeskconfig.integrationid.md) |  | string | The web widget integration ID for the Zendesk chat. |
-|  [jwt?](./chat-core-zendesk.chatcorezendeskconfig.jwt.md) |  | string | _(Optional)_ The JWT token to authenticate the user with Zendesk. |
-|  [onInvalidAuth?](./chat-core-zendesk.chatcorezendeskconfig.oninvalidauth.md) |  | () =&gt; string \| Promise&lt;string&gt; | _(Optional)_ Callback to be invoked when the authentication token is invalid. The returned string will be used as the new auth token when retrying the request. |
-|  [ticketTags?](./chat-core-zendesk.chatcorezendeskconfig.tickettags.md) |  | string\[\] | _(Optional)_ Tags to apply when handoff to Zendesk is initiated. |
+<table><thead><tr><th>
+
+Property
+
+
+</th><th>
+
+Modifiers
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+[externalId?](./chat-core-zendesk.chatcorezendeskconfig.externalid.md)
+
+
+</td><td>
+
+
+</td><td>
+
+string
+
+
+</td><td>
+
+_(Optional)_ The external ID to associate with the user in Zendesk.
+
+
+</td></tr>
+<tr><td>
+
+[integrationId](./chat-core-zendesk.chatcorezendeskconfig.integrationid.md)
+
+
+</td><td>
+
+
+</td><td>
+
+string
+
+
+</td><td>
+
+The web widget integration ID for the Zendesk chat.
+
+
+</td></tr>
+<tr><td>
+
+[jwt?](./chat-core-zendesk.chatcorezendeskconfig.jwt.md)
+
+
+</td><td>
+
+
+</td><td>
+
+string
+
+
+</td><td>
+
+_(Optional)_ The JWT token to authenticate the user with Zendesk.
+
+
+</td></tr>
+<tr><td>
+
+[onInvalidAuth?](./chat-core-zendesk.chatcorezendeskconfig.oninvalidauth.md)
+
+
+</td><td>
+
+
+</td><td>
+
+() =&gt; string \| Promise&lt;string&gt;
+
+
+</td><td>
+
+_(Optional)_ Callback to be invoked when the authentication token is invalid. The returned string will be used as the new auth token when retrying the request.
+
+
+</td></tr>
+<tr><td>
+
+[ticketTags?](./chat-core-zendesk.chatcorezendeskconfig.tickettags.md)
+
+
+</td><td>
+
+
+</td><td>
+
+string\[\]
+
+
+</td><td>
+
+_(Optional)_ Tags to apply when handoff to Zendesk is initiated.
+
+
+</td></tr>
+</tbody></table>
 
