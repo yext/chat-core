@@ -14,7 +14,45 @@ export interface ZendeskHandoff
 
 ## Properties
 
-|  Property | Modifiers | Type | Description |
-|  --- | --- | --- | --- |
-|  [ticketFields?](./chat-core.zendeskhandoff.ticketfields.md) |  | string | _(Optional)_ A serialized JSON string of ticket fields to be automatically set when initiating Zendesk handoff. |
+<table><thead><tr><th>
+
+Property
+
+
+</th><th>
+
+Modifiers
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+[ticketFields?](./chat-core.zendeskhandoff.ticketfields.md)
+
+
+</td><td>
+
+
+</td><td>
+
+string
+
+
+</td><td>
+
+_(Optional)_ A serialized JSON string of ticket fields to be automatically set when initiating Zendesk handoff.
+
+
+</td></tr>
+</tbody></table>
 

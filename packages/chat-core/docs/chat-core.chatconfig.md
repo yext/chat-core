@@ -14,14 +14,178 @@ export interface ChatConfig
 
 ## Properties
 
-|  Property | Modifiers | Type | Description |
-|  --- | --- | --- | --- |
-|  [apiKey](./chat-core.chatconfig.apikey.md) |  | string | The api key of the Chat experience. |
-|  [botId](./chat-core.chatconfig.botid.md) |  | string | ID of the bot to interface with. |
-|  [businessId?](./chat-core.chatconfig.businessid.md) |  | number | _(Optional)_ ID of the account associated with this chat bot. |
-|  [endpoints?](./chat-core.chatconfig.endpoints.md) |  | [Endpoints](./chat-core.endpoints.md) | _(Optional)_ Overrides for the URLs which are used when making requests to the Chat API. |
-|  [env?](./chat-core.chatconfig.env.md) |  | [EnumOrLiteral](./chat-core.enumorliteral.md)<!-- -->&lt;[Environment](./chat-core.environment.md)<!-- -->&gt; | _(Optional)_ Defines the environment of the API domains. |
-|  [locationOverride?](./chat-core.chatconfig.locationoverride.md) |  | { latitude: number; longitude: number; } | _(Optional)_ An optional location override to use instead of the user's provided location. |
-|  [region?](./chat-core.chatconfig.region.md) |  | [EnumOrLiteral](./chat-core.enumorliteral.md)<!-- -->&lt;[Region](./chat-core.region.md)<!-- -->&gt; | _(Optional)_ The region to send the requests to. |
-|  [version?](./chat-core.chatconfig.version.md) |  | string | _(Optional)_ The version of the chat bot configuration. |
+<table><thead><tr><th>
+
+Property
+
+
+</th><th>
+
+Modifiers
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+[apiKey](./chat-core.chatconfig.apikey.md)
+
+
+</td><td>
+
+
+</td><td>
+
+string
+
+
+</td><td>
+
+The api key of the Chat experience.
+
+
+</td></tr>
+<tr><td>
+
+[botId](./chat-core.chatconfig.botid.md)
+
+
+</td><td>
+
+
+</td><td>
+
+string
+
+
+</td><td>
+
+ID of the bot to interface with.
+
+
+</td></tr>
+<tr><td>
+
+[businessId?](./chat-core.chatconfig.businessid.md)
+
+
+</td><td>
+
+
+</td><td>
+
+number
+
+
+</td><td>
+
+_(Optional)_ ID of the account associated with this chat bot.
+
+
+</td></tr>
+<tr><td>
+
+[endpoints?](./chat-core.chatconfig.endpoints.md)
+
+
+</td><td>
+
+
+</td><td>
+
+[Endpoints](./chat-core.endpoints.md)
+
+
+</td><td>
+
+_(Optional)_ Overrides for the URLs which are used when making requests to the Chat API.
+
+
+</td></tr>
+<tr><td>
+
+[env?](./chat-core.chatconfig.env.md)
+
+
+</td><td>
+
+
+</td><td>
+
+[EnumOrLiteral](./chat-core.enumorliteral.md)<!-- -->&lt;[Environment](./chat-core.environment.md)<!-- -->&gt;
+
+
+</td><td>
+
+_(Optional)_ Defines the environment of the API domains.
+
+
+</td></tr>
+<tr><td>
+
+[locationOverride?](./chat-core.chatconfig.locationoverride.md)
+
+
+</td><td>
+
+
+</td><td>
+
+{ latitude: number; longitude: number; }
+
+
+</td><td>
+
+_(Optional)_ An optional location override to use instead of the user's provided location.
+
+
+</td></tr>
+<tr><td>
+
+[region?](./chat-core.chatconfig.region.md)
+
+
+</td><td>
+
+
+</td><td>
+
+[EnumOrLiteral](./chat-core.enumorliteral.md)<!-- -->&lt;[Region](./chat-core.region.md)<!-- -->&gt;
+
+
+</td><td>
+
+_(Optional)_ The region to send the requests to.
+
+
+</td></tr>
+<tr><td>
+
+[version?](./chat-core.chatconfig.version.md)
+
+
+</td><td>
+
+
+</td><td>
+
+string
+
+
+</td><td>
+
+_(Optional)_ The version of the chat bot configuration.
+
+
+</td></tr>
+</tbody></table>
 

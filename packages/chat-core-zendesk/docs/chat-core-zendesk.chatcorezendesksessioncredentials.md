@@ -14,7 +14,45 @@ export interface ChatCoreZendeskSessionCredentials
 
 ## Properties
 
-|  Property | Modifiers | Type | Description |
-|  --- | --- | --- | --- |
-|  [conversationId](./chat-core-zendesk.chatcorezendesksessioncredentials.conversationid.md) |  | string | The conversation ID for the current chat session. |
+<table><thead><tr><th>
+
+Property
+
+
+</th><th>
+
+Modifiers
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+[conversationId](./chat-core-zendesk.chatcorezendesksessioncredentials.conversationid.md)
+
+
+</td><td>
+
+
+</td><td>
+
+string
+
+
+</td><td>
+
+The conversation ID for the current chat session.
+
+
+</td></tr>
+</tbody></table>
 

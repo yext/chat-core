@@ -6,15 +6,75 @@
 
 ## Functions
 
-|  Function | Description |
-|  --- | --- |
-|  [provideChatCoreZendesk(config)](./chat-core-zendesk.providechatcorezendesk.md) | Provider for the ChatCore integration with Zendesk. |
+<table><thead><tr><th>
+
+Function
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+[provideChatCoreZendesk(config)](./chat-core-zendesk.providechatcorezendesk.md)
+
+
+</td><td>
+
+Provider for the ChatCore integration with Zendesk.
+
+
+</td></tr>
+</tbody></table>
 
 ## Interfaces
 
-|  Interface | Description |
-|  --- | --- |
-|  [ChatCoreZendesk](./chat-core-zendesk.chatcorezendesk.md) | Provides methods for interacting with Chat's Zendesk integration. |
-|  [ChatCoreZendeskConfig](./chat-core-zendesk.chatcorezendeskconfig.md) | Configuration for this instance of the [ChatCoreZendesk](./chat-core-zendesk.chatcorezendesk.md)<!-- -->. |
-|  [ChatCoreZendeskSessionCredentials](./chat-core-zendesk.chatcorezendesksessioncredentials.md) | Credentials for the Zendesk session created by the [ChatCoreZendesk](./chat-core-zendesk.chatcorezendesk.md)<!-- -->. Used for reinitializing the session across page reloads. |
+<table><thead><tr><th>
+
+Interface
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+[ChatCoreZendesk](./chat-core-zendesk.chatcorezendesk.md)
+
+
+</td><td>
+
+Provides methods for interacting with Chat's Zendesk integration.
+
+
+</td></tr>
+<tr><td>
+
+[ChatCoreZendeskConfig](./chat-core-zendesk.chatcorezendeskconfig.md)
+
+
+</td><td>
+
+Configuration for this instance of the [ChatCoreZendesk](./chat-core-zendesk.chatcorezendesk.md)<!-- -->.
+
+
+</td></tr>
+<tr><td>
+
+[ChatCoreZendeskSessionCredentials](./chat-core-zendesk.chatcorezendesksessioncredentials.md)
+
+
+</td><td>
+
+Credentials for the Zendesk session created by the [ChatCoreZendesk](./chat-core-zendesk.chatcorezendesk.md)<!-- -->. Used for reinitializing the session across page reloads.
+
+
+</td></tr>
+</tbody></table>
 
