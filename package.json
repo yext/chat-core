@@ -2,6 +2,9 @@
   "private": true,
   "name": "chat-core",
   "version": "0.1.0",
+  "engines": {
+    "node": ">=22"
+  },
   "scripts": {
     "build": "turbo run build --filter='./packages/*'",
     "dev": "turbo run dev",
